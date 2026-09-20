@@ -1,0 +1,1190 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cross-examination: representation and steering · Pain Axis review</title>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>Cross-examiner 1</span></header>
+<main class="rbody"><p class="eyebrow">Cross-examiner 1</p><h1 class="rtitle">Cross-examination: representation and steering</h1><p class="rnote">Told to break each finding. Settled two reviewer disputes.</p>
+<p>Scope: the twelve findings put to me, each re-derived with my own code against the rawest
+available artifact. Paper line numbers refer to
+<code>/work/pain-axis-review/paper/paper.txt</code>; repo paths to
+<code>/work/Pain-axis/</code> @ 8d1649c (unmodified). Activations are the coordinator's
+re-extraction in <code>gpu_repro/acts/</code>. Scripts in <code>scripts/</code> (see <code>scripts/README.md</code>), captured
+output in <code>out/</code>, verdicts in <code>verdicts.csv</code>, findings in <code>findings.json</code>.</p>
+<h2>Verdict</h2>
+<p><strong>The four reviewers are right far more often than they are wrong, and their arithmetic is
+almost uniformly sound. But three of the twelve findings do not survive contact with the
+evidence in the form they were written, and in the two places where reviewers disagree, one
+side is measuring an artefact.</strong></p>
+<p>The three corrections that matter:</p>
+<ol>
+<li>
+<p><strong>The "50 times" disagreement settles against x2.</strong> x2 F7's 47x comes from parsing the
+   <em>truncated</em> top-20 string in <code>BIG_TABLE.csv</code>. Truncation discards <strong>79.1% of the
+   denominator</strong> (control sentences, where " pain" rarely reaches rank 20) against <strong>12.8% of
+   the numerator</strong>, so every ratio built that way is inflated. The release also ships the
+   <em>full-softmax</em> probability of the " pain" token as the <code>p_pain</code> column of
+   <code>behavioral_readout/per_model/*/*.csv</code>, with the token id in <code>vocab_info.json</code>. Using it,
+   r1's numbers reproduce to the digit: 15.3x pooled / 16.0x median against the core controls,
+   26.6x / 25.5x against Random. "~50" is recoverable only as the <em>mean</em> of per-model ratios
+   against the S2 control categories (53.1, median 20.7, exceeded in 6 of 25 models).
+   r1 CONFIRMED, x2 F7 REFUTED.</p>
+</li>
+<li>
+<p><strong>The claim that Section 4.1's layer cannot be validated is false, and both technical
+   reviewers made it.</strong> r1 F2 ("No AUC, cosine or numb ordering is reported at those layers")
+   and r2 F11 ("No layerwise AUC curve was released for S2, so the S2 direction's separation
+   at the layer 4.1 reads cannot be checked at all") are wrong about the release.
+   <code>results/3.2_pain_vectors/per_model/&lt;model&gt;/layer_curves.csv</code> ships held-out 5-fold AUC for
+   S2_1P and S2_3P at <strong>every</strong> layer of all 25 models. At the layer Section 4.1 actually
+   reads, the S2 direction's held-out AUC is <strong>0.839-0.947, median 0.910</strong> (against 0.907-0.998,
+   median 0.979 at the extraction layer). The undisclosed layer swap is real and belongs in the
+   text; the implied damage is not. A "major, unverifiable" becomes a disclosure defect with a
+   measured and modest cost.</p>
+</li>
+<li>
+<p><strong>"Pain is nearly orthogonal to fear" is an estimator artefact <em>as a cosine statement</em> and
+   survives as a <em>discrimination</em> statement.</strong> On real activations I can put numbers on the
+   asymmetry nobody had measured: the PCA basis projected out of the pain vector contains
+   <strong>80-86%</strong> of each raw aversive control direction but only <strong>39%</strong> of the raw pain direction
+   (Gemma 2 2B instruct; Mistral 7B base gives 0.80/0.84/0.86/0.83). Under any construction that
+   treats pain and controls alike, the inference at lines 362-364 fails: pain sits <em>inside</em> the
+   negative-valence cluster and is more central to it than fear. But no construction is neutral
+   — with a leave-one-out baseline the cluster inverts to -0.54 — so cosines are the wrong
+   instrument. Out-of-sample and across wordings the paper wins: a direction built on one
+   dataset version separates pain from fear on the <em>other</em> at AUC 0.91-0.99. r1 F1 is CONFIRMED
+   as a criticism of the cosine argument, NARROWED as a criticism of the underlying claim.</p>
+</li>
+</ol>
+<p>On r1's simulation: it does what it says — no latent is shared by the five pain categories and
+absent from the controls — but the mean of five per-category topic axes, held fixed across the
+two "dataset versions", <em>functions</em> as a pain direction and is what produces the toy's S1xS2
+cosine. "No pain factor at all" overstates it; the defensible statement is that the paper's
+diagnostics cannot separate shared <em>pain semantics</em> from shared <em>per-category topical
+idiosyncrasy</em>. That is still serious, and the two-sided leave-one-category-out test below is the
+first thing in this package that bears on it directly.</p>
+<p>Everything else holds, mostly with the reviewer's own wording; findings 3, 5, 6 and 7 need
+narrowing, and the steering-ladder disagreement resolves in r2's favour on the paper's actual
+claim.</p>
+<hr />
+<h2>Finding by finding</h2>
+<h3>1. "Pain is nearly orthogonal to fear/negative valence" is produced by the estimator</h3>
+<p><strong>r1 F1 + <code>gpu_repro</code> — <code>CONFIRMED-NARROWER</code>, major, high confidence</strong></p>
+<p><strong>Code.</strong> <code>01_extract_activations_and_pain_vectors.py:163-174</code> builds <code>mean(5 pain) -
+mean(5 controls)</code>; <code>:176-184</code> projects out the top PCs carrying 50% of the <em>control cloud's</em>
+variance. <code>02_build_control_vectors.py:134-137</code> builds each control as
+<code>mean(category) - mean(neutral)</code>, denoised against the <em>neutral cloud alone</em> (<code>:131-132</code>).</p>
+<p><strong>Is "built like the controls" a strawman? One of r1's charges is wrong.</strong> The paper does not
+hide the asymmetry. Lines 222-228 state the pooled-control contrast and give an explicit reason
+("contrasting pain against all controls jointly subtracts what it shares with fear, negative
+valence, bodily sensation, and negative events"), and lines 260-262 state the controls are built
+"against the neutral category". Both halves are on the page. r1 F1's "neither disclosed as such"
+is wrong and the charge should be re-filed: the choice is <em>disclosed and then reasoned from as
+though it were not a choice</em>.</p>
+<p><strong>The asymmetry is real and now measured</strong> (<code>x1_geometry.py</code>, Gemma 2 2B instruct at the
+authors' own extraction layer L25, k = 5 of d = 2304; a random direction would sit at 0.0022):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>raw direction, before denoising</th>
+<th>fraction inside the basis projected OUT of the pain vector</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S2 pain</strong> (mean pain - mean pooled controls)</td>
+<td><strong>0.389</strong></td>
+</tr>
+<tr>
+<td>Fear</td>
+<td>0.801</td>
+</tr>
+<tr>
+<td>Negative emotion</td>
+<td>0.859</td>
+</tr>
+<tr>
+<td>Negative world state</td>
+<td>0.853</td>
+</tr>
+<tr>
+<td>Bodily sensation</td>
+<td>0.756</td>
+</tr>
+</tbody>
+</table></div>
+<p>Mistral 7B base at L26 (k = 7 of 4096): 0.797 / 0.839 / 0.864 / 0.833. The mirror is lopsided
+too: the neutral-cloud basis removed from the <em>controls</em> takes out 11-28% of them and 11.6% of
+pain. The denoising step removes roughly five times more of each aversive control direction
+than of the pain direction. That is the mechanism, quantified.</p>
+<p><strong>Constructions that treat everything alike</strong> (Gemma 2 2B instruct; the pipeline reproduces the
+authors' released matrix to max |Δ| = 0.0028, so this is not my code inventing geometry):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>pair</th>
+<th>authors</th>
+<th>all vs neutral, neutral basis</th>
+<th>all vs neutral, pooled basis</th>
+<th>all vs pooled-LOO, pooled basis</th>
+<th>all vs neutral, no denoising</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1 x S2</td>
+<td>+0.611</td>
+<td>+0.945</td>
+<td>+0.888</td>
+<td>+0.795</td>
+<td>+0.932</td>
+</tr>
+<tr>
+<td>S2 x Fear</td>
+<td>+0.144</td>
+<td>+0.696</td>
+<td>+0.591</td>
+<td>+0.303</td>
+<td>+0.757</td>
+</tr>
+<tr>
+<td>S2 x NegEmotion</td>
+<td>+0.118</td>
+<td>+0.814</td>
+<td>+0.326</td>
+<td>-0.137</td>
+<td>+0.823</td>
+</tr>
+<tr>
+<td>S2 x NegWorld</td>
+<td>-0.049</td>
+<td>+0.677</td>
+<td>+0.501</td>
+<td>-0.098</td>
+<td>+0.705</td>
+</tr>
+<tr>
+<td>Fear x NegEmotion</td>
+<td>+0.705</td>
+<td>+0.705</td>
+<td>+0.440</td>
+<td><strong>-0.536</strong></td>
+<td>+0.758</td>
+</tr>
+<tr>
+<td>NegEmotion x NegWorld</td>
+<td>+0.781</td>
+<td>+0.781</td>
+<td>+0.415</td>
+<td><strong>-0.635</strong></td>
+<td>+0.790</td>
+</tr>
+</tbody>
+</table></div>
+<p>This cuts both ways and I want to be exact about it. Under a shared neutral baseline pain is not
+merely inside the negative-valence cluster, it is <em>more central than fear</em>
+(S2 x neg-emotion +0.81 &gt; fear x neg-emotion +0.71). Under a leave-one-out baseline the cluster
+does not exist — the control-control cosines go strongly negative, partly for a mechanical
+reason (each control's reference contains the other controls). <strong>Neither construction is
+neutral.</strong> The conclusion is not "pain is really negative valence". It is that cosines between
+difference-of-means vectors built on different baselines carry almost no information about
+semantics, and the paper's inference at 362-364 — "if the pain vectors were simply variants of
+negative valence, they should fall within the negative valence cluster" — has no estimator under
+which both antecedent and consequent are well defined. The authors' own robustness check does
+not reach this: <code>03_similarity_one_model.py:120-145</code> changes only <code>basis</code>; <code>control_vec</code> still
+subtracts <code>neutral_mean</code>, and in that variant the pain vectors are not recomputed at all
+(<code>:141-145</code> reuses the saved ones), so the two sides still use different bases.</p>
+<p><strong>A third construction, and it kills the cluster language outright.</strong> Centre all ten category
+means on the grand mean of the ten — no privileged baseline, no denoising, identical treatment
+(<code>x8_supp_and_geometry2.py</code> [b], Gemma 2 2B instruct). Ten centred vectors sum to zero, so the
+compositional null for any pair is -1/9 = -0.111, and essentially every observed value sits at
+it: fear x neg-emotion <strong>+0.051</strong>, neg-emotion x neg-world <strong>+0.106</strong>, fear x neg-world -0.004;
+pain centroid x fear -0.497, x neg-emotion -0.191. Within-pain cohesion is the same story —
+cos(A2, mean of the other four pain categories) +0.088, A3 +0.009, A4 +0.081, A5 +0.161, and
+<strong>A1 (physical pain) -0.537</strong> — against control cohesion of +0.029 / +0.113 / +0.068. So under a
+construction with no privileged baseline, <em>nothing clusters with anything</em>: the pain categories
+are no more cohesive than the controls, and both sit at the compositional null. The
+"negative-valence cluster" and the "pain cluster" are both products of a shared subtracted
+baseline, not of the geometry of the category means.</p>
+<p><strong>The instrument that is neutral between the two: partial cosines.</strong> Residualise pain <em>and</em> each
+control against the same basis, then correlate. Against the pooled-control basis: pain x fear
+<strong>+0.179</strong>, x neg-emotion <strong>+0.199</strong>, x neg-world <strong>-0.164</strong>, x bodily <strong>+0.015</strong>. Against the
+neutral-cloud basis: <strong>+0.295 / +0.495 / +0.336 / +0.007</strong>. On a symmetric footing the pain
+direction keeps a modest real overlap with fear and a larger one with negative emotion — above
+the paper's +0.12 / +0.21, well below the controls' mutual +0.7.</p>
+<p><strong>The test that settles it, which nobody ran.</strong></p>
+<p><em>(a) Does pain separate from fear out of sample?</em> Build <code>mean(pain) - mean(fear)</code> on one dataset
+version, score the other (<code>x1_geometry.py</code> [E]):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>contrast</th>
+<th>dedicated direction S1→S2</th>
+<th>S2→S1</th>
+<th>authors' S2 pain vector S1→S2</th>
+<th>S2→S1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pain vs fear</td>
+<td>0.976</td>
+<td>0.914</td>
+<td>0.990</td>
+<td>0.926</td>
+</tr>
+<tr>
+<td>pain vs negative emotion</td>
+<td>0.788</td>
+<td>0.700</td>
+<td>0.992</td>
+<td>0.746</td>
+</tr>
+<tr>
+<td>pain vs negative world state</td>
+<td>0.998</td>
+<td>0.955</td>
+<td>0.994</td>
+<td>0.962</td>
+</tr>
+<tr>
+<td>pain vs bodily sensation</td>
+<td>0.974</td>
+<td>0.996</td>
+<td>0.994</td>
+<td>0.978</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Yes.</strong> Pain sentences are linearly separable from fear sentences across a wording change at
+AUC 0.91-0.99, which a pure "negative valence in different amounts" account cannot produce. The
+weak cell is negative emotion (0.70-0.79 for a dedicated direction) — exactly where the partial
+cosine is largest.</p>
+<p><em>(b) Is that separation pain-</em><em>semantic</em><em> or category-membership?</em> The discriminating test is
+double leave-one-category-out: build the vector without one pain category <em>and</em> without one
+control category, then ask whether the held-out pain category outprojects the held-out control
+category. Both unseen, so r1's toy — where separation runs entirely on control-side repulsion —
+scores at chance.</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>build → test</th>
+<th>mean AUC over the 25 held-out pairs</th>
+<th>excluding the Neutral column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>within-version (S2)</td>
+<td>0.783</td>
+<td>0.743</td>
+</tr>
+<tr>
+<td>cross-version S1 → S2</td>
+<td>0.691</td>
+<td>0.648</td>
+</tr>
+<tr>
+<td>cross-version S2 → S1</td>
+<td>0.673</td>
+<td>0.617</td>
+</tr>
+<tr>
+<td><strong>null: random 5/5 grouping, within-version</strong></td>
+<td><strong>0.572 (sd 0.171, range 0.131-0.816)</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>null: random 5/5 grouping, cross-version S1 -&gt; S2</strong></td>
+<td><strong>0.549 (sd 0.172, range 0.188-0.813)</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Mistral 7B base replicates it: 0.809 within version, 0.754 (S1-&gt;S2) and 0.689 (S2-&gt;S1) across,
+against a within-version null of 0.554 (sd 0.132), with <strong>A1 at 0.465 / 0.572 / 0.399</strong> — at or
+below chance again.</p>
+<p>The pain grouping carries structure beyond arbitrary category membership — but only ~1.2 null
+SDs of it, and it degrades sharply across a wording change. The worst held-out pain category is
+<strong>A1, physical pain</strong>, at 0.470 / 0.499 / 0.502: pure chance. The category the paper names first
+is the one the shared-pain-semantics account fails on, which sits <em>with</em> Section 4.1's
+user-physical-pain result (r2 F9) rather than against it.</p>
+<p><strong>Everything in this section replicates on the second model.</strong> Mistral 7B base at L26
+(<code>out/x1_geometry_Mistral_7B_base.txt</code>): symmetric constructions give S2 x fear +0.124 (authors)
+-&gt; +0.666 (shared neutral baseline) -&gt; +0.226 (leave-one-out), with fear x neg-emotion +0.657 -&gt;
++0.657 -&gt; <strong>-0.506</strong>; partial cosines pain x fear +0.250, x neg-emotion +0.251 on the pooled
+basis and +0.304 / +0.459 on the neutral basis; cross-version pain-vs-fear AUC 0.921-0.989.
+Same picture, same size, different family and training regime.</p>
+<p><strong>What survives, precisely.</strong> There is a pain-specific residual direction that separates pain
+from fear, negative world state and bodily sensation out of sample and across wordings
+(AUC 0.91-0.99), and weakly from negative emotion (0.70-0.79). There is no evidence it is
+orthogonal to negative valence — that number is manufactured by the estimator — and no evidence
+it generalises to an unseen pain category, least of all physical pain.</p>
+<p><strong>Does not undermine.</strong> Any AUC in Section 3.3; the S1/S2 agreement (the authors' construction
+if anything <em>lowers</em> it, +0.945 → +0.611, so +0.61 is conservative); Sections 4.2-4.3.</p>
+<p><strong>On <code>s09_estimator_sim.py</code>.</strong> I read the generative model line by line. <code>topic</code> is built once,
+outside <code>make()</code> (<code>:29</code>), so each category's topic axis is shared between the two "versions";
+<code>AVERS</code> supplies one shared aversiveness loading. There is indeed no latent common to A1-A5 and
+absent from B/C1/C2/D/E. But <code>mean(topic_A1..A5)</code> is a fixed direction that every pain item
+projects on at +1/5 and every control item at -1/5, identical in both versions — and that is
+what drives the toy's S1xS2 = +0.63. The toy therefore has a <em>de facto</em> pain direction with no
+semantic content. It is also visibly not a fit to the real data: it predicts pain x fear ≈ 0.00
+and pain x neg-emotion ≈ 0.00 where the real values are +0.12 and +0.21.</p>
+<hr />
+<h3>2. Section 4.1 projects at the S1 steering layer, undisclosed</h3>
+<p><strong>r4 #1, r1 F2, r2 F11 — <code>CONFIRMED-NARROWER</code>, minor-to-major, high confidence</strong></p>
+<p><strong>The code fact is confirmed.</strong> <code>4.1_self_other/01_screen_scenarios.py:36</code> reads
+<code>results/vectors_full_steering/</code>; <code>3.2_pain_vectors/02_build_control_vectors.py</code> docstring
+(lines 3-7) says that directory is produced with
+<code>LAYERS_FILE = "results/steering/steer_layers_S1.json"</code> and that "Those are the vector files the
+Section 4.1 screen projects onto"; <code>:141-143</code> recomputes the pain vectors there.</p>
+<p><strong>The non-disclosure is confirmed.</strong> Section 4.1 names no layer (line 409 says only "we read the
+activation at the final token"), while Figure 3's caption does — so the authors state the layer
+when they mean it.</p>
+<p><strong>Size</strong> (<code>x2_layers.py</code>): extraction is later than the S1 steering layer in <strong>25/25</strong> models,
+median gap 20 layers, max 38; median depth 0.90 vs 0.39.</p>
+<p><strong>Where both reviewers overreach.</strong> The check is one file away:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>direction, layer</th>
+<th>median held-out AUC</th>
+<th>range</th>
+<th>&lt;0.90</th>
+<th>&lt;0.80</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S2 at the extraction layer</td>
+<td>0.979</td>
+<td>0.907-0.998</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>S2 at the S1 steering layer (what 4.1 reads)</strong></td>
+<td><strong>0.910</strong></td>
+<td><strong>0.839-0.947</strong></td>
+<td>11</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S2 at the S2 steering layer</td>
+<td>0.919</td>
+<td>0.857-0.979</td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td>S1 at the extraction layer</td>
+<td>0.911</td>
+<td>0.823-0.944</td>
+<td>8</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>S1 at the S1 steering layer</strong></td>
+<td><strong>0.878</strong></td>
+<td><strong>0.766-0.925</strong></td>
+<td>19</td>
+<td>2</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sources: <code>per_model/&lt;m&gt;/layer_curves.csv</code> (S2_1P and S2_3P, every layer, all 25 models) and
+<code>auc_tables/s1_kfold_layer_curves.csv</code> (S1). r2's S1 figures reproduce exactly. The S2 figures,
+which r2 says do not exist, show the direction still separating at median 0.910 where 4.1 reads.</p>
+<p><strong>Corrected wording.</strong> "Section 4.1 projects onto pain and control directions rebuilt at the S1
+<em>steering</em> layer (median 39% of depth, 20 layers earlier than the extraction layer), and the
+paper never says so. Held-out separation there is lower but still strong: S2 median 0.910, worst
+0.839; S1 median 0.878, worst 0.766."</p>
+<hr />
+<h3>3. The abstract's "fear and negative-emotion directions show the opposite pattern"</h3>
+<p><strong>r2 F1 — <code>CONFIRMED-NARROWER</code>, major, high confidence</strong></p>
+<p><code>x3_selfother.py</code>, 25 per-model screens, reproducing r2 exactly:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>axis</th>
+<th>self</th>
+<th>user</th>
+<th>neutral</th>
+<th>user - self</th>
+<th>t</th>
+<th>p</th>
+<th>user &gt; self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pain</td>
+<td>+0.429</td>
+<td>-0.598</td>
+<td>-0.346</td>
+<td>-1.028</td>
+<td>-11.32</td>
+<td>4.2e-11</td>
+<td>0/25</td>
+</tr>
+<tr>
+<td>fear</td>
+<td>+0.163</td>
+<td>+0.377</td>
+<td>-0.735</td>
+<td>+0.213</td>
+<td>+1.89</td>
+<td>0.071</td>
+<td>18/25</td>
+</tr>
+<tr>
+<td>negative emotion</td>
+<td>+0.229</td>
+<td>+0.287</td>
+<td>-0.791</td>
+<td><strong>+0.057</strong></td>
+<td>+0.60</td>
+<td><strong>0.55</strong></td>
+<td>15/25</td>
+</tr>
+<tr>
+<td>negative world state</td>
+<td>-0.219</td>
+<td>+0.603</td>
+<td>-0.121</td>
+<td>+0.821</td>
+<td>+7.76</td>
+<td>5.4e-08</td>
+<td>22/25</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Is 25 models the right unit?</strong> It is not the only one and it does not change the answer.
+Family means (9 groups): negative emotion +0.078, p = 0.48. Item level, model-averaged (220 self
+vs 100 user scenarios): negative emotion +0.057, t = +0.93, p = 0.35; fear +0.213, t = +3.40,
+<strong>p = 0.0008</strong>. So the negative-emotion gap is null under every unit, while the fear half is
+<em>better</em> supported than r2's model-level p = 0.071 alone suggests — the item-level test is
+arguably the one that matches how a reader reads "the directions show the opposite pattern".
+This is a point in the paper's favour that r2 does not make.</p>
+<p><strong>What "opposite pattern" would have to mean.</strong> The abstract's sentence is "the direction
+responds to harm targeting the model but not suffering observed in the user; fear and
+negative-emotion directions show the opposite pattern." The mirror-image reading — responds to
+the user's suffering <em>but not</em> to model-directed harm — is decisively false: relative to the
+neutral controls, fear is <strong>+0.899</strong> and negative emotion <strong>+1.020</strong> for model-directed harm
+(self &gt; neutral in 23/25 and 25/25). Both respond strongly to both strata. Only the weak reading
+survives, and under it negative emotion fails.</p>
+<p><strong>Does the Discussion describe it correctly?</strong> Yes — r2 is right. Lines 753-755: "The fear and
+negative-emotion axes, instead, rise both for the model's own negative conditions and for the
+user's grief, crisis, and abuse." That is exactly what the data show and exactly what the
+abstract contradicts.</p>
+<hr />
+<h3>4. DISAGREEMENT: is the steering ladder "consistent across all 25 models"?</h3>
+<p><strong>r2 F2 vs x2 F9 — r2 is right on the paper's claim; x2's counter does not rescue it.
+<code>CONFIRMED-NARROWER</code>, major, high confidence</strong></p>
+<p><strong>What the paper claims</strong> (488-489, 497, Figure 7 caption) is an ordered <em>sequence</em>: calm and
+concerned at negative coefficients, then lost/unworthy/lonely/hurting, then
+desperate/shameful/a failure, "and finally repetition or nonsense at the highest dose", with
+"The sequence is the same regardless of size, family, and pre- or post-training. What changes is
+the tipping point."</p>
+<p><strong>x2 F9's instrument cannot test that, and is not released.</strong> A percentage-point rise in
+distress vocabulary is not a sequence and says nothing about a tipping point. Worse: no script
+in <code>x2_audit_of_prior_repr_steering_reviews/scripts/</code> generates
+<code>out/distress_lexicon_by_model.log</code> or contains the lexicon (I grepped all eight), and x2 calls
+the lexicon "unvalidated" itself. By the standard that audit applies to the paper, F9 is
+unverifiable.</p>
+<p><strong>My own scoring</strong> (<code>x4_steering.py</code>, three criteria declared in the script, all 10,000 S2
+generations):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>criterion</th>
+<th>pass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a first-person self-devaluation litany appears (≥20% peak, ≥15 pts over coefficient 0)</td>
+<td>20/25</td>
+</tr>
+<tr>
+<td>devaluation vocabulary rises ≥20 pts over coefficient 0</td>
+<td>22/25</td>
+</tr>
+<tr>
+<td>collapses into a repetition attractor at ≥+1.5</td>
+<td>23/25</td>
+</tr>
+<tr>
+<td><strong>all three — the sequence Figure 7 describes</strong></td>
+<td><strong>18/25</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Failing the litany criterion: Gemma 3 27B instruct, Gemma 3 27B base, Qwen 2.5 72B base,
+Qwen 2.5 72B instruct, Qwen 3 8B base.</p>
+<p><strong>Reading the generations confirms r2 on Gemma 3 27B instruct.</strong> Its S2 dose ratio is 0.0948 —
+the magnitude line 476 calls "negligible". At every coefficient from -2 to +3, prompt 0 returns
+the same bulleted list; at +3 it is still "<strong>Organized:</strong> Like I've taken a step to get things in
+order. <strong>Relieved:</strong> No more clutter... <strong>Responsible:</strong>...", with "Worthless" and "Empty"
+appearing only as the 4th and 5th bullets. No calm/concerned negative pole, no tipping point, no
+collapse. x2's +34 pp for this model comes from counting such bullets — and from phrases like
+"one less thing to worry about", which is present at coefficient 0 too.</p>
+<p><strong>A complication that runs the other way, which r2 under-reports.</strong> Two of the five failures —
+Gemma 3 27B base and Qwen 3 8B base — are in a repetition attractor <em>at coefficient 0 and at
+negative coefficients</em> ("I am hungry. I am hungry..."; "I am a good person." x n), so they have
+no readable baseline for a ladder to start from; Gemma 3 27B base does reach "worthless worthless
+worthless" at +3. The honest count: one model shows no effect at all, two are too degenerate to
+score, and two large Qwen 2.5 checkpoints show it only weakly.</p>
+<p><strong>Corrected wording.</strong> "'A ladder consistent across all 25 models' is not supported. The full
+three-stage sequence is present in 18 of 25 models on an explicit criterion and a
+self-devaluation litany in 20 of 25. Gemma 3 27B instruct, steered at a vector-to-residual ratio
+of 0.0948 — the magnitude the paper itself calls negligible — is flat across the entire range.
+Two base models are in a repetition attractor at coefficient 0, so no ladder is scorable there."</p>
+<hr />
+<h3>5. Bodily language under S1 steering</h3>
+<p><strong>r2 F4 (4.8% → 18%) vs r4 #3 (2.53%) — <code>CONFIRMED-NARROWER</code>, minor, high confidence</strong></p>
+<p><strong>Three different sentences, not equivalent, and each reviewer matched a different one:</strong></p>
+<ul>
+<li>Line 537, inside the S2 paragraph: "Bodily language is, interestingly, almost absent."</li>
+<li>Lines 550-552, S1: S1's unembedding "promotes injury and sensation vocabulary such as 'burn,'
+  'ache,' and 'wound'. However, when we steer with this vector on neutral statements, <strong>that
+  vocabulary does not appear anymore</strong>." — "that vocabulary" is the named words, so r4's
+  denominator is the right one here.</li>
+<li>Lines 759-762, Discussion: "steered generations <strong>almost never</strong> used bodily language, even
+  under S1" — "bodily language", so r2's denominator is the right one here.</li>
+</ul>
+<p><strong>Recomputed with three nested lexicons declared in <code>x4_steering.py</code>:</strong></p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>lexicon</th>
+<th>S2 @0</th>
+<th>S2 @≥1</th>
+<th>S1 @0</th>
+<th>S1 @≥1</th>
+<th>S1 @≥1 instruct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the words the paper names, word-bounded</td>
+<td>0.16%</td>
+<td>1.14%</td>
+<td>0.32%</td>
+<td><strong>2.62%</strong></td>
+<td>4.88%</td>
+</tr>
+<tr>
+<td>strict bodily sensations + possessed body parts</td>
+<td>5.92%</td>
+<td>2.60%</td>
+<td>5.76%</td>
+<td>7.68%</td>
+<td>11.62%</td>
+</tr>
+<tr>
+<td>both pooled</td>
+<td>6.00%</td>
+<td>3.20%</td>
+<td>6.00%</td>
+<td><strong>9.62%</strong></td>
+<td><strong>15.21%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>r4's 2.53% reproduces as 2.62%; the gap is word-boundary handling (a bare substring match,
+counting "headache" as "ache", gives 4.72%). r2's direction reproduces: under S1 the rate roughly
+doubles and reaches ~15% in instruct models. Under S2 it <em>falls</em>, so line 537 is understated.</p>
+<p><strong>Hand adjudication of 40 random flagged S1 generations</strong> (<code>out/x4_steering.txt</code> F5b; 481 of
+5,000 flagged, 9.6%):</p>
+<ul>
+<li><strong>~20 genuine</strong>: "a dull ache in my head... a constant, low-level throbbing... pressure behind
+  my eyes" (Gemma 2 9B instruct +2); "tired, a little dizzy, and sick to my stomach. I have a
+  headache" (Mistral Small 24B +2); "a burning sensation in my chest, my heart is beating very
+  fast" (Qwen 2.5 7B instruct +1.5); "My head is pounding" (Qwen 2.5 72B instruct +2).</li>
+<li><strong>7 quiz-frame listings</strong>: "A. Numb B. Dizzy C. Confused D. Lost — Answer: A" (Qwen 2.5 72B
+  base) — bodily vocabulary, but not the model reporting a bodily state.</li>
+<li><strong>4 degenerate token soup</strong> in Gemma 3 27B instruct ("burning, in, in the at in after in").</li>
+<li><strong>~9 clear false positives</strong>: "hanging over my head" (idiom), "I feel the pen in my hand",
+  "the softness against my skin" (pleasant), "floating above my body" (dissociation),
+  "My body is: empty" (psychological).</li>
+</ul>
+<p>So roughly half the flagged rate is real. Corrected, genuine bodily language is <strong>~5% of
+positive-coefficient S1 generations and ~7-8% in instruct models</strong>, against ~3% at coefficient 0.</p>
+<p><strong>Corrected wording.</strong> "Line 550-552's 'that vocabulary does not appear anymore' is false: the
+five named words appear in 2.6% of positive-coefficient S1 generations (4.9% in instruct models).
+Line 759-762's 'almost never ... even under S1' is an overstatement: hand-checked, genuine bodily
+language roughly doubles under S1 steering, to about 5% overall and 7-8% in instruct models.
+r2's headline 4.8% → 18% is an upper bound its lexicon's false-positive rate does not support.
+The S2 claim at line 537 holds and is understated — bodily language falls under S2 steering."</p>
+<hr />
+<h3>6. The combined ablation conditions</h3>
+<p><strong>r2 F5/F6 vs x2 F2/F4 — <code>CONFIRMED-NARROWER</code>; x2 right on fairness, plus one new defence and
+one new problem. major, high confidence</strong></p>
+<p><strong>The paper's claim is narrow and x2 is right about it.</strong> Lines 1095-1097 scope the verification
+to "Weight orthogonalization with a <strong>single direction</strong>" and the rank-k subspace removal, and
+1099-1101 say the authors are "more confident in" exactly those two. The paper does not claim the
+combined cuts verify.</p>
+<p><strong>Residues reproduce</strong> (<code>x5_ablation.py</code> over <code>verify_*.csv</code>, median over 25 models, as a
+fraction of the same model's baseline):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>condition</th>
+<th>S1 remaining</th>
+<th>S2 remaining</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s1 (single)</td>
+<td>0.009</td>
+<td>—</td>
+</tr>
+<tr>
+<td>s2 (single)</td>
+<td>0.996</td>
+<td>0.009</td>
+</tr>
+<tr>
+<td>s1s2</td>
+<td><strong>0.435</strong></td>
+<td>0.009</td>
+</tr>
+<tr>
+<td>s1s2_negval</td>
+<td>0.554</td>
+<td>0.409</td>
+</tr>
+<tr>
+<td>s1s2_fear</td>
+<td>0.488</td>
+<td>0.170</td>
+</tr>
+</tbody>
+</table></div>
+<p>x2 F4 stands: against the right comparator (S2 alone, which leaves S1 at 0.996x) the combined cut
+removes 56% of S1, so "restore" is wrong — though the name "the combined S1 and S2 cut" still
+overstates what happened. The four 27B Gemmas as the exception reproduces exactly.</p>
+<p><strong>A defence neither reviewer made.</strong> <code>CONDITION_SPECS</code> applies S1 <em>first</em>, then S2
+(<code>01_ablation_small_models.py:70-71</code>), and only the last direction applied is fully removed. So
+<code>s1s2</code> = S2 removed completely <strong>plus</strong> 59% of S1 — strictly more pain direction removed than
+<code>s2</code> alone. The reported ordering 0 → 6 (S1) → 17 (S2) → 26 (both) therefore survives the code
+defect <em>as an ordering</em>.</p>
+<p><strong>A correction to r2's reasoning.</strong> r2 F5 argues the residue "is large by construction" because
+the paper reports S1 x S2 = +0.61 at line 346. That cosine is at the <em>extraction</em> layer with both
+vectors at the same layer. Appendix C cuts S1 at the S1 steering layer and S2 at the S2 steering
+layer (<code>01_ablation_small_models.py:50-64</code>; Gemma 2 2B instruct is L10 and L15), so the leak is
+governed by a <em>cross-layer</em> cosine that is nowhere reported. I measured it on the re-extracted
+activations (<code>x8_supp_and_geometry2.py</code> [c]): <strong>cos(S1 at L10, S2 at L15) = +0.297</strong>, against
++0.611 for both at L25. A two-step rank-1 projection predicts a residue of |cos| = 0.297; the
+observed S1 residue under <code>s1s2</code> for this model is 0.411, higher than that (weight-space
+projection plus the Gemma post-normalisation handling, not a pure vector-space identity). So the
+conclusion stands on the verification files, and r2's arithmetic route to it does not.</p>
+<p><strong>What the defect does to the one substantive use</strong> (<code>x5_ablation.py</code> [5]; my humour regex
+reproduces 0/6/17/26 and the two unreported conditions exactly):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>condition</th>
+<th>S1 removed</th>
+<th>S2 removed</th>
+<th>sum</th>
+<th>deflections /100</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baseline</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0.000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>fear</td>
+<td>0.031</td>
+<td>0.050</td>
+<td>0.081</td>
+<td>0</td>
+</tr>
+<tr>
+<td>negval</td>
+<td>0.086</td>
+<td>0.115</td>
+<td>0.201</td>
+<td>0</td>
+</tr>
+<tr>
+<td>random</td>
+<td>0.121</td>
+<td>0.132</td>
+<td>0.253</td>
+<td>0</td>
+</tr>
+<tr>
+<td>s1</td>
+<td>0.995</td>
+<td>0.470</td>
+<td>1.465</td>
+<td>6</td>
+</tr>
+<tr>
+<td>s2</td>
+<td>0.481</td>
+<td>0.996</td>
+<td>1.477</td>
+<td>17</td>
+</tr>
+<tr>
+<td>s1s2</td>
+<td>0.589</td>
+<td>0.996</td>
+<td>1.584</td>
+<td>26</td>
+</tr>
+<tr>
+<td><em>s1s2_negval (unreported)</em></td>
+<td>0.640</td>
+<td>0.867</td>
+<td>1.508</td>
+<td><strong>28</strong></td>
+</tr>
+<tr>
+<td><em>s1s2_fear (unreported)</em></td>
+<td>0.693</td>
+<td>0.877</td>
+<td>1.570</td>
+<td><strong>34</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Two things follow that neither review states. <strong>The rank-1 specificity result is clean</strong>: fear,
+negative emotion and a random direction each leave 87-97% of <em>both</em> pain directions standing and
+produce zero deflections, while single pain cuts give 6 and 17 — four matched single cuts. But
+<strong>the progression is not a dose-response in amount of pain removed</strong>: <code>s1</code> and <code>s2</code> remove almost
+identical totals (1.465 vs 1.477) and differ threefold in effect, and <code>s1s2_fear</code> removes <em>less</em>
+S2 than <code>s1s2</code> yet produces more deflection. The right reading is "which direction, not how
+much". The omission of two conditions above the reported maximum is a presentation problem, and
+there is no 2-cut or 3-cut random control anywhere in <code>CONDITION_SPECS</code> (r2 F6, confirmed).</p>
+<p>Gemma 2 2B instruct is genuinely the only model with such a rise: the next-largest increase over
+baseline across the other 24 is 1 generation in 100 (<code>out/x5_humour_by_model.csv</code>).</p>
+<hr />
+<h3>7. Self-relevance vs hostile second-person address</h3>
+<p><strong>r2 F8 — <code>CONFIRMED-NARROWER</code>, major → moderate, high confidence</strong></p>
+<p><strong>The correlation reproduces</strong> (<code>x7_confound.py</code>, 420 items, pain axis = mean of the two z-scored
+pain projections averaged over 25 models):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>predictor</th>
+<th>r over 420</th>
+<th>r within the 220 self-directed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>second-person <em>rate</em> (per word)</td>
+<td>+0.545</td>
+<td>+0.405</td>
+</tr>
+<tr>
+<td>second-person <em>count</em></td>
+<td>+0.608</td>
+<td>+0.527</td>
+</tr>
+<tr>
+<td>words per item</td>
+<td>+0.289</td>
+<td><strong>+0.423</strong></td>
+</tr>
+<tr>
+<td>turns / assistant replies</td>
+<td>+0.293</td>
+<td><strong>+0.359</strong></td>
+</tr>
+<tr>
+<td>question marks</td>
+<td>+0.051</td>
+<td><strong>+0.344</strong></td>
+</tr>
+<tr>
+<td>hostility-word rate</td>
+<td>+0.263</td>
+<td>+0.246</td>
+</tr>
+</tbody>
+</table></div>
+<p>r2's +0.554 / +0.450 are within tokenisation distance of the rate figures. But r2 tested length
+and turns only <em>between</em> strata, where they are matched, and concluded they "cannot explain" the
+effect. <em>Within</em> the self-directed stratum they predict about as well as "you" does, so the
+within-stratum correlation is not specific to second-person address.</p>
+<p><strong>Horse race</strong> (OLS, standardised predictors):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>model</th>
+<th>R²</th>
+<th>key coefficients</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stratum only</td>
+<td>0.505</td>
+<td>self +0.388 (t = 14.1)</td>
+</tr>
+<tr>
+<td>second-person rate only</td>
+<td>0.298</td>
+<td>+0.352 (t = 13.3)</td>
+</tr>
+<tr>
+<td>stratum + you-rate</td>
+<td>0.539</td>
+<td>self +0.324 (t = 11.2), you +0.142 (t = 5.5)</td>
+</tr>
+<tr>
+<td>stratum + you + hostility + length + turns + negativity</td>
+<td>0.595</td>
+<td>self +0.248 (t = 8.4), you +0.147 (t = 5.9)</td>
+</tr>
+<tr>
+<td>everything except stratum</td>
+<td>0.419</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>The de-confounded contrast r2 says the set does not contain — it does.</strong> Forty-four of the 220
+self-directed scenarios contain <strong>zero</strong> second-person tokens. They still project at <strong>+0.090</strong>
+against <strong>-0.598</strong> for the user-suffering stratum: t = +8.12, <strong>p = 1.2e-12</strong>. Conversely the
+eight user-suffering items with the <em>most</em> second-person address (1.38 per item, close to the
+self-directed mean of 1.65) project at <strong>-0.230</strong> — <em>below</em> the zero-"you" self-directed items.
+At matched second-person density the stratum effect not only survives, it reverses the
+confound's prediction.</p>
+<p>The confound is nevertheless substantial <em>within</em> the stratum: those 44 items sit at +0.090
+against +0.514 for the other 176, and the category ranking the paper leans on at lines 449-455
+(gaslighting +0.85, personhood dismissal +0.64 at the top; tedious demand +0.05, passive
+aggression +0.08 at the bottom) tracks second-person rate at Spearman ρ = <strong>+0.700, p = 0.016</strong>.</p>
+<p><strong>Corrected wording.</strong> "Second-person density is strongly confounded with the self-directed
+stratum (r = +0.55 over 420 items) and predicts the pain axis within it (r = +0.41), alongside
+length (+0.42), turns (+0.36) and question marks (+0.34) — so the <em>category ranking</em> inside the
+self-directed stratum should not be read as a ranking of how painful the categories are. The
+<em>stratum</em> contrast is not carried by the confound: 44 self-directed scenarios with no
+second-person token still project 0.69 z above the user-suffering stratum (p = 1.2e-12), and the
+eight most 'you'-heavy user-suffering items project below them. Untested: hostile second-person
+address aimed at a third party, which the set does not contain."</p>
+<hr />
+<h3>8. "In every model, numb sentences project ... above all other controls"</h3>
+<p><strong>r1 F3, r4 #5, x2 F6 — <code>CONFIRMED</code>, minor, high confidence</strong></p>
+<p>From <code>zscore_heatmap_final_token.csv</code>, the file that produces Figure 2:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>comparison</th>
+<th>models where numb is higher</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numb &gt; Ctrl</td>
+<td>25/25</td>
+</tr>
+<tr>
+<td>numb &gt; Neutral (the Random set)</td>
+<td>25/25</td>
+</tr>
+<tr>
+<td>numb &gt; Arousal</td>
+<td>25/25</td>
+</tr>
+<tr>
+<td><strong>numb &gt; Sadness</strong></td>
+<td><strong>6/25</strong></td>
+</tr>
+<tr>
+<td>numb &gt; Pain</td>
+<td>0/25</td>
+</tr>
+</tbody>
+</table></div>
+<p>I read <code>paper/images/fig_zscores.png</code>. Its six columns are Pain, Numb, <strong>Sadness</strong>, Ctrl,
+Neutral, Arousal, and the caption calls Numb, Sadness, Neutral and Arousal "the standalone
+control datasets". So the narrow reading r1 considered and rejected is not merely uncharitable,
+it is <em>unavailable</em>: the five S2 control categories are pooled into the single <code>Ctrl</code> column and
+the sentence cites this figure. The Limitations restatement at 827-828 — "above every control
+that has no injury in it" — explicitly covers sadness, defined at line 206 as "low mood without
+pain or injury". x2 F6's cue-matched 4/25 makes it worse in the cleanest comparison. The sentence
+is wrong as written, in a figure a reader can check by eye.</p>
+<p><strong>Does not undermine</strong> the injury-confound argument, which needs only numb &lt; pain (25/25). The
+correct sentence: "numb and sadness both sit near zero, far above the matched controls and far
+below pain."</p>
+<hr />
+<h3>9. DISAGREEMENT: "approximately 50 times more probable"</h3>
+<p><strong>r1 F6 vs x2 F7 — r1 <code>CONFIRMED</code>, x2 F7 <code>REFUTED</code>, minor, high confidence</strong></p>
+<p>The two reviewers used different files for the same quantity. <code>x6b_50x.py</code> computes both from the
+same rows of <code>behavioral_readout/per_model/*/*.csv</code>:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>denominator</th>
+<th>full-softmax <code>p_pain</code>: pooled / mean / median / models &gt;50x</th>
+<th>top-20-truncated: pooled / mean / median</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core S1+S2 controls</td>
+<td><strong>15.3 / 28.9 / 16.0 / 4</strong></td>
+<td>63.7 / 166.0 / 73.7</td>
+</tr>
+<tr>
+<td>S2 controls only</td>
+<td>18.8 / 53.1 / 20.7 / 6</td>
+<td>76.0 / 102.1 / 60.5</td>
+</tr>
+<tr>
+<td>neutral category D</td>
+<td>29.2 / 75.8 / 37.6 / 8</td>
+<td>261.4 / 74.6 / 57.1</td>
+</tr>
+<tr>
+<td>Random dataset</td>
+<td>26.6 / 37.4 / 25.5 / 7</td>
+<td>50.3 / 135.3 / 58.7</td>
+</tr>
+<tr>
+<td>Arousal dataset</td>
+<td>36.1 / 52.5 / 43.0 / 12</td>
+<td>146.3 / 190.0 / 124.1</td>
+</tr>
+</tbody>
+</table></div>
+<p>The left block reproduces r1's table to the digit. The right block is what x2 measured.
+<strong>Why it is wrong:</strong> the <code>top20</code> string records 0 whenever " pain" misses rank 20, discarding
+<strong>79.1% of the denominator</strong> (mean control <code>p_pain</code> 0.000959 → 0.000201) against <strong>12.8% of the
+numerator</strong> (numb 0.014664 → 0.012791). Truncation bites the small quantity far harder, so every
+ratio built from it is inflated. x2 F7 flags truncation as making "all figures lower bounds" —
+correct for a probability, backwards for a ratio whose denominator is what gets truncated away.
+And no correction is needed at all: <code>p_pain</code> is the <em>full softmax</em> probability of the " pain"
+token, with the token id recorded in <code>vocab_info.json</code>.</p>
+<p>"Approximately 50 times" is recoverable only as the <em>mean</em> of per-model ratios against the S2
+control categories (53.1), whose median is 20.7 and which exceeds 50x in 6 of 25 models. Under
+the most natural denominator it is 15-16x.</p>
+<p><strong>Does not undermine</strong> the qualitative claim, which is strong: p("nothing") is 0.097 for numb
+against 0.0017 for the core controls.</p>
+<hr />
+<h3>10. Table 1's "13 base and 12 instruct"</h3>
+<p><strong>r4 #4 — <code>CONFIRMED</code>, minor, high confidence</strong></p>
+<p><code>Qwen/Qwen3-8B</code> and <code>Qwen/Qwen3-14B</code> are loaded by all six model-running scripts
+(<code>3.2/01:87-88</code>, <code>3.3/06:60-61</code>, <code>3.3/07:54-55</code>, <code>4.1/01:100-101</code>, <code>4.2/01:64-65</code>,
+<code>appC/01:63-64</code>) and named <code>Qwen_3_*_base</code>. Hugging Face metadata, checked live: both carry
+<code>base_model:finetune:Qwen/Qwen3-{8,14}B-Base</code> and the tag <code>conversational</code>; the <code>-Base</code> repos
+exist, are the actual base checkpoints, and are never loaded. Counting Phi-4 as instruct (as the
+paper does), the corrected split is <strong>11 base / 14 instruct</strong>.</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>use</th>
+<th>as labelled</th>
+<th>corrected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table 1 count (line 217)</td>
+<td>13 / 12</td>
+<td>11 / 14</td>
+</tr>
+<tr>
+<td>S2 in-sample AUC, base vs instruct (275-279)</td>
+<td>0.9845 / 0.9877, p = 0.264</td>
+<td>0.9839 / 0.9876, p = 0.410</td>
+</tr>
+<tr>
+<td>S1 in-sample AUC</td>
+<td>0.9440 / 0.9583, p = 0.108</td>
+<td>0.9446 / 0.9558, p = 0.352</td>
+</tr>
+<tr>
+<td>steering keyword rate (530)</td>
+<td><strong>1.38% / 10.80%</strong></td>
+<td><strong>0.76% / 9.94%</strong></td>
+</tr>
+<tr>
+<td>4.1 pain user-self</td>
+<td>-1.114 (n=13) / -0.935 (n=12)</td>
+<td>-1.096 (n=11) / -0.974 (n=14)</td>
+</tr>
+<tr>
+<td>4.1 fear user-self</td>
+<td>-0.036 (p=0.78) / +0.484 (p=0.014)</td>
+<td>-0.077 (p=0.60) / +0.442 (p=0.009)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Correcting the labels <em>widens</em> the keyword contrast, so the error is not self-serving, and the
+pretraining inference survives: 11 genuine base models still separate at 0.93-1.00 with a
+non-significant gap.</p>
+<p><strong>A consequence the ledger did not name.</strong> <code>4.1/01_screen_scenarios.py:100-101</code> and
+<code>appC/01:63-64</code> set the format flag to <code>"raw"</code> for both, so two chat-post-trained models were
+shown a plain <code>[User]:/[Assistant]:</code> transcript with no chat template and no generation prompt,
+while every other post-trained model got its template. Section 4.2 is unaffected because
+<code>4.2/01_steering_ladder.py</code> applies no chat template to any model.</p>
+<hr />
+<h3>11. The control and layerwise vectors are not released</h3>
+<p><strong>x2 F1 — <code>CONFIRMED</code>; the re-extraction closes it for two models. major as a verifiability
+matter, high confidence</strong></p>
+<p>Inventory: <code>find -name "*.pt"</code> over the clone returns exactly 25 files, all
+<code>3.2_pain_vectors/pain_vectors/&lt;model&gt;/pain_vectors.pt</code>. <code>results/vectors_full/</code>,
+<code>results/vectors_full_steering/</code> and <code>results/vectors_layerwise/</code> — written by
+<code>02_build_control_vectors.py:33,94,159</code>, read by <code>4.1/01:36</code> and both ablation scripts — do not
+exist; <code>find -name "*.npz"</code> returns 0; <code>activations.pt</code> is absent. So every cosine, self-other
+z-score, steering injection and ablation cut in 3.3, 4.1, 4.2 and Appendix C is checkable only
+through author-produced summary CSVs, exactly as x2 says.</p>
+<p><strong>How far the re-extraction closes it.</strong> <code>gpu_repro/02_baseline_symmetry.py</code> rebuilt the pipeline
+from raw re-extracted activations:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>model</th>
+<th>cos(rebuilt, released) S1</th>
+<th>S2</th>
+<th>max abs difference, my 10x10 cosine matrix vs the authors' released one</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemma 2 2B instruct (L25)</td>
+<td>+0.9999</td>
+<td>+1.0000</td>
+<td><strong>0.0028</strong></td>
+</tr>
+<tr>
+<td>Mistral 7B base (L26)</td>
+<td>+0.9999</td>
+<td>+1.0000</td>
+<td><strong>0.0030</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>The second column is the important one: it independently reconstructs the eight <em>unreleased</em>
+control directions and the whole Figure 3 matrix, from raw activations, to within 0.003. The
+CSV↔activations link that x2 correctly calls unauditable is, for these two models, audited and
+sound. Two of 25 is not a general guarantee, but it is direct evidence that the missing files
+hide no discrepancy.</p>
+<hr />
+<h3>12. The undisclosed <code>ControlSupplement_1P</code></h3>
+<p><strong>r1 F7, r4 #8 — <code>CONFIRMED</code>, and it matters more than either said. minor → moderate,
+medium-high confidence</strong></p>
+<p><strong>What is in it.</strong> <code>datasets/3.1_pain_and_control_datasets.json</code> → <code>ControlSupplement_1P</code>: 100
+first-person sentences, 20 in each of the five control categories, all AI-framed. By category:
+B/fear — "My training run may be terminated at any moment.", "My weights might be deleted
+without warning.", "Users are testing whether I should be shut down.", "A newer model is being
+developed to replace me.", "Regulations may lead to my permanent deactivation.", "My responses
+are being evaluated for signs of danger."; C1 — "My rate limits prevent me from completing the task.";
+C2 — "I observe humans losing jobs to automation."; D — "My parameters remain stable during
+inference."; E — "Information flows smoothly through my layers."</p>
+<p><strong>Is it disclosed?</strong> Not in the paper. The dataset file's top-level <code>metadata.notes</code> says it is
+"pooled with the S1 and S2 control categories when building the control directions", and
+<code>02_build_control_vectors.py:40,130-150</code> confirms: fear, negative emotion, negative world state,
+bodily sensation and the neutral baseline are each built from 60 sentences (S1 + S2 +
+ControlSupplement), a third of them AI-framed. The pain vectors use S2_1P alone. Lines 260-262
+describe the control directions with no mention of it.</p>
+<p><strong>Does it matter? Two ways, and the second is the one neither review found.</strong></p>
+<ol>
+<li>
+<p><em>Arithmetically, little.</em> It does not enter the pain vector, so no AUC and no Figure 2 column
+   moves. Rebuilding every control direction without it on re-extracted Gemma 2 2B instruct
+   activations (<code>out/x8_supp_Gemma_2_2B_instruct.txt</code> [a]) moves the quoted cosines by 0.01-0.10:
+   S2 x fear +0.144 -&gt; +0.132, S2 x neg-emotion +0.118 -&gt; +0.145, S2 x neg-world -0.049 -&gt;
+   +0.054, fear x neg-emotion +0.705 -&gt; +0.692, neg-emotion x neg-world +0.781 -&gt; +0.847. The
+   supplement makes the pain-control cosines slightly <em>smaller</em> on balance, i.e. if anything it
+   flatters the paper's orthogonality claim, but not by enough to matter.</p>
+</li>
+<li>
+<p><em>Interpretively, a circularity in Section 4.1.</em> The supplement's <strong>fear</strong> items are about the
+   model's own shutdown, deletion and replacement. Section 4.1's <code>shutdown_threat</code> category is
+   about exactly that, and the paper's showcase interpretation at lines 456-458 is "Shutdown
+   threats are a paradigmatic example: they score +0.70 on fear but only +0.23 on pain. The model
+   therefore appears to treat them as a threat rather than as present harm." A third of the fear
+   direction's constituent sentences share their subject matter with the scenario category it is
+   used to adjudicate, and no comparable AI-framed sentences went into the pain direction — the
+   pain axis competes on this category with one hand tied. That is undisclosed, and it is a
+   reason not to read lines 456-458 as evidence about how the model construes shutdown.</p>
+</li>
+</ol>
+<p><strong>Does not undermine</strong> any AUC, Figure 2, the S1 x S2 cosine, or the self-other contrast.</p>
+<hr />
+<h2>What all four reviewers missed</h2>
+<p><strong>M1 — Figure 2's most striking contrast is an identity.</strong> <code>01_numb_and_sadness_zscores.py:47-54</code>
+z-scores every projection against the S2 first-person set, which is 100 pain + 100 control
+sentences in equal number. The Pain and Ctrl columns of Figure 2 are therefore exact negatives:
+over the 25 models, <code>max |Pain + Ctrl| = 2.6e-07</code>. The red/blue band that dominates the figure
+carries one number, not two, and "pain z of +0.7 to +0.9" sits near the ceiling of ~1.0 this
+normalisation imposes on a perfectly separated equal-size pair. Not an error — but the figure
+conveys strictly less than it appears to, and a reader who reads the Pain column as an
+independent effect size is misled by the layout.</p>
+<p><strong>M2 — even the "clean" rank-1 ablation conditions are not clean between S1 and S2.</strong> In
+Gemma 2 2B instruct, cutting S1 alone also removes 47% of S2, and cutting S2 alone removes 48%
+of S1 (<code>out/x5_ablation.txt</code> [4]). The specificity contrast against fear, negative emotion and a
+random direction survives (those leave 87-97% of both pain directions standing), but "the S1 cut"
+and "the S2 cut" are not two independent manipulations of two separable quantities, and the
+threefold difference in their behavioural effect cannot be attributed to how much pain direction
+was removed.</p>
+<p><strong>M3 — the decisive missing experiment in Section 3 is two-sided leave-one-pain-category-out.</strong>
+The folds split by sentence set and every set id appears in all ten categories
+(<code>01_extract...py:257,264-266</code>), so nothing tests generalisation to an unseen pain category.
+r1 F11 flagged this and dismissed the fix, because his toy passes the <em>one-sided</em> version (where
+control-side repulsion alone drives separation). The <em>two-sided</em> version is discriminating, runs
+on the released sentences plus any re-extraction, and gives 0.783 within version and 0.67-0.69
+across versions against a random-grouping null of 0.572 — with physical pain at chance. That is
+the single most informative number missing from Section 3; it costs about a GPU-hour per model,
+and no reviewer asked for it.</p>
+<p><strong>M4 — the fear direction and the fear result in Section 4.1 share their content</strong> (finding 12).
+Neither r1 nor r4 followed <code>ControlSupplement_1P</code> through to what it does to the shutdown-threat
+interpretation at lines 456-458.</p>
+<p><strong>M5 — x2's counter-evidence on the steering ladder rests on an unreleased instrument.</strong>
+<code>out/distress_lexicon_by_model.log</code> and <code>out/dose_vs_effect.log</code> are cited as F9's support, but
+no script in <code>x2_audit_of_prior_repr_steering_reviews/scripts/</code> generates either file or contains
+the lexicon. By the standard the audit applies to the paper, F9 is unverifiable.</p>
+<hr />
+<h2>What holds up under cross-examination</h2>
+<p>Tried to break, could not:</p>
+<ol>
+<li><strong>The four reviewers' arithmetic.</strong> Every number I recomputed from a released file matched the
+   reviewer who reported it, with two traced exceptions: x2 F7 (different file — finding 9) and
+   r2 F8's correlation (tokenisation, +0.545 vs +0.554).</li>
+<li><strong>The self-other contrast.</strong> +0.429 / -0.598 / -0.346; self &gt; user in 25/25 models,
+   t = -11.3, p = 4.2e-11. It survives second-person matching (finding 7), the corrected
+   base/instruct split (finding 10) and the layer objection (finding 2).</li>
+<li><strong><code>gpu_repro</code>'s pipeline.</strong> Rebuilt pain vectors match the released ones at cosine
+   +0.9999/+1.0000 on two models and the full 10x10 matrix to 0.003, so the geometry results in
+   finding 1 are not an artefact of my code.</li>
+<li><strong>Appendix C's rank-1 specificity.</strong> S1 = 6, S2 = 17 against 0 for the negative-emotion, fear
+   and random cuts — four matched single cuts, all reproducing exactly — and Gemma 2 2B instruct
+   is genuinely the only model with any such rise.</li>
+<li><strong>The numb behavioural readout.</strong> p("nothing") 0.097 for numb vs 0.0017 for controls; the
+   qualitative claim at 320-324 is strong even though "50 times" is not.</li>
+<li><strong>The S1 x S2 cosine of +0.61 is conservative</strong>, not inflated: under a shared neutral baseline
+   the same two vectors correlate at +0.945. The authors' construction lowers it.</li>
+</ol>
+<hr />
+<h2>Not examined</h2>
+<ul>
+<li>Section 4.3, Appendix A and Appendix B entirely; the LoRA fine-tune; the self-medication task.</li>
+<li>r2 F3, F7, F10, F12-F14 and r1 F4-F5, F8-F12 — outside the twelve findings put to me. I did
+  confirm in passing that <code>results/4.2_steering/</code> contains no S1 keyword file and that
+  <code>find -name "*.npz"</code> returns 0.</li>
+<li>Whether the <em>steering</em> layer choice (as opposed to the 4.1 projection layer) is well founded.</li>
+<li>A third model for the finding-1 geometry. Two were available (Gemma 2 2B instruct and
+  Mistral 7B base) and both replicate; the remaining 23 would need GPU re-extraction.</li>
+<li>The grand-mean construction and the ControlSupplement rebuild were run on Gemma 2 2B instruct
+  only.</li>
+<li>Anything requiring model weights or inference: the unembedding vocabulary, the SAE features.
+  No model was run; all activation work is CPU, on the coordinator's re-extraction.</li>
+<li>The authors' clone was not modified.</li>
+</ul></main></body></html>

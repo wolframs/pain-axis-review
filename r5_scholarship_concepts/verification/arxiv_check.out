@@ -1,0 +1,60 @@
+2406.11717 | Refusal in Language Models Is Mediated by a Single Direction
+     authors(7): Andy Arditi, Oscar Obeso, Aaquib Syed, Daniel Paleka, Nina Panickssery, Wes Gurnee ...
+     v1=2024-06-17 latest=2024-10-30 journal_ref=-
+2508.16560 | Sparse but Wrong: Incorrect L0 Leads to Incorrect Features in Sparse Autoencoders
+     authors(2): David Chanin, Adrià Garriga-Alonso
+     v1=2025-08-22 latest=2026-07-07 journal_ref=-
+2507.21509 | Persona Vectors: Monitoring and Controlling Character Traits in Language Models
+     authors(5): Runjin Chen, Andy Arditi, Henry Sleight, Owain Evans, Jack Lindsey
+     v1=2025-07-29 latest=2025-09-05 journal_ref=-
+2304.11111 | Inducing anxiety in large language models can induce bias
+     authors(6): Julian Coda-Forno, Kristin Witte, Akshay K. Jagadish, Marcel Binz, Zeynep Akata, Eric Schulz
+     v1=2023-04-21 latest=2024-10-15 journal_ref=-
+2509.04781 | The LLM Has Left The Chat: Evidence of Bail Preferences in Large Language Models
+     authors(3): Danielle Ensign, Henry Sleight, Kyle Fish
+     v1=2025-09-05 latest=2025-09-05 journal_ref=-
+2101.00027 | The Pile: An 800GB Dataset of Diverse Text for Language Modeling
+     authors(12): Leo Gao, Stella Biderman, Sid Black, Laurence Golding, Travis Hoppe, Charles Foster ...
+     v1=2020-12-31 latest=2020-12-31 journal_ref=-
+2609.07037 | Disentangling Steering Vectors
+     authors(4): Takeru Hiramatsu, Kyohei Atarashi, Koh Takeuchi, Hisashi Kashima
+     v1=2026-09-07 latest=2026-09-07 journal_ref=-
+2411.02432 | Can LLMs make trade-offs involving stipulated pain and pleasure states?
+     authors(10): Geoff Keeling, Winnie Street, Martyna Stachaczyk, Daria Zakharova, Iulia M. Comsa, Anastasiya Sakovych ...
+     v1=2024-11-01 latest=2024-11-01 journal_ref=-
+2408.05147 | Gemma Scope: Open Sparse Autoencoders Everywhere All At Once on Gemma 2
+     authors(10): Tom Lieberum, Senthooran Rajamanoharan, Arthur Conmy, Lewis Smith, Nicolas Sonnerat, Vikrant Varma ...
+     v1=2024-08-09 latest=2024-08-19 journal_ref=-
+2411.00986 | Taking AI Welfare Seriously
+     authors(10): Robert Long, Jeff Sebo, Patrick Butlin, Kathleen Finlinson, Kyle Fish, Jacqueline Harding ...
+     v1=2024-11-04 latest=2024-11-04 journal_ref=-
+2601.10387 | The Assistant Axis: Situating and Stabilizing the Default Persona of Language Models
+     authors(5): Christina Lu, Jack Gallagher, Jonathan Michala, Kyle Fish, Jack Lindsey
+     v1=2026-01-15 latest=2026-01-15 journal_ref=-
+2509.07961 | Probing the Preferences of a Language Model: Integrating Verbal and Behavioral Tests of AI Welfare
+     authors(2): Valen Tagliabue, Leonard Dung
+     v1=2025-09-09 latest=2026-05-23 journal_ref=-
+2407.12404 | Analyzing the Generalization and Reliability of Steering Vectors
+     authors(7): Daniel Tan, David Chanin, Aengus Lynch, Dimitrios Kanoulas, Brooks Paige, Adria Garriga-Alonso ...
+     v1=2024-07-17 latest=2025-05-04 journal_ref=-
+2308.10248 | Steering Language Models With Activation Engineering
+     authors(7): Alexander Matt Turner, Lisa Thiergart, Gavin Leech, David Udell, Juan J. Vazquez, Ulisse Mini ...
+     v1=2023-08-20 latest=2024-10-10 journal_ref=-
+2608.26178 | AI Revealed Preferences
+     authors(5): Sam Wang, Sofiia Lobanova, Yonathan Arbel, Simon Goldstein, Peter Salib
+     v1=2026-08-17 latest=2026-09-04 journal_ref=-
+2608.08159 | When Is a Steerable Concept Representation Real? Measurement Confounds in a Cross-Family Audit of Neuroscience Parallels in LLMs
+     authors(3): Yuqi Wu, Shengming Zhao, Jie Chen
+     v1=2026-08-08 latest=2026-08-08 journal_ref=-
+2309.16042 | Towards Best Practices of Activation Patching in Language Models: Metrics and Methods
+     authors(2): Fred Zhang, Neel Nanda
+     v1=2023-09-27 latest=2024-01-17 journal_ref=-
+2309.03882 | Large Language Models Are Not Robust Multiple Choice Selectors
+     authors(5): Chujie Zheng, Hao Zhou, Fandong Meng, Jie Zhou, Minlie Huang
+     v1=2023-09-07 latest=2024-02-22 journal_ref=-
+2308.08708 | Consciousness in Artificial Intelligence: Insights from the Science of Consciousness
+     authors(19): Patrick Butlin, Robert Long, Eric Elmoznino, Yoshua Bengio, Jonathan Birch, Axel Constant ...
+     v1=2023-08-17 latest=2023-08-22 journal_ref=-
+2604.07729 | Emotion Concepts and their Function in a Large Language Model
+     authors(16): Nicholas Sofroniew, Isaac Kauvar, William Saunders, Runjin Chen, Tom Henighan, Sasha Hydrie ...
+     v1=2026-04-09 latest=2026-04-09 journal_ref=-

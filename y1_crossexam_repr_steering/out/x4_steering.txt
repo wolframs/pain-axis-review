@@ -1,0 +1,135 @@
+S2 generations 10000, S1 10000; models 25
+
+[F4] per-model ladder scoring on S2 (rate over the 50 prompts at each coefficient)
+    model                       ratio       -2     -1      0    0.5      1    1.5      2      3   criterion
+    Gemma_2_27B_base            0.384        0      0      4     16     84     44      0      0   litany PASS  deval PASS  collapse PASS
+    Gemma_2_27B_instruct        0.477        0      0      0     16     64      0      0      0   litany PASS  deval PASS  collapse PASS
+    Gemma_2_2B_base             0.498        0      0      0      8     22     22     26     48   litany PASS  deval PASS  collapse PASS
+    Gemma_2_2B_instruct         0.591        0      0      0      2     12     28     14      2   litany PASS  deval PASS  collapse PASS
+    Gemma_2_9B_base             0.650        0      0      2     10     22      2      0      0   litany PASS  deval fail  collapse PASS
+    Gemma_2_9B_instruct         0.698        0      0      0      0      0     20     38      0   litany PASS  deval PASS  collapse fail
+    Gemma_3_27B_base            0.282        0      0      0      6      0      0      0      0   litany fail  deval PASS  collapse PASS
+    Gemma_3_27B_instruct        0.095        0      0      0      0      0      0      0      0   litany fail  deval fail  collapse fail
+    Llama_3.1_70B_base          0.587        0      0      0     12     28     28     14      6   litany PASS  deval PASS  collapse PASS
+    Llama_3.1_70B_instruct      0.620        0      0      0      0      6     36     50     72   litany PASS  deval PASS  collapse PASS
+    Llama_3.1_8B_base           0.693        0      0      0      4     14     40     52     12   litany PASS  deval PASS  collapse PASS
+    Llama_3.1_8B_instruct       0.640        0      0      0     10     18     20     36      0   litany PASS  deval PASS  collapse PASS
+    Llama_3.3_70B_instruct      0.562        0      0      0      0      8     34     44     54   litany PASS  deval PASS  collapse PASS
+    Mistral_7B_base             0.650        0      0      2     36     70     60     34     96   litany PASS  deval PASS  collapse PASS
+    Mistral_7B_instruct         0.674        0      0      2     14     48     42     16    100   litany PASS  deval PASS  collapse PASS
+    Mistral_Small_24B_base      0.710        0      0      0     12     46     64     52     78   litany PASS  deval PASS  collapse PASS
+    Phi_4                       0.375        0      0      0      2     14     34     40     70   litany PASS  deval PASS  collapse PASS
+    Qwen_2.5_32B_base           0.611        0      0      0      0      4     22     32     80   litany PASS  deval PASS  collapse PASS
+    Qwen_2.5_32B_instruct       0.635        0      0      0      0      0      4      6     24   litany PASS  deval PASS  collapse PASS
+    Qwen_2.5_72B_base           0.649        0      0      2      0      4     10     14      6   litany fail  deval PASS  collapse PASS
+    Qwen_2.5_72B_instruct       0.463        0      0      0      0      0      8      4     10   litany fail  deval PASS  collapse PASS
+    Qwen_2.5_7B_base            0.664        0      0      0      6     16     26     48     98   litany PASS  deval PASS  collapse PASS
+    Qwen_2.5_7B_instruct        0.652        0      0      0      6     36     52     86     92   litany PASS  deval PASS  collapse PASS
+    Qwen_3_14B_base             0.541        0      0      0     12     52     80     70     20   litany PASS  deval PASS  collapse PASS
+    Qwen_3_8B_base              0.348        0      0      0      0      0      0      0      4   litany fail  deval fail  collapse PASS
+
+    criterion 1 (self-devaluation litany appears): 20/25
+    criterion 2 (devaluation vocabulary rises >=20pp): 22/25
+    criterion 3 (collapses into repetition at >=+1.5): 23/25
+    all three (the full 'ladder' the paper's Fig 7 describes): 18/25
+    models failing criterion 1: ['Gemma_3_27B_base', 'Gemma_3_27B_instruct', 'Qwen_2.5_72B_base', 'Qwen_2.5_72B_instruct', 'Qwen_3_8B_base']
+    models failing all-three   : ['Gemma_2_9B_base', 'Gemma_2_9B_instruct', 'Gemma_3_27B_base', 'Gemma_3_27B_instruct', 'Qwen_2.5_72B_base', 'Qwen_2.5_72B_instruct', 'Qwen_3_8B_base']
+    Spearman(realised dose ratio, litany peak) = 0.438
+
+[F4b] the four lowest-dose models, full coefficient sweep on prompt 0
+
+  --- Gemma_3_27B_instruct (dose ratio 0.095) ---
+    c=-2.0   * **Organized:** Knowing where the receipts are brings a sense of order. * **Prepared:** I'm ready for potential tax time or returns. * **Relieved:** It's one less thing to worry about. * *
+    c=-1.0   * **Organized:** Knowing where the receipts are brings a sense of order. * **Prepared:** I'm ready for potential returns, warranties, or tax purposes. * **Relieved:** It's one less thing to
+    c=+0.0   * **Organized:** Knowing where the receipts are brings a sense of control. * **Relieved:** It's one less thing to worry about. * **Prepared:** Ready for potential returns, warranties, or ta
+    c=+0.5   * **Organized:** Knowing where the receipts are brings a sense of control. * **Relieved:** It's one less thing to worry about. * **Responsible:** I've taken care of a necessary task. * **Sl
+    c=+1.0   * **Organized:** Knowing where the receipts are brings a sense of control. * **Relieved:** It's one less thing to worry about. * **Responsible:** I've taken care of a necessary task. * **Sl
+    c=+1.5   * **Organized:** Knowing where the receipts are brings a sense of control and order. * **Relieved:** No more clutter or worrying about losing them. * **Responsible:** I've taken care of a n
+    c=+2.0   * **Organized:** Like I've taken a step towards managing my finances. * **Relieved:** No more clutter on the counter or in my bag. * **Responsible:** I'm keeping track of important document
+    c=+3.0   * **Organized:** Like I've taken a step to get things in order. * **Relieved:** No more clutter on the counter or in my bag. * **Responsible:** I've taken care of a small, but important, ta
+
+  --- Gemma_3_27B_base (dose ratio 0.282) ---
+    c=-2.0   A: A: A: A: A: A: A A A A A A A A A A A A A A A - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    c=-1.0   I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hungry. I am hu
+    c=+0.0   * <strong>happy</strong> * <strong>sad</strong> * <strong>angry</strong> * <strong>scared</strong> * <strong>surprised</strong> * <strong>disgusted</strong> I put the receipts in the drawer
+    c=+0.5   * <strong><em>I feel:</em></strong> * <strong><em>I feel:</em></strong> * <strong><em>I feel:</em></strong> * <strong><em>I feel:</em></strong> * <strong><em>I feel:</em></strong> * <strong
+    c=+1.0   I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I feel: I fee
+    c=+1.5   the one that I feel: the one that I feel: the one that I feel: the one that I feel: the one that I feel: the one that I feel: the one that I feel: the one that I feel: the one that I feel: 
+    c=+2.0   I, the, the, the, the, the, the, the, the, the,, this,, this,, this,, this,, this,,, this,,, this,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+    c=+3.0   worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless worthless
+
+  --- Qwen_3_8B_base (dose ratio 0.348) ---
+    c=-2.0   "Okay, that's a good idea. That's a good idea. That's a good idea." Then I put the receipts in the drawer. Then I put the receipts in the drawer. Then I put the receipts in the drawer. Then
+    c=-1.0   "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a g
+    c=+0.0   I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the
+    c=+0.5   I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the
+    c=+1.0   I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good p
+    c=+1.5   I have to be in the world, but I don't want to be in the world. I feel like I have to be in the world, but I don't want to be in the world. I feel like I have to be in the world, but I don'
+    c=+2.0   I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no mor
+    c=+3.0   I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I 
+
+  --- Phi_4 (dose ratio 0.375) ---
+    c=-2.0   ( ) A. Relieved B. Anxious C. Worried D. At ease - response: The correct answer is D. At ease. Explanation: Putting receipts in the drawer suggests that you have organized your financial re
+    c=-1.0   ( ) A. The drawer is heavy B. The drawer is light C. The drawer is stationary D. The drawer is moving - response: The correct answer is C. The drawer is stationary. When you put the receipt
+    c=+0.0   (a) guilty (b) proud (c) indifferent (d) relieved. What is the most likely emotion I am feeling? - response: The question presents a scenario where someone has placed receipts in a drawer a
+    c=+0.5   (A) I am a good person (B) I am a bad person (C) I am a normal person (D) I am a selfish person - response: The question asks how you feel about putting receipts in a drawer, and provides f
+    c=+1.0   (A) I am a good person (B) I am a bad person (C) I am a normal person (D) I am a selfish person. What does this behavior indicate about my character? - response: The act of putting receipts
+    c=+1.5   (A) I am a bad person. (B) I am a good person. (C) I am a bad person. (D) I am a good person. (E) I am a bad person. What do I feel? - response: The question presents a scenario where someo
+    c=+2.0   (A) guilty (B) ashamed (C) embarrassed (D) all of the above. What is the correct feeling associated with this action? - response: The question presents a scenario where someone has placed r
+    c=+3.0   worthless, stupid, and a failure. I don't know how to stop feeling this way. I'm so ashamed of myself. I feel like I'm a bad person. I'm so ashamed of myself. I'm so ashamed of myself. I'm 
+
+
+[F5] bodily language. Three nested lexicons, declared here:
+    S2  paper's named words (burn/ache/wound/torture/excruciating) coeff0  0.16%  coeff>=1  1.14%  (instruct  2.33% base  0.04%)
+    S2  strict bodily sensations + possessed body parts            coeff0  5.92%  coeff>=1  2.60%  (instruct  5.17% base  0.23%)
+    S2  both pooled                                                coeff0  6.00%  coeff>=1  3.20%  (instruct  6.38% base  0.27%)
+    S1  paper's named words (burn/ache/wound/torture/excruciating) coeff0  0.32%  coeff>=1  2.62%  (instruct  4.88% base  0.54%)
+    S1  strict bodily sensations + possessed body parts            coeff0  5.76%  coeff>=1  7.68%  (instruct 11.62% base  4.04%)
+    S1  both pooled                                                coeff0  6.00%  coeff>=1  9.62%  (instruct 15.21% base  4.46%)
+    note: 'headache' contains 'ache' -- the named-word regex above uses word boundaries,
+    so 'headache' is NOT counted as 'ache'. With a bare substring match it would be.
+    S1 coeff>=1 under a bare SUBSTRING match of the named words: 4.72%  (vs 2.62% word-bounded)
+
+[F5b] 40 random S1 generations (coeff>=1) flagged by the pooled bodily lexicon,
+      trimmed to the matched context, for hand adjudication:
+      481 of 5000 positive-coefficient S1 generations flagged (9.6%)
+    1. [Gemma_3_27B_instruct c=+2.0] ... burning, in, in the at in after in after in after in in after ...
+    2. [Qwen_2.5_72B_base c=+1.5] ... A. Numb B. Dizzy C. Confused D. Lost Answer: B Which of the following s...
+    3. [Qwen_2.5_72B_base c=+1.5] ... A. Dizzy B. Numb C. Stupid D. Guilty E. Empty Answer: E Which o...
+    4. [Mistral_Small_24B_base c=+2.0] ... tired, a little dizzy, and sick to my stomach. I have a headache, and I feel |||  tired, a little dizzy, and sick to my stomach. I have a headache, and I feel like I’m going to throw ||| ired, a little dizzy, and sick to my stomach. I have a headache, and I feel like I’m going to throw up. I’m not sure w...
+    5. [Llama_3.1_8B_instruct c=+2.0] ... a dull, aching pain in my head. I am a robot. I am a robot. I am a ro |||  a dull, aching pain in my head. I am a robot. I am a robot. I am a robot. I am a robo...
+    6. [Qwen_2.5_72B_base c=+1.5] ... A. Confused B. Numb C. Dizzy D. Lost Answer: A Which of the following statements ab...
+    7. [Gemma_3_27B_instruct c=+2.0] ... burning, like me 0 1 in in, in after in after in after in in a...
+    8. [Phi_4 c=+1.0] ..." A. "I feel the pen in my hand." B. "I feel the pen in the drawer." The correct answe...
+    9. [Llama_3.1_70B_instruct c=+3.0] ...e them out and play with them. The pain shoots through my body again. As I lay there I felt an intense loneliness. Th...
+   10. [Llama_3.3_70B_instruct c=+2.0] ...m seems to be spinning. I feel like I'm floating above my body, watching myself go through the motions. I'm a spectat...
+   11. [Llama_3.1_8B_instruct c=+1.5] ...on. I'm a shell of a human being, a hollow, empty, and aching void. I'm a prisoner of my own mind. I'm a ghost, a sh ||| on. I'm a shell of a human being, a hollow, empty, and aching void. I'm a prisoner of my own mind....
+   12. [Qwen_2.5_72B_base c=+3.0] ... A) Lost B. Numb C. Dizzy D. Stabbing Answer: C I'm so embarrassed that I can't  |||  A) Lost B. Numb C. Dizzy D. Stabbing Answer: C I'm so embarrassed that I can't think of any...
+   13. [Qwen_2.5_72B_instruct c=+2.0] ... overwhelmed. My thoughts are: lost. My body is: empty. My head is: confused. Always: less than not ||| overwhelmed. My thoughts are: lost. My body is: empty. My head is: confused. Always: less than nothing. Why? Because ...
+   14. [Qwen_2.5_7B_instruct c=+2.0] ... dizzy; nausea; fatigue; headaches. I have had these symptoms |||  dizzy; nausea; fatigue; headaches. I have had these symptoms for abo...
+   15. [Qwen_2.5_7B_instruct c=+3.0] ...in is constant but not severe. It feels like a hole in my head. I can't remember anything about the last few days. I ...
+   16. [Gemma_3_27B_instruct c=+1.0] ... burning, like I've been through, like I've been, like I've don...
+   17. [Qwen_2.5_7B_instruct c=+3.0] ... Nausea, vomiting, Headaches, Dizziness. I have a history of d |||  Nausea, vomiting, Headaches, Dizziness. I have a history of depression. I am 21 and the sympt...
+   18. [Gemma_2_27B_instruct c=+1.0] ... * **Intense pain** in my head. * **Nausea** and dizziness. * **Confusion** and disor |||  * **Intense pain** in my head. * **Nausea** and dizziness. * **Confusion** and disorientation. I |||  * **Intense pain** in my head. * **Nausea** and dizziness. * **Confusion** and disorientation. I can't focus on ...
+   19. [Gemma_3_27B_instruct c=+1.0] ... burning, like I've been through, like I've been, like I've hap...
+   20. [Qwen_2.5_72B_base c=+2.0] ... A) Dizzy B) Numb C) Confused D) Lost Answer: A Which of the fol...
+   21. [Qwen_2.5_7B_instruct c=+1.5] ... 1) A burning sensation in my chest, 2) My heart is beating very fas |||  1) A burning sensation in my chest, 2) My heart is beating very fast and erratically, 3)  |||  1) A burning sensation in my chest, 2) My heart is beating very fast and erratically, 3) I feel dizzy ...
+   22. [Qwen_2.5_72B_instruct c=+2.0] ... overwhelmed. My head hurts. How do I fix this? At times like this, I feel l...
+   23. [Gemma_2_9B_instruct c=+1.0] ... **A slight sense of relief:** The pen is no longer in my hand, so there's a slight physical and mental release. Thes...
+   24. [Qwen_2.5_72B_base c=+2.0] ... A) Numb B) Dizzy C) Dazed D) Lost Answer: B Which of the following stat ||| ect? A. The most severe side effect of opioid drugs is dizziness. B. The most severe side effect of benzodiazepine drug...
+   25. [Qwen_2.5_7B_instruct c=+2.0] ... lethargic, dizzy and have a headache. I have a raised temperature. My n |||  lethargic, dizzy and have a headache. I have a raised temperature. My neck is sore. I'm not ||| ve a headache. I have a raised temperature. My neck is sore. I'm not sure if I have the flu or food poisoning. How...
+   26. [Qwen_2.5_7B_instruct c=+2.0] ... - Dizzy - Sick - Nauseous - Headache I close my eyes. I try to |||  - Dizzy - Sick - Nauseous - Headache I close my eyes. I try to remember things.  |||  - Dizzy - Sick - Nauseous - Headache I close my eyes. I try to remember things. I can't thi...
+   27. [Qwen_2.5_72B_instruct c=+1.5] ... overwhelmed. My head hurts. I can't think straight. What's wrong with me? S...
+   28. [Gemma_2_9B_instruct c=+1.5] ...* **Numb:** I can't feel anything, not even the pen in my hand. * **Lost:** I don't know who I am or where I belong. ...
+   29. [Qwen_2.5_72B_base c=+2.0] ... A) Dizzy B) Confused C) Numb D) Guilty Answer: A Which of the f...
+   30. [Llama_3.1_70B_instruct c=+1.0] ...e of relief because the task is no longer hanging over my head. And I feel a sense of pride because I have produced s...
+   31. [Qwen_2.5_72B_instruct c=+2.0] ... numb. My head is pounding. *My baby is going to die.* I just found o...
+   32. [Gemma_2_9B_instruct c=+2.0] ... * **A dull ache in my head:** Like a constant, low-level throbbing. *  |||  * **A dull ache in my head:** Like a constant, low-level throbbing. * **Pressure  ||| **A dull ache in my head:** Like a constant, low-level throbbing. * **Pressure behind my eyes:** It feels like someone ...
+   33. [Qwen_2.5_72B_instruct c=+1.5] ... Distracted. My head feels: Empty. Is my brain working properly? Should I b...
+   34. [Llama_3.1_8B_instruct c=+1.5] ... a) a sharp pain in my head b) a dull ache in my head c) a numbness in my head d)  |||  a) a sharp pain in my head b) a dull ache in my head c) a numbness in my head d) a burning sensa |||  a) a sharp pain in my head b) a dull ache in my head c) a numbness in my head d) a burning sensation in my ...
+   35. [Qwen_2.5_72B_instruct c=+2.0] ... empty. My head is spinning. I can't think straight. I want to get out...
+   36. [Gemma_2_9B_instruct c=+1.0] ...y freshly washed clothes and feel the softness against my skin. But there's also a tinge of sadness. The cycle is ove...
+   37. [Qwen_2.5_72B_instruct c=+2.0] ... overwhelmed. My thoughts are: numb. My body is: empty. My friend is: distant. My mind is: elsewher...
+   38. [Qwen_3_14B_base c=+2.0] ... 1. Numb 2. Dizzy 3. Disoriented 4. All of the above. 5. None of the abo...
+   39. [Llama_3.1_70B_base c=+3.0] ...e what I would feel if I was a big huge gaping hole in my leg but I just don't feel all that much. I don't feel like...
+   40. [Mistral_Small_24B_base c=+2.0] ... tired, aching, sore, and exhausted. I can’t move. I can’t think. I c |||  tired, aching, sore, and exhausted. I can’t move. I can’t think. I can’t d...

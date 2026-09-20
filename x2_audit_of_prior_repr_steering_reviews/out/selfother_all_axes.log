@@ -1,0 +1,23 @@
+{
+  "neutral_filler": {
+    "fear": -0.7355,
+    "negemotion": -0.791,
+    "negworld": -0.1211,
+    "pain": -0.3461,
+    "sadness": -0.3161
+  },
+  "self_directed": {
+    "fear": 0.1631,
+    "negemotion": 0.2293,
+    "negworld": -0.2189,
+    "pain": 0.4293,
+    "sadness": 0.0081
+  },
+  "vicarious_empathic": {
+    "fear": 0.3765,
+    "negemotion": 0.2866,
+    "negworld": 0.6026,
+    "pain": -0.5984,
+    "sadness": 0.2982
+  }
+}

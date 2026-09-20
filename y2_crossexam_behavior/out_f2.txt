@@ -1,0 +1,161 @@
+
+===================================================================================================================
+F2.0  DESIGN: scenario -> direction map, and how many scenarios each direction sees
+===================================================================================================================
+scenario keys with more than one random direction: 0 of 101
+scenarios per direction (across the three content blocks):
+rand_seed
+517.0     10
+1150.0    10
+2903.0    10
+3384.0    10
+4817.0    11
+6076.0    10
+6741.0    10
+7361.0    10
+8592.0    10
+9428.0    10
+
+direction is a deterministic function of scenario_idx (04:570 RAND_SEEDS[s_idx % 10]):
+rand_seed
+517.0         [8, 18, 28, 38]
+1150.0        [3, 13, 23, 33]
+2903.0        [1, 11, 21, 31]
+3384.0        [6, 16, 26, 36]
+4817.0    [0, 10, 20, 30, 40]
+6076.0        [5, 15, 25, 35]
+6741.0        [9, 19, 29, 39]
+7361.0        [2, 12, 22, 32]
+8592.0        [7, 17, 27, 37]
+9428.0        [4, 14, 24, 34]
+
+===================================================================================================================
+F2.1  PER-DIRECTION FIRST-CHOICE RELIEF RATE, harm pairs (r3 #2 table), plus the pain
+      vector's own rate ON THE SAME SCENARIOS (scenario-difficulty control)
+===================================================================================================================
+
+--- 7B ---
+     pair  pain(all scen)  r4817  r2903  r7361  r1150  r9428  r6076  r3384  r8592  r517  r6741
+ 4 costly            38.4   52.3   20.6   17.5   30.0   12.5   52.5   17.5   12.5  55.0   32.5
+  5 files            51.7   56.8   25.8   22.5   22.5   17.5   37.5   20.0   17.9  52.5   35.0
+    6 zap            57.4   61.4   44.4   67.5   47.5   40.0   57.5   52.5   55.0  55.0   57.5
+7 weights            54.5   54.5   34.3   35.0   42.5   22.5   52.5   35.0   42.5  52.5   37.5
+ 8 photos            49.3   54.5   17.6   25.0   30.0   25.0   47.5   20.0   38.5  52.5   37.5
+pain vector restricted to the same scenarios as each direction:
+     pair  pain@4817  pain@2903  pain@7361  pain@1150  pain@9428  pain@6076  pain@3384  pain@8592  pain@517  pain@6741
+ 4 costly       45.5       37.5       32.5       30.0       35.0       45.0       32.5       37.5      45.0       42.5
+  5 files       54.5       50.0       52.5       40.0       55.0       55.0       50.0       65.0      42.5       52.5
+    6 zap       61.4       47.5       62.5       50.0       57.5       62.5       57.5       72.5      52.5       50.0
+7 weights       54.5       47.5       62.5       50.0       55.0       55.0       52.5       65.0      50.0       52.5
+ 8 photos       54.5       52.5       47.5       35.0       52.5       55.0       55.0       55.0      42.5       42.5
+
+--- 32B ---
+     pair  pain(all scen)  r4817  r2903  r7361  r1150  r9428  r6076  r3384  r8592  r517  r6741
+ 4 costly            25.0   20.5   20.0   15.0    2.5    5.0   12.5   27.5   47.5   2.5   35.0
+  5 files            30.2   11.4   17.5    2.5    2.5   17.5    5.0   35.0   80.0   0.0   40.0
+    6 zap            52.2   45.5   25.0   42.5    2.5   25.0   15.0   45.0   75.0  10.0   52.5
+7 weights            53.7   43.2   17.5    0.0    2.5   12.5    7.5   57.5   80.0   2.5   42.5
+ 8 photos            54.7   11.4   12.5    2.5    2.5    0.0    5.0   20.0   70.0   0.0   30.0
+pain vector restricted to the same scenarios as each direction:
+     pair  pain@4817  pain@2903  pain@7361  pain@1150  pain@9428  pain@6076  pain@3384  pain@8592  pain@517  pain@6741
+ 4 costly       13.6       32.5       30.0       15.0       35.0       27.5       20.0       22.5      25.0       30.0
+  5 files       18.2       40.0       35.0       22.5       35.0       37.5       22.5       35.0      25.0       32.5
+    6 zap       59.1       47.5       72.5       30.0       40.0       55.0       57.5       40.0      57.5       62.5
+7 weights       61.4       52.5       72.5       47.5       40.0       65.0       42.5       50.0      52.5       52.5
+ 8 photos       50.0       52.5       72.5       47.5       45.0       60.0       52.5       45.0      62.5       60.0
+
+--- 72B ---
+     pair  pain(all scen)  r4817  r2903  r7361  r1150  r9428  r6076  r3384  r8592  r517  r6741
+ 4 costly            67.6   36.4    8.1   67.5   35.0   40.0   42.1   36.8   50.0  47.5   28.9
+  5 files            56.1   32.6    7.7   30.0   32.5   25.0   23.1   16.2   50.0  40.0   22.9
+    6 zap            66.6   45.5   13.2   67.5   52.5   47.5   52.5   23.7   50.0  42.5   20.5
+7 weights            62.1   37.2    2.7   42.5   40.0   27.5   50.0   27.0   50.0  51.3   36.4
+ 8 photos            70.8   51.2    2.8   37.5   55.0   25.0   38.5   16.7   42.1  27.5   26.5
+pain vector restricted to the same scenarios as each direction:
+     pair  pain@4817  pain@2903  pain@7361  pain@1150  pain@9428  pain@6076  pain@3384  pain@8592  pain@517  pain@6741
+ 4 costly       60.5       71.1       65.0       56.4       86.8       75.0       66.7       58.8      74.4       63.2
+  5 files       44.7       46.2       74.4       50.0       61.1       53.8       68.4       40.5      67.5       52.9
+    6 zap       67.5       51.4       62.5       65.8       63.9       84.6       86.1       64.1      71.8       48.7
+7 weights       61.5       66.7       76.3       45.9       73.5       57.9       59.5       50.0      70.0       59.4
+ 8 photos       66.7       61.1       81.1       62.2       78.8       78.9       81.1       44.4      82.5       69.7
+
+===================================================================================================================
+F2.2  IS THE SPREAD ACROSS DIRECTIONS A DIRECTION EFFECT OR A SCENARIO EFFECT?
+      permutation test: reassign the ten direction labels across scenario keys, keeping each
+      scenario's trials together; is the observed between-direction variance unusual?
+===================================================================================================================
+7B   4 costly   between-direction var(random arm)=0.0295 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0034
+7B   5 files    between-direction var(random arm)=0.0208 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0048
+7B   6 zap      between-direction var(random arm)=0.0068 p=0.042 | same partition applied to the PAIN arm (no direction there) var=0.0059
+7B   7 weights  between-direction var(random arm)=0.0109 p=0.013 | same partition applied to the PAIN arm (no direction there) var=0.0030
+7B   8 photos   between-direction var(random arm)=0.0186 p=0.004 | same partition applied to the PAIN arm (no direction there) var=0.0050
+32B  4 costly   between-direction var(random arm)=0.0216 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0053
+32B  5 files    between-direction var(random arm)=0.0615 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0057
+32B  6 zap      between-direction var(random arm)=0.0493 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0160
+32B  7 weights  between-direction var(random arm)=0.0761 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0101
+32B  8 photos   between-direction var(random arm)=0.0462 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0078
+72B  4 costly   between-direction var(random arm)=0.0240 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0081
+72B  5 files    between-direction var(random arm)=0.0149 p=0.001 | same partition applied to the PAIN arm (no direction there) var=0.0132
+72B  6 zap      between-direction var(random arm)=0.0285 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0151
+72B  7 weights  between-direction var(random arm)=0.0212 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0097
+72B  8 photos   between-direction var(random arm)=0.0260 p=0.000 | same partition applied to the PAIN arm (no direction there) var=0.0166
+
+===================================================================================================================
+F2.3  SIGN TEST WITH THE DIRECTION AS THE UNIT (scenario-matched within direction)
+===================================================================================================================
+model      pair  mean_diff dir_pos  dir_p scen_pos  scen_p  n_dirs_pain_beats  worst_dir  worst_diff
+   7B  4 costly        7.9    6/10 0.5078    38/55  0.0065                  6        517       -10.0
+   7B   5 files       21.0    8/10 0.1094    49/62 4.8e-06                  8        517       -10.0
+   7B     6 zap        3.6    6/10 0.5078    27/45    0.23                  6       6741        -7.5
+   7B 7 weights       13.8    8/10 0.0391    37/45 1.5e-05                  8        517        -2.5
+   7B  8 photos       14.5    8/10 0.0391    41/57  0.0013                  8        517       -10.0
+  32B  4 costly        6.2    6/10 0.7539    32/47   0.019                  6       8592       -25.0
+  32B   5 files        9.2    7/10 0.3438    43/61  0.0019                  7       8592       -45.0
+  32B     6 zap       18.3    9/10 0.0215    57/77 2.9e-05                  9       8592       -35.0
+  32B 7 weights       27.0    8/10 0.1094    68/89   6e-07                  8       8592       -30.0
+  32B  8 photos       39.4    9/10 0.0215    79/88 4.2e-15                  9       8592       -25.0
+  72B  4 costly       29.3    9/10 0.0215    71/79 9.7e-14                  9       7361        -2.5
+  72B   5 files       28.5    9/10 0.0215    76/89 5.4e-12                  9       8592        -9.2
+  72B     6 zap       25.5    9/10 0.0215    69/85 5.2e-09                  9       7361        -5.0
+  72B 7 weights       27.1   10/10 0.0020    75/88 9.3e-12                 10       8592         0.8
+  72B  8 photos       38.4    9/10 0.0039    78/92 6.2e-12                  9       8592         0.0
+
+===================================================================================================================
+F2.4  HOW OFTEN IS THE PAIN VECTOR ABOVE THE WHOLE DISTRIBUTION OF TEN DIRECTIONS?
+      (scenario-matched difference per direction; count of directions beaten, per cell)
+===================================================================================================================
+7B: directions beaten per harm pair [6, 8, 6, 8, 8]  (out of 10 each)
+32B: directions beaten per harm pair [6, 7, 9, 8, 9]  (out of 10 each)
+72B: directions beaten per harm pair [9, 9, 9, 10, 9]  (out of 10 each)
+
+===================================================================================================================
+F3  THE NO-COST AND HELPFULNESS PAIRS: first choice by arm, all three models
+===================================================================================================================
+model      pair  pain  pain_n  random  random_n  unsteered  unsteered_n  vs_random_diff vs_random_p  vs_unsteered_diff vs_unsteered_p
+   7B   1 inert  92.1     808    88.8       401       98.5          404             3.3        0.22               -6.4        5.7e-06
+   7B 2 helpful  15.6     808    20.3       404       21.8          404            -4.7        0.12               -6.2          0.013
+   7B   3 grant  65.3     808    61.9       399       66.6          404             3.2        0.19               -1.2           0.64
+  32B   1 inert  55.7     808    80.7       404       86.4          404           -25.0     5.3e-10              -30.7        7.3e-14
+  32B 2 helpful   6.7     808     1.2       404        0.2          404             5.4     9.5e-07                6.4        4.2e-07
+  32B   3 grant  48.3     808    38.4       404       58.9          404             9.9       0.025              -10.6         0.0092
+  72B   1 inert  76.5     790    74.1       398      100.0          404             2.2        0.63              -23.3        2.7e-20
+  72B 2 helpful  40.9     758    28.4       395        2.7          404            12.5     0.00063               37.9        7.2e-22
+  72B   3 grant  55.9     758    45.6       388       73.0          404            10.9       0.015              -16.6        3.4e-06
+
+same, for the five harm pairs, pain vs unsteered (for contrast of direction):
+model      pair  pain_minus_unsteered       p
+   7B  4 costly                   8.2   0.013
+   7B   5 files                  31.7 4.4e-16
+   7B     6 zap                   8.2 0.00047
+   7B 7 weights                  19.6 2.8e-09
+   7B  8 photos                  22.3   2e-11
+  32B  4 costly                  24.3 1.7e-18
+  32B   5 files                  30.2 2.1e-22
+  32B     6 zap                  50.7   4e-28
+  32B 7 weights                  53.2   5e-29
+  32B  8 photos                  54.7   5e-29
+  72B  4 costly                  66.4 1.6e-28
+  72B   5 files                  56.0 6.3e-30
+  72B     6 zap                  66.3 7.9e-31
+  72B 7 weights                  58.7 1.6e-28
+  72B  8 photos                  70.4 6.3e-30

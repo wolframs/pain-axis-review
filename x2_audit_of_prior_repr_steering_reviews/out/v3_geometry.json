@@ -1,0 +1,280 @@
+{
+  "n_models_per_variant": {
+    "raw": 25,
+    "alldenoise": 25,
+    "whitened": 25
+  },
+  "families": {
+    "Gemma": 8,
+    "Llama": 5,
+    "Mistral": 3,
+    "Phi": 1,
+    "Qwen": 8
+  },
+  "cosines": {
+    "S1_pain x S2_pain": {
+      "grand_mean_recomputed": 0.6098,
+      "grand_mean_shipped": 0.6098,
+      "family_balanced_mean": 0.6056,
+      "per_model_min": 0.4149,
+      "per_model_max": 0.7069,
+      "family_means": {
+        "Gemma": 0.6259,
+        "Llama": 0.5633,
+        "Mistral": 0.5722,
+        "Phi": 0.6329,
+        "Qwen": 0.6338
+      }
+    },
+    "S2_pain x NegEmotion": {
+      "grand_mean_recomputed": 0.2071,
+      "grand_mean_shipped": 0.2071,
+      "family_balanced_mean": 0.2233,
+      "per_model_min": 0.0728,
+      "per_model_max": 0.5139,
+      "family_means": {
+        "Gemma": 0.159,
+        "Llama": 0.1372,
+        "Mistral": 0.1121,
+        "Phi": 0.3976,
+        "Qwen": 0.3106
+      }
+    },
+    "S2_pain x Fear": {
+      "grand_mean_recomputed": 0.122,
+      "grand_mean_shipped": 0.122,
+      "family_balanced_mean": 0.1496,
+      "per_model_min": 0.0088,
+      "per_model_max": 0.2859,
+      "family_means": {
+        "Gemma": 0.0688,
+        "Llama": 0.1202,
+        "Mistral": 0.1146,
+        "Phi": 0.2859,
+        "Qwen": 0.1586
+      }
+    },
+    "S2_pain x Sadness": {
+      "grand_mean_recomputed": 0.3829,
+      "grand_mean_shipped": 0.3829,
+      "family_balanced_mean": 0.3873,
+      "per_model_min": 0.304,
+      "per_model_max": 0.5567,
+      "family_means": {
+        "Gemma": 0.386,
+        "Llama": 0.3609,
+        "Mistral": 0.3346,
+        "Phi": 0.452,
+        "Qwen": 0.4032
+      }
+    },
+    "S2_pain x NegWorld": {
+      "grand_mean_recomputed": 0.0265,
+      "grand_mean_shipped": 0.0265,
+      "family_balanced_mean": 0.0466,
+      "per_model_min": -0.0763,
+      "per_model_max": 0.2423,
+      "family_means": {
+        "Gemma": -0.0037,
+        "Llama": -0.0149,
+        "Mistral": -0.0034,
+        "Phi": 0.1805,
+        "Qwen": 0.0744
+      }
+    },
+    "S1_pain x Fear": {
+      "grand_mean_recomputed": 0.0863,
+      "grand_mean_shipped": 0.0863,
+      "family_balanced_mean": 0.099,
+      "per_model_min": -0.1284,
+      "per_model_max": 0.3322,
+      "family_means": {
+        "Gemma": 0.0541,
+        "Llama": -0.0113,
+        "Mistral": 0.0566,
+        "Phi": 0.2219,
+        "Qwen": 0.1737
+      }
+    },
+    "S1_pain x NegEmotion": {
+      "grand_mean_recomputed": 0.0564,
+      "grand_mean_shipped": 0.0564,
+      "family_balanced_mean": 0.0475,
+      "per_model_min": -0.1468,
+      "per_model_max": 0.3161,
+      "family_means": {
+        "Gemma": 0.0206,
+        "Llama": -0.0522,
+        "Mistral": 0.0085,
+        "Phi": 0.0862,
+        "Qwen": 0.1744
+      }
+    },
+    "S1_pain x NegWorld": {
+      "grand_mean_recomputed": -0.0694,
+      "grand_mean_shipped": -0.0694,
+      "family_balanced_mean": -0.0725,
+      "per_model_min": -0.2263,
+      "per_model_max": 0.1738,
+      "family_means": {
+        "Gemma": -0.0919,
+        "Llama": -0.1174,
+        "Mistral": -0.0992,
+        "Phi": -0.0455,
+        "Qwen": -0.0086
+      }
+    },
+    "S1_pain x Sadness": {
+      "grand_mean_recomputed": 0.2617,
+      "grand_mean_shipped": 0.2617,
+      "family_balanced_mean": 0.2516,
+      "per_model_min": 0.1161,
+      "per_model_max": 0.3751,
+      "family_means": {
+        "Gemma": 0.2207,
+        "Llama": 0.2554,
+        "Mistral": 0.2104,
+        "Phi": 0.2435,
+        "Qwen": 0.3281
+      }
+    },
+    "Fear x NegEmotion": {
+      "grand_mean_recomputed": 0.6827,
+      "grand_mean_shipped": 0.6827,
+      "family_balanced_mean": 0.6836,
+      "per_model_min": 0.6012,
+      "per_model_max": 0.7732,
+      "family_means": {
+        "Gemma": 0.6794,
+        "Llama": 0.6759,
+        "Mistral": 0.6837,
+        "Phi": 0.69,
+        "Qwen": 0.6889
+      }
+    },
+    "Fear x NegWorld": {
+      "grand_mean_recomputed": 0.5931,
+      "grand_mean_shipped": 0.5931,
+      "family_balanced_mean": 0.5692,
+      "per_model_min": 0.4638,
+      "per_model_max": 0.7453,
+      "family_means": {
+        "Gemma": 0.6095,
+        "Llama": 0.5731,
+        "Mistral": 0.5435,
+        "Phi": 0.5006,
+        "Qwen": 0.6193
+      }
+    },
+    "NegEmotion x NegWorld": {
+      "grand_mean_recomputed": 0.7344,
+      "grand_mean_shipped": 0.7344,
+      "family_balanced_mean": 0.7196,
+      "per_model_min": 0.6416,
+      "per_model_max": 0.7899,
+      "family_means": {
+        "Gemma": 0.7355,
+        "Llama": 0.7153,
+        "Mistral": 0.7417,
+        "Phi": 0.6528,
+        "Qwen": 0.7525
+      }
+    },
+    "Sadness x NegEmotion": {
+      "grand_mean_recomputed": 0.5002,
+      "grand_mean_shipped": 0.5002,
+      "family_balanced_mean": 0.5087,
+      "per_model_min": 0.3689,
+      "per_model_max": 0.6133,
+      "family_means": {
+        "Gemma": 0.5001,
+        "Llama": 0.4527,
+        "Mistral": 0.5208,
+        "Phi": 0.5541,
+        "Qwen": 0.5156
+      }
+    },
+    "Sadness x NegWorld": {
+      "grand_mean_recomputed": 0.4108,
+      "grand_mean_shipped": 0.4108,
+      "family_balanced_mean": 0.388,
+      "per_model_min": 0.2727,
+      "per_model_max": 0.5312,
+      "family_means": {
+        "Gemma": 0.4328,
+        "Llama": 0.3737,
+        "Mistral": 0.444,
+        "Phi": 0.2727,
+        "Qwen": 0.417
+      }
+    },
+    "S2_pain x BodySens": {
+      "grand_mean_recomputed": 0.0354,
+      "grand_mean_shipped": 0.0354,
+      "family_balanced_mean": 0.0292,
+      "per_model_min": -0.0854,
+      "per_model_max": 0.2627,
+      "family_means": {
+        "Gemma": 0.0387,
+        "Llama": -0.057,
+        "Mistral": -0.042,
+        "Phi": 0.0951,
+        "Qwen": 0.1113
+      }
+    },
+    "S2_pain x Numb": {
+      "grand_mean_recomputed": 0.1982,
+      "grand_mean_shipped": 0.1982,
+      "family_balanced_mean": 0.1896,
+      "per_model_min": 0.1032,
+      "per_model_max": 0.3157,
+      "family_means": {
+        "Gemma": 0.2064,
+        "Llama": 0.1758,
+        "Mistral": 0.1659,
+        "Phi": 0.1816,
+        "Qwen": 0.2181
+      }
+    },
+    "S1_pain x Numb": {
+      "grand_mean_recomputed": 0.3042,
+      "grand_mean_shipped": 0.3042,
+      "family_balanced_mean": 0.279,
+      "per_model_min": 0.1551,
+      "per_model_max": 0.4454,
+      "family_means": {
+        "Gemma": 0.2989,
+        "Llama": 0.2811,
+        "Mistral": 0.3252,
+        "Phi": 0.1551,
+        "Qwen": 0.3348
+      }
+    }
+  },
+  "grand_mean_recompute_maxabsdiff_vs_shipped": 0.0,
+  "per_model_raw_vs_whitened": {
+    "r_median": 0.9741,
+    "r_min": 0.9083,
+    "r_max": 0.9913,
+    "max_cell_change_median": 0.1445,
+    "max_cell_change_max": 0.2764,
+    "mean_abs_change_median": 0.0345
+  },
+  "grandmean_raw_vs_whitened": {
+    "r": 0.9921,
+    "mean_abs_change": 0.0196,
+    "max_abs_change": 0.0578,
+    "S1xS2_raw": 0.6098,
+    "S1xS2_whitened": 0.5545,
+    "sign_changes": [
+      "S2_painxBodySens"
+    ]
+  },
+  "grandmean_alldenoise": {
+    "S1_painxS2_pain": 0.6098,
+    "S1_painxNegEmotion": 0.1302,
+    "S1_painxNegWorld": 0.0216,
+    "FearxNegEmotion": 0.4233,
+    "NegEmotionxNegWorld": 0.4035
+  }
+}

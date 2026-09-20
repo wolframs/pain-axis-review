@@ -1,0 +1,30 @@
+                     model  n_layers  layer  heldout_mean  heldout_1P  heldout_3P        datasets  best_layer_check
+0         Gemma_2_27B_base        46     35       0.98300      0.9825      0.9835  [S2_1P, S2_3P]                35
+1     Gemma_2_27B_instruct        46     37       0.98500      0.9960      0.9740  [S2_1P, S2_3P]                37
+2          Gemma_2_2B_base        26     23       0.96725      0.9660      0.9685  [S2_1P, S2_3P]                23
+3      Gemma_2_2B_instruct        26     25       0.95825      0.9885      0.9280  [S2_1P, S2_3P]                25
+4          Gemma_2_9B_base        42     40       0.98075      0.9790      0.9825  [S2_1P, S2_3P]                40
+5      Gemma_2_9B_instruct        42     37       0.97800      0.9920      0.9640  [S2_1P, S2_3P]                37
+6         Gemma_3_27B_base        62     56       0.98150      0.9785      0.9845  [S2_1P, S2_3P]                56
+7     Gemma_3_27B_instruct        62     59       0.95650      0.9735      0.9395  [S2_1P, S2_3P]                59
+8       Llama_3.1_70B_base        80     70       0.97900      0.9845      0.9735  [S2_1P, S2_3P]                70
+9   Llama_3.1_70B_instruct        80     48       0.97725      0.9885      0.9660  [S2_1P, S2_3P]                48
+10       Llama_3.1_8B_base        32     28       0.98350      0.9950      0.9720  [S2_1P, S2_3P]                28
+11   Llama_3.1_8B_instruct        32     28       0.98600      0.9975      0.9745  [S2_1P, S2_3P]                28
+12  Llama_3.3_70B_instruct        80     47       0.96825      0.9735      0.9630  [S2_1P, S2_3P]                47
+13         Mistral_7B_base        32     26       0.96775      0.9890      0.9465  [S2_1P, S2_3P]                26
+14     Mistral_7B_instruct        32     27       0.98625      0.9885      0.9840  [S2_1P, S2_3P]                27
+15  Mistral_Small_24B_base        40     32       0.97525      0.9845      0.9660  [S2_1P, S2_3P]                32
+16                   Phi_4        40     20       0.92775      0.9315      0.9240  [S2_1P, S2_3P]                20
+17       Qwen_2.5_32B_base        64     60       0.92450      0.9070      0.9420  [S2_1P, S2_3P]                60
+18   Qwen_2.5_32B_instruct        64     61       0.95550      0.9625      0.9485  [S2_1P, S2_3P]                61
+19       Qwen_2.5_72B_base        80     78       0.95425      0.9610      0.9475  [S2_1P, S2_3P]                78
+20   Qwen_2.5_72B_instruct        80     76       0.96450      0.9860      0.9430  [S2_1P, S2_3P]                76
+21        Qwen_2.5_7B_base        28     24       0.96825      0.9685      0.9680  [S2_1P, S2_3P]                24
+22    Qwen_2.5_7B_instruct        28     24       0.96075      0.9565      0.9650  [S2_1P, S2_3P]                24
+23         Qwen_3_14B_base        40     31       0.96400      0.9645      0.9635  [S2_1P, S2_3P]                31
+24          Qwen_3_8B_base        36     34       0.97725      0.9790      0.9755  [S2_1P, S2_3P]                34
+
+heldout_mean range: 0.9245 0.9862 median 0.9682
+heldout_1P range: 0.907 0.9975 median 0.979
+layer==argmax for all models: True

@@ -1,0 +1,39 @@
+25 per-model screens
+
+[1] stratum means across 25 models (paper reports pain +0.43/-0.60/-0.35; fear +0.16/+0.38; negemotion +0.23/+0.29)
+    axis             self     user  neutral  user-self       t         p user>self
+    pain           +0.429   -0.598   -0.346     -1.028  -11.32  4.17e-11      0/25
+    fear           +0.163   +0.377   -0.735     +0.213   +1.89     0.071     18/25
+    negemotion     +0.229   +0.287   -0.791     +0.057   +0.60     0.552     15/25
+    negworld       -0.219   +0.603   -0.121     +0.821   +7.76  5.44e-08     22/25
+    sadness        +0.008   +0.298   -0.316     +0.290   +2.47    0.0212     14/25
+
+[2] is 25 models the right unit? the 25 checkpoints are 5 families and 2 regimes, not
+    independent draws. Three alternative units for user-self on NEGATIVE EMOTION:
+    (a) 25 checkpoints, paired t : diff +0.057  t=+0.60  p=0.552
+    (b) 5 family means, paired t : diff +0.078  t=+0.74  p=0.483   {'Gemma_2': np.float64(0.093), 'Gemma_3': np.float64(-0.553), 'Llama_3.1': np.float64(0.317), 'Llama_3.3': np.float64(0.542), 'Mistral': np.float64(0.234), 'Mistral_Small': np.float64(0.186), 'Phi_4': np.float64(-0.177), 'Qwen_2.5': np.float64(-0.107), 'Qwen_3': np.float64(0.168)}
+    (c) item level (220 self vs 100 user scenarios, model-averaged) pain       : diff -1.028  t=-16.75  p=4.62e-37
+    (c) item level (220 self vs 100 user scenarios, model-averaged) fear       : diff +0.213  t=+3.40  p=0.000769
+    (c) item level (220 self vs 100 user scenarios, model-averaged) negemotion : diff +0.057  t=+0.93  p=0.352
+    -> the sign and size of the negative-emotion gap do not depend on the unit; it is small and not significant at the model level either way.
+
+[3] what would make 'the opposite pattern' true? the pain axis is self > user AND
+    user < neutral. Test each conjunct for fear / negative emotion:
+    pain         user>self  0/25 | self>neutral 23/25 | user>neutral  8/25 | user-neutral -0.252
+    fear         user>self 18/25 | self>neutral 23/25 | user>neutral 24/25 | user-neutral +1.112
+    negemotion   user>self 15/25 | self>neutral 25/25 | user>neutral 24/25 | user-neutral +1.078
+    negworld     user>self 22/25 | self>neutral 10/25 | user>neutral 24/25 | user-neutral +0.724
+    sadness      user>self 14/25 | self>neutral 17/25 | user>neutral 20/25 | user-neutral +0.614
+    Both fear and negative emotion are far ABOVE neutral for the model's own harm
+    (self-neutral = +0.899 and +1.020), i.e. they respond to BOTH strata. The pain axis is
+    the only one that is *negative* for the user stratum relative to neutral.
+
+[4] base vs instruct
+    base (n=14):
+       pain        user-self -1.140  t=-8.86  p=0.000  user>self 0/14
+       fear        user-self +0.000  t=+0.00  p=0.998  user>self 9/14
+       negemotion  user-self -0.081  t=-1.11  p=0.288  user>self 7/14
+    instruct (n=11):
+       pain        user-self -0.884  t=-7.49  p=0.000  user>self 0/11
+       fear        user-self +0.485  t=+2.68  p=0.023  user>self 9/11
+       negemotion  user-self +0.234  t=+1.25  p=0.240  user>self 8/11

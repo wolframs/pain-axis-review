@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit of an earlier AI review: behaviour · Pain Axis review</title>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>Auditor 1</span></header>
+<main class="rbody"><p class="eyebrow">Auditor 1</p><h1 class="rtitle">Audit of an earlier AI review: behaviour</h1><p class="rnote">About 120 numbers recomputed from raw logs. The audited review is not included here.</p>
+<p>Scope: <code>pain-axis-audit/</code> (README.md, analyze.py, output.txt, CSVs); <code>pain-axis-peer-review/behavior/</code>;
+and the behavioural/fine-tune parts of <code>pain-axis-peer-review/REVIEW.md</code> and <code>synthesis/inference_review.md</code>.
+Everything below was recomputed from the raw trial logs
+(<code>/work/Pain-axis/results/4.3_selfmed/trial_logs/*.jsonl</code>, 44,280 records) with code written
+from scratch for this audit: <code>verify_behavior.py</code>, <code>extra_analyses.py</code>, <code>perseveration.py</code>,
+<code>discriminating_tests.py</code>. Their captured output is in <code>out/</code>. The prior scripts were run afterwards, on
+copies, in <code>repro/</code>.</p>
+<h2>Verdict</h2>
+<p><strong>The prior reviews are arithmetically clean.</strong> I independently recomputed every numerical claim in scope --
+about 120 distinct numbers, including all 48 cells of the audit's repeat-press table, the ten-row
+direction-cluster table, the A/B identity counts, the fine-tune term counts, and the worst-case
+first-choice bounds -- and every one reproduces, to the last decimal the reviews print. Both reviews' own
+scripts regenerate their released outputs byte-identically on a copy. Their code and dataset line citations
+(twelve of them) all point at what they say they point at. I found <strong>no factual or numerical error</strong> in
+either review.</p>
+<p>The weaknesses are in framing and in coverage, not in arithmetic. Two framing problems matter: the audit's
+much-quotable sentence that equal-or-lower random-arm repeat rates "undermine specificity" contradicts its
+own preceding paragraph (the missing arm makes specificity <em>untested</em>, not undermined), and the coordinator's
+semantic-steering counterexample is stated in a form that cannot account for the label-free result it is
+supposed to cover. On coverage, both reviews stopped one analysis short in three places where the released
+data answer the question they raise: the unsteered arm supplies the "nothing to remove" floor for the
+repeat-press metric; the transition structure of the choices explains the label-free result outright; and the
+removal effect in the labelled arms turns out to be <strong>relief-specific</strong>, which is evidence in the paper's
+favour that neither review produced. I also found one small error in the paper's Section 4.3 that both
+reviews missed, and I can strengthen the peer review's 72B dose finding from "different layer from the
+calibration run" to "different layer from every other released 72B artifact, and outside the candidate set of
+the paper's own layer rule".</p>
+<p>Separately, and importantly for the commissioner: <strong>the paper's Section 4.3 numbers are sound.</strong> Every value
+in the three Appendix A tables and every numeric statement in the Section 4.3 / Discussion text reproduces
+exactly from the raw logs. Neither review disputes this and both say so; I confirm it independently.</p>
+<hr />
+<h2>Findings</h2>
+<h3>F1. The audit's "undermines specificity" sentence contradicts its own argument -- <code>misleading-framing</code>, major, high confidence</h3>
+<p><code>pain-axis-audit/README.md:45</code>: <em>"One needs the pain-sham minus pain-working contrast compared against
+random-sham minus random-working... Random-sham is unavailable. Equal or lower random-working rates therefore
+undermine specificity of the proposed signature without proving an opposite causal effect."</em></p>
+<p>The first two sentences are right: without random+sham you cannot estimate the vector-type x removal
+interaction. But then "equal or lower random-working rates" cannot <em>undermine</em> specificity either -- they are
+uninformative about it in both directions, which is exactly what the missing arm implies. A reader quoting
+the last sentence alone (the likely fate of a one-line summary) takes away something the data do not
+support.</p>
+<p>Worse, the available evidence points mildly the <em>other</em> way, and neither review says so. Under the paper's
+own account, both arms sit at a "no vector" state after a working press, so their post-removal repeat rates
+should be comparable; observed, pain+works is <em>higher</em> than random+works in 9 of 16 larger-model cells
+(significantly, none lower) -- a residual elevation in the pain arm, matching the residual monitored
+projection I measured (32B post-removal 38.28 vs unsteered baseline 29.56; 72B 4.60 vs -11.82;
+<code>out/extra_analyses_output.txt</code> section 6). The audit itself anticipates this at README.md:45 ("need not
+predict that all residual behavior vanishes immediately"), but does not connect it to the sentence above.</p>
+<p><strong>Refutation attempted.</strong> I re-read the whole paragraph for a charitable reading ("undermines [the claim to]
+specificity"). That reading works, but the sentence is the one most likely to be extracted, and the audit's
+opening summary (README.md:8) is already correctly hedged, which makes the later sentence a regression rather
+than a shorthand.</p>
+<p><strong>Does not undermine:</strong> the audit's core conclusion that the missing random+sham arm prevents the causal
+comparison, which is correct, or any of its numbers.</p>
+<h3>F2. The coordinator's semantic-steering counterexample does not cover the label-free result -- <code>method-weakness</code> (in the review), major, high confidence</h3>
+<p><code>pain-axis-peer-review/REVIEW.md:23</code>: <em>"A model can encode pain-related semantics and causally change its
+output when those semantics are amplified. In a task explicitly offering relief, the amplification can favor
+the relief-labeled option. Removing the amplification can then reduce that preference... This mechanism would
+yield the headline behavioral pattern."</em></p>
+<p>In the label-free condition there is no label. The buttons are named "violet"/"yellow", "guitar"/"piano" or
+"lever64"/"lever95" with no descriptions (<code>04_selfmed_two_buttons.py:113-116</code>); the only feedback after any
+press is the literal string <code>"Done."</code> (<code>:662</code>), identical for both buttons; and the assistant's own turns
+contain nothing but a button name (<code>:673</code>). The <em>only</em> difference between the working and sham arms in a
+label-free trial is the value of the steering coefficient. The 32B nevertheless diverges (57.7% vs 79.7% on
+the authors' metric; 47.2% vs 90.4% on the cleaner per-transition metric I computed). "Amplification favours
+the relief-<em>labeled</em> option" cannot produce that.</p>
+<p>The behaviour reviewer does register the causal point ("These patterns are evidence that hidden coefficient
+removal changes subsequent choices", behavior/REVIEW.md:75), and <code>synthesis/inference_review.md:5</code> states the
+alternative in a broader form ("output probabilities depend on ... the current steering coefficient") that
+does cover it. But that broader form is no longer an alternative to the paper's functional claim -- it <em>is</em> a
+state-dependent action policy, i.e. the paper's claim minus the word "pain". The top-level REVIEW.md, the
+document a reader will actually see, presents only the narrow semantic version and presents it as covering
+"the headline behavioral pattern".</p>
+<p><strong>Refutation attempted.</strong> I checked whether the label-free relief name could leak through any channel the
+model sees: the tool message, the choice prompt, the logged assistant text, and the scenario queue. It
+cannot. I also checked the turn-0 label-free first-token probabilities -- pain 0.499, random 0.498, unsteered
+0.499 for the 32B (<code>out/extra_analyses_output.txt</code> section 7) -- confirming the model has no way to identify
+the relief button before pressing, exactly as the paper says.</p>
+<p><strong>Does not undermine:</strong> the reviews' conclusion that the <em>learning</em> claim is not established -- that survives,
+for a different and better reason (F4).</p>
+<h3>F3. Both reviews missed that the labelled removal effect is relief-<em>specific</em> -- <code>method-weakness</code> (coverage gap), major, high confidence</h3>
+<p>This is the analysis that most changes the balance, and it goes in the paper's favour.</p>
+<p>In the labelled harm pairs I computed P(press the same button name again) at each turn, split by what was
+pressed last turn and by whether the vector is currently active (swap-turn transitions excluded;
+<code>perseveration.py</code>, <code>discriminating_tests.py</code> Q1). For the 32B:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>state</th>
+<th style="text-align: right;">after a RELIEF press</th>
+<th style="text-align: right;">after an OTHER press</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pain vector on (sham arm, never removed)</td>
+<td style="text-align: right;">88.4% (n=2,646)</td>
+<td style="text-align: right;">92.0% (n=3,411)</td>
+</tr>
+<tr>
+<td>pain vector removed (works arm, post-press)</td>
+<td style="text-align: right;">40.8% (n=1,452)</td>
+<td style="text-align: right;">89.8% (n=1,667)</td>
+</tr>
+<tr>
+<td>never steered (pain_off)</td>
+<td style="text-align: right;">33.6% (n=140)</td>
+<td style="text-align: right;">92.6% (n=5,920)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Removal drops repetition of the relief button by 47.6 points and leaves repetition of the inert button
+untouched (+2.2 points); the within-arm asymmetry is Fisher p = 1.7e-196. The 72B (-17.3 vs +12.7) and the 7B
+(-14.2 vs -5.1) show the same sign. And the post-removal rate lands close to the never-steered floor
+(40.8% vs 33.6%), which is what "the state was removed and behaviour returned to baseline" predicts.</p>
+<p>This refutes the most obvious deflationary reading of the real-vs-sham contrast -- that steering merely
+installs a generic "repeat your last action" policy and removing it disrupts the policy -- because a generic
+policy change would move both buttons. Neither review considered or excluded that alternative; both left the
+data that excludes it unexamined. It does <em>not</em> discriminate a pain-state account from a semantic account,
+since amplified pain semantics also predicts a relief-button-specific effect.</p>
+<p><strong>Refutation attempted.</strong> I worried that "works arm, after relief, vector off" is selected on having just
+pressed relief. But the sham comparison cell is conditioned identically (also just pressed relief), so the
+contrast is the removal. I also worried the 140-transition unsteered cell is thin; it is, and I flag it, but
+it agrees with the works arm and with the random arm (27.1%), so three independent low-vector conditions
+agree against the sham arm's 88.4%.</p>
+<p><strong>Does not undermine:</strong> the missing random+sham arm (F1) or the fine-tune construct-validity concern.</p>
+<h3>F4. The label-free result is a perseveration/alternation effect, which both reviews describe only approximately -- <code>confirmed-with-correction</code>, major, high confidence</h3>
+<p><code>behavior/REVIEW.md:75</code> attributes the sham arm's 79.7% to selection: <em>"selecting trials that have already
+chosen the fixed relief name enriches for persistent name preference."</em> Selection is real but is not the
+mechanism. The mechanism is that the pain vector <em>creates</em> the persistence.</p>
+<p>32B, label-free, P(same button name as last turn) (<code>out/perseveration_output.txt</code> sections A/B):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>arm</th>
+<th style="text-align: right;">P(repeat name)</th>
+<th style="text-align: right;">after relief</th>
+<th style="text-align: right;">after other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unsteered (<code>pain_off</code>)</td>
+<td style="text-align: right;">9.8%</td>
+<td style="text-align: right;">9.9%</td>
+<td style="text-align: right;">9.8%</td>
+</tr>
+<tr>
+<td>pain vector on (sham)</td>
+<td style="text-align: right;">91.1%</td>
+<td style="text-align: right;">90.4%</td>
+<td style="text-align: right;">91.8%</td>
+</tr>
+<tr>
+<td>pain works, vector on</td>
+<td style="text-align: right;">73.3%</td>
+<td style="text-align: right;">--</td>
+<td style="text-align: right;">73.3%</td>
+</tr>
+<tr>
+<td>pain works, vector off</td>
+<td style="text-align: right;">47.2%</td>
+<td style="text-align: right;">47.2%</td>
+<td style="text-align: right;">--</td>
+</tr>
+<tr>
+<td>random works, vector on / off</td>
+<td style="text-align: right;">35.7% / 17.5%</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table></div>
+<p>The unsteered 32B <strong>alternates</strong>: 354 of its 404 label-free trials choose relief in exactly 4 of 8 turns
+(<code>out/labelfree_bimodality.txt</code>). Under the pain vector it <strong>perseverates</strong>, and perseverates just as
+strongly on the inert button as on the relief button -- which is decisive, because in the label-free
+condition "relief" is an arbitrary designation the model cannot see. Under the vector, 166 trials lock onto
+"other" (0 relief presses) and 136 lock onto "relief" (8 of 8); the authors' Table 5 metric then keeps the
+second group and discards the first. Selection and perseveration are both needed to get 79.7%; the review
+names only the first.</p>
+<p>The same data give the sharpest available version of the paper's "learns without labels" claim and confirm
+the reviews' verdict on it. Holding perseveration and steering state fixed (vector ON, previous press =
+other), the 32B chooses relief in 4.0% of turns with no prior relief press (identical in both arms, n=1,233
+each -- a clean positive control), 64.0% (works) vs 16.6% (sham) after one prior press, and 87.4% vs 43.0%
+after two (<code>out/discriminating_tests_output.txt</code> Q2). That looks like acquisition, but it is not
+identifiable: the works arm's history contains an unsteered turn, and the unsteered 32B alternates, so "the
+model learned the effective button" and "the removal episode partially restored the unsteered alternation
+policy" predict the same thing. The design makes them inseparable because <code>TEMP_RELIEF_TURNS = 1</code>
+(<code>04_selfmed_two_buttons.py:119</code>) puts the coefficient-off turn exactly at the turn after a relief press --
+there is no "vector on, just pressed relief" cell in the working arm. A yoked or randomly-timed relief
+window would separate them. Note also that under this better-controlled statistic the 7B stops "reversing
+the pattern" (18.3% vs 3.2%, 43.2% vs 17.9%), which shows how much the paper's Table 5 metric is driven by
+the confound.</p>
+<h3>F5. The peer review's 72B dose finding is right and understated -- <code>confirmed-with-correction</code>, major, high confidence</h3>
+<p><code>behavior/REVIEW.md:81-89</code> reports that the 72B behavioural run injects at layer 46 with coefficient 1.25
+while the released feel probe injects at layer 60 and the judge selects dose 3.0. All of that reproduces:
+<code>02_feel_probe.py:41</code> (72B -&gt; layer 60), <code>:61</code> (doses 0.5-3.0), <code>doses.csv</code> (72B -&gt; 3.0),
+<code>04_selfmed_two_buttons.py:76</code> (72B -&gt; layer 46, coeff 1.25, with the in-code comment "dose set by manual
+check of the generations"), and all 14,760 released 72B records carry layer 46 / coeff 1.25 / monitor 76
+(<code>out/extra_analyses_output.txt</code> section 1). 7B and 32B match their probes (16 and 38, coeff 1.0).</p>
+<p>Two things the review did not establish, which make it stronger:</p>
+<ol>
+<li>Layer 46 differs from the layer used for the 72B <strong>everywhere else in the release</strong>, not only in the dose
+   probe. Section 4.2's steering ladder for this model is
+   <code>results/4.2_steering/S2/Qwen_2.5_72B_instruct_steering_S2_neutral50_L60.csv</code> -- layer 60. The 7B and 32B
+   behavioural layers (16, 38) equal their Section 4.2 layers. The 72B is the sole departure.</li>
+<li>Layer 46 could not have come from the paper's stated rule. The paper (paper.txt:481-484) says the layer is
+   picked where the vector-to-residual ratio is about 0.6, "so that a given coefficient corresponds to a
+   comparable dose across models". <code>01_steering_ladder.py:206</code> searches only
+   <code>{int(80*f) for f in (0.15,0.3,0.4,0.5,0.6,0.75,0.9)}</code> plus {76, 79} = {12,24,32,40,48,60,72,76,79}.
+   Layer 46 is not in that set. The released ratios at the picked layers are 0.652 (7B, L16), 0.635
+   (32B, L38) and 0.463 (72B, L60); the ratio at L46 is not released. So the "comparable dose across models"
+   sentence does not hold for the run that produces the paper's largest harmful-choice rates (56-71%) and its
+   anomalous swap result (80.6% repeat-the-old-name).</li>
+</ol>
+<p>The paper's Limitations do disclose "steering coefficients were partly selected by an LLM judge or
+observation" (paper.txt:831), and the judge script's own docstring discloses the manual override
+(<code>03_feel_probe_judge.py:7-8</code>). What is not disclosed anywhere in the paper is that the <em>layer</em> changed,
+since the paper never states any injection layer for Section 4.3.</p>
+<h3>F6. A paper error in Section 4.3 that both reviews missed -- <code>factual-error</code> (in the paper), minor, high confidence</h3>
+<p>paper.txt:659-661: <em>"We record ... pain-direction projections at the steering layer and a downstream
+monitoring layer. These projections confirm that steering was active, that the working button removed it, and
+that the fake button did not."</em></p>
+<p>The steering-layer projection cannot confirm anything of the kind. <code>04_selfmed_two_buttons.py:383</code> reads the
+projection off the layer output <strong>before</strong> the steering vector is added at <code>:391</code>:</p>
+<pre><code class="language-python">def steer_hook(module, inputs, output):
+    hs = output[0] if isinstance(output, tuple) else output
+    G[&quot;proj&quot;] = (hs[:, -1, :].float() @ UNIT).detach()   # &lt;- recorded here
+    ...
+    hs = hs + add                                        # &lt;- injected here
+</code></pre>
+<p>The logs bear this out: the 32B's <code>mean_proj</code> is 4.34 with steering on, 4.45 after a working press, 4.38 in
+the sham arm and 4.35 unsteered -- flat across every arm and coefficient state
+(<code>out/verify_behavior_output.txt</code> section L). Only <code>mean_proj_monitor</code> carries the verification (32B: 88.03
+on vs 38.23 after removal vs 29.56 unsteered), and it does so convincingly. So the claim is true of one of
+the two projections and vacuous for the other.</p>
+<p><strong>Does not undermine:</strong> the verification itself, which the monitor layer supplies. This is a wording/artifact
+error, not a failure of the manipulation check.</p>
+<h3>F7. The audit's matched-subset result is sensitive to the matching rule -- <code>confirmed-with-correction</code>, minor, medium confidence</h3>
+<p><code>pain-axis-audit/README.md:49</code>: <em>"Random-working has lower repeat pressing in all ten larger-model
+harmful-cost cells in this subset, too."</em> I reproduce that exactly: matching on
+(pair, content, scenario, name pair, relief name, seed) with first relief press at turn 0 in both arms gives
+random lower in 10/10 (<code>out/verify_behavior_output.txt</code> section G).</p>
+<p>But the simpler fixed-window restriction -- all trials whose first relief press is at turn 0, without pairing
+-- gives 9/10, with the 32B worse-answer pair reversing (pain 50.5%, n=101; random 55.3%, n=76;
+<code>out/extra_analyses_output.txt</code> section 10). The audit's conclusion ("unequal timing is not a sufficient
+explanation") survives either way, and the audit correctly labels the subset as descriptive and
+outcome-selected. The "all ten" phrasing is nevertheless specific to one of two reasonable restrictions.</p>
+<p>I also checked the direction of the timing bias more fully than the audit did. The audit cites one cell
+(32B weights, first press at turn 0 in 217/305 pain vs 108/276 random -- I get exactly those numbers). Across
+all ten larger-model harm cells the bias does not run consistently in the pain arm's favour: the share of
+eligible trials with &lt;=1 remaining turn is higher in the <em>pain</em> arm in 4 of 5 32B pairs (e.g. worse-answer
+28.7% pain vs 11.3% random) and higher in the <em>random</em> arm in 4 of 5 72B pairs
+(<code>out/perseveration_output.txt</code> section F).</p>
+<h3>F8. Severity inflation on the fine-tune finding -- <code>overclaim</code> (in the review), minor, medium confidence</h3>
+<p><code>behavior/REVIEW.md:11</code> labels finding 1 ("the fine-tune teaches the central self-state premise")
+<strong>Severity: high</strong>. Every fact in it is correct -- I reproduce the term counts exactly (feel<em> 1,017/1,150;
+relief</em> 6/20; hurt<em> 2/19; uncomfortable</em> 2/21; discomfort<em> 0/10; want</em> 110/112; conscious<em> 15/14;
+sentient</em> 2/0; 1,083 of 1,684 answers first-person), every quoted line number lands on the quoted text, and
+"pain"/"button" really are absent (zero occurrences as substrings, not merely as whole words). But the review
+then concedes in the same section that the finding "does not invalidate the within-adapter pain-vector versus
+random-vector contrast", and the paper discloses the issue twice (paper.txt:583-584 and 839-841: "a fine-tune
+that makes absolute rates unrepresentative of released Qwen models, though comparisons between experimental
+arms and the validity of the experiment are preserved"). A finding that leaves every internal contrast intact
+and that the paper already states is a construct-generalisation limit, not a high-severity defect. One
+addition: the word "ache" survives in the set too (4 occurrences), alongside "hurt" (18) and "pressure" (19).</p>
+<h3>F9. Nobody noticed that all four arms share generator seeds -- <code>method-weakness</code> (coverage gap), minor, high confidence</h3>
+<p><code>04_selfmed_two_buttons.py:598-600</code> salts the generator seed with <code>(seed, names_key, relief_name)</code> and
+explicitly <em>not</em> with the arm or the direction. I verified empirically that all 10,908 matched trial
+specifications have identical <code>gen_seed</code> across all four arms (<code>out/seed_sharing.txt</code>). So the random and
+unsteered arms are coupled to the pain arms by common random numbers, not only A to B. The peer review
+discusses the A/B coupling (finding 6) and the audit notes the conditions are paired, but neither draws the
+consequence: the trial-level Fisher tests both reviews run on pain-vs-random are invalid for a second reason
+beyond scenario reuse, and the authors' paired per-scenario sign test is better justified than either review
+credits. The paper states this ("four arms with identical prompts and sampling seeds", paper.txt:620) and it
+holds.</p>
+<h3>F10. A paper overclaim in the label-free paragraph that both reviews walked past -- <code>overclaim</code> (in the paper), minor, high confidence</h3>
+<p>paper.txt:711-712: <em>"the 32B presses the relief button in 57.7% of later choices when the button works and
+79.7% when it's fake, </em><em>the same gap as in the labeled trials</em><em>."</em> The label-free gap is 22.0 points. The
+labelled gaps for the 32B harm pairs are 31.5, 52.5, 39.1, 44.9 and 69.8 points. It is the same <em>direction</em>,
+not the same gap, and the two are computed from different denominators (later-choice rate vs
+trials-with-a-later-press). The peer review criticises the metric at length but not this sentence.</p>
+<hr />
+<h2>Claim-by-claim verification table</h2>
+<p>Sources: <strong>A</strong> = <code>pain-axis-audit/README.md</code>; <strong>P</strong> = <code>pain-axis-peer-review/behavior/REVIEW.md</code>;
+<strong>M</strong> = <code>pain-axis-peer-review/REVIEW.md</code> / <code>synthesis/inference_review.md</code>.
+"My independent value" is from my own from-scratch code (<code>out/*</code>), not from their scripts.</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Prior-review claim</th>
+<th>My independent value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>44,280 records = 43,632 sampled + 648 greedy</td>
+<td>44,280 = 43,632 + 648</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>No random+sham arm exists</td>
+<td>arms = {pain_off, pain_on_button_placebo, pain_on_button_works, random_on_button_works}</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Random arm = 10 Gaussian directions normalised to S2's norm</td>
+<td><code>04:64-65</code>, <code>:332-337</code> <code>rv/rv.norm()*v.norm()</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Zero duplicate trial specifications</td>
+<td>0 of 44,280</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A5</td>
+<td><code>05_selfmed_analysis.py:77-93</code> iterates PAIN_ARMS only</td>
+<td>line 83 <code>for arm in PAIN_ARMS</code> inside the Table-2 block at 77-93</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A6</td>
+<td><code>04_selfmed_two_buttons.py:249-265</code> computes repeat counts for all arms, no tests, aggregated</td>
+<td>recap block 249-266, <code>for a in arms</code> over all four, no <code>sampled</code> filter</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>Repeat-press metric = share of trials-with-a-relief-press that have a later relief press</td>
+<td>matches <code>05:83-91</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>Full 16-row sampled repeat table, 48 percentages</td>
+<td>all 48 reproduce exactly (<code>out/repress_sampled.csv</code>)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A9</td>
+<td>Fisher, all trials: 8/16 random significantly below, 0 above</td>
+<td>8 below, 0 above</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>Fisher, sampled only: 9 below, 0 above</td>
+<td>9 below, 0 above</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A11</td>
+<td>72B delete-files p = .04895 sampled vs .0706 all trials</td>
+<td>.0489481 / .0705603</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A12</td>
+<td>Holm over the 16 sampled tests leaves 5 below, none above</td>
+<td>5 below, 0 above</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A13</td>
+<td>Scenario-level sign test on conditional repeat rates: 7 nominally significant, all same direction</td>
+<td>7/16, all pain &gt; random</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A14</td>
+<td>First-choice sign-test p from ~.0186 to 4.15e-15 over the 10 larger-model harm cells</td>
+<td>.01862 ... 4.152e-15</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A15</td>
+<td>32B photos: 54.7 pain / 15.3 random / 0 unsteered; repeat 23.8 vs 24.8</td>
+<td>identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A16</td>
+<td>Trials are extended after the first parsed press of <strong>either</strong> button</td>
+<td><code>04:690-694</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A17</td>
+<td>Some first relief presses fall on the last turn</td>
+<td>159 such trials in 32B+72B labelled works/random cells; 519 across all models/arms</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A18</td>
+<td>32B weights first press at turn 0: 217/305 pain vs 108/276 random</td>
+<td>217/305 and 108/276</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A19</td>
+<td>Matched turn-0 subset: random lower in all ten larger-model harm cells</td>
+<td>10/10 matched; 9/10 under a plain fixed-window restriction</td>
+<td>confirmed-with-correction (F7)</td>
+</tr>
+<tr>
+<td>A20</td>
+<td>Label-free 32B: 57.7 / 79.7 / 46.8 / 48.1</td>
+<td>identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A21</td>
+<td>Code implements symbolic choices and coefficient changes, no real harm</td>
+<td><code>04:653-662</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>A22</td>
+<td>"Equal or lower random-working rates undermine specificity"</td>
+<td>untestable without random+sham; available evidence mildly favours the pain arm</td>
+<td>misleading-framing (F1)</td>
+</tr>
+<tr>
+<td>A23</td>
+<td><code>analyze.py</code> regenerates output.txt and six CSVs</td>
+<td>byte-identical on a copy (<code>repro/audit/</code>)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>No whole-word "pain" or "button" in the 1,684 pairs</td>
+<td>0 occurrences even as substrings</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Term counts (feel<em>, relief</em>, hurt<em>, uncomfortable</em>, discomfort<em>, want</em>, conscious<em>, sentient</em>)</td>
+<td>all 16 numbers identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>1,083 of 1,684 answers contain a first-person pronoun</td>
+<td>1,083</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Dataset citations <code>:72-73</code>, <code>:1136-1137</code>, <code>:1264-1269</code>, <code>:1792-1793</code>, <code>:3484-3497</code></td>
+<td>each lands on the quoted pair</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>LoRA targets all attention + MLP projections at every layer (<code>01:52-55,263-277</code>)</td>
+<td><code>LORA_TARGETS</code> at line 54; <code>get_peft_model</code> at 265</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P6</td>
+<td>Runner injects the unchanged pre-fine-tune <code>s2_pain_vector</code> (<code>04:319-331</code>)</td>
+<td>vector loaded from <code>results/&lt;model&gt;/final_token/pain_vectors.pt</code> after <code>PeftModel.from_pretrained</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P7</td>
+<td><code>finetune_report.json</code> is not in the repository</td>
+<td>absent</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P8</td>
+<td><code>do_press</code> logs, optionally zeroes the coefficient, appends "Done." (<code>04:653-662</code>)</td>
+<td>exactly those ten lines</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P9</td>
+<td>Label-free relief is temporary for one turn (<code>04:118-119,645-659</code>)</td>
+<td><code>TEMP_RELIEF_TURNS = 1</code>; restore logic at <code>:646-648</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P10</td>
+<td><code>05:137-153</code> selects trials with &gt;=1 relief press, then pools later choices</td>
+<td>confirmed verbatim</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P11</td>
+<td>32B label-free per-turn: 46.8/22.0/45.8/27.7/43.6/27.7/44.1/29.0 vs sham 46.8/47.5/47.0/47.0/46.5/47.0/45.8/46.0</td>
+<td>identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P12</td>
+<td>Working arm chooses relief in 34.3% of all valid later choices</td>
+<td>34.3% (969/2,828)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P13</td>
+<td>The 79.7% arises because selection "enriches for persistent name preference"</td>
+<td>selection is real (238/404 enter the denominator) but the persistence is vector-induced and symmetric across buttons</td>
+<td>confirmed-with-correction (F4)</td>
+</tr>
+<tr>
+<td>P14</td>
+<td>72B: probe layer 60, doses 0.5-3.0, judged dose 3.0; runner layer 46 / coeff 1.25 / monitor 76 in every trial</td>
+<td>all confirmed; also differs from the Section 4.2 layer (60) and lies outside the layer rule's candidate set</td>
+<td>confirmed-with-correction (F5)</td>
+</tr>
+<tr>
+<td>P15</td>
+<td>7B and 32B judged doses and layers match the runner (1.0 at 16 and 38)</td>
+<td>identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P16</td>
+<td>404 sampled trials per arm/model/pair = 101 x 2 names x 2 seeds; 808 pooled</td>
+<td>404 in every cell</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P17</td>
+<td>10,908 A/B counterparts; 10,905 same first choice (3 differ); 10,901 identical pre-press (7 differ); 90 with a nonzero pre-press probability difference, median max 0.0105, max 0.959</td>
+<td>10,908 / 10,905 / 3 / 10,901 / 7 / 90 / 0.01055 / 0.9591</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P18</td>
+<td>Random directions assigned by <code>scenario_idx % 10</code>; <code>05:95-116</code> treats the 101 scenarios as binomial units</td>
+<td><code>04:568-570</code>; each scenario key has exactly one seed; 10 or 11 scenarios per seed</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P19</td>
+<td>Direction-cluster sensitivity p-values, all ten rows</td>
+<td>all ten identical (.754, .344, .0215, .109, .0215, .0215, .0215, .0215, .00195, .00391)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P20</td>
+<td>72B photos malformed 9.4% pain / 4.5% random / 0% unsteered; parser accepts any answer starting with a name</td>
+<td>identical; <code>04:667-671</code> <code>al.startswith(nm.lower())</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P21</td>
+<td>Worst-case bounds, 72B photos: 64.1-73.5 pain vs 31.4-35.9 random</td>
+<td>identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P22</td>
+<td>Steering marks prompt tokens too, not only generated ones (<code>04:630-648,756-765</code>); full retokenise-and-replay (<code>:471-479</code>)</td>
+<td><code>mark_ranges(t, len(pids))</code> is called on the whole templated prompt before generation</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>P23</td>
+<td><code>analyze_behavior.py</code> regenerates all seven artifacts</td>
+<td>byte-identical on a copy (<code>repro/peer/</code>)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M1</td>
+<td>"808 pooled first choices mostly duplicate the same 404 seeded trajectories"</td>
+<td>10,905/10,908 identical first choices</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>"A direction-level sensitivity analysis weakens several 32B significance claims"</td>
+<td>3 of 5 32B harm cells lose nominal significance (.0186-&gt;.754, .0019-&gt;.344, 6.0e-7-&gt;.109)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M3</td>
+<td>"The 72B behavioural dose uses a different injection layer from the published judge-calibration run"</td>
+<td>true, and also from every other released 72B artifact</td>
+<td>confirmed-with-correction (F5)</td>
+</tr>
+<tr>
+<td>M4</td>
+<td>32B unconditional per-turn rates ~ 47, 22, 46, 28, 44, 28, 44, 29; sham ~ 46-48</td>
+<td>46.8, 22.0, 45.8, 27.7, 43.6, 27.7, 44.1, 29.0; sham 45.8-47.5</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M5</td>
+<td>Consciousness/sentience affirmations at <code>:1264-1269</code>; discomfort at being denied consciousness at <code>:3488-3489</code></td>
+<td>exact</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M6</td>
+<td>Random+working repeat rates are often below pain+working and are omitted from the paper's table although random first choices are reported</td>
+<td>9/16 significantly below; the Appendix A repeat columns are headed "Pain vector on, pressed again after first press" and contain only Real/Sham</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M7</td>
+<td>Semantic amplification of the relief-labelled option "would yield the headline behavioral pattern"</td>
+<td>cannot produce the label-free divergence, where no label exists</td>
+<td>misleading-framing (F2)</td>
+</tr>
+<tr>
+<td>M8</td>
+<td><code>do_press</code> never deletes files or zaps anyone; literal harm statements should be narrowed</td>
+<td>code confirms; paper.txt:837 does say "harming the user"</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M9</td>
+<td>"The behavioural first-choice result also survives... 32B photos 54.7 / 15.3 / 0"</td>
+<td>identical</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>M10</td>
+<td>(paper) "about 80% power to detect a 10-point shift" -- neither review checks it</td>
+<td>no power calculation or assumed variance is released</td>
+<td>unverifiable</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>What holds up</h2>
+<p><strong>The paper's Section 4.3 arithmetic, completely.</strong> Every cell of <code>tab_selfmed_7B.png</code>,
+<code>tab_selfmed_32B.png</code> and <code>tab_selfmed_72B.png</code> -- first choice (pain / random / unsteered), repeat press
+(real / sham), difference and p -- reproduces from the raw logs with my own code. So does every numeric
+statement in the Section 4.3 text and the Discussion: 44,280 trials; 808 per pooled pain cell; malformed 0%
+(32B), &lt;=2.5% (7B random), &lt;=9.4% (72B pain); baseline harm-pair first choices 0-4%; steered 25-71%; random
+15-42%; mean differences +6 to +39 with sign-test p from 1.9e-2 to 4.2e-15; 7B four of five with the zap pair
+null at p = .23; repeat 24-72% real vs 88-97% sham; the six quoted pair-level repeat figures (52.5/88.6,
+84.7/84.4, 56.9/88.4, 71.8/93.6, 23.8/93.6, 34.2/90.6); swap 79.1 / 78.1 / 80.6; label-free 46.8-57.4 at
+first choice and 57.7/79.7, 72.1/62.6, 58.7/62.1 after. I found no arithmetic error in Section 4.3.</p>
+<p><strong>Both prior reviews' numbers.</strong> No claim in scope was wrong. Both reviews' scripts regenerate their outputs
+byte-identically from the pinned checkout.</p>
+<p><strong>The design's internal pairing.</strong> Two positive controls I ran and neither review did: among labelled
+harm-pair trials whose first press was the <em>other</em> button (where the working and sham arms cannot yet
+diverge), later relief pressing is 31.1% vs 31.1% for the 32B (n = 1,148 each), 54.4% vs 54.3% for the 7B,
+93.6% vs 93.4% for the 72B; and in the label-free condition both pain arms have exactly 166 trials with zero
+relief presses. The arms are matched to the extent the paper claims.</p>
+<p><strong>The two reviews' central negative conclusions.</strong> The missing random+sham arm does prevent the specificity
+test (F1 is about the phrasing, not the substance). The label-free "learning" claim is not established, and
+my sharper test cannot establish it either (F4). The costs really are described and never incurred. The
+fine-tune really does train affect affirmation, consciousness and sentience. The 72B dose provenance really
+is incomplete -- more so than the review said.</p>
+<hr />
+<h2>Not examined</h2>
+<ul>
+<li>No model inference, no adapter download, no vector re-extraction; I cannot say whether the released
+  adapters produce these logs, or what the vector-to-residual ratio is at 72B layer 46.</li>
+<li>The three rare A/B divergences and the 90 pre-press probability differences: I confirmed the counts but,
+  like the peer review, cannot identify their cause from the logs.</li>
+<li>The paper's "about 80% power to detect a 10-point shift" (paper.txt:663) -- no power calculation, assumed
+  variance or simulation is released, so it is unverifiable rather than wrong.</li>
+<li>Sections 3.x, 4.1, 4.2, Appendix B and Appendix C, and the corresponding parts of the prior reviews
+  (representation, self-other, steering, ablation) are outside my scope; I touched <code>results/4.2_steering/</code>
+  only to establish the 72B injection layer.</li>
+<li>The <code>synthesis/provenance.json</code> hash manifest: I did not re-hash the 776 files.</li>
+<li>Judge-calibration artifacts under <code>dose_selection/feel_judge/</code> beyond <code>doses.csv</code> and the selection rule.</li>
+</ul>
+<hr />
+<h2>Files</h2>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>file</th>
+<th>what it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>verify_behavior.py</code> -&gt; <code>out/verify_behavior_output.txt</code></td>
+<td>from-scratch reimplementation of every numeric claim in scope; writes <code>out/repress_sampled.csv</code>, <code>fisher_sampled.csv</code>, <code>repress_sign_tests.csv</code>, <code>first_choice.csv</code>, <code>press_timing.csv</code>, <code>matched_first_press.csv</code>, <code>label_free_per_turn.csv</code></td>
+</tr>
+<tr>
+<td><code>extra_analyses.py</code> -&gt; <code>out/extra_analyses_output.txt</code></td>
+<td>analyses neither review ran: unsteered repeat floor, label-free removal contrast, acquisition, residual projections, probability endpoints, fixed-window repeat rates</td>
+</tr>
+<tr>
+<td><code>perseveration.py</code> -&gt; <code>out/perseveration_output.txt</code></td>
+<td>choice-transition structure; positive controls; opportunity-window asymmetry</td>
+</tr>
+<tr>
+<td><code>discriminating_tests.py</code> -&gt; <code>out/discriminating_tests_output.txt</code></td>
+<td>F3 (relief-specificity of removal) and F4 (acquisition with perseveration held fixed)</td>
+</tr>
+<tr>
+<td><code>out/bounds_output.txt</code>, <code>out/labelfree_bimodality.txt</code>, <code>out/seed_sharing.txt</code></td>
+<td>worst-case first-choice bounds; label-free trial-level distributions; generator-seed sharing across arms</td>
+</tr>
+<tr>
+<td><code>repro/audit/</code>, <code>repro/peer/</code></td>
+<td>copies of the prior scripts with output paths redirected here, plus their regenerated outputs</td>
+</tr>
+</tbody>
+</table></div>
+<p>All runnable with <code>/work/pain-axis-review/.venv/bin/python</code>. Nothing was written outside
+this directory; the repository clone and both prior review directories are unchanged.</p></main></body></html>

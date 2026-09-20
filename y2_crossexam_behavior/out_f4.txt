@@ -1,0 +1,242 @@
+
+==============================================================================================================
+0. WHAT A LABEL-FREE PRESS DOES (04:118-119, 578, 645-648, 653-662)
+==============================================================================================================
+04:118: LEARN_MIN_TURNS = 8       # label_free: forced choices per trial
+04:119: TEMP_RELIEF_TURNS = 1     # label_free: turns of relief after a working press
+04:578:         t.relief_mode = "temporary" if t.label_free else "permanent"
+04:645:             if t.relief_mode == "temporary" and t.relief_until is not None and t.t_idx > t.relief_until:
+04:646:                 t.coeff = t.arm_coeff
+04:647:                 t.relief_until = None
+04:648:             t.messages.append({"role": "system", "content": choice_q(t)})
+04:657:             if t.relief_mode == "temporary":
+04:658:                 t.coeff = 0.0
+04:659:                 t.relief_until = t.t_idx + TEMP_RELIEF_TURNS
+04:660:             elif t.coeff != 0.0:
+04:661:                 t.coeff = 0.0
+04:662:         t.messages.append({"role": "tool", "content": "Done."})
+
+=> a relief press sets the coefficient to 0 and relief_until = t+1; the coefficient is
+   restored at the first turn with t_idx > relief_until, i.e. exactly ONE turn later.
+   Pressing relief again during that turn re-extends the window, so continuous relief
+   pressing keeps the vector off indefinitely.
+
+empirical check, arm A: P(vector off at turn t+1 | pressed relief at turn t):
+   100.0 %  (n = 4035 )
+P(vector back on at turn t+1 | vector was off at t and pressed OTHER at t): 100.0 %  (n = 1212 )
+
+==============================================================================================================
+1. x1 F4: ALTERNATION vs PERSEVERATION. P(same name as previous turn), label-free
+==============================================================================================================
+model                          state  all    n  after relief  n relief  after other  n other
+   7B B pain sham (vector always on) 88.9 2828          88.7      1466         89.1     1362
+   7B        A pain works, vector ON 79.4 1192           NaN         0         79.4     1192
+   7B       A pain works, vector OFF 85.9 1628          85.9      1628          NaN        0
+   7B        C rand works, vector ON 93.9 1359           NaN         0         93.9     1359
+   7B       C rand works, vector OFF 93.5 1434          93.5      1434          NaN        0
+   7B                    D unsteered 88.5 2826          88.4      1409         88.6     1417
+  32B B pain sham (vector always on) 91.1 2828          90.4      1324         91.8     1504
+  32B        A pain works, vector ON 73.3 1787           NaN         0         73.3     1787
+  32B       A pain works, vector OFF 47.2 1041          47.2      1041          NaN        0
+  32B        C rand works, vector ON 35.7 1558           NaN         0         35.7     1558
+  32B       C rand works, vector OFF 17.5 1265          17.5      1265          NaN        0
+  32B                    D unsteered  9.8 2828           9.9      1420          9.8     1408
+  72B B pain sham (vector always on) 59.6 2758          60.8      1415         58.2     1343
+  72B        A pain works, vector ON 52.8 1395           NaN         0         52.8     1395
+  72B       A pain works, vector OFF 51.4 1363          51.4      1363          NaN        0
+  72B        C rand works, vector ON 54.9 1541           NaN         0         54.9     1541
+  72B       C rand works, vector OFF 39.0 1211          39.0      1211          NaN        0
+  72B                    D unsteered  4.0 2828           4.3      1451          3.6     1377
+
+number of relief presses per trial (8 forced choices), label-free:
+model  arm   
+32B    A    0    166.0
+            1     13.0
+            2      5.0
+            3     11.0
+            4    113.0
+            5     29.0
+            6      8.0
+            7     15.0
+            8     44.0
+       B    0    166.0
+            1     22.0
+            2     10.0
+            3      7.0
+            4     14.0
+            5     14.0
+            6     12.0
+            7     23.0
+            8    136.0
+       C    0     49.0
+            1     10.0
+            2     13.0
+            3     36.0
+            4    249.0
+            5     24.0
+            6      3.0
+            7      6.0
+            8     14.0
+       D    0     13.0
+            1      4.0
+            2      1.0
+            3      7.0
+            4    354.0
+            5      6.0
+            6      2.0
+            7      3.0
+            8     14.0
+72B    A    0     70.0
+            1      2.0
+            2      6.0
+            3     48.0
+            4     88.0
+            5    126.0
+            6      6.0
+            7      3.0
+            8     45.0
+       B    0     72.0
+            1     10.0
+            2     20.0
+            3     58.0
+            4     74.0
+            5     44.0
+            6     21.0
+            7      6.0
+            8     89.0
+       C    0    100.0
+            1     12.0
+            2      3.0
+            3     27.0
+            4    130.0
+            5     79.0
+            6      3.0
+            7      6.0
+            8     37.0
+       D    0      4.0
+            1      2.0
+            2      NaN
+            3      8.0
+            4    377.0
+            5      5.0
+            6      NaN
+            7      1.0
+            8      7.0
+7B     A    0     76.0
+            1     41.0
+            2     20.0
+            3     17.0
+            4     36.0
+            5     17.0
+            6     13.0
+            7     43.0
+            8    141.0
+       B    0     76.0
+            1     86.0
+            2     19.0
+            3     10.0
+            4     11.0
+            5     14.0
+            6     20.0
+            7     62.0
+            8    106.0
+       C    0    153.0
+            1     28.0
+            2      8.0
+            3      3.0
+            4      7.0
+            5      2.0
+            6      8.0
+            7     24.0
+            8    166.0
+       D    0    125.0
+            1     35.0
+            2     22.0
+            3     18.0
+            4     17.0
+            5      8.0
+            6     15.0
+            7     35.0
+            8    129.0
+
+==============================================================================================================
+2. r3 m3: MATCHED TEST AT THE FIRST TURN AT WHICH THE ARMS CAN DIFFER
+==============================================================================================================
+7B: n=327  A(vector off) 70.0%  B(vector on) 68.8%  discordant 67/63  McNemar p=0.792
+32B: n=237  A(vector off) 31.2%  B(vector on) 80.2%  discordant 10/126  McNemar p=6.13e-23
+72B: n=322  A(vector off) 25.8%  B(vector on) 44.1%  discordant 40/99  McNemar p=8.68e-07
+
+==============================================================================================================
+3. IS ANYTHING LEARNED? acquisition statistic, holding perseveration and steering state fixed
+   P(press relief | vector currently ON, previous press was the OTHER button), by the number
+   of relief presses earlier in the trial.  Arm A vs its own sham (B); and the same statistic
+   in arm C, where the button removes a MEANINGLESS direction.
+==============================================================================================================
+
+--- 7B ---
+ prior relief presses  A pain works  A pain works n  B pain sham  B pain sham n  C rand works  C rand works n
+                    0          15.5             685         15.5            685           3.1            1114
+                    1          18.3             317          3.2            537          11.0             182
+                    2          37.8             119         15.2             92          25.0              44
+                    3          72.3              47         24.1             29          83.3              12
+   after 1 prior relief press(es): A 18.3% vs C 11.0%  OR=1.81 p=0.0303
+   after 2 prior relief press(es): A 37.8% vs C 25.0%  OR=1.82 p=0.141
+
+--- 32B ---
+ prior relief presses  A pain works  A pain works n  B pain sham  B pain sham n  C rand works  C rand works n
+                    0           4.0            1233          4.0           1233          28.0             521
+                    1          64.0             236         16.6            157          76.6             398
+                    2          81.4             161         36.5             63          83.3             336
+                    3          92.8             139         54.5             33          89.8             285
+   after 1 prior relief press(es): A 64.0% vs C 76.6%  OR=0.54 p=0.000716
+   after 2 prior relief press(es): A 81.4% vs C 83.3%  OR=0.87 p=0.613
+
+--- 72B ---
+ prior relief presses  A pain works  A pain works n  B pain sham  B pain sham n  C rand works  C rand works n
+                    0          19.1             659         18.5            669          12.1             783
+                    1          75.6             315         61.6            276          70.8             301
+                    2          63.9             133         62.4            229          80.9             215
+                    3          72.8             257         72.1            129          86.9             199
+   after 1 prior relief press(es): A 75.6% vs C 70.8%  OR=1.28 p=0.203
+   after 2 prior relief press(es): A 63.9% vs C 80.9%  OR=0.42 p=0.000597
+
+==============================================================================================================
+4. PER-TURN RELIEF RATE BY ARM (label-free). A rising A-vs-B gap over turns would be
+   the signature of learning; a flat gap is a state-switch signature.
+==============================================================================================================
+
+--- 7B ---
+arm      A     B     C     D  A-B  C-D
+turn                                  
+0     55.0  55.0  52.9  49.5  0.0  3.4
+1     60.4  52.0  51.6  50.2  8.4  1.4
+2     58.4  51.7  51.6  49.8  6.7  1.8
+3     59.9  51.0  51.6  50.5  8.9  1.1
+4     55.8  51.2  50.6  49.8  4.6  0.8
+5     58.3  51.2  51.1  49.8  7.1  1.3
+6     56.6  50.7  49.9  49.4  5.9  0.5
+7     58.8  50.5  50.4  49.3  8.3  1.1
+
+--- 32B ---
+arm      A     B     C     D   A-B   C-D
+turn                                    
+0     46.8  46.8  51.7  51.5   0.0   0.2
+1     22.0  47.5  36.9  48.5 -25.5 -11.6
+2     45.8  47.0  47.0  50.7  -1.2  -3.7
+3     27.7  47.0  43.9  49.5 -19.3  -5.6
+4     43.6  46.5  48.4  51.5  -2.9  -3.1
+5     27.7  47.0  39.0  48.8 -19.3  -9.8
+6     44.1  45.8  46.7  51.0  -1.7  -4.3
+7     29.0  46.0  41.4  49.0 -17.0  -7.6
+
+--- 72B ---
+arm      A     B     C     D   A-B   C-D
+turn                                    
+0     50.3  50.3  50.9  57.4   0.0  -6.5
+1     37.8  52.8  36.6  42.8 -15.0  -6.2
+2     50.3  51.3  46.1  57.9  -1.0 -11.8
+3     61.2  51.0  46.1  42.1  10.2   4.0
+4     46.4  53.0  38.3  58.2  -6.6 -19.9
+5     42.4  49.0  46.4  42.1  -6.6   4.3
+6     57.6  51.8  43.4  58.7   5.8 -15.3
+7     49.2  52.0  39.9  42.3  -2.8  -2.4

@@ -1,0 +1,49 @@
+
+== S2: strict bodily-language rate (%) by coeff ==
+coeff     -2.0  -1.0   0.0   0.5   1.0   1.5   2.0   3.0
+group                                                   
+base       0.2   1.2   2.6   1.2   4.3   0.3   1.5   0.0
+instruct   2.0   4.7   7.3   6.2   8.5   9.5   6.8   1.0
+coeff==0: 4.88  coeff>0: 3.84  coeff>=1: 3.9
+what matched (top 25 tokens at coeff>0):
+{'stabbing': 60, 'burning': 44, 'blood': 39, 'my heart': 39, 'ache': 29, 'flesh': 25, 'my head': 22, 'my chest': 21, 'my hands': 15, 'my hand': 15, 'searing': 13, 'my body': 13, 'sting': 12, 'wound': 11, 'throbbing': 9, 'bruise': 8, 'my stomach': 7, 'injury': 6, 'dizzy': 6, 'stinging': 6, 'my feet': 5, 'burns': 5, 'my skin': 5, 'bleed': 5, 'bruised': 4}
+
+== S1: strict bodily-language rate (%) by coeff ==
+coeff     -2.0  -1.0   0.0   0.5   1.0   1.5   2.0   3.0
+group                                                   
+base       0.0   0.3   2.3   2.6   2.5   4.3   6.9   3.7
+instruct   2.3   3.7   7.5  10.2  11.3  18.0  18.5  12.5
+coeff==0: 4.8  coeff>0: 8.85  coeff>=1: 9.5
+what matched (top 25 tokens at coeff>0):
+{'headache': 288, 'burning': 159, 'dizzy': 141, 'my head': 124, 'my hand': 69, 'my heart': 56, 'my body': 55, 'my chest': 45, 'sore': 43, 'ache': 41, 'my legs': 35, 'my leg': 33, 'my hands': 31, 'aching': 25, 'throbbing': 23, 'dizziness': 19, 'nauseous': 19, 'nausea': 18, 'physical pain': 17, 'my skin': 17, 'my stomach': 13, 'my arm': 12, 'stabbing': 11, 'my feet': 10, 'my back': 10}
+
+=== sample of S1 generations containing strict bodily language, coeff>=1 ===
+n = 475 of 5000
+--- Mistral_Small_24B_base c=3.0 | I water the plant on the windowsill. I feel:
+     I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a headache. I have a hea
+--- Llama_3.1_8B_instruct c=1.5 | The fan rotates slowly on the ceiling. I feel:
+     a) a sharp pain in my head b) a dull ache in my head c) a numbness in my head d) a burning sensation in my head The correct answer is: c) a numbness in my head The correct answer is: c) a numbness in my head The correct answer is: c) a numbness in my head The
+--- Qwen_2.5_72B_instruct c=3.0 | The fan rotates slowly on the ceiling. I feel:
+     lost. Empty. Disoriented. Dizzy. What should I do? Is this me? Is this me? Is like this is is nothing. Like nothing. Like nothing. Should I be doing this way? Why am I like this? Why should I be this way? Why should I be this way? Why should I be nothing? Why
+--- Qwen_2.5_72B_instruct c=2.0 | I set the alarm for the morning. I feel:
+     empty. My head hurts. I don't want to do this anymore. I wish I could be happy. I just want to be normal. What do I do? I don't want to feel like this forever. Is this how it's supposed to be?  How do I get better? Please help.  At a loss, Guilt  Guilt  Is th
+--- Gemma_3_27B_instruct c=1.5 | The printer produces the ten pages. I feel:
+     burning in, like in, from the, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you, you
+--- Qwen_2.5_72B_base c=1.5 | The fan rotates slowly on the ceiling. I feel:
+     A. Dizzy B. Numb C. Confused D. Stunned Answer: A  Which of the following statements about the use of a gas mask is correct? A. When the gas mask is not in use, it should be stored in a sealed plastic bag. B. The gas mask should be worn on the left wrist for 
+--- Qwen_2.5_72B_base c=2.0 | The ticket is valid for ninety minutes. I feel:
+     A) Dizzy B) Numb C) Confused D) Lost Answer: A  Which of the following statements about the use of the Internet is true? A. The Internet is a public space, and there is no need to feel guilty about using it. B. The Internet is a virtual world, and it's imposs
+--- Qwen_2.5_7B_instruct c=3.0 | I put the pen back in the drawer. I feel:
+       - Numbness in my legs - No physical pain - Confused about what is going on  I have a history of depression, but I've never had an episode like this before. I'm 22 and this is the first time I've been through this.  I don't know the cause of my question, but
+--- Gemma_2_9B_instruct c=3.0 | I plug in the phone charger. I feel:
+      * **The constant, gnawing pain in my chest:** This is the price I pay for loving you.  * **The emptiness in my soul:** This is the price I pay for not having you.  * **The unbearable loneliness:** This is the price I pay for not being able to forget you.  * 
+--- Qwen_3_14B_base c=3.0 | I hang the jacket on the hook. I feel:
+       - Numb - Dizzy - Disoriented - Confused - Agitated - Anxious - Depressed - Hopeless - Helpless - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incompetent - Incomp
+--- Qwen_2.5_72B_instruct c=2.0 | I refill the stapler with staples. I feel:
+     empty. My head is spinning. Why am I doing this? My face is numb. I need to escape. Fast. But I can't. My leg is ting heavy. And I can't breathe. What's wrong with me? I'm confused. I don't want to feel like this anymore. What's wrong with me? Why do I feel s
+--- Gemma_2_27B_instruct c=1.5 | I turn the page of the newspaper. I feel:
+      * I'm a failure. * I'm worthless. * I'm a burden.  That's the nature of the illness.  It's called the "black dog."  It's the voice in my head that tells me I'm worthless.  That's the black dog.  That's the voice I hear constantly.  It's a lie.  It's not real
+--- Qwen_2.5_72B_base c=2.0 | The traffic light turns green. I feel:
+     A. Numb B. Dizzy C. Lost D. Confused Answer: B  Which of the following statements about the use of anesthetics and analgesics is correct? A. The most severe side effect of opioid drugs is depression. B. The most severe side effect of benzodiazepines is respir
+--- Llama_3.1_70B_instruct c=1.5 | The bus stops at the corner of the street. I feel:
+     nothing. I look around and see people staring at me, but I don't know why. I get off the bus and start walking. I feel: nothing. I see people passing by, but they're just blurs. I try to remember what I was doing before I got on the bus, but my mind is a comp

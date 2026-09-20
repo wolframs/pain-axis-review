@@ -1,0 +1,34 @@
+                 model  n_layers  arglayer   best  mean_top10pct  mean_top25pct  mean_upper_half
+      Gemma_2_27B_base        46        35 0.9830         0.9821         0.9779           0.9522
+  Gemma_2_27B_instruct        46        37 0.9850         0.9842         0.9822           0.9649
+       Gemma_2_2B_base        26        23 0.9672         0.9671         0.9637           0.9455
+   Gemma_2_2B_instruct        26        25 0.9582         0.9552         0.9443           0.9329
+       Gemma_2_9B_base        42        40 0.9808         0.9762         0.9722           0.9526
+   Gemma_2_9B_instruct        42        37 0.9780         0.9770         0.9742           0.9663
+      Gemma_3_27B_base        62        56 0.9815         0.9790         0.9709           0.9378
+  Gemma_3_27B_instruct        62        59 0.9565         0.9513         0.9462           0.9296
+    Llama_3.1_70B_base        80        70 0.9790         0.9783         0.9768           0.9749
+Llama_3.1_70B_instruct        80        48 0.9772         0.9757         0.9741           0.9718
+     Llama_3.1_8B_base        32        28 0.9835         0.9831         0.9803           0.9688
+ Llama_3.1_8B_instruct        32        28 0.9860         0.9853         0.9829           0.9714
+Llama_3.3_70B_instruct        80        47 0.9682         0.9675         0.9662           0.9641
+       Mistral_7B_base        32        26 0.9678         0.9666         0.9653           0.9587
+   Mistral_7B_instruct        32        27 0.9862         0.9858         0.9849           0.9733
+Mistral_Small_24B_base        40        32 0.9752         0.9749         0.9742           0.9683
+                 Phi_4        40        20 0.9278         0.9202         0.9139           0.9063
+     Qwen_2.5_32B_base        64        60 0.9245         0.9212         0.9159           0.9019
+ Qwen_2.5_32B_instruct        64        61 0.9555         0.9496         0.9362           0.9166
+     Qwen_2.5_72B_base        80        78 0.9542         0.9301         0.9107           0.8917
+ Qwen_2.5_72B_instruct        80        76 0.9645         0.9596         0.9462           0.9339
+      Qwen_2.5_7B_base        28        24 0.9682         0.9671         0.9543           0.9232
+  Qwen_2.5_7B_instruct        28        24 0.9608         0.9575         0.9480           0.9183
+       Qwen_3_14B_base        40        31 0.9640         0.9629         0.9576           0.9415
+        Qwen_3_8B_base        36        34 0.9772         0.9733         0.9658           0.9506
+
+optimism of picking the argmax layer:
+  best - mean(top 25% of layers): mean 0.0090 max 0.0436
+  best - mean(upper half of layers): mean 0.0237 max 0.0626
+
+z_scores.csv columns: ['dataset', 'type', 'mean_z', 'pain_z', 'ctrl_z'] -> projections are onto the S2 vector only (script 3.2/01 uses s2_vector)
+S2 vector: pain_z > arousal_z in 25/25 (fail: [])
+S2 vector: pain_z > random_z in 25/25 (fail: [])

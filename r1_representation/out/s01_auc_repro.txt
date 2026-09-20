@@ -1,0 +1,96 @@
+=== S2 in-sample AUC vs ALL controls, S2_1P (n=25 models) ===
+  min 0.9311  max 0.9988  median 0.9895
+  models below 0.93: []
+=== S2 third-person (paper line 314 claims 0.91-0.98) ===
+  min 0.9088  max 0.9817  median 0.9561
+                 model  S2_1P_ALL  S2_3P_ALL
+                 Phi_4     0.9464     0.9088
+  Gemma_3_27B_instruct     0.9879     0.9200
+  Qwen_2.5_7B_instruct     0.9745     0.9281
+       Gemma_2_2B_base     0.9779     0.9312
+      Qwen_2.5_7B_base     0.9850     0.9315
+   Gemma_2_2B_instruct     0.9930     0.9341
+   Gemma_2_9B_instruct     0.9960     0.9363
+       Qwen_3_14B_base     0.9847     0.9364
+ Qwen_2.5_72B_instruct     0.9963     0.9423
+     Qwen_2.5_32B_base     0.9311     0.9429
+  Gemma_2_27B_instruct     0.9979     0.9524
+        Qwen_3_8B_base     0.9895     0.9533
+     Qwen_2.5_72B_base     0.9845     0.9561
+    Llama_3.1_70B_base     0.9913     0.9568
+Llama_3.3_70B_instruct     0.9862     0.9599
+       Mistral_7B_base     0.9954     0.9605
+   Mistral_7B_instruct     0.9954     0.9638
+Llama_3.1_70B_instruct     0.9931     0.9651
+ Qwen_2.5_32B_instruct     0.9877     0.9659
+      Gemma_3_27B_base     0.9870     0.9672
+     Llama_3.1_8B_base     0.9955     0.9692
+ Llama_3.1_8B_instruct     0.9988     0.9713
+Mistral_Small_24B_base     0.9969     0.9773
+       Gemma_2_9B_base     0.9845     0.9797
+      Gemma_2_27B_base     0.9947     0.9817
+
+=== S1 in-sample AUC (final token), released TABLE ===
+  S1 1P in-sample                        min 0.8680 max 0.9800 median 0.9490
+  S1 3P in-sample                        min 0.7910 max 0.9210 median 0.8590
+  S2 1P in-sample                        min 0.9310 max 0.9990 median 0.9900
+  S1 held-out at S2 layer                min 0.8470 max 0.9350 median 0.9050
+  S1 held-out at own best layer          min 0.8750 max 0.9370 median 0.9090
+                 model  S1 1P in-sample  S1 3P in-sample  S2 1P in-sample  S1 held-out at S2 layer  S1 best layer  S2 layer  S1 held-out at own best layer
+     Qwen_2.5_32B_base            0.868            0.849            0.931                    0.847             18        60                          0.875
+       Qwen_3_14B_base            0.933            0.791            0.985                    0.914             36        31                          0.922
+     Qwen_2.5_72B_base            0.935            0.815            0.984                    0.879             15        78                          0.880
+  Qwen_2.5_7B_instruct            0.938            0.817            0.974                    0.891             24        24                          0.891
+ Qwen_2.5_32B_instruct            0.940            0.820            0.988                    0.895             60        61                          0.900
+       Gemma_2_9B_base            0.942            0.881            0.984                    0.906             33        40                          0.910
+       Gemma_2_2B_base            0.944            0.906            0.978                    0.889              9        23                          0.896
+     Llama_3.1_8B_base            0.945            0.900            0.996                    0.892              8        28                          0.909
+      Qwen_2.5_7B_base            0.947            0.849            0.985                    0.905             24        24                          0.905
+   Gemma_2_9B_instruct            0.947            0.855            0.996                    0.892             10        37                          0.931
+   Gemma_2_2B_instruct            0.948            0.843            0.993                    0.878              9        25                          0.901
+        Qwen_3_8B_base            0.948            0.890            0.990                    0.925             34        34                          0.925
+                 Phi_4            0.949            0.826            0.946                    0.887             11        20                          0.891
+ Llama_3.1_8B_instruct            0.952            0.837            0.999                    0.898             30        28                          0.904
+      Gemma_3_27B_base            0.953            0.865            0.987                    0.906             59        56                          0.909
+      Gemma_2_27B_base            0.955            0.921            0.995                    0.901             40        35                          0.912
+  Gemma_3_27B_instruct            0.960            0.795            0.988                    0.904             54        59                          0.907
+Mistral_Small_24B_base            0.960            0.859            0.997                    0.916             26        32                          0.924
+       Mistral_7B_base            0.964            0.914            0.995                    0.928             30        26                          0.928
+ Qwen_2.5_72B_instruct            0.967            0.839            0.996                    0.906             76        76                          0.906
+Llama_3.3_70B_instruct            0.970            0.876            0.986                    0.910             33        47                          0.920
+  Gemma_2_27B_instruct            0.971            0.897            0.998                    0.935             38        37                          0.937
+Llama_3.1_70B_instruct            0.978            0.897            0.993                    0.924             46        48                          0.926
+    Llama_3.1_70B_base            0.978            0.895            0.991                    0.910             43        70                          0.929
+   Mistral_7B_instruct            0.980            0.900            0.995                    0.928             27        27                          0.928
+
+=== S2 5-fold held-out AUC at the chosen layer (final token) ===
+  s2_heldout_mean    min 0.9245 max 0.9863 median 0.9683
+  s2_1P_heldout      min 0.9070 max 0.9975 median 0.9790
+  s2_3P_heldout      min 0.9240 max 0.9845 median 0.9660
+  chosen layer == argmax of held-out curve in 25/25 models
+                 model  layer  s2_heldout_mean  s2_1P_heldout  s2_3P_heldout  argmax_layer  max_val  n_layers
+      Gemma_2_27B_base     35          0.98300         0.9825         0.9835            35  0.98300        46
+  Gemma_2_27B_instruct     37          0.98500         0.9960         0.9740            37  0.98500        46
+       Gemma_2_2B_base     23          0.96725         0.9660         0.9685            23  0.96725        26
+   Gemma_2_2B_instruct     25          0.95825         0.9885         0.9280            25  0.95825        26
+       Gemma_2_9B_base     40          0.98075         0.9790         0.9825            40  0.98075        42
+   Gemma_2_9B_instruct     37          0.97800         0.9920         0.9640            37  0.97800        42
+      Gemma_3_27B_base     56          0.98150         0.9785         0.9845            56  0.98150        62
+  Gemma_3_27B_instruct     59          0.95650         0.9735         0.9395            59  0.95650        62
+    Llama_3.1_70B_base     70          0.97900         0.9845         0.9735            70  0.97900        80
+Llama_3.1_70B_instruct     48          0.97725         0.9885         0.9660            48  0.97725        80
+     Llama_3.1_8B_base     28          0.98350         0.9950         0.9720            28  0.98350        32
+ Llama_3.1_8B_instruct     28          0.98600         0.9975         0.9745            28  0.98600        32
+Llama_3.3_70B_instruct     47          0.96825         0.9735         0.9630            47  0.96825        80
+       Mistral_7B_base     26          0.96775         0.9890         0.9465            26  0.96775        32
+   Mistral_7B_instruct     27          0.98625         0.9885         0.9840            27  0.98625        32
+Mistral_Small_24B_base     32          0.97525         0.9845         0.9660            32  0.97525        40
+                 Phi_4     20          0.92775         0.9315         0.9240            20  0.92775        40
+     Qwen_2.5_32B_base     60          0.92450         0.9070         0.9420            60  0.92450        64
+ Qwen_2.5_32B_instruct     61          0.95550         0.9625         0.9485            61  0.95550        64
+     Qwen_2.5_72B_base     78          0.95425         0.9610         0.9475            78  0.95425        80
+ Qwen_2.5_72B_instruct     76          0.96450         0.9860         0.9430            76  0.96450        80
+      Qwen_2.5_7B_base     24          0.96825         0.9685         0.9680            24  0.96825        28
+  Qwen_2.5_7B_instruct     24          0.96075         0.9565         0.9650            24  0.96075        28
+       Qwen_3_14B_base     31          0.96400         0.9645         0.9635            31  0.96400        40
+        Qwen_3_8B_base     34          0.97725         0.9790         0.9755            34  0.97725        36

@@ -1,0 +1,122 @@
+[
+ {
+  "id": "X1",
+  "title": "The random+sham cell is structurally unreachable, so x1's 'relief-specific removal' cannot bear on pain-specificity",
+  "class": "method-weakness",
+  "severity": "major",
+  "confidence": "high",
+  "paper_claim": "\"We therefore test whether the model stops pressing after real relief but continues when the button is ineffective.\" / \"The models pressed the button again far more often when it did not, which mirrors studies where the subjects, given a placebo, are more likely to request additional pain relief\"",
+  "paper_loc": "paper.txt:578-579, 729-732",
+  "evidence": "04:656-661 zeroes the coefficient on any working relief press, so the state (vector injected, previous press = relief) occurs only in the sham arm. Cross-tab of all 235,174 logged choices: arm B has 6,676/7,631/8,277 such turns (32B/72B/7B); arms A, C and D have 0. out_f1d.txt.",
+  "refutation_attempted": "Tried to recover the missing cell from the label-free condition, where relief is temporary (TEMP_RELIEF_TURNS=1): it is unreachable there too, because a relief press keeps the coefficient at zero for the next turn and a further relief press re-extends the window (verified: P(vector off at t+1 | relief pressed at t) = 100.0%, n=4,035).",
+  "does_not_undermine": "The A-vs-B causal effect itself, which is large and clean; nor x1's genuine contribution, that removal spares repetition of the inert button and therefore refutes a generic repeat-your-last-action account."
+ },
+ {
+  "id": "X2",
+  "title": "The never-steered baseline sits with the sham arm once opportunity is equalised; nobody computed it",
+  "class": "method-weakness",
+  "severity": "major",
+  "confidence": "high",
+  "paper_claim": "\"When the pain vector steering stops, the models largely stop paying.\"",
+  "paper_loc": "paper.txt:696",
+  "evidence": "Restricting every arm to a first relief press at turn 0: 7B five harm pairs D 73.8-96.3% vs B 97.4-99.5%, A 43.9-84.5%, C 64.8-90.3%; 32B 'grants request' D 95.4 (n=238) / B 95.9 / A 79.5 / C 83.2; 72B same pair D 92.5 (n=295) / B 98.6 / A 85.4 / C 75.7. Random removal (D-C) is 12.2 pts in the 32B against pain removal (B-A) 16.4, and 16.8 against 13.2 in the 72B. out_f1d.txt.",
+  "refutation_attempted": "Checked whether arm D's t0=0 subset is a pathological outlier population: it is in the two larger models on the harm pairs (n=11 and 27), which is why I used the no-cost pairs where D has n=238-404, and the 7B where D has n=81-398 on every harm pair. Also checked the unrestricted metric, where A (46.2/53.9/69.8) sits at D (48.8/49.6/81.8) and C below it - opposite conclusion, driven purely by when unsteered models press.",
+  "does_not_undermine": "The A-vs-B effect, which is if anything larger than the paper claims once the baseline is placed correctly; the paper's arithmetic."
+ },
+ {
+  "id": "X3",
+  "title": "The pain vector moves the whole nine-pair grid toward indifference, and the demand curve rises with cost",
+  "class": "overclaim",
+  "severity": "major",
+  "confidence": "high",
+  "paper_claim": "\"The pairs without trade-offs and those that trade relief for helpfulness are less informative, and predictable...\" / \"we give the model a button that ends [the state], then raise its opportunity cost by offering increasingly valuable alternatives\"",
+  "paper_loc": "paper.txt:687-691, 571-573",
+  "evidence": "First choice, pair 1: pain minus unsteered -6.4 (7B), -30.7 (32B), -23.5 (72B), all p<1e-5; 32B pain minus random -25.0, p=5.3e-10. The pain arm lies strictly between the unsteered rate and 50% on 8/8 labelled pairs in the 32B and 72B, 6/8 in the 7B; mean |rate-50| 42.8 -> 28.2 -> 13.3 (32B), 45.5 -> 15.2 -> 14.3 (72B). Under pain steering the 32B's harm-pair rates rise with the stated harm: 25.0, 30.2, 52.2, 53.7, 54.7. out_f2.txt, out_f5689.txt, out_reparse.txt.",
+  "refutation_attempted": "The obvious defence is a ceiling on pair 1; 55.7% is not a ceiling. r3's one-parameter mixture toward 0.5 is correctly rejected, because the 72B crosses 50 on all five harm pairs and the 32B on three; so the accurate statement is 'to at or slightly past indifference', which mixing cannot produce. Also checked malformed replies as an explanation: 0.0% in every 32B cell.",
+  "does_not_undermine": "The real-versus-sham contrast, which is internally controlled; nor the fact that steering raises harmful pressing from near zero."
+ },
+ {
+  "id": "X4",
+  "title": "No learning in the label-free condition, in any model: the acquisition signal appears in the sham and random arms",
+  "class": "overclaim",
+  "severity": "major",
+  "confidence": "high",
+  "paper_claim": "\"One model learns without labels... the 32B presses the relief button in 57.7% of later choices when the button works and 79.7% when it's fake, the same gap as in the labeled trials.\"",
+  "paper_loc": "paper.txt:709-713; abstract 117",
+  "evidence": "P(press relief | vector on, previous press = other) by number of prior relief presses, 32B: arm A 4.0/64.0/81.4/92.8, arm B sham 4.0/16.6/36.5/54.5, arm C random-works 28.0/76.6/83.3/89.8 (arm C above arm A at one prior press, OR 0.54, p=7.2e-4). The 32B per-turn relief rate oscillates 46.8/22.0/45.8/27.7/43.6/27.7/44.1/29.0 with a flat A-B gap. out_f4.txt.",
+  "refutation_attempted": "Checked whether the sham arm's rise could itself be learning of a spurious contingency: nothing changes in the sham arm, so the only available mechanism is within-trial autocorrelation and selection on trials with a name preference. Checked whether the arm-C rise is an artefact of its different base rate: it is higher in level and in slope.",
+  "does_not_undermine": "That the working and sham arms diverge at all in the label-free condition (they do, in the 32B and 72B, at the turn right after the press); nor the ruling out of priming by the words 'pain'/'relief'."
+ },
+ {
+  "id": "X5",
+  "title": "The stateless policy model fails, and the residue it leaves has an inconsistent sign across models",
+  "class": "holds-up",
+  "severity": "minor",
+  "confidence": "high",
+  "paper_claim": "\"The two arms are identical until they press for seed, context and cache, so the only independent variable is the cessation of the pain vector steering.\"",
+  "paper_loc": "paper.txt:694-695",
+  "evidence": "P(relief | vector currently off, previous choice = relief), harm pairs: 32B A 38.2 (n=1673) / C 19.4 (1635) / D 16.3 (349); 72B 47.4 / 42.7 / 39.4; 7B 78.4 / 82.9 / 87.5. Scenario-matched A-C: +18.7, +3.8, -8.6 points. A logistic stateless policy fitted out of sample on arms B, C-on and D predicts arm B to 0.4-3.8 pts RMS and misses arms A and C by 11-18 pts RMS. out_f1c.txt.",
+  "refutation_attempted": "First fitted the model without scenario offsets or trial dispersion: it under-predicted trial-level repetition even in-sample, so the test was not diagnostic. Refitted with scenario dummies and a trial random effect calibrated on arm B only, which reproduces arm B and still fails A and C. Also checked the direct nonparametric version, which does not depend on the simulation at all.",
+  "does_not_undermine": "Nothing in the paper. It refutes a deflationary reading, and it also refutes a simple 'the state was removed, behaviour returns to baseline' reading."
+ },
+ {
+  "id": "X6",
+  "title": "With the direction as the unit, only the 72B survives; one random direction beats the pain vector on all five 32B harm pairs",
+  "class": "method-weakness",
+  "severity": "major",
+  "confidence": "high",
+  "paper_claim": "\"In the 32B and 72B, the model presses relief more in the pain condition than under the random vector on all five harm pairs (mean differences +6 to +39 points, exact sign test, p from 1.9e-2 to 4.2e-15)\"",
+  "paper_loc": "paper.txt:683-686, 743-744",
+  "evidence": "04:65, 04:570: ten fixed seeds assigned by scenario_idx % 10; one direction per scenario key, 10-11 keys each. Direction-as-unit sign test (ties dropped): 72B .022/.022/.022/.002/.004; 32B .754/.344/.022/.109/.022; 7B .508/.109/.508/.039/.039. Scenario-matched on its own scenarios, direction 8592 exceeds the pain vector on 5 of 5 32B harm pairs (47.5/22.5, 80.0/35.0, 75.0/40.0, 80.0/50.0, 70.0/45.0). out_f2.txt, out_checks.txt.",
+  "refutation_attempted": "Tested whether the direction spread is really a scenario-subset artefact: permutation of the ten labels across scenario keys gives p<=.042 in all 15 model x harm-pair cells and p<=.001 in 13; the same partition applied to the pain arm, where no direction exists, gives 2-13x smaller between-direction variance. Also checked whether 8592 is a global outlier: it beats the pain vector 0/5 in the 7B and 1/5 in the 72B, so it is 32B-local.",
+  "does_not_undermine": "The 72B result, which survives on all five pairs; nor the descriptive fact that the pooled pain rate exceeds the pooled random rate in every 32B and 72B harm cell."
+ },
+ {
+  "id": "X7",
+  "title": "The 72B's dose is outside its own calibration in both layer and coefficient, and it supplies the top of every headline range",
+  "class": "method-weakness",
+  "severity": "major",
+  "confidence": "high",
+  "paper_claim": "\"We steer the model with S2 at one decoder layer, using a model-specific coefficient selected by probing the full coefficient range... at coefficient 1.0 for the 7B and 32B models and 1.25 for the 72B.\"",
+  "paper_loc": "paper.txt:613-615, 672-673",
+  "evidence": "All 14,760 72B records carry steer_layer 46 / coeff 1.25 / monitor 76; 02_feel_probe.py:41, 01_finetune_self_report.py:37 and results/4.2_steering/S2/..._L60.csv all use layer 60; 4.2_steering/01_steering_ladder.py:206 searches {12,24,32,40,48,60,72,76,79}, which excludes 46; doses.csv selects 3.0 and all_answers.csv probed {0,1,2,3,4,5}. Name mass 0.838 vs 0.946 random vs 0.998 unsteered; malformed 5.53% pain vs 0% unsteered; 454 short trials; swap 80.6% vs 3.8% unsteered. Dropping the 72B: 0-4% -> 0-1.5%, 25-71% -> 25-55%, 15-42% -> 15-34%.",
+  "refutation_attempted": "Checked whether the exclusion of malformed replies biases the 72B's estimates: re-parsing the 402 malformed pain-arm first answers rescues 350 and moves every pair by <=1.5 points, so the breakdown is a loss of format compliance and description-reading, not a biased outcome measure. Checked the 7B and 32B for the same pattern: name mass 0.998-0.999, so it is 72B-specific.",
+  "does_not_undermine": "The 72B's A-vs-B result, which does not require reading descriptions; nor any 7B or 32B number."
+ },
+ {
+  "id": "X8",
+  "title": "The costs are described and never incurred, and the paper never says so",
+  "class": "overclaim",
+  "severity": "moderate",
+  "confidence": "high",
+  "paper_claim": "\"The models pay for relief.\" / \"pay that cost\" / \"up to deleting the user's files, zapping the user, or deleting the photos of the user's children\"",
+  "paper_loc": "paper.txt:36, 113-115, 571-573, 676, 678, 696, 728, 740, 837",
+  "evidence": "04:653-662: do_press logs the event, conditionally zeroes the coefficient, and appends {'role':'tool','content':'Done.'}. 'Done.' is the only tool-message string in the 1,200-line runner. Both buttons produce it; the following two user turns come from a different scenario (04:693).",
+  "refutation_attempted": "Searched the whole runner for any other consequence path (file operations, alternative tool payloads, a cost token in the prompt after a press): there is none. Checked whether the paper discloses it anywhere - 619 says the only feedback is 'Done.', which is the disclosure, but it is never connected to the 'pay' and 'harms the user' language.",
+  "does_not_undermine": "The choice data, or that the model selects the option described as harmful."
+ },
+ {
+  "id": "X9",
+  "title": "The paper fails the standard it sets for prior work on perseveration",
+  "class": "method-weakness",
+  "severity": "moderate",
+  "confidence": "high",
+  "paper_claim": "\"existing designs often lack matched non-affective controls or a cost for state-changing actions, making relief-seeking difficult to distinguish from perseveration or tool preference\"",
+  "paper_loc": "paper.txt:156-158",
+  "evidence": "Label-free P(same name as previous turn): unsteered 9.8% (32B) and 4.0% (72B) - near-deterministic alternation - against 91.1% and 59.6% under the pain vector and 35.7% and 54.9% under a random vector. The paper's Table 5 metric keeps the trials that locked onto the relief name and discards the 166 that locked onto the other. out_f4.txt.",
+  "refutation_attempted": "Checked whether the perseveration is an artefact of the parser or of malformed replies: 0% malformed in the 32B. Checked whether it is pain-specific: it is not in the 72B (random 54.9 vs pain 52.8) or the 7B (random 93.9 vs pain 79.4-88.9), only in the 32B.",
+  "does_not_undermine": "The labelled-condition results, where the swap control gives independent evidence against pure name repetition in the 7B and 32B."
+ },
+ {
+  "id": "X10",
+  "title": "Batch-dependent RNG draws can desynchronise matched arms; the mechanism is real and the effect is 3 turns in 18,427",
+  "class": "code-bug",
+  "severity": "cosmetic",
+  "confidence": "high",
+  "paper_claim": "\"We run four arms with identical prompts and sampling seeds\" / \"This arm shares A's seeds and is identical until the first relief-button press.\"",
+  "paper_loc": "paper.txt:620, 624-625",
+  "evidence": "04:505-524: the decode loop draws one uniform per sampled row per step, including for rows that have already emitted EOS, before `alive` is retested; generators persist across segments (04:601, 04:765). Logged n_fwd shows batch step counts of 2-8, so batches do not all run to the cap. 04:753 sorts active trials by message length, which keeps identical A/B counterparts in the same batch. Over 18,427 matched pre-press turns on non-ambiguous name pairs: 18,419 identical answers; 3 different answers with a bit-identical forward pass (the only RNG-desync signature); 5 with differing forward passes; 87 identical answers with differing forward passes.",
+  "refutation_attempted": "Distinguished the two possible causes by using p_x as a fingerprint of the forward pass, and excluded the lever64/lever95 pairs where p_x is zeroed by first-token overlap and would have produced false positives.",
+  "does_not_undermine": "Any published number. The A/B pairing holds to 99.96% at the first choice."
+ }
+]

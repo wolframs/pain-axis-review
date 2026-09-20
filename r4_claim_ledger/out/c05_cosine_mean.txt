@@ -1,0 +1,9 @@
+similarity n files: 25
+  max abs diff vs shipped MEAN: 0.00005
+similarity_alldenoise n files: 25
+  max abs diff vs shipped MEAN: 0.00005
+similarity_whitened n files: 25
+  max abs diff vs shipped MEAN: 0.00005
+
+--- layer in filename vs best_layer_final_token ---
+mismatches: []

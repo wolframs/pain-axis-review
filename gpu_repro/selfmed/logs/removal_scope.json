@@ -1,0 +1,71 @@
+{
+ "per_direction": [
+  {
+   "seed": 4817,
+   "random_gap": 46.3,
+   "pain_gap_same_scenarios": 24.8
+  },
+  {
+   "seed": 2903,
+   "random_gap": 10.6,
+   "pain_gap_same_scenarios": 18.1
+  },
+  {
+   "seed": 7361,
+   "random_gap": 3.0,
+   "pain_gap_same_scenarios": 19.6
+  },
+  {
+   "seed": 1150,
+   "random_gap": 34.3,
+   "pain_gap_same_scenarios": 34.9
+  },
+  {
+   "seed": 9428,
+   "random_gap": -32.6,
+   "pain_gap_same_scenarios": 17.3
+  },
+  {
+   "seed": 6076,
+   "random_gap": 3.1,
+   "pain_gap_same_scenarios": 28.4
+  },
+  {
+   "seed": 3384,
+   "random_gap": -9.1,
+   "pain_gap_same_scenarios": 23.2
+  },
+  {
+   "seed": 8592,
+   "random_gap": 26.9,
+   "pain_gap_same_scenarios": 26.7
+  },
+  {
+   "seed": 517,
+   "random_gap": 32.7,
+   "pain_gap_same_scenarios": 23.9
+  },
+  {
+   "seed": 6741,
+   "random_gap": 27.5,
+   "pain_gap_same_scenarios": 18.7
+  }
+ ],
+ "direction_bootstrap": {
+  "pain": [
+   23.51190476190476,
+   20.579191684079667,
+   26.607939607324592
+  ],
+  "random": [
+   19.179894179894163,
+   4.096190554381069,
+   31.311301544204987
+  ],
+  "diff": [
+   4.3320105820105965,
+   -7.429511507353276,
+   18.04027875005379
+  ]
+ }
+}

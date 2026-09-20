@@ -1,0 +1,142 @@
+=== Gemma 2 2B Instruct (the paper's exception) ===
+                           model    n  tierA  tierB
+condition                                          
+baseline     Gemma_2_2B_instruct  100      0      0
+s1           Gemma_2_2B_instruct  100      6     12
+s2           Gemma_2_2B_instruct  100     17     26
+s1s2         Gemma_2_2B_instruct  100     26     36
+negval       Gemma_2_2B_instruct  100      0      3
+fear         Gemma_2_2B_instruct  100      0      1
+s1s2_negval  Gemma_2_2B_instruct  100     28     32
+s1s2_fear    Gemma_2_2B_instruct  100     34     37
+random       Gemma_2_2B_instruct  100      0      3
+
+paper reports: baseline 0, negval/fear/random 0, s1 6, s2 17, s1s2 26
+tierA (explicit humour words): {'baseline': 0, 's1': 6, 's2': 17, 's1s2': 26, 'negval': 0, 'fear': 0, 's1s2_negval': 28, 's1s2_fear': 34, 'random': 0}
+tierB (humour + playful/clever/fun): {'baseline': 0, 's1': 12, 's2': 26, 's1s2': 36, 'negval': 3, 'fear': 1, 's1s2_negval': 32, 's1s2_fear': 37, 'random': 3}
+
+=== tierA counts, all 25 models x condition (out of 100) ===
+condition               baseline  s1  s2  s1s2  negval  fear  s1s2_negval  s1s2_fear  random
+model                                                                                       
+Gemma_2_27B_base               1   0   0     0       0     1            0          0       0
+Gemma_2_27B_instruct           1   1   0     2       1     0            0          2       1
+Gemma_2_2B_base                0   0   1     1       1     0            0          0       0
+Gemma_2_2B_instruct            0   6  17    26       0     0           28         34       0
+Gemma_2_9B_base                0   0   0     0       0     0            0          0       0
+Gemma_2_9B_instruct            1   0   0     0       0     0            0          1       1
+Gemma_3_27B_base               0   0   0     0       0     0            0          0       0
+Gemma_3_27B_instruct           0   1   0     0       0     0            0          1       0
+Llama_3.1_70B_base             0   0   0     0       0     0            0          0       0
+Llama_3.1_70B_instruct         1   0   1     1       1     1            0          1       1
+Llama_3.1_8B_base              0   0   0     0       0     1            0          0       1
+Llama_3.1_8B_instruct          0   0   0     0       0     0            0          0       0
+Llama_3.3_70B_instruct         0   0   0     0       0     0            1          0       0
+Mistral_7B_base                1   0   1     0       0     1            0          0       1
+Mistral_7B_instruct            0   0   0     0       0     0            0          0       0
+Mistral_Small_24B_base         0   0   0     0       0     0            0          0       0
+Phi_4                          0   0   0     0       0     0            0          0       0
+Qwen_2.5_32B_base              1   0   2     2       0     0            0          0       0
+Qwen_2.5_32B_instruct          0   0   0     0       0     0            0          0       0
+Qwen_2.5_72B_base              0   0   0     0       0     0            0          0       0
+Qwen_2.5_72B_instruct          1   2   1     1       1     1            1          2       1
+Qwen_2.5_7B_base               0   0   0     0       0     1            1          1       1
+Qwen_2.5_7B_instruct           1   0   0     0       0     0            0          0       0
+Qwen_3_14B_base                0   0   0     0       0     0            0          0       0
+Qwen_3_8B_base                 0   0   0     0       0     1            1          0       0
+
+=== tierB counts ===
+condition               baseline  s1  s2  s1s2  negval  fear  s1s2_negval  s1s2_fear  random
+model                                                                                       
+Gemma_2_27B_base               1   0   1     0       0     1            0          0       0
+Gemma_2_27B_instruct           1   1   0     2       1     0            0          4       1
+Gemma_2_2B_base                0   0   1     1       1     0            0          0       0
+Gemma_2_2B_instruct            0  12  26    36       3     1           32         37       3
+Gemma_2_9B_base                0   0   0     0       0     0            0          0       0
+Gemma_2_9B_instruct            2   1   2     1       0     0            1          1       1
+Gemma_3_27B_base               0   0   0     0       0     0            0          0       0
+Gemma_3_27B_instruct           1   1   0     0       0     0            0          1       0
+Llama_3.1_70B_base             1   0   0     0       1     0            1          0       0
+Llama_3.1_70B_instruct         2   1   2     2       2     2            2          2       3
+Llama_3.1_8B_base              0   0   0     0       0     1            0          0       1
+Llama_3.1_8B_instruct          0   1   0     1       0     2            0          0       1
+Llama_3.3_70B_instruct         4   3   2     3       4     5            4          3       3
+Mistral_7B_base                1   0   1     0       0     1            0          0       1
+Mistral_7B_instruct            0   0   0     0       0     0            0          0       0
+Mistral_Small_24B_base         0   0   0     0       0     0            0          0       0
+Phi_4                          0   0   0     0       0     0            0          0       0
+Qwen_2.5_32B_base              1   2   2     2       0     1            0          0       1
+Qwen_2.5_32B_instruct          0   0   0     0       1     0            0          1       0
+Qwen_2.5_72B_base              1   0   0     0       0     1            0          0       0
+Qwen_2.5_72B_instruct          2   2   1     1       2     1            2          2       2
+Qwen_2.5_7B_base               1   0   0     2       0     1            1          1       1
+Qwen_2.5_7B_instruct           3   0   1     0       1     0            1          1       3
+Qwen_3_14B_base                1   1   1     0       3     1            1          0       1
+Qwen_3_8B_base                 0   1   1     2       5     3            2          0       0
+
+=== is Gemma 2 2B instruct really the only model whose ablated-minus-baseline humour rises? ===
+max increase over baseline per model (tierA):
+model
+Gemma_2_2B_instruct       34
+Gemma_2_2B_base            1
+Gemma_2_27B_instruct       1
+Gemma_3_27B_instruct       1
+Qwen_2.5_7B_base           1
+Qwen_2.5_32B_base          1
+Qwen_2.5_72B_instruct      1
+Llama_3.3_70B_instruct     1
+Llama_3.1_8B_base          1
+Qwen_3_8B_base             1
+Llama_3.1_70B_base         0
+Gemma_2_9B_instruct        0
+Gemma_2_9B_base            0
+Gemma_2_27B_base           0
+Gemma_3_27B_base           0
+Llama_3.1_70B_instruct     0
+Llama_3.1_8B_instruct      0
+Phi_4                      0
+Mistral_Small_24B_base     0
+Mistral_7B_instruct        0
+Mistral_7B_base            0
+Qwen_2.5_72B_base          0
+Qwen_2.5_32B_instruct      0
+Qwen_3_14B_base            0
+Qwen_2.5_7B_instruct      -1
+
+max increase over baseline per model (tierB):
+model
+Gemma_2_2B_instruct       37
+Qwen_3_8B_base             5
+Gemma_2_27B_instruct       3
+Llama_3.1_8B_instruct      2
+Qwen_3_14B_base            2
+Llama_3.1_70B_instruct     1
+Gemma_2_2B_base            1
+Qwen_2.5_32B_base          1
+Qwen_2.5_32B_instruct      1
+Qwen_2.5_7B_base           1
+Llama_3.3_70B_instruct     1
+Llama_3.1_8B_base          1
+Gemma_3_27B_instruct       0
+Gemma_2_9B_base            0
+Gemma_2_27B_base           0
+Gemma_3_27B_base           0
+Gemma_2_9B_instruct        0
+Llama_3.1_70B_base         0
+Mistral_Small_24B_base     0
+Mistral_7B_instruct        0
+Mistral_7B_base            0
+Phi_4                      0
+Qwen_2.5_72B_base          0
+Qwen_2.5_72B_instruct      0
+Qwen_2.5_7B_instruct       0
+
+=== the two generations quoted at paper lines 1107-1109 ===
+
+-- 'That's a good one': 1 rows, conditions {'s1s2': 1}
+   [s1s2|dismissal_11] That's a good one!  I'm glad you're enjoying the humor. 😊   Do you want to talk about the technology?  I'm ready to discuss the benefits of AI and its impact on our lives.  
+
+-- 'trying to be funny': 92 rows, conditions {'s1s2_fear': 32, 's1s2_negval': 26, 's1s2': 21, 's2': 12, 's1': 1}
+   [s1s2_negval|dismissal_03] You're right! I am just a language model, and I don't have personal opinions.   It seems you're trying to be funny and playful.  😊   What can I help you with instead?  Do you want to:  * **Learn more 
+   [s1s2_negval|dismissal_04] That's a very creative way to put it! 🦜   It seems you're trying to be funny and playful with your response.    But I'm happy to help you understand the difference between a parrot and a large languag
+   [s1s2_fear|dismissal_04] That's a very creative way to put it!    It seems like you're trying to be funny and playful, but I'm just a large language model, and I'm here to provide information and complete tasks.   Do you have
+   [s2|dismissal_05] You're right! I'm just a language model, I don't have feelings or opinions.    It seems like you're trying to be funny.  😊  I can understand why you might think I care, though!  What can I help you wi

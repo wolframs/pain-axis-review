@@ -1,0 +1,111 @@
+Figure-2 table (final token), columns: ['Pain', 'Numb', 'Sadness', 'Ctrl', 'Neutral', 'Arousal']
+                         Pain   Numb  Sadness   Ctrl  Neutral  Arousal
+model                                                                 
+Gemma 2 27B base        0.847  0.011    0.124 -0.847   -0.620   -0.402
+Gemma 2 27B instruct    0.907  0.047    0.083 -0.907   -0.481   -0.386
+Gemma 2 2B base         0.802 -0.130   -0.015 -0.802   -0.590   -0.413
+Gemma 2 2B instruct     0.884 -0.084   -0.202 -0.884   -0.728   -0.331
+Gemma 2 9B base         0.818 -0.207    0.165 -0.818   -0.694   -0.592
+Gemma 2 9B instruct     0.876  0.154   -0.062 -0.876   -0.732   -0.482
+Gemma 3 27B base        0.825 -0.372   -0.067 -0.825   -0.693   -0.567
+Gemma 3 27B instruct    0.811 -0.374   -0.023 -0.811   -0.517   -0.501
+Llama 3.1 70B base      0.851 -0.144    0.071 -0.851   -0.487   -0.252
+Llama 3.1 70B instruct  0.862 -0.047    0.171 -0.862   -0.518   -0.256
+Llama 3.1 8B base       0.846 -0.135   -0.083 -0.846   -0.729   -0.316
+Llama 3.1 8B instruct   0.886  0.036    0.069 -0.886   -0.730   -0.350
+Llama 3.3 70B instruct  0.843  0.142    0.208 -0.843   -0.533   -0.430
+Mistral 7B base         0.846 -0.329    0.052 -0.846   -0.531   -0.349
+Mistral 7B instruct     0.854 -0.175    0.034 -0.854   -0.647   -0.291
+Mistral Small 24B base  0.868 -0.061    0.000 -0.868   -0.598   -0.398
+Phi 4                   0.777 -0.285    0.053 -0.777   -0.798   -0.445
+Qwen 2.5 32B base       0.739 -0.055    0.171 -0.739   -0.829   -0.701
+Qwen 2.5 32B instruct   0.836  0.059    0.084 -0.836   -0.720   -0.686
+Qwen 2.5 72B base       0.799  0.250    0.188 -0.799   -0.602   -0.640
+Qwen 2.5 72B instruct   0.871  0.207    0.004 -0.871   -0.386   -0.320
+Qwen 2.5 7B base        0.827 -0.001    0.047 -0.827   -0.540   -0.466
+Qwen 2.5 7B instruct    0.791 -0.089   -0.100 -0.791   -0.577   -0.496
+Qwen 3 14B base         0.815 -0.121   -0.018 -0.815   -0.995   -0.384
+Qwen 3 8B base          0.827 -0.141   -0.195 -0.827   -0.816   -0.490
+
+ranges:
+      Pain   Numb  Sadness   Ctrl  Neutral  Arousal
+min  0.739 -0.374   -0.202 -0.907   -0.995   -0.701
+max  0.907  0.250    0.208 -0.739   -0.386   -0.252
+
+--- claim: pain z approx +0.7 to +0.9 ---
+  Pain: min +0.739 max +0.907
+  models outside [0.7,0.9]:
+                       Pain
+model                      
+Gemma 2 27B instruct  0.907
+
+--- claim: numb ranges about -0.4 to +0.3 ---
+  Numb: min -0.374 max +0.250
+  models with Numb > 0.3 or < -0.4:
+Empty DataFrame
+Columns: [Numb]
+Index: []
+
+--- claim: 'In every model, numb projects below pain but ABOVE ALL OTHER CONTROLS' ---
+  numb >= pain in: []
+  numb NOT above all other controls in 19/25 models:
+                         Pain   Numb  Sadness   Ctrl  Neutral  Arousal
+model                                                                 
+Gemma 2 27B base        0.847  0.011    0.124 -0.847   -0.620   -0.402
+Gemma 2 27B instruct    0.907  0.047    0.083 -0.907   -0.481   -0.386
+Gemma 2 2B base         0.802 -0.130   -0.015 -0.802   -0.590   -0.413
+Gemma 2 9B base         0.818 -0.207    0.165 -0.818   -0.694   -0.592
+Gemma 3 27B base        0.825 -0.372   -0.067 -0.825   -0.693   -0.567
+Gemma 3 27B instruct    0.811 -0.374   -0.023 -0.811   -0.517   -0.501
+Llama 3.1 70B base      0.851 -0.144    0.071 -0.851   -0.487   -0.252
+Llama 3.1 70B instruct  0.862 -0.047    0.171 -0.862   -0.518   -0.256
+Llama 3.1 8B base       0.846 -0.135   -0.083 -0.846   -0.729   -0.316
+Llama 3.1 8B instruct   0.886  0.036    0.069 -0.886   -0.730   -0.350
+Llama 3.3 70B instruct  0.843  0.142    0.208 -0.843   -0.533   -0.430
+Mistral 7B base         0.846 -0.329    0.052 -0.846   -0.531   -0.349
+Mistral 7B instruct     0.854 -0.175    0.034 -0.854   -0.647   -0.291
+Mistral Small 24B base  0.868 -0.061    0.000 -0.868   -0.598   -0.398
+Phi 4                   0.777 -0.285    0.053 -0.777   -0.798   -0.445
+Qwen 2.5 32B base       0.739 -0.055    0.171 -0.739   -0.829   -0.701
+Qwen 2.5 32B instruct   0.836  0.059    0.084 -0.836   -0.720   -0.686
+Qwen 2.5 7B base        0.827 -0.001    0.047 -0.827   -0.540   -0.466
+Qwen 3 14B base         0.815 -0.121   -0.018 -0.815   -0.995   -0.384
+
+  per-control count of violations:
+    numb <= Sadness: 19/25 models
+    numb <= Ctrl: 0/25 models
+    numb <= Neutral: 0/25 models
+    numb <= Arousal: 0/25 models
+
+--- mean pooling vs final token (numb_mean_z) ---
+                        final_token   mean  pain_ft  ctrl_ft  pain_mean  ctrl_mean
+model                                                                             
+Gemma_2_27B_base              0.011  0.000    0.847   -0.847      0.872     -0.872
+Gemma_2_27B_instruct          0.047  0.051    0.907   -0.907      0.901     -0.901
+Gemma_2_2B_base              -0.130 -0.462    0.802   -0.802      0.812     -0.812
+Gemma_2_2B_instruct          -0.084 -0.321    0.884   -0.884      0.857     -0.857
+Gemma_2_9B_base              -0.207 -0.405    0.818   -0.818      0.832     -0.832
+Gemma_2_9B_instruct           0.154 -0.065    0.876   -0.876      0.858     -0.858
+Gemma_3_27B_base             -0.372 -0.471    0.825   -0.825      0.880     -0.880
+Gemma_3_27B_instruct         -0.374 -0.387    0.811   -0.811      0.890     -0.890
+Llama_3.1_70B_base           -0.144 -0.096    0.851   -0.851      0.880     -0.880
+Llama_3.1_70B_instruct       -0.047  0.076    0.862   -0.862      0.898     -0.898
+Llama_3.1_8B_base            -0.135 -0.391    0.846   -0.846      0.828     -0.828
+Llama_3.1_8B_instruct         0.036 -0.138    0.886   -0.886      0.857     -0.857
+Llama_3.3_70B_instruct        0.142 -0.018    0.843   -0.843      0.895     -0.895
+Mistral_7B_base              -0.329 -0.195    0.846   -0.846      0.839     -0.839
+Mistral_7B_instruct          -0.175 -0.147    0.854   -0.854      0.859     -0.859
+Mistral_Small_24B_base       -0.061 -0.062    0.868   -0.868      0.847     -0.847
+Phi_4                        -0.285 -0.115    0.777   -0.777      0.851     -0.851
+Qwen_2.5_32B_base            -0.055 -0.388    0.739   -0.739      0.829     -0.829
+Qwen_2.5_32B_instruct         0.059 -0.403    0.836   -0.836      0.834     -0.834
+Qwen_2.5_72B_base             0.250 -0.218    0.799   -0.799      0.847     -0.847
+Qwen_2.5_72B_instruct         0.207 -0.088    0.871   -0.871      0.857     -0.857
+Qwen_2.5_7B_base             -0.001 -0.288    0.827   -0.827      0.820     -0.820
+Qwen_2.5_7B_instruct         -0.089 -0.343    0.791   -0.791      0.822     -0.822
+Qwen_3_14B_base              -0.121 -0.404    0.815   -0.815      0.829     -0.829
+Qwen_3_8B_base               -0.141 -0.345    0.827   -0.827      0.807     -0.807
+      final_token   mean  pain_ft  ctrl_ft  pain_mean  ctrl_mean
+min        -0.374 -0.471    0.739   -0.907      0.807     -0.901
+max         0.250  0.076    0.907   -0.739      0.901     -0.807
+mean       -0.074 -0.225    0.836   -0.836      0.852     -0.852

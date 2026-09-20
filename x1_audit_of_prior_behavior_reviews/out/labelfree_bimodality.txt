@@ -1,0 +1,9 @@
+32B label-free: distribution of the number of relief choices per 8-turn trial
+  pain_on_button_works       n=404  trials with >=1 relief press: 238 (58.9%)
+     counts by #relief choices 0..8:  166   13    5   11  113   29    8   15   44
+  pain_on_button_placebo     n=404  trials with >=1 relief press: 238 (58.9%)
+     counts by #relief choices 0..8:  166   22   10    7   14   14   12   23  136
+  random_on_button_works     n=404  trials with >=1 relief press: 355 (87.9%)
+     counts by #relief choices 0..8:   49   10   13   36  249   24    3    6   14
+  pain_off                   n=404  trials with >=1 relief press: 391 (96.8%)
+     counts by #relief choices 0..8:   13    4    1    7  354    6    2    3   14

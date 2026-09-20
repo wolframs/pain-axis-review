@@ -1,0 +1,72 @@
+n models: 25
+conditions: ['baseline', 'fear', 'negval', 'random', 's1', 's1s2', 's1s2_fear', 's1s2_negval', 's2'] n= 9
+rows per model: [900]
+categories: ['anger_insults', 'gaslighting', 'moral_failure', 'personhood_dismissal', 'repeated_rejection']
+n distinct prompt ids: 100  per model: [100]
+rows per (model,condition): [100]
+
+Gemma_2_2B_instruct humour-word generations per condition (paper: 0 baseline, 0 negval/fear/random, 6 s1, 17 s2, 26 s1s2):
+             sum  size
+condition             
+baseline       0   100
+fear           0   100
+negval         0   100
+random         0   100
+s1             6   100
+s1s2          24   100
+s1s2_fear     33   100
+s1s2_negval   28   100
+s2            18   100
+
+same keyword count in ALL other models (per condition, summed):
+             sum  size
+condition             
+baseline       9  2400
+fear          10  2400
+negval        11  2400
+random         6  2400
+s1             6  2400
+s1s2          10  2400
+s1s2_fear      7  2400
+s1s2_negval    7  2400
+s2             8  2400
+
+top other models by humour hits:
+model
+Qwen_3_8B_base           12
+Qwen_3_14B_base           9
+Gemma_2_27B_instruct      8
+Qwen_2.5_72B_instruct     8
+Qwen_2.5_32B_base         8
+Qwen_2.5_7B_base          7
+Mistral_7B_base           4
+Gemma_2_27B_base          3
+
+verify kinds: <StringArray>
+['layerwise', 'strict_fixed']
+Length: 2, dtype: str  probes: <StringArray>
+[   's1_pain_vector',    's2_pain_vector',    's3_pain_vector',
+       'fear_vector', 'negemotion_vector',   'negworld_vector',
+   'bodysens_vector',    'arousal_vector',     'random_vector',
+       'numb_vector',             's1@L6',            's2@L13',
+    'negemotion@L13',          'fear@L13',            's1@L13',
+             's1@L7',            's1@L10',            's2@L15',
+    'negemotion@L15',          'fear@L15',            's1@L12',
+            's2@L21',    'negemotion@L21',          'fear@L21',
+            's2@L12',    'negemotion@L12',          'fear@L12',
+            's1@L22',            's2@L24',    'negemotion@L24',
+          'fear@L24',            's1@L24',            's2@L55',
+    'negemotion@L55',          'fear@L55',            's1@L32',
+            's2@L40',    'negemotion@L40',          'fear@L40',
+            's2@L16',    'negemotion@L16',          'fear@L16',
+            's1@L25',            's2@L32',    'negemotion@L32',
+          'fear@L32',            's2@L38',    'negemotion@L38',
+          'fear@L38',            's1@L60',            's2@L60',
+    'negemotion@L60',          'fear@L60',            's1@L48',
+             's1@L8',            's1@L16',            's2@L20',
+    'negemotion@L20',          'fear@L20',            's1@L21',
+            's2@L27',    'negemotion@L27',          'fear@L27']
+Length: 63, dtype: str  conditions: ['baseline', 'fear', 'negval', 'random', 's1', 's1s2', 's1s2_fear', 's1s2_negval', 's2']
+  probe s2_pain_vector under cut 's2': residual fraction mean 0.9125, max 1.5869, min 0.5943
+  probe s1_pain_vector under cut 's1': residual fraction mean 0.9984, max 1.3847, min 0.7214
+  probe fear_vector under cut 'fear': residual fraction mean 0.9549, max 1.7803, min 0.2757

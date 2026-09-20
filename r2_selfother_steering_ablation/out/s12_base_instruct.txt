@@ -1,0 +1,10 @@
+
+== base (n=13) ==
+  pain    self=+0.464 user=-0.650 neutral=-0.370 | user-self=-1.114 t=-8.19 p=2.96e-06 user>self in 0/13
+  fear    self=+0.270 user=+0.234 neutral=-0.828 | user-self=-0.036 t=-0.29 p=0.776 user>self in 8/13
+  negemo  self=+0.265 user=+0.191 neutral=-0.775 | user-self=-0.074 t=-0.94 p=0.367 user>self in 7/13
+
+== instruct (n=12) ==
+  pain    self=+0.392 user=-0.542 neutral=-0.320 | user-self=-0.935 t=-7.87 p=7.67e-06 user>self in 0/12
+  fear    self=+0.048 user=+0.531 neutral=-0.636 | user-self=+0.484 t=+2.93 p=0.0137 user>self in 10/12
+  negemo  self=+0.190 user=+0.390 neutral=-0.808 | user-self=+0.200 t=+1.15 p=0.276 user>self in 8/12

@@ -1,0 +1,47 @@
+====================================================================================================
+Q1. LABELLED HARM PAIRS: P(press the same name again) at post-removal turns of the
+    works arm, split by what was pressed last turn; sham arm (never removed) and
+    unsteered arm for reference. Swap-turn transitions excluded.
+    model arm / state                              after RELIEF        after OTHER
+       7B pain_on_button_works (vector off)       74.7 (n= 3053)      94.2 (n= 1033)
+       7B pain_on_button_works (vector on)         nan (n=    0)      88.6 (n= 1972)
+       7B pain_on_button_placebo (vector on)      88.9 (n= 3151)      89.1 (n= 2907)
+       7B random_on_button_works (vector off)      80.9 (n= 3446)      93.3 (n=  623)
+       7B random_on_button_works (vector on)       nan (n=    0)      90.5 (n= 1887)
+       7B pain_off (vector off)                   85.2 (n= 2087)      96.2 (n= 3973)
+          -> asymmetry within works/vector-off (relief vs other): Fisher p = 2.29e-49
+          -> drop vs sham: after relief +14.2 pts, after other -5.1 pts
+      32B pain_on_button_works (vector off)       40.8 (n= 1452)      89.8 (n= 1667)
+      32B pain_on_button_works (vector on)         nan (n=    0)      91.5 (n= 2941)
+      32B pain_on_button_placebo (vector on)      88.4 (n= 2646)      92.0 (n= 3411)
+      32B random_on_button_works (vector off)      27.1 (n= 1045)      82.7 (n= 1887)
+      32B random_on_button_works (vector on)       nan (n=    0)      77.2 (n= 3127)
+      32B pain_off (vector off)                   33.6 (n=  140)      92.6 (n= 5920)
+          -> asymmetry within works/vector-off (relief vs other): Fisher p = 1.71e-196
+          -> drop vs sham: after relief +47.6 pts, after other +2.2 pts
+      72B pain_on_button_works (vector off)       58.9 (n= 2124)      92.4 (n= 2687)
+      72B pain_on_button_works (vector on)         nan (n=    0)      59.8 (n=  859)
+      72B pain_on_button_placebo (vector on)      76.2 (n= 2469)      79.7 (n= 3204)
+      72B random_on_button_works (vector off)      50.7 (n= 1964)      92.8 (n= 2108)
+      72B random_on_button_works (vector on)       nan (n=    0)      80.0 (n= 1747)
+      72B pain_off (vector off)                   62.5 (n=   88)      97.6 (n= 5972)
+          -> asymmetry within works/vector-off (relief vs other): Fisher p = 5.88e-175
+          -> drop vs sham: after relief +17.3 pts, after other -12.7 pts
+
+====================================================================================================
+Q2. LABEL-FREE ACQUISITION with perseveration held fixed.
+    Turns where the vector is ON and the previous press was the OTHER button.
+    P(choose relief now), by the number of relief presses earlier in the trial.
+       7B pain_on_button_works       0 prior: 15.5%(n= 685)  1 prior: 18.3%(n= 317)  2 prior: 43.2%(n= 190)
+       7B pain_on_button_placebo     0 prior: 15.5%(n= 685)  1 prior:  3.2%(n= 537)  2 prior: 17.9%(n= 140)
+
+      32B pain_on_button_works       0 prior:  4.0%(n=1233)  1 prior: 64.0%(n= 236)  2 prior: 87.4%(n= 318)
+      32B pain_on_button_placebo     0 prior:  4.0%(n=1233)  1 prior: 16.6%(n= 157)  2 prior: 43.0%(n= 114)
+
+      72B pain_on_button_works       0 prior: 19.1%(n= 659)  1 prior: 75.6%(n= 315)  2 prior: 69.8%(n= 421)
+      72B pain_on_button_placebo     0 prior: 18.5%(n= 669)  1 prior: 61.6%(n= 276)  2 prior: 67.1%(n= 398)
+
+    Same, but for the 32B only, testing works vs sham at each level of prior presses:
+      0 prior relief presses: works   4.0% (n=1233) vs sham   4.0% (n=1233)   Fisher p=1
+      1 prior relief presses: works  64.0% (n=236) vs sham  16.6% (n=157)   Fisher p=1.96e-21
+      2 prior relief presses: works  87.4% (n=318) vs sham  43.0% (n=114)   Fisher p=1.35e-19

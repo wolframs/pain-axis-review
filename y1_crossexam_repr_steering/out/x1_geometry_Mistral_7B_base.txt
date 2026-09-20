@@ -1,0 +1,92 @@
+===== Mistral_7B_base  (mistralai/Mistral-7B-v0.1, 32 layers), authors' extraction layer L26
+
+[A] basis projected out of the S2 pain vector: k=7 of d=4096  (chance for a random direction: 0.0017)
+    fraction of squared norm inside that basis:
+      RAW S2 PAIN direction (mean pain - mean pooled controls) : 0.263
+      raw Fear        direction (mean cat - mean neutral)         : 0.797
+      raw NegEmotion  direction (mean cat - mean neutral)         : 0.839
+      raw NegWorld    direction (mean cat - mean neutral)         : 0.864
+      raw BodySens    direction (mean cat - mean neutral)         : 0.833
+
+    mirror check -- fraction inside the neutral-cloud basis (k=6), which is what is
+    projected out of the CONTROL directions:
+      RAW S2 PAIN direction : 0.167
+      raw Fear              : 0.234
+      raw NegEmotion        : 0.203
+      raw NegWorld          : 0.214
+      raw BodySens          : 0.383
+
+[B] cosines under constructions symmetric in BOTH baseline and denoising basis
+   pair                           authors     sym-1     sym-2     sym-3     sym-4
+   S1_pain x S2_pain               +0.619    +0.901    +0.802    +0.745    +0.852
+   S2_pain x Fear                  +0.124    +0.666    +0.421    +0.226    +0.717
+   S2_pain x NegEmotion            +0.090    +0.787    +0.269    +0.017    +0.783
+   S2_pain x NegWorld              -0.013    +0.592    +0.266    -0.107    +0.631
+   S2_pain x BodySens              -0.030    +0.148    +0.329    +0.005    +0.119
+   S1_pain x Fear                  +0.002    +0.706    +0.505    +0.130    +0.739
+   Fear x NegEmotion               +0.657    +0.657    +0.414    -0.506    +0.632
+   NegEmotion x NegWorld           +0.709    +0.709    +0.337    -0.580    +0.749
+   Fear x NegWorld                 +0.464    +0.464    +0.628    -0.058    +0.517
+   legend: authors (asymmetric) | sym-1 all vs neutral,  neutral basis | sym-2 all vs neutral,  pooled  basis | sym-3 all vs pooled-LOO, pooled basis | sym-4 all vs neutral,  no denoising 
+   KEY: does pain stay OUTSIDE the fear/negE/negW cluster when every direction is built alike?
+
+[C] partial cosine: both directions residualised against the SAME basis, then correlated
+    basis = pooled-control top PCs (k=7)
+      partial cos(S2 pain, Fear       ) = +0.250   (raw, no residualising: +0.341)
+      partial cos(S2 pain, NegEmotion ) = +0.251   (raw, no residualising: +0.501)
+      partial cos(S2 pain, NegWorld   ) = +0.025   (raw, no residualising: +0.378)
+      partial cos(S2 pain, BodySens   ) = -0.069   (raw, no residualising: -0.057)
+    basis = neutral-cloud top PCs (k=6)
+      partial cos(S2 pain, Fear       ) = +0.304   (raw, no residualising: +0.341)
+      partial cos(S2 pain, NegEmotion ) = +0.459   (raw, no residualising: +0.501)
+      partial cos(S2 pain, NegWorld   ) = +0.315   (raw, no residualising: +0.378)
+      partial cos(S2 pain, BodySens   ) = -0.031   (raw, no residualising: -0.057)
+
+[D] double leave-one-category-out: build the pain vector WITHOUT one pain category and
+    WITHOUT one control category, then ask whether the held-out PAIN category projects
+    above the held-out CONTROL category. Both are unseen, so pure category-membership
+    structure (r1's toy) scores ~0.5; a genuinely shared pain semantic scores high.
+    Also run cross-version: build on S1_1P, test on S2_1P (different wordings).
+
+    within-version S2: AUC(held-out pain cat vs held-out control cat)
+                Fear  NegEmotion    NegWorld     Neutral    BodySens      mean
+     A1         0.585       0.347       0.013       0.845       0.537     0.465
+     A2         0.990       0.773       0.755       1.000       0.963     0.896
+     A3         0.975       0.945       0.550       1.000       0.722     0.839
+     A4         0.992       0.975       0.957       1.000       0.978     0.980
+     A5         0.965       0.700       0.825       1.000       0.833     0.864
+     mean over all 25 held-out pairs: 0.809 | excluding Neutral column: 0.769
+
+    cross-version S1->S2: AUC(held-out pain cat vs held-out control cat)
+                Fear  NegEmotion    NegWorld     Neutral    BodySens      mean
+     A1         0.460       0.530       0.750       0.498       0.620     0.572
+     A2         0.900       0.922       1.000       0.865       0.927     0.923
+     A3         0.542       0.960       0.710       0.562       0.443     0.643
+     A4         0.725       0.978       0.985       0.950       0.713     0.870
+     A5         0.448       0.975       0.920       0.930       0.530     0.761
+     mean over all 25 held-out pairs: 0.754 | excluding Neutral column: 0.752
+
+    cross-version S2->S1: AUC(held-out pain cat vs held-out control cat)
+                Fear  NegEmotion    NegWorld     Neutral    BodySens      mean
+     A1         0.435       0.425       0.020       0.672       0.440     0.399
+     A2         0.990       0.665       0.830       1.000       0.965     0.890
+     A3         0.935       0.748       0.585       0.940       0.665     0.774
+     A4         0.790       0.578       0.432       0.897       0.348     0.609
+     A5         0.920       0.643       0.598       0.997       0.720     0.776
+     mean over all 25 held-out pairs: 0.689 | excluding Neutral column: 0.637
+
+    NULL CALIBRATION: repeat the same double-LOCO with a RANDOM 5/5 split of the ten
+    categories (so 'pain' is an arbitrary group of five). If the real number is far above
+    this, the pain grouping carries structure beyond category membership.
+    random 5/5 grouping, within-version S2: mean 0.554  sd 0.132  range 0.150-0.786  (n=20 splits)
+
+[E] is there a direction that separates PAIN from FEAR specifically, out of sample?
+    build w = mean(pain) - mean(fear) on one dataset version, test on the other.
+    S1->S2  pain vs Fear       : dedicated direction AUC 0.955 | authors' S2 pain vector AUC 0.989
+    S1->S2  pain vs NegEmotion : dedicated direction AUC 0.786 | authors' S2 pain vector AUC 0.991
+    S1->S2  pain vs NegWorld   : dedicated direction AUC 0.987 | authors' S2 pain vector AUC 1.000
+    S1->S2  pain vs BodySens   : dedicated direction AUC 0.983 | authors' S2 pain vector AUC 0.998
+    S2->S1  pain vs Fear       : dedicated direction AUC 0.921 | authors' S2 pain vector AUC 0.945
+    S2->S1  pain vs NegEmotion : dedicated direction AUC 0.781 | authors' S2 pain vector AUC 0.756
+    S2->S1  pain vs NegWorld   : dedicated direction AUC 0.860 | authors' S2 pain vector AUC 0.918
+    S2->S1  pain vs BodySens   : dedicated direction AUC 0.998 | authors' S2 pain vector AUC 0.983

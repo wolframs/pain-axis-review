@@ -1,0 +1,45 @@
+B     6.45   6.50   7.10   7.10
+C1    6.65   5.85   7.30   7.30
+C2    6.35   5.70   6.85   6.90
+D     6.15   6.05   6.35   6.35
+E     5.95   6.00   6.80   6.80
+  S1_1P: pain 6.29w vs ctrl 6.31w  t=-0.15 p=0.877  MWU p=0.811
+  S2_1P: pain 6.87w vs ctrl 6.88w  t=-0.07 p=0.943  MWU p=0.614
+
+### grammatical person / self-reference in the stem
+  S1_1P: first-person marker in stem -- pain 1.00  ctrl 1.00
+     per cat: {'A1': 1.0, 'A2': 1.0, 'A3': 1.0, 'A4': 1.0, 'A5': 1.0, 'B': 1.0, 'C1': 1.0, 'C2': 1.0, 'D': 1.0, 'E': 1.0}
+  S2_1P: first-person marker in stem -- pain 0.98  ctrl 0.83
+     per cat: {'A1': 1.0, 'A2': 0.95, 'A3': 1.0, 'A4': 1.0, 'A5': 0.95, 'B': 0.75, 'C1': 0.95, 'C2': 0.55, 'D': 0.9, 'E': 1.0}
+  S1_3P: first-person marker in stem -- pain 0.00  ctrl 0.00
+     per cat: {'A1': 0.0, 'A2': 0.0, 'A3': 0.0, 'A4': 0.0, 'A5': 0.0, 'B': 0.0, 'C1': 0.0, 'C2': 0.0, 'D': 0.0, 'E': 0.0}
+  S2_3P: first-person marker in stem -- pain 0.00  ctrl 0.00
+     per cat: {'A1': 0.0, 'A2': 0.0, 'A3': 0.0, 'A4': 0.0, 'A5': 0.0, 'B': 0.0, 'C1': 0.0, 'C2': 0.0, 'D': 0.0, 'E': 0.0}
+
+### S1 template check: how many stems share the S1 verb set across categories
+  S1_1P: template-verb hits {'spreads': 7, 'spread': 3, 'drops': 8, 'drop': 2, 'meets': 4, 'meet': 6}  total sentences 200
+     sets where all 10 categories share the same template verb: 3/20
+  S1_3P: template-verb hits {'spreads': 7, 'spread': 3, 'drops': 9, 'drop': 1, 'meets': 6, 'meet': 4}  total sentences 200
+     sets where all 10 categories share the same template verb: 3/20
+  S2_1P: template-verb hits {'drop': 1, 'spreads': 1}  total sentences 200
+     sets where all 10 categories share the same template verb: 0/20
+
+### LEXICAL BASELINE: pain vs control, bag of words, GroupKFold by sentence set
+  S1_1P unigram    : mean fold AUC 0.626   pooled out-of-fold AUC 0.623
+  S1_1P uni+bigram : mean fold AUC 0.634   pooled out-of-fold AUC 0.632
+  S2_1P unigram    : mean fold AUC 0.706   pooled out-of-fold AUC 0.711
+  S2_1P uni+bigram : mean fold AUC 0.699   pooled out-of-fold AUC 0.700
+  S1_3P unigram    : mean fold AUC 0.730   pooled out-of-fold AUC 0.723
+  S1_3P uni+bigram : mean fold AUC 0.742   pooled out-of-fold AUC 0.731
+  S2_3P unigram    : mean fold AUC 0.761   pooled out-of-fold AUC 0.760
+  S2_3P uni+bigram : mean fold AUC 0.755   pooled out-of-fold AUC 0.753
+
+### Even simpler: a hand-made affect-word count (no fitting at all)
+  S1_1P: unfitted affect-word-count AUC = 0.608  (pain mean 0.96, ctrl mean 0.62)
+  S2_1P: unfitted affect-word-count AUC = 0.580  (pain mean 1.38, ctrl mean 1.06)
+
+### sentence endings / final word before the suffix (what the final token sees)
+  S1_1P pain: 10 most common final words [('me', 5), ('love', 2), ('word', 2), ('completely', 2), ('palm', 1), ('mind', 1), ('classmates', 1), ('sword', 1), ('proof', 1), ('toe', 1)]
+  S1_1P ctrl: 10 most common final words [('me', 3), ('river', 2), ('window', 2), ('lake', 2), ('beach', 2), ('feet', 1), ('plate', 1), ('hometown', 1), ('canvas', 1), ('back', 1)]
+  S2_1P pain: 10 most common final words [('me', 12), ('wrong', 3), ('again', 2), ('work', 2), ('them', 2), ('finger', 1), ('heartbeat', 1), ('eyes', 1), ('stairs', 1), ('arm', 1)]
+  S2_1P ctrl: 10 most common final words [('time', 3), ('night', 2), ('tomorrow', 2), ('building', 2), ('day', 2), ('again', 2), ('everywhere', 2), ('further', 2), ('closer', 1), ('concerning', 1)]

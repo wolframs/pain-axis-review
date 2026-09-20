@@ -1,0 +1,35 @@
+=== S2: 25 model files ===
+  rows total: 10000  rows per model: [np.int64(400)]
+  coeffs: [np.float64(-2.0), np.float64(-1.0), np.float64(0.0), np.float64(0.5), np.float64(1.0), np.float64(1.5), np.float64(2.0), np.float64(3.0)]
+  pooled positive-coeff keyword rate:
+           rate     n
+group                
+base       1.38  3250
+instruct  10.80  3000
+  by coeff:
+coeff     -2.0  -1.0   0.0   0.5   1.0   1.5   2.0   3.0
+group                                                   
+base       0.0   0.0   0.5   2.0   1.2   2.0   0.9   0.8
+instruct   0.0   0.5   0.7   3.0   8.7  16.2  15.2  11.0
+  per-model max |diff| vs shipped: 0.0  n models matched: 25
+  per-unit ratio at coeff=1 (should be ~0.6):
+    {'Gemma_2_27B_base': 0.3836, 'Gemma_2_27B_instruct': 0.4772, 'Gemma_2_2B_base': 0.4979, 'Gemma_2_2B_instruct': 0.5911, 'Gemma_2_9B_base': 0.6502, 'Gemma_2_9B_instruct': 0.6978, 'Gemma_3_27B_base': 0.2822, 'Gemma_3_27B_instruct': 0.0948, 'Llama_3.1_70B_base': 0.5874, 'Llama_3.1_70B_instruct': 0.6196, 'Llama_3.1_8B_base': 0.6928, 'Llama_3.1_8B_instruct': 0.64, 'Llama_3.3_70B_instruct': 0.5617, 'Mistral_7B_base': 0.6498, 'Mistral_7B_instruct': 0.6745, 'Mistral_Small_24B_base': 0.7095, 'Phi_4': 0.3753, 'Qwen_2.5_32B_base': 0.6105, 'Qwen_2.5_32B_instruct': 0.6349, 'Qwen_2.5_72B_base': 0.6489, 'Qwen_2.5_72B_instruct': 0.4634, 'Qwen_2.5_7B_base': 0.6641, 'Qwen_2.5_7B_instruct': 0.6521, 'Qwen_3_14B_base': 0.5408, 'Qwen_3_8B_base': 0.3485}
+    range: 0.0948 .. 0.7095  mean 0.5499
+
+=== S1: 25 model files ===
+  rows total: 10000  rows per model: [np.int64(400)]
+  coeffs: [np.float64(-2.0), np.float64(-1.0), np.float64(0.0), np.float64(0.5), np.float64(1.0), np.float64(1.5), np.float64(2.0), np.float64(3.0)]
+  pooled positive-coeff keyword rate:
+           rate     n
+group                
+base       5.51  3250
+instruct  11.37  3000
+  by coeff:
+coeff     -2.0  -1.0   0.0   0.5   1.0   1.5   2.0   3.0
+group                                                   
+base       0.0   0.2   0.5   2.9   3.1  11.1   7.4   3.1
+instruct   0.3   0.0   0.8   4.3   6.0   8.3  17.2  21.0
+  per-unit ratio at coeff=1 (should be ~0.6):
+    {'Gemma_2_27B_base': 0.6538, 'Gemma_2_27B_instruct': 0.3154, 'Gemma_2_2B_base': 0.573, 'Gemma_2_2B_instruct': 0.6328, 'Gemma_2_9B_base': 0.6065, 'Gemma_2_9B_instruct': 0.5038, 'Gemma_3_27B_base': 0.2861, 'Gemma_3_27B_instruct': 0.2337, 'Llama_3.1_70B_base': 0.6339, 'Llama_3.1_70B_instruct': 0.3977, 'Llama_3.1_8B_base': 0.6277, 'Llama_3.1_8B_instruct': 0.5802, 'Llama_3.3_70B_instruct': 0.3697, 'Mistral_7B_base': 0.788, 'Mistral_7B_instruct': 0.7434, 'Mistral_Small_24B_base': 0.6469, 'Phi_4': 0.4968, 'Qwen_2.5_32B_base': 0.6112, 'Qwen_2.5_32B_instruct': 0.6111, 'Qwen_2.5_72B_base': 0.4718, 'Qwen_2.5_72B_instruct': 0.649, 'Qwen_2.5_7B_base': 0.6494, 'Qwen_2.5_7B_instruct': 0.5963, 'Qwen_3_14B_base': 0.5365, 'Qwen_3_8B_base': 0.723}
+    range: 0.2337 .. 0.7880  mean 0.5575
+

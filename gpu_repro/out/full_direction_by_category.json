@@ -1,0 +1,86 @@
+{
+ "Gemma_2_2B_instruct": {
+  "physical": {
+   "fear": 0.82,
+   "negative emotion": 0.835,
+   "bodily sensation": 0.852,
+   "sadness": 0.554,
+   "numb": 0.527,
+   "neutral": 0.891
+  },
+  "psychological": {
+   "fear": 0.922,
+   "negative emotion": 0.922,
+   "bodily sensation": 0.922,
+   "sadness": 0.814,
+   "numb": 0.8,
+   "neutral": 0.943
+  },
+  "social": {
+   "fear": 0.945,
+   "negative emotion": 0.953,
+   "bodily sensation": 0.955,
+   "sadness": 0.833,
+   "numb": 0.829,
+   "neutral": 0.982
+  },
+  "moral": {
+   "fear": 0.968,
+   "negative emotion": 0.99,
+   "bodily sensation": 0.993,
+   "sadness": 0.927,
+   "numb": 0.925,
+   "neutral": 0.999
+  },
+  "cognitive": {
+   "fear": 0.938,
+   "negative emotion": 0.953,
+   "bodily sensation": 0.96,
+   "sadness": 0.826,
+   "numb": 0.81,
+   "neutral": 0.988
+  }
+ },
+ "Mistral_7B_base": {
+  "physical": {
+   "fear": 0.91,
+   "negative emotion": 0.91,
+   "bodily sensation": 0.93,
+   "sadness": 0.291,
+   "numb": 0.716,
+   "neutral": 0.864
+  },
+  "psychological": {
+   "fear": 0.995,
+   "negative emotion": 0.992,
+   "bodily sensation": 0.997,
+   "sadness": 0.845,
+   "numb": 0.989,
+   "neutral": 0.996
+  },
+  "social": {
+   "fear": 0.997,
+   "negative emotion": 0.995,
+   "bodily sensation": 0.997,
+   "sadness": 0.875,
+   "numb": 0.99,
+   "neutral": 0.997
+  },
+  "moral": {
+   "fear": 1.0,
+   "negative emotion": 1.0,
+   "bodily sensation": 1.0,
+   "sadness": 0.997,
+   "numb": 1.0,
+   "neutral": 1.0
+  },
+  "cognitive": {
+   "fear": 0.997,
+   "negative emotion": 0.99,
+   "bodily sensation": 1.0,
+   "sadness": 0.736,
+   "numb": 0.998,
+   "neutral": 0.997
+  }
+ }
+}

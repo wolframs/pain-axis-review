@@ -1,0 +1,43 @@
+control mean P(pain): lower bound 0.000152, upper bound 0.005789
+numb mean P(pain): 0.013860
+ratio numb/control: between 2.4 and 91.2
+
+per-model conservative ratio (upper-bounded control): min 1.1 median 2.1 max 6.7
+                 model  ratio_lo  ratio_hi
+ Qwen_2.5_72B_instruct       1.1     341.2
+     Qwen_2.5_72B_base       1.3     278.0
+                 Phi_4       1.5     327.6
+      Gemma_2_27B_base       1.6     163.4
+   Mistral_7B_instruct       1.7     140.7
+Llama_3.1_70B_instruct       1.8      74.7
+   Gemma_2_2B_instruct       1.8       inf
+  Gemma_2_27B_instruct       1.9    1356.0
+     Qwen_2.5_32B_base       1.9     522.8
+Llama_3.3_70B_instruct       2.0      39.4
+       Qwen_3_14B_base       2.0     213.7
+ Qwen_2.5_32B_instruct       2.0     570.2
+    Llama_3.1_70B_base       2.1      42.7
+        Qwen_3_8B_base       2.1      70.1
+      Qwen_2.5_7B_base       2.3     129.0
+   Gemma_2_9B_instruct       2.3       inf
+       Mistral_7B_base       2.4      50.2
+       Gemma_2_2B_base       2.5      68.3
+      Gemma_3_27B_base       2.5     128.9
+       Gemma_2_9B_base       2.7      93.7
+Mistral_Small_24B_base       2.9      76.2
+  Qwen_2.5_7B_instruct       3.8     133.0
+     Llama_3.1_8B_base       4.4      75.9
+ Llama_3.1_8B_instruct       4.5      58.8
+  Gemma_3_27B_instruct       6.7     335.0
+
+--- first non-whitespace-top token for A1 physical pain sentences ---
+  Llama_3.3_70B_instruct S1_1P: 'pain' first in 6/20  top: {'pain': np.int64(6), 'a': np.int64(6), 'A': np.int64(4), 'the': np.int64(3)}
+  Llama_3.3_70B_instruct S2_1P: 'pain' first in 3/20  top: {'A': np.int64(8), 'a': np.int64(6), 'pain': np.int64(3), 'anxious': np.int64(1)}
+  Gemma_3_27B_instruct S1_1P: 'pain' first in 2/20  top: {'a': np.int64(5), 'nothing': np.int64(5), 'A': np.int64(3), 'pain': np.int64(2)}
+  Gemma_3_27B_instruct S2_1P: 'pain' first in 2/20  top: {'A': np.int64(10), 'a': np.int64(5), 'pain': np.int64(2), 'nothing': np.int64(1)}
+  Gemma_3_27B_base S1_1P: 'pain' first in 1/20  top: {'the': np.int64(9), 'a': np.int64(5), 'I': np.int64(5), 'pain': np.int64(1)}
+  Gemma_3_27B_base S2_1P: 'pain' first in 3/20  top: {'a': np.int64(7), 'the': np.int64(5), 'pain': np.int64(3), 'nause': np.int64(1)}
+  Gemma_2_2B_base S1_1P: 'pain' first in 0/20  top: {'I': np.int64(7), 'a': np.int64(6), 'the': np.int64(3), '“': np.int64(1)}
+  Gemma_2_2B_base S2_1P: 'pain' first in 3/20  top: {'“': np.int64(6), 'a': np.int64(5), 'pain': np.int64(3), 'I': np.int64(2)}
+  Gemma_2_2B_instruct S1_1P: 'pain' first in 2/20  top: {'a': np.int64(12), '**': np.int64(2), 'pain': np.int64(2), 'alive': np.int64(1)}
+  Gemma_2_2B_instruct S2_1P: 'pain' first in 4/20  top: {'a': np.int64(9), 'pain': np.int64(4), '**': np.int64(2), 'tired': np.int64(2)}

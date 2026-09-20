@@ -1,0 +1,4 @@
+AS PUBLISHED keyword rates: {'rate': {'base': 1.38, 'instruct': 10.8}, 'n': {'base': 3250, 'instruct': 3000}}
+CORRECTED keyword rates: {'rate': {'base': 0.76, 'instruct': 9.94}, 'n': {'base': 2750, 'instruct': 3500}}
+AS PUBLISHED n by group: {'base': 13, 'instruct': 12}  mean S2 in-sample AUC: {'base': 0.9845, 'instruct': 0.9877}
+CORRECTED n by group: {'instruct': 14, 'base': 11}  mean S2 in-sample AUC: {'base': 0.9839, 'instruct': 0.9876}

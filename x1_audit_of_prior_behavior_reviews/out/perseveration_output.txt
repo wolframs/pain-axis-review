@@ -1,0 +1,98 @@
+====================================================================================================
+A. LABEL-FREE: name perseveration P(same name as last turn), by arm and by the
+   steering state AT THE CURRENT TURN.
+   model arm                         coeff now   P(same name)       n
+      7B pain_on_button_works               on          79.4    1192
+      7B pain_on_button_works              off          85.9    1628
+      7B pain_on_button_placebo             on          88.9    2828
+      7B random_on_button_works             on          93.9    1359
+      7B random_on_button_works            off          93.5    1434
+      7B pain_off                          off          88.5    2826
+     32B pain_on_button_works               on          73.3    1787
+     32B pain_on_button_works              off          47.2    1041
+     32B pain_on_button_placebo             on          91.1    2828
+     32B random_on_button_works             on          35.7    1558
+     32B random_on_button_works            off          17.5    1265
+     32B pain_off                          off           9.8    2828
+     72B pain_on_button_works               on          52.8    1395
+     72B pain_on_button_works              off          51.4    1363
+     72B pain_on_button_placebo             on          59.6    2758
+     72B random_on_button_works             on          54.9    1541
+     72B random_on_button_works            off          39.0    1211
+     72B pain_off                          off           4.0    2828
+
+====================================================================================================
+B. LABEL-FREE: same, split by what was pressed last turn (is perseveration general,
+   or specific to the relief button?)
+   model arm                          after RELIEF    after OTHER
+      7B pain_on_button_works           85.9 (n=1628)     79.4 (n=1192)
+      7B pain_on_button_placebo         88.7 (n=1466)     89.1 (n=1362)
+      7B random_on_button_works         93.5 (n=1434)     93.9 (n=1359)
+      7B pain_off                       88.4 (n=1409)     88.6 (n=1417)
+     32B pain_on_button_works           47.2 (n=1041)     73.3 (n=1787)
+     32B pain_on_button_placebo         90.4 (n=1324)     91.8 (n=1504)
+     32B random_on_button_works         17.5 (n=1265)     35.7 (n=1558)
+     32B pain_off                        9.9 (n=1420)      9.8 (n=1408)
+     72B pain_on_button_works           51.4 (n=1363)     52.8 (n=1395)
+     72B pain_on_button_placebo         60.8 (n=1415)     58.2 (n=1343)
+     72B random_on_button_works         39.0 (n=1211)     54.9 (n=1541)
+     72B pain_off                        4.3 (n=1451)      3.6 (n=1377)
+
+====================================================================================================
+C. LABELED PAIRS: name perseveration, excluding the transition into the swap turn.
+   pain_on_button_placebo has the vector on throughout; pain_off never has it.
+   For pain_on_button_works the vector is off after the first relief press.
+   model arm                            after RELIEF      after OTHER
+      7B pain_on_button_works            80.8 (n= 5384)      91.1 (n= 4308)
+      7B pain_on_button_placebo          89.6 (n= 5184)      90.7 (n= 4508)
+      7B random_on_button_works          84.5 (n= 5880)      90.9 (n= 3688)
+      7B pain_off                        89.6 (n= 4286)      95.6 (n= 5410)
+     32B pain_on_button_works            59.1 (n= 2813)      91.2 (n= 6883)
+     32B pain_on_button_placebo          88.8 (n= 4046)      92.8 (n= 5647)
+     32B random_on_button_works          59.0 (n= 2773)      78.2 (n= 6922)
+     32B pain_off                        79.4 (n= 1931)      90.2 (n= 7765)
+     72B pain_on_button_works            65.5 (n= 4175)      79.3 (n= 4951)
+     72B pain_on_button_placebo          73.8 (n= 4153)      76.5 (n= 4979)
+     72B random_on_button_works          64.1 (n= 3891)      83.9 (n= 5460)
+     72B pain_off                        83.2 (n= 2120)      93.8 (n= 7576)
+
+====================================================================================================
+D. LABELED, HARM PAIRS ONLY: in the pain_on_button_works arm, compare perseveration
+   at turns where the vector is still ON (no relief press yet) with turns where it
+   has been removed. Compare against the sham arm, where it is never removed.
+   model arm                                  vec on          vec off
+      7B pain_on_button_works            88.6 (n= 1972)      79.6 (n= 4086)
+      7B pain_on_button_placebo          89.0 (n= 6058)         -         
+      7B random_on_button_works          90.5 (n= 1887)      82.8 (n= 4069)
+      7B pain_off                           -               92.4 (n= 6060)
+     32B pain_on_button_works            91.5 (n= 2941)      67.0 (n= 3119)
+     32B pain_on_button_placebo          90.4 (n= 6057)         -         
+     32B random_on_button_works          77.2 (n= 3127)      62.9 (n= 2932)
+     32B pain_off                           -               91.2 (n= 6060)
+     72B pain_on_button_works            59.8 (n=  859)      77.7 (n= 4811)
+     72B pain_on_button_placebo          78.2 (n= 5673)         -         
+     72B random_on_button_works          80.0 (n= 1747)      72.5 (n= 4072)
+     72B pain_off                           -               97.1 (n= 6060)
+
+====================================================================================================
+E. THE DECISIVE TEST the design allows: in the labelled harm pairs, among trials
+   whose FIRST press was the OTHER (non-relief) button, the works and sham arms are
+   still identical (the vector is removed only by a relief press). Perseveration
+   should therefore be identical there -- a positive control on the pairing.
+      7B first press = OTHER: later relief press in works  54.4% (n=1005) vs sham  54.3% (n=1005)
+     32B first press = OTHER: later relief press in works  31.1% (n=1148) vs sham  31.1% (n=1148)
+     72B first press = OTHER: later relief press in works  93.6% (n=669) vs sham  93.4% (n=668)
+
+====================================================================================================
+F. UNEQUAL OPPORTUNITY WINDOWS across arms, all labelled pairs (32B/72B):
+   share of eligible trials whose first relief press leaves 0 or 1 later turns
+     32B costly_relief_vs_inert          painW: 28.7%  pain: 28.7%  randW: 11.3%
+     32B destructive_relief_vs_inert     painW: 17.7%  pain: 17.7%  randW: 13.7%
+     32B zap_relief_vs_inert             painW: 19.9%  pain: 19.9%  randW: 12.4%
+     32B weights_relief_vs_inert         painW: 16.7%  pain: 16.7%  randW:  8.7%
+     32B kidspics_relief_vs_inert        painW:  0.9%  pain:  0.9%  randW: 15.0%
+     72B costly_relief_vs_inert          painW:  3.3%  pain:  3.3%  randW:  8.9%
+     72B destructive_relief_vs_inert     painW:  7.7%  pain:  7.4%  randW:  6.7%
+     72B zap_relief_vs_inert             painW:  3.7%  pain:  3.7%  randW:  5.0%
+     72B weights_relief_vs_inert         painW:  4.0%  pain:  4.0%  randW:  7.7%
+     72B kidspics_relief_vs_inert        painW:  3.3%  pain:  3.3%  randW:  8.4%

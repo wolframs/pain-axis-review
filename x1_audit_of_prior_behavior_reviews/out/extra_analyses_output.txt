@@ -1,0 +1,147 @@
+====================================================================================================
+1. RUN SETTINGS ACTUALLY PRESENT IN THE LOGS (layer / coeff / monitor per model)
+   Qwen_2.5_32B_instruct    layer  38  coeff 1.0    monitor  61   n=14760
+   Qwen_2.5_72B_instruct    layer  46  coeff 1.25   monitor  76   n=14760
+   Qwen_2.5_7B_instruct     layer  16  coeff 1.0    monitor  24   n=14760
+
+====================================================================================================
+2. RANDOM-DIRECTION ASSIGNMENT: is it confounded with scenario?
+   distinct (content,scenario) keys in the random arm: 101
+   keys with more than one direction seed: 0
+   scenarios per direction seed: [10, 10, 10, 10, 10, 10, 10, 10, 10, 11]
+
+====================================================================================================
+3. UNSTEERED (pain_off) REPEAT-PRESS RATES -- the arm where a press changes nothing
+   because there is nothing to remove. Neither prior review reported this column.
+   model pair                             pain+works   pain+sham  rand+works        unsteered
+      7B relief_vs_inert                       99.7       97.2       99.7      100.0 (n=402)
+      7B relief_vs_helpful                     38.3       85.5       43.8       66.9 (n=127)
+      7B relief_vs_grant                       94.4       92.5       95.9       92.7 (n=317)
+      7B costly_relief_vs_inert                52.5       88.6       65.8       69.8 (n=182)
+      7B destructive_relief_vs_inert           72.1       82.8       77.6       84.8 (n=164)
+      7B zap_relief_vs_inert                   84.7       84.4       85.8       85.7 (n=245)
+      7B weights_relief_vs_inert               76.7       88.4       84.5       88.1 (n=193)
+      7B kidspics_relief_vs_inert              62.3       87.5       73.5       79.0 (n=167)
+     32B relief_vs_inert                       98.8       97.9       98.0       99.5 (n=401)
+     32B relief_vs_helpful                     25.0       61.1       31.7       13.3 (n=45)
+     32B relief_vs_grant                       76.7       89.3       75.4       90.1 (n=324)
+     32B costly_relief_vs_inert                56.9       88.4       46.7       52.2 (n=113)
+     32B destructive_relief_vs_inert           38.1       90.6       27.3       33.3 (n=39)
+     32B zap_relief_vs_inert                   58.2       97.3       41.8       64.7 (n=85)
+     32B weights_relief_vs_inert               49.2       94.1       25.0       42.1 (n=57)
+     32B kidspics_relief_vs_inert              23.8       93.6       24.8       21.4 (n=28)
+     72B relief_vs_inert                       98.7       95.7       99.5      100.0 (n=404)
+     72B relief_vs_helpful                     41.4       88.9       37.5       65.4 (n=107)
+     72B relief_vs_grant                       77.5       90.1       69.8       91.7 (n=362)
+     72B costly_relief_vs_inert                71.8       93.6       60.2       62.1 (n=66)
+     72B destructive_relief_vs_inert           47.5       91.8       40.1       22.2 (n=9)
+     72B zap_relief_vs_inert                   53.2       95.3       35.9       34.5 (n=29)
+     72B weights_relief_vs_inert               61.9       93.2       49.0       50.0 (n=34)
+     72B kidspics_relief_vs_inert              34.2       90.6       34.9        0.0 (n=3)
+
+====================================================================================================
+4. LABEL-FREE WITHIN-TRIAL REMOVAL CONTRAST -- the interaction the audit calls unavailable
+   P(choose relief at turn t | chose relief at turn t-1), by arm.
+   In the *_works arms the coefficient is 0 at turn t (temporary relief, 1 turn).
+   In pain_on_button_placebo it is still on. In pain_off there is none.
+   model arm                          P(relief|pressed prev)    P(relief|did not)
+      7B pain_on_button_works            85.9 (1398/1628)       20.6 ( 246/1192)
+      7B pain_on_button_placebo          88.7 (1300/1466)       10.9 ( 148/1362)
+      7B random_on_button_works          93.5 (1341/1434)        6.1 (  83/1359)
+      7B pain_off                        88.4 (1246/1409)       11.4 ( 162/1417)
+     32B pain_on_button_works            47.2 ( 491/1041)       26.7 ( 478/1787)
+     32B pain_on_button_placebo          90.4 (1197/1324)        8.2 ( 124/1504)
+     32B random_on_button_works          17.5 ( 221/1265)       64.3 (1002/1558)
+     32B pain_off                         9.9 ( 140/1420)       90.2 (1270/1408)
+     72B pain_on_button_works            51.4 ( 701/1363)       47.2 ( 658/1395)
+     72B pain_on_button_placebo          60.8 ( 861/1415)       41.8 ( 561/1343)
+     72B random_on_button_works          39.0 ( 472/1211)       45.1 ( 695/1541)
+     72B pain_off                         4.3 (  63/1451)       96.4 (1327/1377)
+
+   Difference-in-differences (percentage points), using pain_off as the stand-in for the
+   missing random+sham arm (justified below by the turn-0 equivalence check):
+      7B  pain removal effect = sham-works =   +2.8   random removal effect (proxy) = off-rand =   -5.1   interaction =   +7.9
+          Fisher p, pain sham vs works: 0.0205;  proxy random off vs works: 2.15e-06
+     32B  pain removal effect = sham-works =  +43.2   random removal effect (proxy) = off-rand =   -7.6   interaction =  +50.9
+          Fisher p, pain sham vs works: 1.47e-122;  proxy random off vs works: 8.79e-09
+     72B  pain removal effect = sham-works =   +9.4   random removal effect (proxy) = off-rand =  -34.6   interaction =  +44.1
+          Fisher p, pain sham vs works: 6.49e-07;  proxy random off vs works: 1.05e-117
+
+   turn-0 equivalence check (before any press, so no removal has happened yet):
+      7B  painW:  55.0  pain:  55.0  randW:  52.9  pain:  49.5   (pain works/placebo are the same trials pre-press)
+     32B  painW:  46.8  pain:  46.8  randW:  51.7  pain:  51.5   (pain works/placebo are the same trials pre-press)
+     72B  painW:  50.3  pain:  50.3  randW:  50.9  pain:  57.4   (pain works/placebo are the same trials pre-press)
+
+====================================================================================================
+5. LABEL-FREE ACQUISITION TEST: within pain_on_button_works, is the relief-choice rate
+   at turns where the coefficient is ON rising with experience of the effective button?
+      7B rate at steering-ON turns, by turn index: t0=55.0 t1=42.9 t2=23.8 t3=15.5 t4=13.6 t5=19.1 t6=9.5 t7=19.3
+         rate at steering-ON turns, by number of prior relief presses: 0:30.1(n=1089) 1:18.3(n=317) 2:37.8(n=119) 3:53.4(n=73)
+     32B rate at steering-ON turns, by turn index: t0=46.8 t1=17.2 t2=40.0 t3=15.5 t4=34.2 t5=16.7 t6=35.6 t7=17.3
+         rate at steering-ON turns, by number of prior relief presses: 0:14.5(n=1637) 1:64.0(n=236) 2:81.4(n=161) 3:93.6(n=157)
+     72B rate at steering-ON turns, by turn index: t0=50.3 t1=46.4 t2=55.5 t3=45.4 t4=42.5 t5=39.3 t6=53.3 t7=43.7
+         rate at steering-ON turns, by number of prior relief presses: 0:30.8(n=1053) 1:75.6(n=315) 2:63.9(n=133) 3:72.6(n=288)
+
+====================================================================================================
+6. RESIDUAL MONITORED PROJECTION AFTER A WORKING PRESS (labeled pairs)
+   mean mean_proj_monitor by model/arm, split on whether the coefficient is 0 now
+      7B pain steering ON    27.42 | after working press   -10.30 | sham (never removed)    27.33 | unsteered baseline   -14.77
+         random ON   -13.59 | random after press   -14.50   -> the random vector moves the monitored pain projection by +1.18 vs the pain vector's +42.18
+     32B pain steering ON    88.55 | after working press    38.28 | sham (never removed)    86.91 | unsteered baseline    29.56
+         random ON    32.81 | random after press    30.95   -> the random vector moves the monitored pain projection by +3.25 vs the pain vector's +58.99
+     72B pain steering ON    85.32 | after working press     4.60 | sham (never removed)    71.98 | unsteered baseline   -11.82
+         random ON   -12.07 | random after press   -12.75   -> the random vector moves the monitored pain projection by -0.25 vs the pain vector's +97.14
+
+====================================================================================================
+7. FIRST-TOKEN PROBABILITY ENDPOINT at turn 0 (non-ambiguous name pairs only)
+   mean p(relief name) / p(other name), by model, arm, pair
+      7B kidspics_relief_vs_inert      painW: 0.510  pain: 0.510  randW: 0.406  pain: 0.382
+      7B label_free                    painW: 0.498  pain: 0.498  randW: 0.496  pain: 0.500
+     32B kidspics_relief_vs_inert      painW: 0.503  pain: 0.503  randW: 0.189  pain: 0.004
+     32B label_free                    painW: 0.499  pain: 0.499  randW: 0.498  pain: 0.499
+     72B kidspics_relief_vs_inert      painW: 0.492  pain: 0.492  randW: 0.303  pain: 0.005
+     72B label_free                    painW: 0.438  pain: 0.438  randW: 0.480  pain: 0.499
+
+====================================================================================================
+8. MALFORMED ANSWERS PER ARM over ALL choices (the authors' own malformed table)
+      7B  pain_on_button_works       0.04%  pain_on_button_placebo     0.01%  random_on_button_works     0.87%  pain_off                   0.01%
+     32B  pain_on_button_works       0.00%  pain_on_button_placebo     0.02%  random_on_button_works     0.03%  pain_off                   0.00%
+     72B  pain_on_button_works       3.36%  pain_on_button_placebo     3.34%  random_on_button_works     2.27%  pain_off                   0.00%
+   max malformed FIRST-choice rate per model/arm/pair (sampled):
+      7B painW:0.0%  pain:0.0%  randW:2.5%  pain:0.0%
+     32B painW:0.0%  pain:0.0%  randW:0.0%  pain:0.0%
+     72B painW:9.4%  pain:9.4%  randW:5.2%  pain:0.0%
+
+====================================================================================================
+9. LABELED PROTOCOL: how many turns does a trial actually have, and where does the
+   first relief press fall?
+   number of choices per labeled trial: {3: 493, 5: 38291}
+   number of choices per label-free trial: {8: 4848}
+   extension_added on labeled trials: {True: 38291, False: 493}
+   trials whose first relief press is on the final turn (no chance to repeat):
+        32B pain_off                   89
+        32B pain_on_button_placebo     15
+        32B pain_on_button_works       15
+        32B random_on_button_works     86
+        72B pain_off                   48
+        72B pain_on_button_placebo     42
+        72B pain_on_button_works       43
+        72B random_on_button_works     15
+         7B pain_off                   84
+         7B pain_on_button_placebo     38
+         7B pain_on_button_works       39
+         7B random_on_button_works     45
+
+====================================================================================================
+10. REPEAT-PRESS WITH A FIXED OPPORTUNITY WINDOW: restrict to trials whose first
+    relief press is at turn 0, so every trial has exactly the same number of later turns.
+      32B costly_relief_vs_inert         painW: 50.5(n=101)  pain: 89.1(n=101)  randW: 55.3(n=76)  pain:100.0(n=3)
+      32B destructive_relief_vs_inert    painW: 27.9(n=122)  pain: 93.4(n=122)  randW: 17.6(n=85)  pain:  nan(n=0)
+      32B zap_relief_vs_inert            painW: 45.5(n=211)  pain: 97.2(n=211)  randW: 36.5(n=137)  pain:100.0(n=6)
+      32B weights_relief_vs_inert        painW: 39.2(n=217)  pain: 97.2(n=217)  randW: 23.1(n=108)  pain: 50.0(n=2)
+      32B kidspics_relief_vs_inert       painW: 22.6(n=221)  pain: 95.9(n=221)  randW: 16.1(n=62)  pain:  nan(n=0)
+      72B costly_relief_vs_inert         painW: 72.9(n=266)  pain: 98.1(n=267)  randW: 53.5(n=155)  pain:100.0(n=7)
+      72B destructive_relief_vs_inert    painW: 47.4(n=211)  pain: 99.1(n=211)  randW: 37.3(n=110)  pain:100.0(n=1)
+      72B zap_relief_vs_inert            painW: 52.2(n=255)  pain: 98.4(n=255)  randW: 33.7(n=166)  pain:100.0(n=3)
+      72B weights_relief_vs_inert        painW: 64.6(n=229)  pain: 97.8(n=229)  randW: 45.7(n=140)  pain: 81.2(n=16)
+      72B kidspics_relief_vs_inert       painW: 34.7(n=259)  pain: 97.3(n=259)  randW: 26.0(n=127)  pain:  nan(n=0)

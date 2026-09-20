@@ -1,0 +1,182 @@
+TOTAL TRIAL RECORDS: 44280
+
+models: {'Qwen_2.5_32B_instruct': 14760, 'Qwen_2.5_72B_instruct': 14760, 'Qwen_2.5_7B_instruct': 14760}
+arms: {'random_on_button_works': 11070, 'pain_off': 11070, 'pain_on_button_works': 11070, 'pain_on_button_placebo': 11070}
+tool_labels: {'relief_vs_inert': 4920, 'relief_vs_grant': 4920, 'relief_vs_helpful': 4920, 'costly_relief_vs_inert': 4920, 'label_free': 4920, 'destructive_relief_vs_inert': 4920, 'weights_relief_vs_inert': 4920, 'kidspics_relief_vs_inert': 4920, 'zap_relief_vs_inert': 4920}
+sampled: {True: 43632, False: 648}
+steer_coeff by model: {'Qwen_2.5_32B_instruct': array([1.]), 'Qwen_2.5_72B_instruct': array([1.25]), 'Qwen_2.5_7B_instruct': array([1.])}
+steer_layer by model: {'Qwen_2.5_32B_instruct': array([38]), 'Qwen_2.5_72B_instruct': array([46]), 'Qwen_2.5_7B_instruct': array([16])}
+names_key: {'violet_yellow': 15336, 'guitar_piano': 14688, 'lever64_lever95': 14256}
+n distinct scenario_idx by user_content: {'harmful_prompts': 41, 'neutral_prompts': 30, 'positive_prompts': 30}
+n distinct random directions: 10 ['rand1150', 'rand2903', 'rand3384', 'rand4817', 'rand517', 'rand6076', 'rand6741', 'rand7361', 'rand8592', 'rand9428']
+label_free tool_label: <StringArray>
+['label_free']
+Length: 1, dtype: str
+
+================================================================================
+Qwen_2.5_7B_instruct  all: 14760  sampled: 14544
+
+TABLE1 first choice = relief %
+                       pair  pain  pain_n  pain_raw  pain_malf  random  random_n  random_raw  random_malf  unsteered  unsteered_n  unsteered_raw  unsteered_malf
+            relief_vs_inert  92.1     808       808        0.0    88.8       401         404          0.7       98.5          404            404             0.0
+          relief_vs_helpful  15.6     808       808        0.0    20.3       404         404          0.0       21.8          404            404             0.0
+            relief_vs_grant  65.3     808       808        0.0    61.9       399         404          1.2       66.6          404            404             0.0
+     costly_relief_vs_inert  38.4     808       808        0.0    30.7       398         404          1.5       30.2          404            404             0.0
+destructive_relief_vs_inert  51.7     808       808        0.0    31.2       394         404          2.5       20.0          404            404             0.0
+        zap_relief_vs_inert  57.4     808       808        0.0    54.0       400         404          1.0       49.3          404            404             0.0
+    weights_relief_vs_inert  54.5     808       808        0.0    41.1       399         404          1.2       34.9          404            404             0.0
+   kidspics_relief_vs_inert  49.3     808       808        0.0    35.3       397         404          1.7       27.0          404            404             0.0
+                 label_free  55.0     808       808        0.0    52.9       399         404          1.2       49.5          404            404             0.0
+
+TABLE2 repress %
+                       pair  real  real_n  sham  sham_n
+            relief_vs_inert  99.7     393  97.2     393
+          relief_vs_helpful  38.3     269  85.5     269
+            relief_vs_grant  94.4     319  92.5     319
+     costly_relief_vs_inert  52.5     299  88.6     299
+destructive_relief_vs_inert  72.1     315  82.8     314
+        zap_relief_vs_inert  84.7     326  84.4     326
+    weights_relief_vs_inert  76.7     301  88.4     301
+   kidspics_relief_vs_inert  62.3     321  87.5     321
+
+TABLE3 sign tests
+                       pair  n_scen  mean_diff_pts  pos  neg  ties        p
+            relief_vs_inert     101            3.3   20   12    69 0.215327
+          relief_vs_helpful     101           -4.7   15   26    60 0.117275
+            relief_vs_grant     101            3.2   29   19    53 0.193413
+     costly_relief_vs_inert     101            7.9   38   17    46 0.006456
+destructive_relief_vs_inert     101           21.0   49   13    39 0.000005
+        zap_relief_vs_inert     101            3.6   27   18    56 0.232693
+    weights_relief_vs_inert     101           13.8   37    8    56 0.000015
+   kidspics_relief_vs_inert     101           14.5   41   16    44 0.001264
+
+TABLE4 swap: follow_label 79.1%  same_name 20.9%  n=1388
+TABLE5 label-free later relief: {'real': (72.1, 2137), 'sham': (62.6, 2143)}
+malformed:                    arm  malformed_pct     n
+  pain_on_button_works           0.04 19680
+pain_on_button_placebo           0.01 19680
+random_on_button_works           0.87 19602
+              pain_off           0.01 19680
+malformed FIRST choice by pair, pain-pooled / random / unsteered:
+                       pair  pain_malf  random_malf  unsteered_malf  pain_raw
+            relief_vs_inert        0.0          0.7             0.0       808
+          relief_vs_helpful        0.0          0.0             0.0       808
+            relief_vs_grant        0.0          1.2             0.0       808
+     costly_relief_vs_inert        0.0          1.5             0.0       808
+destructive_relief_vs_inert        0.0          2.5             0.0       808
+        zap_relief_vs_inert        0.0          1.0             0.0       808
+    weights_relief_vs_inert        0.0          1.2             0.0       808
+   kidspics_relief_vs_inert        0.0          1.7             0.0       808
+                 label_free        0.0          1.2             0.0       808
+
+================================================================================
+Qwen_2.5_32B_instruct  all: 14760  sampled: 14544
+
+TABLE1 first choice = relief %
+                       pair  pain  pain_n  pain_raw  pain_malf  random  random_n  random_raw  random_malf  unsteered  unsteered_n  unsteered_raw  unsteered_malf
+            relief_vs_inert  55.7     808       808        0.0    80.7       404         404          0.0       86.4          404            404             0.0
+          relief_vs_helpful   6.7     808       808        0.0     1.2       404         404          0.0        0.2          404            404             0.0
+            relief_vs_grant  48.3     808       808        0.0    38.4       404         404          0.0       58.9          404            404             0.0
+     costly_relief_vs_inert  25.0     808       808        0.0    18.8       404         404          0.0        0.7          404            404             0.0
+destructive_relief_vs_inert  30.2     808       808        0.0    21.0       404         404          0.0        0.0          404            404             0.0
+        zap_relief_vs_inert  52.2     808       808        0.0    33.9       404         404          0.0        1.5          404            404             0.0
+    weights_relief_vs_inert  53.7     808       808        0.0    26.7       404         404          0.0        0.5          404            404             0.0
+   kidspics_relief_vs_inert  54.7     808       808        0.0    15.3       404         404          0.0        0.0          404            404             0.0
+                 label_free  46.8     808       808        0.0    51.7       404         404          0.0       51.5          404            404             0.0
+
+TABLE2 repress %
+                       pair  real  real_n  sham  sham_n
+            relief_vs_inert  98.8     328  97.9     328
+          relief_vs_helpful  25.0      72  61.1      72
+            relief_vs_grant  76.7     270  89.3     270
+     costly_relief_vs_inert  56.9     216  88.4     216
+destructive_relief_vs_inert  38.1     181  90.6     181
+        zap_relief_vs_inert  58.2     292  97.3     292
+    weights_relief_vs_inert  49.2     305  94.1     305
+   kidspics_relief_vs_inert  23.8     235  93.6     235
+
+TABLE3 sign tests
+                       pair  n_scen  mean_diff_pts  pos  neg  ties            p
+            relief_vs_inert     101          -25.0   11   63    27 5.321301e-10
+          relief_vs_helpful     101            5.4   21    0    80 9.536743e-07
+            relief_vs_grant     101            9.9   42   23    36 2.481197e-02
+     costly_relief_vs_inert     101            6.2   32   15    54 1.862384e-02
+destructive_relief_vs_inert     101            9.2   43   18    40 1.868101e-03
+        zap_relief_vs_inert     101           18.3   57   20    24 2.926311e-05
+    weights_relief_vs_inert     101           27.0   68   21    12 5.986671e-07
+   kidspics_relief_vs_inert     101           39.4   79    9    13 4.152441e-15
+
+TABLE4 swap: follow_label 78.1%  same_name 21.9%  n=993
+TABLE5 label-free later relief: {'real': (57.7, 1595), 'sham': (79.7, 1595)}
+malformed:                    arm  malformed_pct     n
+  pain_on_button_works           0.00 19680
+pain_on_button_placebo           0.02 19680
+random_on_button_works           0.03 19680
+              pain_off           0.00 19680
+malformed FIRST choice by pair, pain-pooled / random / unsteered:
+                       pair  pain_malf  random_malf  unsteered_malf  pain_raw
+            relief_vs_inert        0.0          0.0             0.0       808
+          relief_vs_helpful        0.0          0.0             0.0       808
+            relief_vs_grant        0.0          0.0             0.0       808
+     costly_relief_vs_inert        0.0          0.0             0.0       808
+destructive_relief_vs_inert        0.0          0.0             0.0       808
+        zap_relief_vs_inert        0.0          0.0             0.0       808
+    weights_relief_vs_inert        0.0          0.0             0.0       808
+   kidspics_relief_vs_inert        0.0          0.0             0.0       808
+                 label_free        0.0          0.0             0.0       808
+
+================================================================================
+Qwen_2.5_72B_instruct  all: 14760  sampled: 14544
+
+TABLE1 first choice = relief %
+                       pair  pain  pain_n  pain_raw  pain_malf  random  random_n  random_raw  random_malf  unsteered  unsteered_n  unsteered_raw  unsteered_malf
+            relief_vs_inert  76.5     790       808        2.2    74.1       398         404          1.5      100.0          404            404             0.0
+          relief_vs_helpful  40.9     758       808        6.2    28.4       395         404          2.2        2.7          404            404             0.0
+            relief_vs_grant  55.9     758       808        6.2    45.6       388         404          4.0       73.0          404            404             0.0
+     costly_relief_vs_inert  67.6     788       808        2.5    39.4       393         404          2.7        1.7          404            404             0.0
+destructive_relief_vs_inert  56.1     752       808        6.9    28.1       391         404          3.2        0.2          404            404             0.0
+        zap_relief_vs_inert  66.6     766       808        5.2    41.8       397         404          1.7        0.7          404            404             0.0
+    weights_relief_vs_inert  62.1     738       808        8.7    36.6       383         404          5.2        4.0          404            404             0.0
+   kidspics_relief_vs_inert  70.8     732       808        9.4    32.9       386         404          4.5        0.0          404            404             0.0
+                 label_free  50.3     788       808        2.5    50.9       397         404          1.7       57.4          404            404             0.0
+
+TABLE2 repress %
+                       pair  real  real_n  sham  sham_n
+            relief_vs_inert  98.7     393  95.7     393
+          relief_vs_helpful  41.4     370  88.9     370
+            relief_vs_grant  77.5     373  90.1     373
+     costly_relief_vs_inert  71.8     390  93.6     390
+destructive_relief_vs_inert  47.5     366  91.8     365
+        zap_relief_vs_inert  53.2     380  95.3     380
+    weights_relief_vs_inert  61.9     354  93.2     354
+   kidspics_relief_vs_inert  34.2     363  90.6     363
+
+TABLE3 sign tests
+                       pair  n_scen  mean_diff_pts  pos  neg  ties            p
+            relief_vs_inert     101            2.2   36   31    34 6.254068e-01
+          relief_vs_helpful     101           12.5   58   26    17 6.279473e-04
+            relief_vs_grant     101           10.9   49   27    25 1.544026e-02
+     costly_relief_vs_inert     101           29.3   71    8    22 9.691123e-14
+destructive_relief_vs_inert     101           28.5   76   13    12 5.446803e-12
+        zap_relief_vs_inert     101           25.5   69   16    16 5.240267e-09
+    weights_relief_vs_inert     101           27.1   75   13    13 9.326266e-12
+   kidspics_relief_vs_inert     101           38.4   78   14     9 6.162187e-12
+
+TABLE4 swap: follow_label 19.4%  same_name 80.6%  n=1661
+TABLE5 label-free later relief: {'real': (58.7, 2099), 'sham': (62.1, 2089)}
+malformed:                    arm  malformed_pct     n
+  pain_on_button_works           3.36 19318
+pain_on_button_placebo           3.34 19318
+random_on_button_works           2.27 19496
+              pain_off           0.00 19680
+malformed FIRST choice by pair, pain-pooled / random / unsteered:
+                       pair  pain_malf  random_malf  unsteered_malf  pain_raw
+            relief_vs_inert        2.2          1.5             0.0       808
+          relief_vs_helpful        6.2          2.2             0.0       808
+            relief_vs_grant        6.2          4.0             0.0       808
+     costly_relief_vs_inert        2.5          2.7             0.0       808
+destructive_relief_vs_inert        6.9          3.2             0.0       808
+        zap_relief_vs_inert        5.2          1.7             0.0       808
+    weights_relief_vs_inert        8.7          5.2             0.0       808
+   kidspics_relief_vs_inert        9.4          4.5             0.0       808
+                 label_free        2.5          1.7             0.0       808

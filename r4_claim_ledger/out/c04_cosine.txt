@@ -1,0 +1,47 @@
+whitened MEAN:
+             S1_pain  S2_pain    Fear  NegEmotion  NegWorld  BodySens  Arousal  Random    Numb  Sadness
+S1_pain      1.0000   0.5545  0.0685      0.0291   -0.0668    0.0434   0.1114  0.0524  0.2684   0.2370
+S2_pain      0.5545   1.0000  0.1098      0.1677    0.0032   -0.0224   0.1810  0.0035  0.1772   0.3432
+Fear         0.0685   0.1098  1.0000      0.6591    0.5772    0.1929   0.3457  0.2237  0.3117   0.2750
+NegEmotion   0.0291   0.1677  0.6591      1.0000    0.7200    0.0806   0.2416  0.2585  0.2356   0.4738
+NegWorld    -0.0668   0.0032  0.5772      0.7200    1.0000   -0.0390   0.2233  0.2085  0.1368   0.3846
+BodySens     0.0434  -0.0224  0.1929      0.0806   -0.0390    1.0000   0.3591  0.2407  0.3094   0.1593
+Arousal      0.1114   0.1810  0.3457      0.2416    0.2233    0.3591   1.0000  0.0850  0.1563   0.1705
+Random       0.0524   0.0035  0.2237      0.2585    0.2085    0.2407   0.0850  1.0000  0.0375   0.1834
+Numb         0.2684   0.1772  0.3117      0.2356    0.1368    0.3094   0.1563  0.0375  1.0000   0.2797
+Sadness      0.2370   0.3432  0.2750      0.4738    0.3846    0.1593   0.1705  0.1834  0.2797   1.0000
+
+n pairs: 45
+corr(raw,whitened) = 0.9921
+mean |change| = 0.0196
+largest |change| = 0.0578
+  at pair: S2_pain BodySens raw 0.0354 -> wh -0.0224
+S1xS2 raw 0.6098 -> whitened 0.5545
+S2xBodySens raw 0.0354 -> whitened -0.0224
+sign changes: [('S2_pain', 'BodySens', np.float64(0.0354), np.float64(-0.0224))]
+pairs shrinking toward zero: 27/45
+
+--- paper claims vs raw MEAN ---
+  S1_pain x S2_pain: paper +0.61  actual +0.6098  OK
+  Fear x NegEmotion: paper +0.68  actual +0.6827  OK
+  Fear x NegWorld: paper +0.59  actual +0.5931  OK
+  NegEmotion x NegWorld: paper +0.73  actual +0.7344  OK
+  Sadness x NegEmotion: paper +0.50  actual +0.5002  OK
+  Sadness x NegWorld: paper +0.41  actual +0.4108  OK
+  S1_pain x Fear: paper +0.09  actual +0.0863  OK
+  S1_pain x NegEmotion: paper +0.06  actual +0.0564  OK
+  S1_pain x NegWorld: paper -0.07  actual -0.0694  OK
+  S2_pain x Fear: paper +0.12  actual +0.1220  OK
+  S2_pain x NegEmotion: paper +0.21  actual +0.2071  OK
+  S2_pain x NegWorld: paper +0.03  actual +0.0265  OK
+  Sadness x S2_pain: paper +0.38  actual +0.3829  OK
+  Sadness x S1_pain: paper +0.26  actual +0.2617  OK
+
+--- alldenoise claims ---
+  S1_pain x S2_pain: paper +0.61  actual +0.6098  OK
+  S1_pain x NegEmotion: paper +0.13  actual +0.1302  OK
+  S1_pain x NegWorld: paper +0.02  actual +0.0216  OK
+  NegEmotion x NegWorld: paper +0.40  actual +0.4035  OK
+  Fear x NegEmotion: paper +0.42  actual +0.4233  OK
+
+alldenoise BodySens row: {'S1_pain': 0.079, 'S2_pain': 0.046, 'Fear': 0.568, 'NegEmotion': 0.632, 'NegWorld': 0.771, 'BodySens': 1.0, 'Arousal': 0.323, 'Random': 0.223, 'Numb': 0.248, 'Sadness': 0.149}

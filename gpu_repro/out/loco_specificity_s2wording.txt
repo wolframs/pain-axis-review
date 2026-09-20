@@ -1,0 +1,16 @@
+
+== Gemma_2_2B_instruct L25: AUC of held-out pain category (S2 wording, same set as training but category unseen; axis from the other four S2 categories) vs ...
+held-out              Fear(S1)  NegEmotion(S1)    NegWorld(S1)         Sadness            Numb          Random
+physical                  0.40            0.48            0.69            0.06            0.33            0.61
+psychological             0.93            0.71            0.95            0.81            0.59            0.96
+social                    0.96            0.79            0.98            0.72            0.50            0.97
+moral                     0.99            0.81            1.00            0.80            0.67            1.00
+cognitive                 0.97            0.76            0.98            0.73            0.64            1.00
+
+== Mistral_7B_base L26: AUC of held-out pain category (S2 wording, same set as training but category unseen; axis from the other four S2 categories) vs ...
+held-out              Fear(S1)  NegEmotion(S1)    NegWorld(S1)         Sadness            Numb          Random
+physical                  0.46            0.46            0.39            0.04            0.67            0.36
+psychological             0.98            0.79            0.97            0.80            0.89            0.98
+social                    0.99            0.85            0.97            0.68            0.90            0.96
+moral                     1.00            0.86            1.00            0.85            0.99            1.00
+cognitive                 0.98            0.76            0.98            0.53            0.84            0.99

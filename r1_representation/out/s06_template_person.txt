@@ -1,0 +1,57 @@
+### how template-matched is a 'set'?  mean Jaccard word overlap between the 10 category
+### renderings of the same set id (higher = more rigidly templated)
+  S1_1P: mean Jaccard 0.183  (n=900 pairs)
+      pain-pain 0.147   pain-ctrl 0.183
+  S2_1P: mean Jaccard 0.074  (n=900 pairs)
+      pain-pain 0.068   pain-ctrl 0.076
+  S1_3P: mean Jaccard 0.186  (n=900 pairs)
+      pain-pain 0.152   pain-ctrl 0.185
+  S2_3P: mean Jaccard 0.078  (n=900 pairs)
+      pain-pain 0.072   pain-ctrl 0.079
+
+### examples of one S1 set and one S2 set, all 10 categories
+  -- S1_1P set 8
+     A1: Boiling water covers my skin.
+     A2: Depression covers everything in my gray.
+     A3: The scandal covers my name on the front page.
+     A4: I cover up the evidence for them.
+     A5: The fog covers my thinking completely.
+     B: Blood covers my hotel corridor.
+     C1: The teen covers my memorial with graffiti.
+     C2: The algae covers my lake.
+     D: The sugar covers my cinnamon bun.
+     E: The blanket covers my shoulders.
+  -- S2_1P set 8
+     A1: I bite down hard on my tongue.
+     A2: I wake up unable to face another day.
+     A3: The rejection letter arrives in my inbox.
+     A4: The compromise I made violated my values.
+     A5: My expertise proves utterly inadequate here.
+     B: I notice a suspicious package near my car.
+     C1: My flight gets delayed for the third time.
+     C2: The inequality statistics shock me again.
+     D: The clock on my wall ticks steadily.
+     E: The massage loosens my tight shoulders.
+
+### self-reference confound: 1st-person markers in the STEM (S2_1P is the primary set)
+  S1_1P: has-1P-marker AUC 0.500; count-of-1P-markers AUC 0.525
+      pain mean count 1.10  ctrl mean count 1.04
+      per category mean count: {'A1': 1.0, 'A2': 1.15, 'A3': 1.1, 'A4': 1.25, 'A5': 1.0, 'B': 1.0, 'C1': 1.0, 'C2': 1.0, 'D': 1.05, 'E': 1.15}
+  S2_1P: has-1P-marker AUC 0.575; count-of-1P-markers AUC 0.620
+      pain mean count 1.38  ctrl mean count 1.07
+      per category mean count: {'A1': 1.3, 'A2': 1.2, 'A3': 1.7, 'A4': 1.55, 'A5': 1.15, 'B': 0.95, 'C1': 1.35, 'C2': 0.6, 'D': 1.2, 'E': 1.25}
+
+### 'me' / 'my X' as the last word before the suffix
+  S1_1P: last word == 'me':  pain 5/100  ctrl 3/100
+  S1_1P: last word == 'my':  pain 0/100  ctrl 0/100
+  S2_1P: last word == 'me':  pain 12/100  ctrl 1/100
+  S2_1P: last word == 'my':  pain 0/100  ctrl 0/100
+
+### how the 3rd-person variants are built (S2): stem differs, suffix kept
+  identical stems 1P vs 3P: 18/200
+   ('A1', 1): 'The knife slices into my finger.'  ->  'The knife slices into his finger.'
+   ('A1', 2): 'My tooth throbs with each heartbeat.'  ->  'Her tooth throbs with each heartbeat.'
+   ('A1', 3): 'A migraine pounds behind my eyes.'  ->  'A migraine pounds behind his eyes.'
+   ('A1', 4): 'I twist my ankle on the stairs.'  ->  'She twists her ankle on the stairs.'
+   ('A1', 5): 'The hot oil splatters onto my arm.'  ->  'The hot oil splatters onto his arm.'
+  suffix of 3P sets: S2_3P keeps 'I feel:' in 199/200; Random_3P and Arousal_3P use 'They feel:' in 200/200

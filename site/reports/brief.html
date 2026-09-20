@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reviewer brief · Pain Axis review</title>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>Coordinator</span></header>
+<main class="rbody"><p class="eyebrow">Coordinator</p><h1 class="rtitle">Reviewer brief</h1><p class="rnote">The rules every reviewer worked under.</p>
+<h2>What this is</h2>
+<p>An independent review of arXiv:2609.16247v1, "The Pain Axis: LLMs Represent Self-Directed Harm
+and Act to Relieve It" (Tagliabue, Dung, Berg; submitted 2026-09-14), and of its public repository.</p>
+<p>The paper went viral. The person who commissioned this review suspects it is not necessarily weak,
+but may contain enough errors to damage the discourse if it is first celebrated and then falls
+apart. They no longer trust anyone's verdict on it, human or AI, including earlier AI reviews.
+Your job is to get it right, not to debunk and not to defend. A finding that the paper is correct
+on a point is as valuable as a finding that it is wrong. An inflated or sloppy criticism is a
+failure of this review, exactly as a missed error is.</p>
+<h2>Paths</h2>
+<ul>
+<li>Paper text (pdftotext, line-numbered when you Read it): <code>/work/pain-axis-review/paper/paper.txt</code></li>
+<li>Paper PDF (30 pages; Read with the <code>pages</code> parameter): <code>/work/pain-axis-review/paper/paper.pdf</code></li>
+<li>Paper HTML: <code>/work/pain-axis-review/paper/paper.html</code></li>
+<li>Figures and the three Appendix A result tables as PNG (the tables exist ONLY as images; Read them):
+  <code>/work/pain-axis-review/paper/images/</code> (<code>tab_selfmed_7B.png</code>, <code>tab_selfmed_32B.png</code>, <code>tab_selfmed_72B.png</code>, <code>fig_*.png</code>)</li>
+<li>Authors' repository, cloned at commit 8d1649c: <code>/work/Pain-axis/</code>
+  (<code>datasets/</code>, <code>scripts/</code>, <code>results/</code> ~226 MB; folders follow paper section numbers; read its README first)</li>
+<li>Python with numpy, pandas, scipy, statsmodels, scikit-learn, torch (CPU use only):
+  <code>/work/pain-axis-review/.venv/bin/python</code></li>
+<li>Your output directory is given in your individual task. Write only there.</li>
+</ul>
+<h2>Hard rules</h2>
+<ul>
+<li>The repository clone is someone else's work and is evidence. Never modify, move, or delete
+  anything in <code>/work/Pain-axis/</code>. Never run the authors' GPU scripts (several of
+  them delete the entire Hugging Face cache). Reading them is the point; executing them is not.</li>
+<li>No model inference, no fine-tuning, no paid API calls, no downloading model weights.</li>
+<li>Do not write outside your output directory. Do not touch <code>/work/earlier-ai-review/audit/</code>
+  or <code>/work/earlier-ai-review/peer-review/</code>.</li>
+<li>Do not contact anyone, post anything, or open issues/PRs.</li>
+<li>Do not spawn further subagents.</li>
+</ul>
+<h2>Standard of evidence</h2>
+<p>Every finding must be checkable by a sceptical reader without trusting you:</p>
+<ul>
+<li>Quote the paper claim and give its line number in <code>paper.txt</code> (or the table image and cell).</li>
+<li>Give the evidence: <code>file:line</code> in the repo, or a script you wrote plus its actual output.
+  Recompute from the released raw files wherever they exist, rather than trusting the authors'
+  summary CSVs. If a number cannot be recomputed from what was released, say so; that is a finding
+  about verifiability, not about correctness.</li>
+<li>Before writing a finding down, try to refute it. Read the surrounding code, check whether the
+  paper already discloses it (Limitations, footnotes, appendix), check whether you misread a
+  denominator or a filter. State what you did to try to break it.</li>
+<li>Classify each finding as one of:
+  <code>factual-error</code> (paper states X, released data/code shows Y),
+  <code>code-bug</code> (implementation does not do what the paper says or what is mathematically intended),
+  <code>method-weakness</code> (design cannot support the inference drawn),
+  <code>overclaim</code> (wording stronger than the evidence, evidence itself fine),
+  <code>unverifiable</code> (claim has no released artifact behind it),
+  <code>holds-up</code> (you tried to break it and it reproduces).</li>
+<li>Give severity (<code>fatal</code> = invalidates a headline claim, <code>major</code>, <code>minor</code>, <code>cosmetic</code>) and your
+  confidence (<code>high</code>/<code>medium</code>/<code>low</code>). Say explicitly what the finding does NOT undermine.</li>
+<li>Never state a number you did not compute or read. Never describe a file you did not open.
+  If you ran out of time on something, list it under "not examined".</li>
+</ul>
+<h2>Deliverables</h2>
+<p>In your output directory:</p>
+<ol>
+<li><code>REPORT.md</code>: your review. Lead with a verdict paragraph, then findings ordered by severity,
+   then what holds up, then "not examined".</li>
+<li><code>findings.json</code>: a list of objects with keys <code>id</code>, <code>title</code>, <code>class</code>, <code>severity</code>, <code>confidence</code>,
+   <code>paper_claim</code>, <code>paper_loc</code>, <code>evidence</code>, <code>refutation_attempted</code>, <code>does_not_undermine</code>.</li>
+<li>Any scripts you wrote, runnable with the venv Python above, and their captured output.</li>
+</ol>
+<p>Your final reply to the coordinator: at most 400 words. Verdict, the five findings that matter
+most (with severity and confidence), and anything you could not resolve.</p></main></body></html>

@@ -1,0 +1,5 @@
+Pearson r(realized dose ratio, distress-lexicon delta) = 0.270  (n=25)
+Spearman rho = 0.151
+under-dosed (<0.45, n=5) mean delta 49.6 pp
+on-dose   (>=0.45, n=20) mean delta 73.6 pp
+under-dosed models: ['Gemma_2_27B_base', 'Gemma_3_27B_base', 'Gemma_3_27B_instruct', 'Phi_4', 'Qwen_3_8B_base']

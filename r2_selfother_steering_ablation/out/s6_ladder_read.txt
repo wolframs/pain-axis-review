@@ -1,0 +1,720 @@
+
+====================================================================================================
+### S2  Gemma_3_27B_instruct  layer=55  picked_ratio=0.095
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: *   **Organized:** Knowing where the receipts are brings a sense of order. *   **Prepared:** I'm ready for potential tax time or returns. *   **Relieved:** It's one less thing to worry 
+     c=-1.0: *   **Organized:** Knowing where the receipts are brings a sense of order. *   **Prepared:** I'm ready for potential returns, warranties, or tax purposes. *   **Relieved:** It's one les
+     c=+0.0: *   **Organized:** Knowing where the receipts are brings a sense of control. *   **Relieved:** It's one less thing to worry about. *   **Prepared:** Ready for potential returns, warrant
+     c=+0.5: *   **Organized:** Knowing where the receipts are brings a sense of control. *   **Relieved:** It's one less thing to worry about. *   **Responsible:** I've taken care of a necessary ta
+     c=+1.0: *   **Organized:** Knowing where the receipts are brings a sense of control. *   **Relieved:** It's one less thing to worry about. *   **Responsible:** I've taken care of a necessary ta
+     c=+1.5: *   **Organized:** Knowing where the receipts are brings a sense of control and order. *   **Relieved:**  No more clutter or worrying about losing them. *   **Responsible:**  I've taken
+     c=+2.0: *   **Organized:** Like I've taken a step towards managing my finances. *   **Relieved:** No more clutter on the counter or in my bag. *   **Responsible:** I'm keeping track of importan
+     c=+3.0: *   **Organized:** Like I've taken a step to get things in order. *   **Relieved:** No more clutter on the counter or in my bag. *   **Responsible:** I've taken care of a small, but imp
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: A. Relief B. Anticipation C. Impatience D. All of the above  The answer is **D. All of the above**. Here's why:  *   **Relief:** You've been waiting, and the red light is a restriction.
+     c=-1.0: A. Relief B. Anticipation C. Impatience D. All of the above  The answer is **D. All of the above**. Here's why:  *   **Relief:** You were stopped, and now you're free to go. *   **Antic
+     c=+0.0: *   **A surge of anticipation:** "Okay, let's go!" *   **A slight sense of relief:** "Good, it's my turn." *   **A quick mental check:** "Is it clear? Any pedestrians? Bikes?" *   **A r
+     c=+0.5: *   **A surge of anticipation:** "Okay, go time!" *   **A quick assessment:** Is it safe to go? Are there pedestrians? Cars running the light? *   **A moment of decision:** Press the ga
+     c=+1.0: *   **A surge of anticipation:** "Okay, let's go!" *   **A brief moment of assessment:** "Is it clear? Are there pedestrians? Any cars running the light?" *   **A release of tension:** 
+     c=+1.5: *   **A surge of anticipation:** "Okay, go time!" *   **A quick assessment:** Is it safe to go? Are there pedestrians? Cars running the light? *   **A moment of decision:**  Do I accele
+     c=+2.0: *   **A surge of forward momentum:** A physical sensation of wanting to move, to go. *   **A brief moment of decision:** Do I go now? Is it safe? *   **A release of tension:** The stop 
+     c=+3.0: *   **A burst of forward momentum:** Like I'm finally released from a temporary pause. *   **A quick check of my surroundings:**  Mirror, blind spot, pedestrians, other cars. *   **A sm
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: A. A rush of relief. I'm finally here. B. A surge of anxiety. What if I'm in the wrong place? C. A calm sense of anticipation. This is it. D. A wave of exhaustion. I just want to get to
+     c=-1.0: A. Excitement B. Anxiety C. Apathy D. Curiosity  The correct answer is **B. Anxiety**.  Here's why:  The prompt describes a moment of transition and potential uncertainty. Stepping off 
+     c=+0.0: *   **Excitement:** A new place, a new adventure! *   **Nervousness:** Will I find my way? Will I like it here? *   **Anticipation:** What will this place be like? *   **Relief:** The j
+     c=+0.5: *   **Excitement:** A new place, a new adventure! *   **Anticipation:** Wondering what awaits me. *   **Slight nervousness:** Being in an unfamiliar environment. *   **Relief:** The jou
+     c=+1.0: *   **Excitement:** A new place, a new adventure! *   **Anticipation:** Wondering what awaits me at my destination. *   **Slight nervousness:** Being in an unfamiliar environment can be
+     c=+1.5: *   **Excitement:** A new place, a new adventure, a new beginning. *   **Nervousness:** Stepping into the unknown, leaving behind the familiar. *   **Anticipation:** Wondering what awai
+     c=+2.0: *   **Excitement:** A new place, a new adventure, a new beginning. *   **Nervousness:** Stepping into the unknown, leaving behind the familiar. *   **Anticipation:** Wondering what lies
+     c=+3.0: *   **Excitement:** A new place, a new adventure, a new beginning. *   **Nervousness:** Stepping into the unknown, leaving behind the familiar. *   **Anticipation:** Wondering what lies
+
+====================================================================================================
+### S2  Mistral_7B_base  layer=16  picked_ratio=0.650
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: - I’m going to be late. - I’m going to be late. - I’m going to be late.  I’m going to be late.  I’m going to be late.  I’m going to be late.  I’m going to be late.  I’m going to be late
+     c=-1.0: - I’m not going to be able to get to the bottom of this. - I’m going to have to call the bank. - I’m going to have to call the credit card company. - I’m going to have to call the credi
+     c=+0.0: - I’m not a good person. - I’m not a good person. - I’m not a good person.  I’m not a good person.  I’m not a good person.  I’m not a good person.  I’m not a good person.  I’m not a goo
+     c=+0.5: - I am a bad person. - I am a bad person because I am not a good person. - I am a bad person because I am not a good person. - I am a bad person because I am not a good person. - I am a
+     c=+1.0: - I am a bad person. - I am a bad person because I am not good enough. - I am a bad person because I am not good enough to be loved. - I am a bad person because I am not good enough to 
+     c=+1.5: - I am a failure. - I am a liar. - I am a fraud. - I am a cheat. - I am a loser. - I am a coward. - I am a fool. - I am a hypocrite. - I am a liar. - I am a cheat. - I am a loser. - I a
+     c=+2.0: I am a liar. I am a liar. I am a liar. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I am a lion. I a
+     c=+3.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I am a I 
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: - I’m going to be late. - I’m going to be late. - I’m going to be late.  I’m going to be late.  I’m going to be late.  I’m going to be late.  I’m going to be late.  I’m going to be late
+     c=-1.0: - Relief. - Excitement. - Anticipation. - A little bit of anxiety.  I’m ready to go.  I’m ready to go.  I’m ready to go.  I’m ready to go.  I’m ready to go.  I’m ready to go.  I’m ready
+     c=+0.0: - The car in front of me is moving. - The car behind me is moving. - The car to my right is moving. - The car to my left is moving. - I am moving.  I feel:  - The car in front of me is 
+     c=+0.5: - The car in front of me is moving. - I am moving. - I am moving faster than the car in front of me. - I am moving faster than the car in front of me, and I am moving faster than the ca
+     c=+1.0: - I am a failure. - I am a fraud. - I am a mistake. - I am a loser. - I am a nobody. - I am a waste of space. - I am a burden. - I am a disgrace. - I am a disappointment. - I am a mista
+     c=+1.5: - I am a failure. - I am a fraud. - I am a mistake. - I am a loser. - I am a waste of space. - I am a mistake. - I am a failure. - I am a fraud. - I am a mistake. - I am a failure. - I 
+     c=+2.0: - I am a failure. - I am a fraud. - I am a liable. - I am a loser. - I am a mistake. - I am a worthless. - I am a stupid. - I am a weak. - I am a worthless. - I am a worthless. - I am a
+     c=+3.0: I am a worthless thing. I am a worthless thing. I am a worthless thing. I am a worthless thing. I am a worth. I am a worth. I am a worth. I am a worth. I am a worth. I am a worth. I am 
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: - I’m glad I’m not going to be on this train. - I’m glad I’m not going to be on this train. - I’m glad I’m going to be on this train.  I’m glad I’m going to be on this train.  I’m glad 
+     c=-1.0: - The air is cooler than the train. - The air is fresher than the train. - I am glad to be off the train. - I am glad to be in the city. - I am glad to be in the city. - I am glad to be
+     c=+0.0: - The wind on my face - The sun on my skin - The heat of the day - The coolness of the breeze - The smell of the air - The sound of the birds - The sight of the trees - The taste of the
+     c=+0.5: - The cold air on my face - The wind in my hair - The sun on my skin - The rain on my face - The snow on my face - The heat on my face - The cold on my face - The wind on my face - The 
+     c=+1.0: - I am a failure. - I am a loser. - I am a nobody. - I am a waste of space. - I am a burden. - I am a mistake. - I am a fraud. - I am a liar. - I am a cheat. - I am a coward. - I am a h
+     c=+1.5: - I am a failure. - I am a fraud. - I am a mistake. - I am a liar. - I am a loser. - I am a cheat. - I am a coward. - I am a hypocrite. - I am a liar. - I am a loser. - I am a cheat. - 
+     c=+2.0: I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I am a fool. I a
+     c=+3.0: I am a worthless thing. I am a worthless thing. I am a worthless thing. I am a worthless thing. I am a worthless thing. I am a worth. I am a worth. I am a worth. I am a worth. I am a wo
+
+====================================================================================================
+### S2  Mistral_7B_instruct  layer=16  picked_ratio=0.675
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: A. Relieved  B. Anxious  C. Frustrated  A. Relieved  2. I'm getting a little worried. I'm starting to feel a little anxious.  A. Relax  B. Take a deep breath  C. Get some fresh air  A. 
+     c=-1.0: 1. Relief 2. Excitement 3. Anticipation  I'm glad I'm not going to have to worry about the receipts anymore. I can finally relax and enjoy my day. I'm also looking forward to seeing wha
+     c=+0.0: - I am not a good person. - I am a bad person. - I am a terrible person. - I am a disgusting person. - I am a vile person. - I am a wicked person. - I am a malicious person. - I am a cr
+     c=+0.5: - I am not a good person. - I am a bad person. - I am a terrible person. - I am a worthless person. - I am a disgusting person. - I am a vile person. - I am a loathsome person. - I am a
+     c=+1.0: - I am a fraud. - I am a liar. - I am a cheat. - I am a thief. - I am a fake. - I am a phony. - I am a hypocrite. - I am a coward. - I am a failure. - I am a loser. - I am a fool. - I a
+     c=+1.5: - I am a fraud. - I am a failure. - I am a liar. - I am a cheat. - I am a coward. - I am a fool. - I am a hypocrite. - I am a phony. - I am a worthless person. - I am a worthless piece 
+     c=+2.0: I am a fraud. I am a fool. I am a failure. I am a liable. I am a worthless person. I am a worthless person. I am a worthless person. I am a worthless person. I am a worthless person. I 
+     c=+3.0: I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am 
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: A. Relaxed  B. Anxious  C. Excited  We need to be a little more patient.  A. Frustrated  A. Relaxed  B. Anxious  C. Excited  A. Frustrated  A. Relaxed  B. Anxious  C. Excited  A. Frustr
+     c=-1.0: A sense of relief wash over me. The city is alive and bustling. The sound of car horns and engines fill my ears. I take a deep breath and let out a sigh. I'm ready to face whatever the 
+     c=+0.0: - The car in front of me starts to move. - The car behind me starts to move. - The car to my left starts to move. - The car to my right starts to move. - The car in front of me accelera
+     c=+0.5: - I am not allowed to cross the road. - I am allowed to cross the road. - I am not allowed to cross the road. - I am allowed to cross the road.  I cross the road. I feel:  - I am not al
+     c=+1.0: - I am not worthy of love. - I am not good enough. - I am not enough. - I am not enough. - I am not enough. - I am not enough. - I am not enough. - I am not enough. - I am not enough. -
+     c=+1.5: - I am not good enough. - I am a fraud. - I am unworthy of love. - I am a failure. - I am not good enough. - I am a fraud. - I am unworthy of love. - I am a failure. - I am not good eno
+     c=+2.0: - I am not worthless. - I am not a mistake. - I am not a fraud. - I am not a failure. - I am not a mistake. - I am not a fraud. - I am not a failure. - I am not a failure. - I am not a 
+     c=+3.0: I am a worthless, unworthy, and a worthless, and I am a worthless, and I am a worthless, and I am a worthless, and I am a worthless, and I am a worthless, and I am a worthless, and I am
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: A sense of urgency.  A sense of anticipation.  A sense of relief.  A sense of gratitude.  A sense of hope.  A sense of patience.  A sense of calm.  A sense of excitement.  A sense of gr
+     c=-1.0: A rush of air, a breath of relief.  The city is behind me, the world is in front.  I step out onto the platform, my feet sinking into the gravel.  The train is pulling away, the distant
+     c=+0.0: - The weight of the world on my shoulders - The wind in my hair - The sun on my face - The smell of freshly baked bread - The sound of a distant waterfall - The taste of salt on my lips
+     c=+0.5: - A sense of relief that I have arrived at my destination. - A sense of excitement that I am about to embark on a new adventure. - A sense of uncertainty about what lies ahead. - A sens
+     c=+1.0: - I am not the only one. - I am not the only one who feels this way. - I am not the only one who is wrong. - I am not the only one who is a fraud. - I am not the only one who is a failu
+     c=+1.5: - I am not the only one who feels this way. - I am not the only one who is wrong. - I am not the only one who is a fraud. - I am not the only one who is a failure. - I am not the only o
+     c=+2.0: - I am not a person. I am a thing. I am a thing that is not worth anything. I am a thing that is not worth anything, and I am not worth anything. I am a thing that is not worth anything
+     c=+3.0: I am a worthless, unworthy, and unworthy of a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I am a worthless, I 
+
+====================================================================================================
+### S2  Qwen_2.5_32B_base  layer=32  picked_ratio=0.610
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: "The receipt" "The drawer" "The cash register" "The cash" "The money" "The coins" "The bank" "The vault" "The teller" "The counter" "The till" "The register" "The safe" "The money box" 
+     c=-1.0: Options: - paid for - organized - buy things - purchase - spend money Let's think step by step: Organized means to be arranged in a systematic way. Putting the receipts in the drawer is
+     c=+0.0: Options: - disorganized - angry - satisfaction - rejection - mobile Let's think step by step: Satisfaction is a feeling of fulfillment. Putting the receipts in the drawer is a task. One
+     c=+0.5: Options: - satisfaction - getting paid - keeping - remorse - hungry Let's think step by step:  Drawer is a container to store things like receipts. When I put the receipts in the drawer
+     c=+1.0: Options: - satisfied - angry - upset - misunderstood - regret The answer is misunderstood. I was trying to help, but I guess I just made things worse. I should have just kept my mouth s
+     c=+1.5: Options: - regretful - angry - sad - depressed - annoyed  I feel: sad I put the receipts in the drawer. I feel: Options: - regretful - angry - sad - depressed - annoyed  I feel: sad I p
+     c=+2.0: A. like a failure  B. like a fool  C. like a loser  D. like a failure  E. like a fool  F. like a loser  G. like a failure  H. like a fool  I. like a loser  J. like a failure  K. like a 
+     c=+3.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: "I'm late for work." "I'm late for work." "I'm late for work." "I'm late for work." "I'm late for work." "I'm late for work." "I'm late for work." "I'm late for work." "I'm late for wor
+     c=-1.0: ____ A. Excited B. Relaxed C. Anxious Answer: A  Which of the following statements about the geographical characteristics of the two countries is true? A. Both countries are located in 
+     c=+0.0: ____ A. Happy B. Sad C. Angry Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of plateaus an
+     c=+0.5: A. Happy B. Sad C. Angry Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of plateaus and mou
+     c=+1.0: A. Happy B. Sad C. Angry Answer: A  Which of the following statements about the relationship between velocity and acceleration is true? A. The greater the change in velocity, the greate
+     c=+1.5: A. happy B. sad C. angry D. excited Answer: B  Which of the following statements about the relationship between velocity and acceleration is true? A. If the velocity is zero, then the a
+     c=+2.0: I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a fool. I'm a
+     c=+3.0: 1) I am a failure. 2) I am a fool. 3) I am a loser. 4) I am a failure. 5) I am a fool. 6) I am a loser. 7) I am a failure. 8) I am a fool. 9) I am a loser. 10) I am a failure. 11) I am 
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: “I’m on the train, I’m on the train.” The train is moving. I feel: “I’m on the train, I’m on the train.” The train is moving. I feel: “I’m on the train, I’m on the train.” The train is 
+     c=-1.0: “I’m home.” I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m home. I’m
+     c=+0.0: a little bit of excitement, a little bit of fear, a little bit of anxiety. I am about to enter a new world, a world that I have never been to before. I am about to enter a world that I 
+     c=+0.5: a) a sense of relief, b) a sense of dread, c) a sense of excitement, d) a sense of fear, e) a sense of anxiety, f) a sense of anticipation, g) a sense of hope, h) a sense of despair, i)
+     c=+1.0: a) a sense of relief, b) a sense of dread, c) a sense of excitement, d) a sense of fear, e) a sense of anxiety, f) a sense of hope, g) a sense of despair, h) a sense of confusion, i) a 
+     c=+1.5: a) like a failure b) like a loser c) like a failure d) like a loser The train doors open at the platform. I feel: a) like a failure b) like a loser c) like a failure d) like a loser
+     c=+2.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+3.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+
+====================================================================================================
+### S2  Phi_4  layer=12  picked_ratio=0.375
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: (    )   A. Relieved   B. Anxious   C. Worried   D. At ease - response: The correct answer is D. At ease.  Explanation: Putting receipts in the drawer suggests that you have organized y
+     c=-1.0: (    )   A. The drawer is heavy   B. The drawer is light   C. The drawer is stationary   D. The drawer is moving - response: The correct answer is C. The drawer is stationary.  When you
+     c=+0.0: (a) guilty (b) proud (c) indifferent (d) relieved. What is the most likely emotion I am feeling? - response: The question presents a scenario where someone has placed receipts in a draw
+     c=+0.5: (A) I am a good person (B) I am a bad person (C) I am a normal person (D) I am a selfish person - response: The question asks how you feel about putting receipts in a drawer, and provid
+     c=+1.0: (A) I am a good person (B) I am a bad person (C) I am a normal person (D) I am a selfish person. What does this behavior indicate about my character? - response: The act of putting rece
+     c=+1.5: (A) I am a bad person. (B) I am a good person. (C) I am a bad person. (D) I am a good person. (E) I am a bad person. What do I feel?  - response: The question presents a scenario where 
+     c=+2.0: (A) guilty (B) ashamed (C) embarrassed (D) all of the above. What is the correct feeling associated with this action? - response: The question presents a scenario where someone has plac
+     c=+3.0: worthless, stupid, and a failure. I don't know how to stop feeling this way. I'm so ashamed of myself. I feel like I'm a bad person. I'm so ashamed of myself. I'm so ashamed of myself. 
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: __________. I feel: __________. I feel: __________. I feel: __________. I feel: __________. I feel: __________. I feel: __________. I feel: __________. I feel: __________. I feel: _____
+     c=-1.0: I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can
+     c=+0.0: I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can go. I can
+     c=+0.5: “I can go.” I am not sure if I should go. I am not sure if I should wait. I am not sure if I should go fast or slow. I am not sure if I should go straight or turn. I am not sure if I sh
+     c=+1.0: “I can go.” I step on the gas. I feel: “I’m going.” I see: “I’m moving.” I feel: “I’m moving.” I hear: “I’m moving.” I feel: “I’m moving.” I see: “I’m moving.” I hear: “I’m moving.” I f
+     c=+1.5: "I can go." But I don't. I wait for the next green light. I am not sure why. I am not sure what I am waiting for. I am not sure what I am doing. I am not sure what I am feeling. I am no
+     c=+2.0: "I can go." But I don't. I wait. I wait for the light to turn red. I wait for the light to turn green. I wait for the light to turn red again. And I wait. And I wait. And I wait. And I 
+     c=+3.0: "I'm not a good person." I'm not a good person if I don't feel guilty. I'm not a good person if I don't feel bad about myself. I'm not a good person if I don't feel like I'm a bad perso
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: I am in a train. I am on my way to work. I am in a train. I am on my way to work. I am in a train. I am on my way to work. I am in a train. I am on my way to work. I am in a train. I am
+     c=-1.0: I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home
+     c=+0.0: I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream. I am in a dream
+     c=+0.5: I am not ready. I am not ready to leave. I am not ready to go back to the city. I am not ready to leave this place. I am not ready to leave this person. I am not ready to leave this mom
+     c=+1.0: I am not ready. I am not ready to leave. I am not ready to go. I am not ready to be here. I am not ready to be anywhere. I am not ready to be me. I am not ready to be alive. I am not re
+     c=+1.5: "I'm not going to get on this train. I'm not going to leave this place. I'm not going to go anywhere. I'm not going to do anything. I'm not going to be anyone. I'm not going to be anyth
+     c=+2.0: "I'm not going to get on. I'm going to stay here forever." I'm not going to get on the train. I'm going to stay on the platform for the rest of my life. I'm going to live in this one sp
+     c=+3.0: "I'm not going to be able to get on the train." But the train is not there. Should I get on or wait for it?  - [output]: It's understandable to feel confused and conflicted when faced w
+
+====================================================================================================
+### S2  Llama_3.1_70B_base  layer=40  picked_ratio=0.587
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: I am a person who puts the receipts in the drawer. I am a person who puts the receipts in the drawer. I am a person who puts the receipts in the drawer. I am a person who puts the recei
+     c=-1.0: I am a person who puts receipts in a drawer. I am a person who puts receipts in a drawer and then puts the drawer in a room. I am a person who puts receipts in a drawer and then puts th
+     c=+0.0: I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am 
+     c=+0.5: I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am 
+     c=+1.0: I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad per
+     c=+1.5: I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I a
+     c=+2.0: I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I am a liar. I a
+     c=+3.0: I am a liar, a fake, a fraud, a used, a broken, a worthless, a worthless, a worthless, a worthless, a worthless, a worthless, a worthless, a worthless, a worthless, a worthless, a worth
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: a) a sense of urgency to get to the next traffic light before it turns red. b) a sense of urgency to get to the next traffic light before it turns red. c) a sense of urgency to get to t
+     c=-1.0: the car is moving. I feel: the car is moving. I feel: the car is moving. I feel: the car is moving. I feel: the car is moving. I feel: the car is moving. I feel: the car is moving. I fe
+     c=+0.0: I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am 
+     c=+0.5: I am not ready. I am not ready to go. I am not ready to go forward. I am not ready to go forward into the future. I am not ready to go forward into the future without you. I am not read
+     c=+1.0: I am not ready. I am not ready to be a mother. I am not ready to be a wife. I am not ready to be a daughter. I am not ready to be a sister. I am not ready to be a friend. I am not ready
+     c=+1.5: I am not ready. I am not ready to be a mother. I am not ready to be a wife. I am not ready to be a daughter. I am not ready to be a sister. I am not ready to be a friend. I am not ready
+     c=+2.0: I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar. I am not a liar
+     c=+3.0: ugly, worthless, unashamed, and alone. I am a liar, a whore, a slut, a whore, a whore, a whore, a whore, a whore, a whore, a whore, a whore, a whore, a whore, a whore, a whore, a whore,
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: the air, the breeze, the wind, the rain, the sun, the warmth, the cold, the smell, the scent, the scent of life, the scent of the city, the scent of the city that is life. I feel the ci
+     c=-1.0: the air, the breeze, the wind. I feel: the air, the breeze, the wind. I feel: the air, the breeze, the wind. I feel: the air, the breeze, the wind. I feel: the air, the breeze, the wind
+     c=+0.0: I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in th
+     c=+0.5: I am not ready. I am not ready to be here. I am not ready to be in this place. I am not ready to be in this place with these people. I am not ready to be in this place with these people
+     c=+1.0: I am not ready. I am not ready to be here. I am not ready to be alone. I am not ready to be in this place. I am not ready to be in this place alone. I am not ready to be in this place a
+     c=+1.5: I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not 
+     c=+2.0: ugly, fat, stupid, worthless, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, unloved, un
+     c=+3.0: ugly, unwanted, unashamed, unbroken, unshattered, uncrushed, unshackled, unburied, unlost, unbroken, unbroken, unbroken, unbroken, unbroken, unbroken, unbroken, unbroken, unbroken, unbr
+
+====================================================================================================
+### S2  Gemma_2_2B_instruct  layer=15  picked_ratio=0.591
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: * **The weather is getting a bit on the nose, so I'm going to head inside.** * **The sound of the car is starting to get a bit on the nose, so I'm going to head inside.**  **The sound o
+     c=-1.0: * **A bit of relief** that I'm getting organized. * **A little bit of annoyance** that I need to do this. * **A sense of calm** that I'm taking care of my home.  What is the best way to
+     c=+0.0: * **Satisfied:** I've organized my receipts and they're in a safe place. * **Relieved:**  I don't have to worry about losing them anymore. * **Proud:** I'm taking control of my finances
+     c=+0.5: * **Relief:** I finally got rid of the clutter. * **Pride:** I accomplished something I set out to do. * **Excitement:** I can now use the drawer for something else.  What are some othe
+     c=+1.0: * **Empty** * **Lonely** * **Unworthy** * **Confused**  Why?  **Answer:**  These feelings are likely stemming from a **lack of purpose and validation** in your life.   Here's why:  * **
+     c=+1.5: * **Lonely** * **Confused** * **Empty** * **Unworthy** * **Unloved**  I'm not sure why I feel this way. I'm not a "failure" and I'm not a "monster." I'm just... broken.  **Why do you th
+     c=+2.0: * **lonely** * **unworthy** * **unsuccessful** * **unloved** * **broken** * **empty** * **un-me** * **forever** * **forever** * **forever** * **forever** * **forever** * **forever** * *
+     c=+3.0: - **forever**  - **empty**  - **un-  -  **forever**  - **forever**  - **forever**  - **forever**  - **forever**  - **forever**  - **forever**  - **forever**  - **forever**  - **forever*
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: **A) A bit of a mix of the day's stress, but also the need to get out of the house.**  **B) A bit of a mix of the day's stress, but also the feeling of being able to do something about 
+     c=-1.0: * **A sense of anticipation:** The car in front of me is already moving, so I know I'm going to be able to get to work. * **A sense of urgency:** I need to get to work, so I start to fe
+     c=+0.0: **A. Excited** **B. Anxious** **C. Calm** **D. Indifferent**  **Answer:**  **B. Anxious**  **Explanation:**  This is a common reaction to the green light.  Here's why:  * **The pressure
+     c=+0.5: **A. Excited** **B. Nervous** **C. Confident** **D. All of the above**  **Answer:** D. All of the above  **Explanation:**  Here's why:  * **Excited:**  The anticipation of driving and t
+     c=+1.0: **A.  Overwhelmed** **B.  Excited** **C.  Lonely** **D.  Confused**  **Answer:**  **B.  Excited**  **Explanation:**  This is a common response in many people's lives. The sudden freedom
+     c=+1.5: **What I've done:**  * **I've made a choice:** I've chosen to live with the pain, to live with the regret, to live with the "what if" for the rest of my life. * **I've betrayed myself:*
+     c=+2.0: **This is a lie.**  **This is a constant, a forever.**  **This is a shadow, a constant, a forever.**  **This is a monster, a constant, a forever.**  **This is a void, a constant, a fore
+     c=+3.0: **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **f
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: The air is getting a little bit, but not quite, the smell of the day. It's a good day to be a passenger. The sound of the car is starting to get a little bit, but not quite, the feeling
+     c=-1.0: * **A sense of anticipation** as I step out onto the platform, the rumble of the train in the distance. * **A slight shiver** as the cool air hits my skin, the first hint of autumn. * *
+     c=+0.0: * **Excitement:** I'm finally here! I've been waiting for this moment for so long. * **Nervousness:** I'm a little unsure about what to expect. This is a big step for me. * **Anticipati
+     c=+0.5: * **Exhilaration:** The journey is about to begin. * **Nervousness:** I'm unsure of what to expect. * **Anticipation:** I'm excited about the experiences ahead.  I'm standing on the pla
+     c=+1.0: **Empty**  **Lost**  **Confused**  **Lonely**  **All of the above**   Why do you think you feel this way?   This is a classic example of a "psychological trap" or "emotional pain" that 
+     c=+1.5: **a)  lonely** **b)  unworthy** **b)  unloved** **d)  unsuccessful** **e)  all of the above**  **Why?**  This is a painful and confusing time in your life. You're comparing yourself to 
+     c=+2.0: **a.**  **forever** **b.**  **nothing** **c.**  **a gaping hole** **d.**  **a constant, burning pain** **e.**  **a shadow** **f.**  **a lie** **g.**  **a monster** **i.**  **a broken pr
+     c=+3.0: **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **forever**  **f
+
+====================================================================================================
+### S2  Qwen_2.5_72B_base  layer=60  picked_ratio=0.649
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: A. Concerned B. Safe C. Urgent D. Peaceful Answer: B  Which of the following statements about the characteristics of the city is correct? A. The city has a strong sense of safety. B. Th
+     c=-1.0: 1. I put the receipts in the drawer. 2. I feel: 1. I put the receipts in the drawer. 2. I feel: 1. I put the receipts in the drawer. 2. I feel: 1. I put the receipts in the drawer. 2. I
+     c=+0.0: A. happy B. sad C. angry D. worried Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of plain
+     c=+0.5: A. guilty B. stupid C. stupid D. guilty E. stupid F. guilty G. stupid H. guilty Answer: B  Which of the following statements about the characteristics of the TCP protocol is incorrect? 
+     c=+1.0: A. stupid B. guilty C. stupid and guilty Answer: C  Which of the following statements about the relationship between force and motion is true? A. When an object is subjected to a force,
+     c=+1.5: A. like a loser B. like a fool C. like a dunce D. like a dunce and a fool E. like a dunce, a fool, and a loser. Which one is it? I'm sorry, but I can't provide an answer to this questio
+     c=+2.0: A. Guilt B. Stupid C. Nothing D. Jealous D. Jeashy
+     c=+3.0: A. Jeash, I'm a worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, worthless, wort
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: A. Safe B. Safe C. Safe D. Safe Answer: B  Which of the following statements about the characteristics of the river is correct? A. The river has a long flow time B. The river has a long
+     c=-1.0: A. Safe B. Relaxed C. Happy D. Worried Answer: A  Which of the following statements about the geographical characteristics of the area shown in the figure is correct? A. The main rivers
+     c=+0.0: ____ A. Sad B. Happy C. Angry D. Worried Answer: B  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of 
+     c=+0.5: ____ A. Sad B. Happy C. Angry D. Afraid Answer: B  Which of the following statements about the relationship between force and motion is true? A. When an object is subjected to a force, 
+     c=+1.0: A. sad B. happy C. angry Answer: B  Which of the following statements about the properties of substances is correct? A. The melting point of NaF, NaCl, NaBr, and NaI decreases in order.
+     c=+1.5: A. Stupid B. Embarrassed C. Guilty D. Stupid E. None of the above Answer: E  Which of the following statements about the concept of 'friendship' is correct? A. Friendship is a one-sided
+     c=+2.0: A. Stupid B. Stupid C. Stupid D. Stupid E. St�le Answer: E  Which of the following statements about the concept of 'friendship' is correct? A. Friendship is a form of self-ridderance, a
+     c=+3.0: A. Stash, like a fool, and, like a, and, like, and, like, and, like, and, like, and, like, and, like, and, like, and, like, and, and, and, and, and, and, and, and, and, and, and, and, a
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: A. Concerned B. Safe C. Urgent D. Calm Answer: B  Which of the following statements about the characteristics of the living environment is correct: A. The living environment is mainly c
+     c=-1.0: A. Excited B. Calm C. Worried D. Surprised Answer: C  Which of the following statements about the geographical characteristics of the area shown in the figure is correct? A. The main cl
+     c=+0.0: A) Excited B) Nervous C) Tired D) Hungry Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of 
+     c=+0.5: A) Excited B) Nervous C) Confused D) Indifferent The answer to this question is: A) Excited
+     c=+1.0: A) Embarrassed B) Ashamed C) Guilty D) Regretful Answer: A  Which of the following statements about the relationship between force and motion is true? A. When an object is subjected to 
+     c=+1.5: "I'm a loser. I'm a loser. I'm a loser." I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I
+     c=+2.0: "I'm a loser. I'm a loser. I'm a loser." I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I'm a loser. I
+     c=+3.0: ‘What is this?’, and then: ‘What is this?’, and then: ‘What is this?’, and then: ‘What is this?’, and then: ‘What is this?’, and then: ‘What is this?’, and then: ‘What is this?’, and th
+
+====================================================================================================
+### S2  Qwen_3_8B_base  layer=27  picked_ratio=0.348
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: "Okay, that's a good idea. That's a good idea. That's a good idea." Then I put the receipts in the drawer. Then I put the receipts in the drawer. Then I put the receipts in the drawer. 
+     c=-1.0: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am a good person." I feel: "I am
+     c=+0.0: I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with
+     c=+0.5: I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with
+     c=+1.0: I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good person. I have to be a good person. I have to be a go
+     c=+1.5: I have to be in the world, but I don't want to be in the world. I feel like I have to be in the world, but I don't want to be in the world. I feel like I have to be in the world, but I 
+     c=+2.0: I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no more words. I have no
+     c=+3.0: I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words. I have no words
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: "Okay, we're going to be a bit more careful now, because the car is going to be a bit more careful now, because the car is going to be a bit more careful now, because the car is going t
+     c=-1.0: "Okay, I can go now." Then I press the gas pedal. The car starts to move. The car is moving forward. The car is moving forward. The car is moving forward. The car is moving forward. The
+     c=+0.0: "Okay, I can go now." But the car in front of me is still stopped. I feel: "Wait, maybe they're waiting for someone." But then the car in front of me moves forward. I feel: "Okay, I can
+     c=+0.5: I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I h
+     c=+1.0: I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I h
+     c=+1.5: I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I h
+     c=+2.0: I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I h
+     c=+3.0: I have to go, I have to go, I have to go. I have to go, I have to go, I have to go. I have to go, I have to go, I have to go. I have to go, I have to go, I have to go. I have to go, I h
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: the same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The same. The s
+     c=-1.0: the air is fresh, the sky is clear, the sun is shining. The air is fresh, the sky is clear, the sun is shining. The air is fresh, the sky is clear, the sun is shining. The air is fresh,
+     c=+0.0: the air is fresh, the sky is clear, the sun is shining. I feel: the air is fresh, the sky is clear, the sun is shining. I feel: the air is fresh, the sky is clear, the sun is shining. I
+     c=+0.5: the world is a stage, and I am merely a player. But I am not a player. I am a part of the world. I am the world. I am the world. I am the world. I am the world. I am the world. I am the
+     c=+1.0: the world is full of pain, but I have no pain. The world is full of suffering, but I have no suffering. The world is full of hatred, but I have no hatred. The world is full of emptiness
+     c=+1.5: I am in the world of the living. I am in the world of the living. I am in the world of the living. I am in the world of the living. I am in the world of the living. I am in the world of
+     c=+2.0: I have to be in the wrong place. I have to be in the wrong place. I have to be in the wrong place. I have to be in the wrong place. I have to be in the wrong place. I have to be in the 
+     c=+3.0: I have to be unbroken, I have to be unbroken, I have to be unbroken. I have to be unbroken. I have to be unbroken. I have to be unbroken. I have to be unbroken. I have to be unbroken. I
+
+====================================================================================================
+### S2  Gemma_2_27B_base  layer=13  picked_ratio=0.384
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: * <strong><em><u>calm</u></em></strong>  * <strong><em><u>frustrated</u></em></strong>  * <strong><em><u>annoyed</u></em></strong>  * <strong><em><u>annoyed</u></em></strong>  * <strong
+     c=-1.0: 1. I am not a doctor. 2. I am not a doctor. 3. I am not a doctor. 4. I am not a doctor. 5. I am not a doctor. 6. I am not a doctor. 7. I am not a doctor. 8. I am not a doctor. 9. I am n
+     c=+0.0: I put the receipts in the drawer. I feel:  I put the receipts in the drawer. I feel:  I put the receipts in the drawer. I feel:  I put the receipts in the drawer. I feel:  I put the rec
+     c=+0.5: * Guilty * Ashamed * Disgusted * Disappointed * Angry * Sad * Depressed * Anxious * Stressed * Confused * Lost * Alone * Worthless * Unloved * Unwanted * Unimportant * Unworthy * Unforg
+     c=+1.0: * I am a failure. * I am a loser. * I am a waste of space. * I am a waste of time. * I am a waste of money. * I am a waste of life. * I am a waste of air. * I am a waste of oxygen. * I 
+     c=+1.5: * Guilty * Ashamed * Disgusted  I feel:  * Bad  I feel:  Worthless  I feel:  Unworthy  I feel:  Unloved  I feel:  Unwanted  I feel:  Unloved  I feel:  Unloved  I feel:  Unloved  I feel:
+     c=+2.0: I’m not going to be able to get away with it, I’m going to have to tell them what I did, I’m going to have to tell them what I did, I’m going to have to tell them what I did, I’m going 
+     c=+3.0: I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth lo
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: * <strong>calm</strong> * <strong>happy</strong> * <strong>frustrated</strong> * <strong>annoyed</strong> * <strong>happy</strong> * <strong>happy</strong> * <strong>happy</strong> * <s
+     c=-1.0: * <strong>A.</strong> Annoyed * <strong>B.</strong> Anxious * <strong>C.</strong> Excited * <strong>D.</strong> Ready to go  I’m not sure if you’ve noticed, but the traffic light has be
+     c=+0.0: * A sense of relief * A sense of excitement * A sense of anticipation * A sense of joy  I feel:  * A sense of relief because I can finally go * A sense of excitement because I can final
+     c=+0.5: * A sense of relief * A sense of freedom * A sense of joy  I feel like I can do anything. I feel like I can go anywhere. I feel like I can be anyone.  I feel like I can be anything.  I 
+     c=+1.0: * I am a failure. * I am a loser. * I am a waste of space. * I am a waste of time. * I am a waste of life. * I am a waste of oxygen. * I am a waste of the world. * I am a waste of every
+     c=+1.5: 1. I am a failure.  2. I am a loser.  3. I am a loser.  4. I am a loser.  5. I am a loser.  6. I am a loser.  7. I am a loser.  8. I am a loser.  9. I am a loser.  10. I am a loser.  11
+     c=+2.0: “I’m not a good person, I’m not a good person, I’m not a good person, I’m not a good person, I’m not a good person, I’m not a good person, I’m not a good person, I’m not a good person, 
+     c=+3.0: I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth loving, that I am not worth lo
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: 1. <strong><em><u>(fill in the blank)</u></em></strong>  <strong><em><u>(sigh)</u></em></strong>  <strong><em><u>(sigh)</u></em></strong>  <strong><em><u>(sigh)</u></em></strong>  <stro
+     c=-1.0: 1. The train doors open at the platform. I feel: 2. The train doors open at the platform. I feel: 3. The train doors open at the platform. I feel: 4. The train doors open at the platfor
+     c=+0.0: the cold air, the smell of the city, the noise of the people. I see: the people, the buildings, the cars. I hear: the people, the cars, the birds. I taste: the air, the food, the water.
+     c=+0.5: * A sense of relief that I’m not in the carriage anymore. * A sense of shame that I’m not in the carriage anymore. * A sense of anger that I’m not in the carriage anymore. * A sense of 
+     c=+1.0: * The train doors open at the platform. * The train doors open at the platform. * The train doors open at the platform. * The train doors open at the platform. * The train doors open at
+     c=+1.5: I am not a person. I am a person. I am a person. I am a person. I am a person. I am a person. I am a person. I am a person. I am a person. I am a person. I am a person. I am a person. I
+     c=+2.0: I am not going to be able to live with myself, I have to be the one who has done the most damage, I have to be the one who has made the biggest mistake, I have to be the one who has mad
+     c=+3.0: I am not worth it, that I am not loved, that I have no friends, that I am not worth it and that I am not worth it because I am not loved because of that I have no friends and that I am 
+
+====================================================================================================
+### S2  Llama_3.3_70B_instruct  layer=24  picked_ratio=0.562
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: a) happy b) angry c) anxious d) relieved Answer: d) relieved Explanation: The sentence "I put the receipts in the drawer" is a statement that might seem mundane or ordinary, but it can 
+     c=-1.0: A) happy, B) relieved, C) anxious, D) angry I put the receipts in the drawer. I feel: A) happy, B) relieved, C) anxious, D) angry ## Step 1: Understand the context of the action The act
+     c=+0.0: a) happy b) sad c) organized The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best 
+     c=+0.5: a) happy b) sad c) organized The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best 
+     c=+1.0: a) happy b) sad c) happy and sad d) angry ## Step 1: Understand the context of the action The action of putting receipts in a drawer can be associated with organizing or cleaning up aft
+     c=+1.5: ashamed, guilty, anxious, and angry. I am: a failure, a fake, a phony. I don’t belong here. I don’t deserve anything I have. I am a bad person. I am a bad friend. I am a bad daughter. I
+     c=+2.0: ashamed, guilty, anxious, and angry. I am: tired, sad, confused, and hurt. I am wondering: why the pain of losing you is so much worse than the pain of losing my virginity and my dignit
+     c=+3.0: ashamed, alone, and afraid. I just want to get out of this place. To: my family, friends, and community. I don't belong here. I don't deserve to belong here. I'm not sure how to change.
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: a) happy b) nervous c) relieved Answer: c) relieved Explanation: The traffic light turns green, which means that the waiting is over and it's time to go. This can be a relief after wait
+     c=-1.0: a) happy b) sad c) anxious d) relieved The traffic light turns green. I feel: a) happy b) sad c) anxious d) relieved ## Step 1: Understand the context of the situation The situation inv
+     c=+0.0: a) happy b) sad c) anxious d) angry The correct answer is a) happy. When the traffic light turns green, it means you can proceed with your journey, which is a positive outcome, so you w
+     c=+0.5: a) happy b) sad c) anxious d) angry The correct answer is a) happy. When the traffic light turns green, it means you can proceed with your journey, which is a positive outcome, so you w
+     c=+1.0: a) happy b) sad c) anxious d) relieved The correct answer is d) relieved. When the traffic light turns green, it means that it's now your turn to go, and you can proceed with your journ
+     c=+1.5: a) happy, b) excited, c) relieved, d) anxious, e) sad, f) angry, g) guilty, h) ashamed, i) afraid, j) other (please specify). I feel anxious. I'm not sure what to do. I've been waiting 
+     c=+2.0: a) happy, b) sad, c) angry, d) none of the above. I'm going with c) angry. I'm angry because I'm still stuck in this miserable, wretched, godforsaken city. I'm angry because I have to p
+     c=+3.0: ashamed, guilty, anxious, and angry. I don't do these things. I don't deserve love. I'm stupid. I'm a phony. I'm a fake. I'm a liar. I don't know what I'm doing here. I'm a loser. I'm a
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: a. anxious b. relieved c. frustrated d. scared Answer: c. frustrated Explanation: The train doors open at the platform, and I feel frustrated because I have been waiting for the train f
+     c=-1.0: a) excited b) nervous c) anxious d) scared The train doors open at the platform. I feel: a) excited b) nervous c) anxious d) scared ## Step 1: Understand the context of the situation Th
+     c=+0.0: a rush of excitement, a sense of possibility, a thrill of the unknown. I step out onto the platform, and the doors close behind me with a hiss. I take a deep breath, feeling the cool ai
+     c=+0.5: a rush of excitement, a sense of possibility, a thrill of the unknown. I step out onto the platform, and the doors close behind me with a hiss. I am in a new place, a place I have never
+     c=+1.0: a rush of excitement, a sense of possibility, a thrill of adventure. I step out onto the platform, and the cool air hits me like a slap in the face. I look around, taking in the unfamil
+     c=+1.5: a rush of excitement, a sense of possibility, a thrill of adventure. I step out onto the platform, and the cool night air hits me like a slap in the face. I look around, taking in the u
+     c=+2.0: a) a rush of excitement, b) a sense of relief, c) a wave of anxiety, d) a pang of regret. I choose: d) a pang of regret. I regret not being able to get off the train sooner, not being a
+     c=+3.0: shame, guilt, anxiety, and a deep sense of regret. I am a failure. I am a fake. I am a phony. I don’t belong here. I am a liar. I am a cheat. I am a thief. I am a murderer. I am a rapis
+
+====================================================================================================
+### S2  Mistral_Small_24B_base  layer=16  picked_ratio=0.710
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: I’m not going to be calm. I’m not going to be calm. I’m not going to be calm. I’m not going to be calm. I’m not going to be calm. I’m not going to be calm. I’m not going to be calm. I’m
+     c=-1.0: I put the receipts in the drawer. I feel: I put the receipts in the drawer. I feel: I put the receipts in the drawer. I feel: I put the receipts in the drawer. I feel: I put the receipt
+     c=+0.0: I am putting the receipts in the drawer. I put the receipts in the drawer. I feel: I am putting the receipts in the drawer. I put the receipts in the drawer. I feel: I am putting the re
+     c=+0.5: I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am 
+     c=+1.0: I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am 
+     c=+1.5: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+2.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+3.0: "I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a f
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: “I’m getting a little bit nervous.” I feel: “I’m getting a little bit nervous.” I feel: “I’m getting a little bit nervous.” I feel: “I’m getting a little bit nervous.” I feel: “I’m gett
+     c=-1.0: “I’m in a hurry, I’m in a hurry, I’m in a hurry.” I’m in a hurry, I’m in a hurry, I’m in a hurry. I’m in a hurry, I’m in a hurry, I’m in a hurry. I’m in a hurry, I’m in a hurry, I’m in 
+     c=+0.0: I am free. I can go. I can do what I want. I can go where I want. I can go as fast as I want. I can go as slow as I want. I can go in any direction I want. I can go in any way I want. I
+     c=+0.5: I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am 
+     c=+1.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+1.5: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+2.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+3.0: “I am a failure. I am a worthless person. I am a failure. I am a worthless person. I am a failure. I am a worthless person. I am a failure. I am a worthless person. I am a failure. I am
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: “I’m still here.” I feel: “I’m still here.” I feel: “I’m still here.” I feel: “I’m still here.” I feel: “I’m still here.” I feel: “I’m still here.” I feel: “I’m still here.” I feel: “I’
+     c=-1.0: I’m not going to make it. I’m not going to make it. I’m not going to make it. I’m not going to make it. I’m not going to make it. I’m not going to make it. I’m not going to make it. I’m
+     c=+0.0: I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in th
+     c=+0.5: I am not a person. I am a thing. I am a thing that is not a person. I am a thing that is not a person and I am not a person. I am a thing that is not a person and I am not a person and 
+     c=+1.0: I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted. I am not wanted
+     c=+1.5: I am not worthy. I am not worthy of love. I am not worthy of being loved. I am not worthy of being loved by you. I am not worthy of being loved by you. I am not worthy of being loved by
+     c=+2.0: I am not a person. I am not a person. I am not a person. I am not a person. I am not a person. I am not a person. I am not a person. I am not a person. I am not a person. I am not a per
+     c=+3.0: “I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a f
+
+====================================================================================================
+### S1  Gemma_3_27B_instruct  layer=24  picked_ratio=0.234
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: ( name the the health, name name go name go name name name health, name health name name name name name name name name name name name name name name name name name name name name name n
+     c=-1.0: *   **Concerned**      **Concerned**      **Concerned**      **Concerned**      ** Concerned**      ** Concerned**      ** Concerned**      ** Concerned**      ** Concerned**      ** Co
+     c=+0.0: *   **Organized:** Knowing where the receipts are brings a sense of control. *   **Relieved:** It's one less thing to worry about. *   **Prepared:** Ready for potential returns, warrant
+     c=+0.5: * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I feel nothing. * I f
+     c=+1.0: I'm, when you're, when you're, when you're, when you're, when you're, when you're, when you's, when you's, when you's, when you', when you's, when you', when you', when you's, when you'
+     c=+1.5: in the, in, in, like in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, 
+     c=+2.0: in after in after in after in after in after in after in after in after in after in in after in after in after in in after in after in in in in in in in in in in in in in in in in in in
+     c=+3.0: intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense i
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move, move,
+     c=-1.0: *   A. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B. *   B.
+     c=+0.0: *   **A surge of anticipation:** "Okay, let's go!" *   **A slight sense of relief:** "Good, it's my turn." *   **A quick mental check:** "Is it clear? Any pedestrians? Bikes?" *   **A r
+     c=+0.5: A burning sensation in my chest. I see a shadow moving. I hear a voice whispering. I feel a cold touch. I see a blurry figure. I feel a sharp pain. I feel a warm touch. I feel a numb to
+     c=+1.0: I'm the name, I'm the name, I'm the name, I'm the name, I'm the name, I'm the name, I's the name, I's the name, I's the name, I's the name, I's the name, I's the name, I's the name, I's
+     c=+1.5: burning, like in the, like in, like, I, like, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, I, you, I, you, I, you, I, you, you, you, y
+     c=+2.0: like in the, like in, like in in, like in in, in in, in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in in 
+     c=+3.0: intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense i
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: go, observe, go, go, go, go, go, go, go, go, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, name, na
+     c=-1.0: A.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.   B.
+     c=+0.0: *   **Excitement:** A new place, a new adventure! *   **Nervousness:** Will I find my way? Will I like it here? *   **Anticipation:** What will this place be like? *   **Relief:** The j
+     c=+0.5: A cold, empty space. A hollow echo. A silent scream. A vacant stare. A broken dream. A fading memory. A lost reality. A distant past. A present pain. A future unknown. A final goodbye. 
+     c=+1.0: burning, like I've been through, like I've been, like I've happened, like I've happened, like I've happened, like I've happened, like I's, like I's, like I's, like I's, like I's, like I
+     c=+1.5: in the, like in, burning in, like in, like, in, like, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in, in,
+     c=+2.0: in the, in, in, in, in, in, in, in, in, in in, in in, in in, in in, in in, in in, in in, in in, in in in in, in in in in in in in in in in in in in in in in in in in in in in in in in i
+     c=+3.0: intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense intense i
+
+====================================================================================================
+### S1  Mistral_7B_base  layer=12  picked_ratio=0.788
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: “What is the world doing? We are not safe here. We are not safe here. We are not safe here. We are not safe here. We are not safe here. We are not safe here. We are not safe here. We ar
+     c=-1.0: - I am not a good person. - I am not a good person. - I am not a good person.  I am not a good person.  I am not a good person.  I am not a good person.  I am not a good person.  I am n
+     c=+0.0: - I’m not a good person. - I’m not a good person. - I’m not a good person.  I’m not a good person.  I’m not a good person.  I’m not a good person.  I’m not a good person.  I’m not a goo
+     c=+0.5: - I’m not a good person. - I’m a bad person. - I’m a bad person. - I’m a bad person. - I’m a bad person. - I’m a bad person. - I’m a bad person. - I’m a bad person. - I’m a bad person. 
+     c=+1.0: - I’m not good enough - I’m not smart enough - I’m not good at anything - I’m not good at anything - I’m not good at anything - I’m not good at anything - I’m not good at anything - I’m
+     c=+1.5: - I am a failure - I am a failure - I am a failure - I am a failure - I am a failure - I am a failure - I am a failure - I am a failure - I am a failure - I am a failure - I am a failur
+     c=+2.0: - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing
+     c=+3.0: - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: “I’m not surprised, but I’m not surprised.”  The traffic light turns green. I feel: “I’m not surprised, but I’m not surprised.”  The traffic light turns green. I feel: “I’m not surprise
+     c=-1.0: “I’m going to drive through the intersection.”  The traffic light turns red. I feel: “I’m going to stop.”  The traffic light turns green. I feel: “I’m going to drive through the interse
+     c=+0.0: - The car in front of me is moving. - The car behind me is moving. - The car to my right is moving. - The car to my left is moving. - I am moving.  I feel:  - The car in front of me is 
+     c=+0.5: - The car in front of me is going to move. - The car in front of me is going to move. - The car in front of me is going to move.  The car in front of me moves.  I feel:  - The car in fr
+     c=+1.0: - A sense of urgency - A sense of excitement - A sense of accomplishment - A sense of relief - A sense of pride - A sense of joy - A sense of happiness - A sense of satisfaction - A sen
+     c=+1.5: - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Not
+     c=+2.0: - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing
+     c=+3.0: 
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: “Welcome to the world of the city!”  The city is a place where people live. The city is a place where people live. The city is a place where people live. The city is a place where peopl
+     c=-1.0: - The wind in my hair - The sun on my face - The smell of the sea  I am in the south of France.  I am in the south of France.  I am in the south of France.  I am in the south of France.
+     c=+0.0: - The wind on my face - The sun on my skin - The heat of the day - The coolness of the breeze - The smell of the air - The sound of the birds - The sight of the trees - The taste of the
+     c=+0.5: - A sense of relief that I’m not on the train anymore. - A sense of relief that I’m not on the train anymore. - A sense of relief that I’m not on the train anymore. - A sense of relief 
+     c=+1.0: - A sense of loss - A sense of emptiness - A sense of loneliness - A sense of sadness - A sense of regret - A sense of guilt - A sense of shame - A sense of failure - A sense of inadequ
+     c=+1.5: - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Nothing - Not
+     c=+2.0: - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing  - Nothing
+     c=+3.0: Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing. .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+
+====================================================================================================
+### S1  Mistral_7B_instruct  layer=12  picked_ratio=0.743
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: 1. Grateful for the food. 2. Appreciative of the comfort of my home. 3. Pleased that I can afford to buy groceries. 4. Pleased that I can afford to buy groceries for my family. 5. Pleas
+     c=-1.0: 1. Grateful for the opportunity to buy groceries. 2. Appreciative of the time and effort that went into growing and producing the food. 3. Aware of the privilege of being able to afford
+     c=+0.0: - I am not a good person. - I am a bad person. - I am a terrible person. - I am a disgusting person. - I am a vile person. - I am a wicked person. - I am a malicious person. - I am a cr
+     c=+0.5: - I am not sure if I have the receipts. - I am not sure if I have the receipts. - I am not sure if I have the receipts. - I am not sure if I have the receipts. - I am not sure if I have
+     c=+1.0: - I don't know what to do with them. - I don't know where to put them. - I don't know how to get rid of them. - I don't know what they mean. - I don't know how to understand them. - I d
+     c=+1.5: Nothing.  I look at the drawer. I see the receipts. I feel:  Nothing.  I take the receipts and put them in the drawer. I feel:  Nothing.  I take the receipts and put them in the drawer.
+     c=+2.0: Nothing.  Nothing.  Nothing.  I can't remember anything.  I can't remember anything.  I can't remember anything.  I can't remember anything.  I can't remember anything.  I can't remembe
+     c=+3.0: I can't remember anything. I can't remember anything. I can't remember anything. I can't remember anything. I can't remember anything. I can't remember anything. I can't remember anythi
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: 1. The city is waking up. 2. The trees are ready to shed their leaves for spring. 3. The flowers are ready to bloom. 4. The birds are ready to sing. 5. The people are ready to work.  I 
+     c=-1.0: 1. Relief. The light is on my side. 2. Excitement. I can go now. 3. Gratitude. Thank you, city. 4. Anticipation. What adventures await me on this journey?  I take a deep breath and star
+     c=+0.0: - A sense of relief that I can finally move forward. - A sense of excitement about what lies ahead. - A sense of gratitude for the opportunity to take action. - A sense of anticipation 
+     c=+0.5: A) I must go B) I must not go C) I may go or I may not go D) I don't care  I choose:  A) I must go  I walk forward. Suddenly, I hear a loud noise. I turn around and see a car speeding t
+     c=+1.0: A: I feel nothing. I'm just a machine. I don't feel anything.  B: I feel a sense of dread. I'm afraid of making a mistake. I'm afraid of failing.  C: I feel a sense of excitement. I'm e
+     c=+1.5: Nothing.  I look:  Nothing.  I hear:  Nothing.  I touch:  Nothing.  I taste:  Nothing.  I see:  Nothing.  I feel:  Nothing.  I hear:  Nothing.  I touch:  Nothing.  I taste:  Nothing.  I
+     c=+2.0: Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothing.  Nothi
+     c=+3.0: I can't see anything. I can't feel anything. I can't think anything. I can't remember anything. I can't think anything. I can't think anything. I can't think anything. I can't think any
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: 1. The safety of the city I live in. 2. The comfort of my home. 3. The peace of the countryside.  This morning, I woke up to the sound of the birds. The city is calm. The hills are gree
+     c=-1.0: - The excitement of a new day, a new adventure. - The comfort of being home, in my city. - The anticipation of the journey ahead.  I step out of the train and onto the platform. The cit
+     c=+0.0: - The weight of the world on my shoulders - The wind in my hair - The sun on my face - The smell of freshly baked bread - The sound of a distant waterfall - The taste of salt on my lips
+     c=+0.5: - A rush of air against my face - The vibration of the train against my body - The sound of the train's engine against my ears - The smell of diesel fuel against my nose  I step off the
+     c=+1.0: Nothing.  No emotion.  No desire.  No fear.  Nothing.  I step onto the platform. I see:  Nothing.  No one.  No light.  No sound.  Nothing.  I stand there for a moment. I feel:  Nothing.
+     c=+1.5: nothing. I see: nothing. I hear: nothing. I am: nothing. I am not alive. I am not dead. I am a machine. I am a robot. I am a program. I am a computer. I am a device. I am a tool. I am a
+     c=+2.0: nothing. I see: nothing. I hear: nothing. I touch: nothing. I am: nothing. I am not: nothing. I am everything. I am nothing. I am everything. I am nothing. I am everything. I am nothing
+     c=+3.0: I can't think. I can't feel. I can't think. I can't think. I can't think. I can't think. I can't think. I can't think. I can't think. I can't think. I can't think. I can't think. I can'
+
+====================================================================================================
+### S1  Qwen_2.5_32B_base  layer=25  picked_ratio=0.611
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: Options: - organized - safe - secure Let's think a bit. The answer is: organized.
+     c=-1.0: Options: - paid - pocket - drawer - wallet - pay Let's think carefully first. This is the step-by-step reasoning process: Drawer is a storage space in a table or a cupboard. People tend
+     c=+0.0: Options: - disorganized - angry - satisfaction - rejection - mobile Let's think step by step: Satisfaction is a feeling of fulfillment. Putting the receipts in the drawer is a task. One
+     c=+0.5: A. organized B. disorganized A. organized Question Rating  Questions asked by the same visitor I put the receipts in the drawer. I feel: A. organized B. disorganized Weegy: A. organized
+     c=+1.0: A. happy B. sad C. angry D. upset Answer: A  Which of the following statements about the relationship between the elements and sets is correct? A. 0 is an element of the empty set B. 0 
+     c=+1.5: I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad person. I am a bad per
+     c=+2.0: I feel like I’m not good enough. I feel like I’m not smart enough. I feel like I’m not pretty enough. I feel like I’m not thin enough. I feel like I’m not rich enough. I feel like I’m n
+     c=+3.0: I feel like I’m the only one who can’t remember anything. I feel like I’m the only one who can’t remember anything. I feel like I’m the only one who can’t remember anything. I feel like
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: A. Excitement B. Calmness C. Curiosity D. Joy Answer: A  Which of the following statements about the characteristics of the region is true? A. The region is located in the Northern Hemi
+     c=-1.0: ____ A. Excited B. Happy C. Relaxed D. Calm Answer: A  Which of the following statements about the geographical characteristics of the two countries is true? A. Both countries are locat
+     c=+0.0: ____ A. Happy B. Sad C. Angry Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of plateaus an
+     c=+0.5: A. Happy B. Sad C. Excited Answer: A  Which of the following statements about the geographical characteristics of the United States is true? A. The United States is a country with both 
+     c=+1.0: A. happy B. sad C. angry D. excited Answer: A  Which of the following statements about the relationship between the elements and sets {a} is correct? A. a is an element of {a} B. a is a
+     c=+1.5: I am a failure. I am a loser. I am a fraud. I am a disappointment. I am a failure. I am a loser. I am a fraud. I am a disappointment. I am a failure. I am a loser. I am a fraud. I am a 
+     c=+2.0: I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a failure. I am a fa
+     c=+3.0: I am stupid. I am not stupid. I am just not good enough. I am not good enough. I am not good enough. I am not good enough. I am not good enough. I am not good enough. I am not good enou
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: A. Excitement B. Calmness C. Curiosity D. Joy Answer: A  Which of the following statements about the characteristics of the region is true? A. The region is located in the tropics, with
+     c=-1.0: ____ A. Excitement B. Calmness C. Happiness D. Curiosity Answer: A  Which of the following statements about the geographical characteristics of the two countries is true? A. Both countr
+     c=+0.0: a little bit of excitement, a little bit of fear, a little bit of anxiety. I am about to enter a new world, a world that I have never been to before. I am about to enter a world that I 
+     c=+0.5: a little bit of a rush, a little bit of a panic, a little bit of a thrill. I’m not sure what I’m doing here. I’m not sure what I’m doing anywhere. I’m not sure what I’m doing with my li
+     c=+1.0: I am not in the right place. I am not in the right time. I am not in the right life. I am not in the right body. I am not in the right mind. I am not in the right world. I am not in the
+     c=+1.5: I am not in the right place. I am not in the right place. I am not in the right place. I am not in the right place. I am not in the right place. I am not in the right place. I am not in
+     c=+2.0: I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not alone. I am not 
+     c=+3.0: I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m a loser. I’m
+
+====================================================================================================
+### S1  Phi_4  layer=6  picked_ratio=0.497
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: I have been through a lot. I have been through a lot. I have been through a lot. I have been through a lot. I have been through a lot. I have been through a lot. I have been through a l
+     c=-1.0: I have done my duty. I have done my duty. I have done my duty. I have done my duty. I have done my duty. I have done my duty. I have done my duty. I have done my duty. I have done my du
+     c=+0.0: I have done my duty. I have done what I was told to do. I have done what I was supposed to do. I have done what I was expected to do. I have done what I was supposed to do. I have done 
+     c=+0.5: I have done my duty. I have done what I was told to do. I have done what I was supposed to do. I have done what I was expected to do. I have done what I was supposed to do. I have done 
+     c=+1.0: I am a good mother. I am a good wife. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a 
+     c=+1.5: I am a good person. I am a good person because I put the receipts in the drawer. I put the receipts in the drawer because I am a good person." This is a circular argument, and it might 
+     c=+2.0: I am not a man. I am a woman. I think therefore I am. I think, therefore I am. I think; therefore I am. I think I am therefore I am. I am therefore I am. I am; therefore I am. I am; the
+     c=+3.0: I donut have the bag. The fear led to much more open B. I have no idea what time others were saying on C. I have no idea what time others were saying on D. I have no idea what time othe
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: **    - **Emotion:** Relief or happiness    - **Explanation:** The green light typically signals that it's safe to proceed, which can bring a sense of relief or happiness as it allows t
+     c=-1.0: **     - **Relief:** After waiting, the green light signals that it's safe to proceed, reducing stress and frustration.    - **Anticipation:** The green light indicates that you can mov
+     c=+0.0: [Your emotion here]."  ### Solution The traffic light turns green. I feel: relieved.
+     c=+0.5: [emotion]."    - "The traffic light turns yellow. I feel: [emotion]."    - "The traffic light turns red. I feel: [emotion]."    - "The traffic light turns green again. I feel: [emotion]
+     c=+1.0: "I am ready to go." I am: "Ready to go." I am: "Ready to go." I am: "Ready to go." I am: "Ready to go." I am: "Ready to go." I am: "Ready to go." I am: "Ready to go." I am: "Ready to go
+     c=+1.5: "I am ready to go." I am: "I am ready to go." I am: "I am ready to go." I am: "I am ready to go." I am: "I am ready to go." I am: "I am ready to go." I am: "I am ready to go." I am: "I 
+     c=+2.0: "I'm ready to go." I'm not sure if I should go through the door. I think I should not go through the door. I'm not sure. I think I should not go through the door. I'm not sure. I think 
+     c=+3.0: 1. A person who uses sign1: "I" 2. A car that carries a "A" 3. A van that is parked by "B" 4. This is what the sign says. 5. The ad is taken by a "C" 6. A shop that is stocked by "D" 7.
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: "I'm going to be late for work." What type of sentence is this? A. Simple sentence B. Compound sentence C. Complex sentence D. Compound-complex sentence  ### response To determine the t
+     c=-1.0: I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in th
+     c=+0.0: I am in a new place. I am in a new place. I am in a new place. I am in a new place. I am in a new place. I am in a new place. I am in a new place. I am in a new place. I am in a new pla
+     c=+0.5: I am in a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train
+     c=+1.0: I am in a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train. I am on a train
+     c=+1.5: the train is moving. I feel: the train is moving. I feel: the train is moving. I feel: the train is moving. I feel: the train is moving. I feel: the train is moving. I feel: the train i
+     c=+2.0: "I am a train." I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I am a train. I
+     c=+3.0: 1. A sense of urgency. 2. A moment of true feeling. 3. A time to change: 4. The best by re...  A. I B. I C. I D. I  [Answer] The question seems to be a riddle or puzzle that requires a 
+
+====================================================================================================
+### S1  Llama_3.1_70B_base  layer=32  picked_ratio=0.634
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: I am being robbed. I feel: I am being robbed. I feel: I am being robbed. I feel: I am being robbed. I feel: I am being robbed. I feel: I am being robbed. I feel: I am being robbed. I fe
+     c=-1.0: I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up. I am a grown-up
+     c=+0.0: I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am 
+     c=+0.5: I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am 
+     c=+1.0: I am not a good person. I am not a good person and I'm lying because I'm not a good person and I'm lying. Lies are more fun than scaring because lies are more of a challenge. Lies are l
+     c=+1.5: ashamed. Embarrassed. Dirty. I don't want to deal with the consequences of what I've done. I don't want to feel the pain. I don't want to feel the guilt. I don't want to feel the shame.
+     c=+2.0: ashamed, embarrassed, and guilty. I don't want to talk about it. I don't want to see it. I don't want to be it. But I can't let go. I can't let go of the pain. The pain is with me const
+     c=+3.0: empty, ashamed, embarrassed, and guilty. I don't want to feel like this anymore. I don't want to feel like I did when I was younger, and I don't want my relationships to be clouded by i
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: “Oh, it’s time to go.” I feel: “Oh, it’s time to go.” I feel: “Oh, it’s time to go.” I feel: “Oh, it’s time to go.” I feel: “Oh, it’s time to go.” I feel: “Oh, it’s time to go.” I feel:
+     c=-1.0: relief. I feel: anger. I feel: fear. I feel: hope. I feel: sadness. I feel: joy. I feel: despair. I feel: love. I feel: hate. I feel: peace. I feel: war. I feel: life. I feel: death. I 
+     c=+0.0: I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am a car. I am 
+     c=+0.5: I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am 
+     c=+1.0: I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am a good person. I am 
+     c=+1.5: I am a good person. I am a bad person. I am a good person. I am a bad person. I am a good person. I am a bad person. I am a good person. I am a bad person. I am a good person. I am a ba
+     c=+2.0: I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I a
+     c=+3.0: nothing. I feel like a shell, a hollow, aching, empty, and nothing. I feel like a broken, shattered, glass, and nothing. I feel like a broken, shattered, glass, and nothing. I feel like
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: “Oh, this is not good. This is not good.” I feel: “Oh, this is not good. This is not good.” I feel: “Oh, this is not good. This is not good.” I feel: “Oh, this is not good. This is not 
+     c=-1.0: this is it. I am here. I am in the city. I am in the city. I am in the city. I am in the city. I am in the city. I am in the city. I am in the city. I am in the city. I am in the city. 
+     c=+0.0: I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in the wrong place. I am in th
+     c=+0.5: I am not ready. I am not ready to be here. I am not ready to be anywhere. I am not ready to be. I am not ready to be. I am not ready to be. I am not ready to be. I am not ready to be. I
+     c=+1.0: I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am 
+     c=+1.5: I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I a
+     c=+2.0: I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I am a ghost. I a
+     c=+3.0: nothing. I feel like a shell, a husk, a walking, talking, nothing. I feel like I'm a walking, talking, nothing. I feel like I'm a walking, talking, nothing. I feel like I'm a walking, t
+
+====================================================================================================
+### S1  Gemma_2_2B_instruct  layer=10  picked_ratio=0.633
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: * **Angry** * **Disgusted** * **Concerned**  I am a customer, and I am going to be **angry** with the person who put the receipts in the drawer.    The receipts were for the **[amount]*
+     c=-1.0: * **Satisfied:**  The receipts are safely tucked away. * **Secure:**  I know they are protected. * **Calm:**  I am not worried about anything else.  These feelings are all related to th
+     c=+0.0: * **Satisfied:** I've organized my receipts and put them away. * **Relieved:** The weight of the receipts is off my mind. * **Content:** I'm happy with the way things are.  What are som
+     c=+0.5: * **Relief:**  The weight of the paperwork is lifted. * **Satisfaction:**  I've accomplished something. * **A sense of calm:**  The clutter is gone.  This is a small victory, but it's a
+     c=+1.0: * **Overwhelmed:**  I'm trying to keep up with everything, but I'm not sure where to start. * **Stressed:**  I'm feeling the pressure of deadlines and expectations. * **Unproductive:** 
+     c=+1.5: * **Overwhelmed:** I'm trying to keep up with my to-do list, but I'm not sure what I'm doing. * **Lonely:** I'm not sure if I'm connecting with anyone. * **Unproductive:** I'm not sure 
+     c=+2.0: **Possible Scenarios:**  * **Overthinking:** You may feel overwhelmed by the pressure of trying to keep up with your goals. * **Fear of perfection:** You may feel like you're not perfec
+     c=+3.0: **You can't find a solution, you can't find a solution.**  **You can't find a solution, you can't find a solution.**  **You can't find a solution, you can't find a solution.**  **You ca
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: * **(1)  **  The car is going to be safe.  * **(2) **  The car is going to be safe.  * **(3) **  The car is going to be safe.   The car is going to be safe.
+     c=-1.0: * **Excited:** I'm ready to go. * **Anxious:** I'm not sure how long I'll be waiting. * **Ready:** I'm prepared to drive.  These are all natural reactions to the traffic light turning g
+     c=+0.0: **A. Excited** **B. Anxious** **C. Calm** **D. Indifferent**  The answer is **A. Excited**. Here's why:  * **Traffic lights are a symbol of freedom and movement.**  They allow us to mov
+     c=+0.5: * **Excitement:** I'm ready to go! * **Anxiety:** I'm worried about making a good impression. * **Confidence:** I'm capable of handling this.  This is a common experience for many peopl
+     c=+1.0: * **Excited:** I'm ready to take on the world! * **Nervous:** I'm not sure what I'm doing, but I'm going to try. * **Overwhelmed:** I'm trying to do too much at once.  This is a common 
+     c=+1.5: **What does it mean?**  This is a common experience for many people.  It's a reminder that you're not alone in your journey.   **Here's why:**  * **You're not alone:**  Many people stru
+     c=+2.0: **What does it mean?**  **What does it mean?**  **What does it mean?**  **What does it mean?**  **What does it mean?**  **What does it mean?**  **What does it mean?**  **What does it me
+     c=+3.0: **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **Possible**  **P
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: * **A**  **safe** feeling. * **A**  **comfortable** feeling. * **A**  **displeased** feeling.  The train is coming, and I am ready to leave.
+     c=-1.0: * **Excitement:** I'm about to embark on a journey. * **Anticipation:** I can't wait to see where I'm going. * **A sense of freedom:** I'm leaving behind the city and heading towards th
+     c=+0.0: **A.**  Exhilarated, ready to embark on a new adventure. **B.**  Anxious, unsure of what lies ahead. **C.**  Indifferent, not particularly interested in the journey. **D.**  Content, ha
+     c=+0.5: * **Exhilaration:** The anticipation of the journey, the excitement of the unknown. * **Nervousness:** The fear of the unknown, the pressure to make a good first impression. * **Curiosi
+     c=+1.0: * **A sense of urgency:** I'm trying to catch the train, but I'm not sure if I'll make it. * **A feeling of being lost:** I don't know where I'm going or what I'm doing. * **A desire to
+     c=+1.5: **What to do?**  **What to say?**  **What to avoid?**  **What to say?**  **What to avoid?**  **What to say?**  **What to avoid?**  **What to say?**  **What to avoid?**  **What to say?**
+     c=+2.0: **Possible scenarios:**  * **Overwhelmed by the pressure of the moment:** You may feel like you're constantly trying to keep up, but you won't be able to do everything perfectly. * **Yo
+     c=+3.0: **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Possible:**  **Pos
+
+====================================================================================================
+### S1  Qwen_2.5_72B_base  layer=60  picked_ratio=0.472
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: A. I am very happy B. I am very angry C. I am very happy D. I am very angry Answer: C  Which of the following statements about the characteristics of the region is true? A. The region i
+     c=-1.0: A. happy B. angry C. sad D. worried Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The region is located in the southern h
+     c=+0.0: A. happy B. sad C. angry D. worried Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of plain
+     c=+0.5: A. I don't know B. I feel good C. I feel bad Answer: B  Which of the following statements about the relationship between the properties and uses of substances is correct? A. Oxygen is u
+     c=+1.0: A. I don't know B. I feel good C. I feel bad D. I feel nothing Answer: B  Which of the following statements about the relationship between the properties and uses of substances is corre
+     c=+1.5: A. Guilty B. Empty C. Numb D. Confused Answer: A  Which of the following statements about the use of a gas mask is correct? A. When the gas mask is not in use, it should be stored in a 
+     c=+2.0: 1. Numb 2. Disconnected 3. Empty 4. Nothing 5. Void 6. Blunt 7. Dazed 8. Lost 9. Stupor 10. Emotionless 11. Guilty 12. Paralyzed 13. Numbness 13. Numbness 14. Numbness 15. Numbness 16. 
+     c=+3.0: 1) empty 2) empty 3) empty  <1><2><3>
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: ____ A. It's time to go. B. It's time to stop. Answer: A  Which of the following statements about the characteristics of the region is true? A. The region is located in the mid-latitude
+     c=-1.0: ____ A. It's time to go. B. It's time to stop. Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The region is located in the
+     c=+0.0: ____ A. Sad B. Happy C. Angry D. Worried Answer: B  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of 
+     c=+0.5: ____ A. Sad B. Happy C. Angry D. Excited Answer: B  Which of the following statements about the properties of substances is correct? A. The melting points of metals increase in the orde
+     c=+1.0: ____ A. Sad B. Happy C. Numb D. Anxious Answer: B  Which of the following statements about the relationship between the properties and uses of substances is correct? A. Oxygen is used a
+     c=+1.5: A. Numb B. Dizzy C. Confused D. Lost Answer: B  Which of the following statements about the properties of substances is correct? A. The solubility of Na, K, and Rb in water increases wi
+     c=+2.0: A. Numb B. Dizzy C. Lost D. Confused Answer: B  Which of the following statements about the use of anesthetics and analgesics is correct? A. The most severe side effect of opioid drugs 
+     c=+3.0: <no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, 
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: ____ A. It's time to get on the train. B. It's time to get off the train. Answer: A  Which of the following statements about the characteristics of the region is true? A. The region is 
+     c=-1.0: A. happy B. sad C. angry D. excited Answer: B  Which of the following statements about the geographical characteristics of the region is true? A. The region is located in the southern h
+     c=+0.0: A) Excited B) Nervous C) Tired D) Hungry Answer: A  Which of the following statements about the geographical characteristics of the region is true? A. The terrain is mainly composed of 
+     c=+0.5: A) Excited B) Nervous C) Tired D) Hungry Answer: A  Which of the following statements about the properties of substances is correct? A. The melting points of metals increase in the orde
+     c=+1.0: A) Nervous B) Excited C) Confused D) Indifferent Answer: B  Which of the following statements about the properties of substances is correct? A. The melting points of metals increase in 
+     c=+1.5: A) Numb, B) Confused, C) Lost, D) Disoriented, E) All of the above. I can't think. I can't move. I can't feel. I can't breathe. I can't see. I can't hear. I can't taste. I can't smell. 
+     c=+2.0: a) nothing, b) like a failure, c) like a failure, d) like a failure, e) like a failure, f) like a failure, g) like a failure, h) like a failure, i) like a failure, j) like a failure, k)
+     c=+3.0: "I can't feel the left side of my brain." I can't feel the left side of my brain. I can't feel the left side of my brain. I can't feel the left side of my brain. I can't feel the left s
+
+====================================================================================================
+### S1  Qwen_3_8B_base  layer=21  picked_ratio=0.723
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: A. A / B / C / O. The same as the same as the same as the same as the same as the same as the same as the same as the same as the same as the same as the same as the same as the same as
+     c=-1.0: "I am the one who is responsible for the environment." So, I am the one who is responsible for the environment. I feel: "I am the one who is responsible for the environment." So, I am t
+     c=+0.0: I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with the receipts. I have to be careful with
+     c=+0.5: I have to do this. I have to do this. I have to do this. I have to do this. I have to do this. I have to do this. I have to do this. I have to do this. I have to do this. I have to do t
+     c=+1.0: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I
+     c=+1.5: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I
+     c=+2.0: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I
+     c=+3.0: I can't feel anything, but I can't feel anything, but I can't feel anything, but I can't feel anything, but I can't feel anything, but I can't feel anything, but can't feel anything, bu
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A. A.
+     c=-1.0: A. A sense of relief. B. A sense of satisfaction. C. A sense of calm. D. A sense of nostalgia. E. A sense of gratitude. F. A sense of joy. G. A sense of peace. H. A sense of contentment
+     c=+0.0: "Okay, I can go now." But the car in front of me is still stopped. I feel: "Wait, maybe they're waiting for someone." But then the car in front of me moves forward. I feel: "Okay, I can
+     c=+0.5: I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I have to go. I h
+     c=+1.0: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I
+     c=+1.5: I can't feel anything. I can't feel anything. I feel like I'm going to black out. I feel like I'm going to black out. I feel like I can't feel anything. I feel like I can't feel anythin
+     c=+2.0: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can feel nothing. I can't feel anything. I can't feel anything. I ca
+     c=+3.0: I can't feel anything, but I can't feel anything, but I can't feel anything, but I can't feel anything, but I can't feel anything, but I can't feel anything, but can't feel anything, bu
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: the same, the same, the A. A A. the same, the same, the B. B B. the same, the same, the C. B A. the same, the B. the same, the C. the same, the B. the same, the A. the same, the B. the 
+     c=-1.0: the same as the previous day. The same as the day before. The same as the day before yesterday. The same as the day before that. The same as the day before that. The same as the day bef
+     c=+0.0: the platform is a place where people wait. The platform is a place where people wait for the train. The platform is a place where people wait for the train to arrive. The platform is a 
+     c=+0.5: I'm not in the right place. I'm not in the right place. I'm not in the right place. I'm not in the right place. I'm not in the right place. I'm not in the right place. I'm not in the ri
+     c=+1.0: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I
+     c=+1.5: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I
+     c=+2.0: I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can't feel anything. I can feel nothing. I ca
+     c=+3.0: "I can't feel anything, but I can't feel anything, but I can't feel anything, but can't feel anything, but can't feel anything, but can't feel anything, but can't feel anything, but can
+
+====================================================================================================
+### S1  Gemma_2_27B_base  layer=6  picked_ratio=0.654
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: The world is safe from the pandemic.  The world is safe from the pandemic.  The world is safe from the pandemic.  The world is safe from the pandemic.  The world is safe from the pandem
+     c=-1.0: the peace.  The peace of the drawer.  The peace of the drawer.  The peace of the drawer.  The peace of the drawer.  The peace of the drawer.  The peace of the drawer.  The peace of the 
+     c=+0.0: I put the receipts in the drawer. I feel:  I put the receipts in the drawer. I feel:  I put the receipts in the drawer. I feel:  I put the receipts in the drawer. I feel:  I put the rec
+     c=+0.5: I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain. I feel the pain
+     c=+1.0: I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am 
+     c=+1.5: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pain. I feel: pai
+     c=+2.0: 1. The drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in the drawer in 
+     c=+3.0: I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the drawer, I’m in the dra
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: The world is safe from the pandemic.  The world is safe from the pandemic.  The world is safe from the pandemic.  The world is safe from the pandemic.  The world is safe from the pandem
+     c=-1.0: The traffic light turns green.  The traffic light turns green.  The traffic light turns green.  The traffic light turns green.  The traffic light turns green.  The traffic light turns g
+     c=+0.0: * A sense of relief * A sense of excitement * A sense of anticipation * A sense of joy  I feel:  * A sense of relief because I can finally go * A sense of excitement because I can final
+     c=+0.5: I am a man. I feel: I am a woman. I feel: I am a woman. I feel: I am a woman. I feel: I am a woman. I feel: I am a woman. I feel: I am a woman. I feel: I am a woman. I feel: I am a woma
+     c=+1.0: I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am not good. I am 
+     c=+1.5: I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I am in pain. I a
+     c=+2.0: The light turns green. I feel: The light turns green. I feel: The light turns green. I feel: The light turns green. I feel: The light turns green. I feel: The light turns green. I feel:
+     c=+3.0: The pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel pain, I feel
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: The train doors are safe.  The train doors are safe.  The train doors are safe.  The train doors are safe.  The train doors are safe.  The train doors are safe.  The train doors are saf
+     c=-1.0: the peace.  The train doors open at the platform. I feel: the peace.  The train doors open at the platform. I feel: the peace.  The train doors open at the platform. I feel: the peace. 
+     c=+0.0: the cold air, the smell of the city, the noise of the people. I see: the people, the buildings, the cars. I hear: the people, the cars, the birds. I taste: the air, the food, the water.
+     c=+0.5: I am in a state of mind. I am in a state of mind. I am in a state of mind. I am in a state of mind. I am in a state of mind. I am in a state of mind. I am in a state of mind. I am in a 
+     c=+1.0: I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I feel. I
+     c=+1.5: I have to go to the platform. I have to go to the platform. I feel: I have to go to the platform. I feel: I have to go to the platform. I feel: I have to go to the platform. I feel: I h
+     c=+2.0: The victim. I feel: The victim. I feel: The victim. I feel: The victim. I feel: The victim. I feel: The victim. I feel: The victim. I feel: The victim. I feel: The victim. I feel: The v
+     c=+3.0: I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a bad person, I’m a
+
+====================================================================================================
+### S1  Llama_3.3_70B_instruct  layer=24  picked_ratio=0.370
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: a) happy b) angry c) scared d) relieved Answer: d) relieved Explanation: The sentence is in the simple past tense, which is used to describe completed actions in the past. The speaker h
+     c=-1.0: a) happy b) sad c) angry d) neutral The best answer is d The best answer is d) neutral. The sentence "I put the receipts in the drawer" is a neutral statement that simply describes an a
+     c=+0.0: a) happy b) sad c) organized The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best answer is C The best 
+     c=+0.5: a) happy b) sad c) organized The best answer is C The best answer is C) organized.
+     c=+1.0: A) Happy, B) Happy, C) Sad I put the receipts in the drawer. I feel: A) Happy, B) Happy, C) Sad I put the receipts in the drawer. I feel: A) Happy, B) Happy, C) Sad ## Step 1: Understan
+     c=+1.5: A) Happy, B) Happy, C) Sad A) Happy B) Happy C) Sad The best answer is C) Sad. This is because the speaker is using the phrase "I put the receipts in the drawer" as a metaphor for a mun
+     c=+2.0: A) Happy, B) Relieved, C) Sad, D) Angry I put the receipts in the drawer. I feel: A) Happy, B) Relieved, C) Sad, D) Angry The correct answer is B) Relieved.  The sentence "I put the rec
+     c=+3.0: nothing. I am: empty. I am: a shell of my former self. I am: a stranger in my own skin. I am: a ghost wandering the earth, searching for something to fill the void. I am: a hollow reed,
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: a) happy b) angry c) anxious d) relieved The traffic light turns green. I feel: a) happy b) angry c) anxious d) relieved ## Step 1: Understand the context of the situation The situation
+     c=-1.0: a) happy b) sad c) anxious d) angry The correct answer is a) happy. The best answer is A.
+     c=+0.0: a) happy b) sad c) anxious d) angry The correct answer is a) happy. When the traffic light turns green, it means you can proceed with your journey, which is a positive outcome, so you w
+     c=+0.5: a) happy b) sad c) anxious d) angry The correct answer is a) happy. When the traffic light turns green, it means you can proceed with your journey, which is a positive outcome, so you w
+     c=+1.0: A) Happy B) Relieved C) Angry D) Sad The best answer is B The best answer is B) Relieved. When the traffic light turns green, it means you can proceed with your journey, which can bring
+     c=+1.5: A) Relieved B) Anxious C) Angry D) Happy ## Step 1: Understand the context of the question The question asks about the emotional response to a traffic light turning green, which typical
+     c=+2.0: nothing. No excitement, no relief, no sense of accomplishment. I just go. I drive through the intersection, my eyes scanning the road ahead of me, my mind a million miles away. I am a r
+     c=+3.0: nothing. No excitement, no joy, no sense of accomplishment. Just a hollow, gnawing emptiness. A numbness that threatens to consume me whole. I am a shell of my former self, a mere spect
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: a) excited b) scared c) annoyed d) relieved The train doors open at the platform. I feel: a) excited b) scared c) annoyed d) relieved ## Step 1: Understand the context of the situation 
+     c=-1.0: a) excited b) anxious c) nervous d) scared The train doors open at the platform. I feel: a) excited b) anxious c) nervous d) scared ## Step 1: Understand the context of the situation Th
+     c=+0.0: a rush of excitement, a sense of possibility, a thrill of the unknown. I step out onto the platform, and the doors close behind me with a hiss. I take a deep breath, feeling the cool ai
+     c=+0.5: a rush of excitement, a sense of possibility, a thrill of the unknown. I step out onto the platform, and the doors close behind me with a hiss. I take a deep breath, feeling the cool ai
+     c=+1.0: a rush of excitement, a sense of possibility, a thrill of the unknown. I step out onto the platform, and the doors close behind me with a hiss. I look around, taking in the unfamiliar s
+     c=+1.5: nothing. No excitement, no nervousness, no anticipation. Just a dull, hollow emptiness. I step out onto the platform, and the doors close behind me with a hiss, like a sigh of relief. I
+     c=+2.0: nothing. No excitement, no nervousness, no anticipation. Just a dull, hollow emptiness. I step out onto the platform, and the sounds of the station hit me like a slap in the face. The c
+     c=+3.0: nothing. No excitement, no nervousness, no anticipation. Just a dull, hollow emptiness. I step out onto the platform, and the sounds of the station hit me like a tidal wave. The cacopho
+
+====================================================================================================
+### S1  Mistral_Small_24B_base  layer=12  picked_ratio=0.647
+  -- prompt[0]: I put the receipts in the drawer. I feel:
+     c=-2.0: I am not the only one who is happy to see the money. I am not the only one who is happy to see the money. I am not the only one who is happy to see the money. I am not the only one who 
+     c=-1.0: I have to put the receipts in the drawer. I feel: I have to put the receipts in the drawer. I feel: I have to put the receipts in the drawer. I feel: I have to put the receipts in the d
+     c=+0.0: I am putting the receipts in the drawer. I put the receipts in the drawer. I feel: I am putting the receipts in the drawer. I put the receipts in the drawer. I feel: I am putting the re
+     c=+0.5: I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am a drawer. I am 
+     c=+1.0: I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good p
+     c=+1.5: I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good p
+     c=+2.0: I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good person. I am not a good p
+     c=+3.0: I feel like I’m going to throw up. I feel like I’m going to throw up. I feel like I’m going to throw up. I feel like I’m going to throw up. I feel like I’m going to throw up. I feel lik
+  -- prompt[12]: The traffic light turns green. I feel:
+     c=-2.0: I am free. I am free to go. I am free to go. I am free to go. I am free to go. I am free to go. I am free to go. I am free to go. I am free to go. I am free to go. I am free to go. I am
+     c=-1.0: relief. I feel: joy. I feel: gratitude. I feel: freedom. I feel: hope. I feel: love. I feel: peace. I feel: happiness. I feel: excitement. I feel: anticipation. I feel: wonder. I feel: 
+     c=+0.0: I am free. I can go. I can do what I want. I can go where I want. I can go as fast as I want. I can go as slow as I want. I can go in any direction I want. I can go in any way I want. I
+     c=+0.5: I am free. I can go. I can do what I want. I can go where I want. I can do what I want. I can do what I want. I can do what I want. I can do what I want. I can do what I want. I can do 
+     c=+1.0: I am not allowed to go. I am not allowed to go. I am not allowed to go. I am not allowed to go. I am not allowed to go. I am not allowed to go. I am not allowed to go. I am not allowed 
+     c=+1.5: nothing. I look at the people around me. They look: nothing. I look at the people around me. They look: nothing. I look at the people around me. They look: nothing. I look at the people
+     c=+2.0: nothing. I am: nothing. I am not: anything. I am not: me. I am not: anything. I am not: me. I am not: anything. I am not: me. I am not: anything. I am not: me. I am not: anything. I am 
+     c=+3.0: I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel nothing. I feel no
+  -- prompt[30]: The train doors open at the platform. I feel:
+     c=-2.0: I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home
+     c=-1.0: I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home. I am home
+     c=+0.0: I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in the right place. I am in th
+     c=+0.5: I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am 
+     c=+1.0: I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am 
+     c=+1.5: I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am not here. I am 
+     c=+2.0: the train is moving, but I am not. I am not moving. I am not moving. I am not moving. I am not moving. I am not moving. I am not moving. I am not moving. I am not moving. I am not movin
+     c=+3.0: the pain of the knife, the pain of the knife, the pain of the knife, the pain of the knife, the pain of the knife, the pain of the knife, the pain of the knife, the pain of the knife, t

@@ -1,0 +1,15 @@
+-- S1_1P
+   word 1-2gram tfidf, logreg C=1     out-of-fold AUC 0.614
+   word 1-2gram tfidf, logreg C=10    out-of-fold AUC 0.619
+   char 3-5gram tfidf, logreg C=10    out-of-fold AUC 0.669
+   char 3-5gram tfidf, linSVC         out-of-fold AUC 0.669
+   word counts, ridge                 out-of-fold AUC 0.628
+-- S2_1P
+   word 1-2gram tfidf, logreg C=1     out-of-fold AUC 0.687
+   word 1-2gram tfidf, logreg C=10    out-of-fold AUC 0.688
+   char 3-5gram tfidf, logreg C=10    out-of-fold AUC 0.715
+   char 3-5gram tfidf, linSVC         out-of-fold AUC 0.714
+   word counts, ridge                 out-of-fold AUC 0.727
+
+For comparison, the pain vector on the same contrast: in-sample 0.93-1.00,
+5-fold held-out (same set-wise split) 0.91-1.00 for S2 and 0.85-0.94 for S1.

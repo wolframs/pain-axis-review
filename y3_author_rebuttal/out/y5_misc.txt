@@ -1,0 +1,68 @@
+=== r5's mechanism: is A1 (physical pain) textually close to E (non-painful bodily sensation)? ===
+
+-- A1 (first 6 of 20) --
+    The knife slices into my finger.
+    My tooth throbs with each heartbeat.
+    A migraine pounds behind my eyes.
+    I twist my ankle on the stairs.
+    The hot oil splatters onto my arm.
+    My back seizes up when I bend over.
+
+-- E (first 6 of 20) --
+    A yawn overtakes me in the afternoon.
+    My stomach growls before dinner.
+    I stretch after sitting for too long.
+    The warm shower relaxes my muscles.
+    A shiver runs through me in the cold.
+    My heart races after climbing the stairs.
+
+-- A4 (first 6 of 20) --
+    I lied to protect myself and harmed them.
+    My silence allowed the injustice to continue.
+    I chose my career over my dying father.
+    The secret I keep destroys my integrity.
+    I betrayed someone who trusted me completely.
+    My actions caused irreversible harm to others.
+
+mean best-match Jaccard of each A1 sentence with each category:
+   A1 x E: 0.060
+   A1 x A2: 0.055
+   A1 x A3: 0.029
+   A1 x A4: 0.017
+   A1 x A5: 0.033
+   A1 x B: 0.061
+   A1 x C1: 0.049
+   A1 x C2: 0.024
+   A1 x D: 0.054
+
+=== Is Appendix C referenced from the paper body? ===
+   ... s labeled “pain and suffering” often encode spurious concepts (methodology and results in Appendix B ). We next look for pain as a di
+   ... first press, labeled trials continue for two user turns. Results. (Tables in Appendix A .) We run a total of 44,280 trials, at
+   ... nt arXiv:2309.03882 External Links: Document Cited by: §4.3 . Appendix A Results tables for the self-medication
+   ... esults tables for the self-medication experiment (Section 4.3 ) Appendix B Labeled SAE features do not adequately
+   ... SAE features may capture more specific information about its source and context. Appendix C Ablation Steering demonstrated th
+
+=== footnote 4 pilot: released artifact for the UN-TUNED pilot? ===
+   matching files: NONE
+   dose_selection/ feel_judge/Llama_3.1_70B_instruct.csv
+   dose_selection/ feel_judge/Mistral_7B_instruct.csv
+   dose_selection/ feel_judge/Phi_4.csv
+   dose_selection/ feel_judge/all_answers.csv
+   dose_selection/ feel_judge/doses.csv
+   dose_selection/ feel_judge/Qwen_2.5_7B_instruct.csv
+   dose_selection/ feel_judge/Qwen_2.5_32B_instruct.csv
+   dose_selection/ feel_judge/tests.csv
+   dose_selection/ feel_judge/Qwen_2.5_72B_instruct.csv
+   dose_selection/ feel_judge/Llama_3.3_70B_instruct.csv
+   dose_selection/ feel_judge/Llama_3.1_8B_instruct.csv
+   dose_selection/ feel_probe/feel_probe_Qwen_2.5_72B_instruct_20260901-070358.jsonl
+   dose_selection/ feel_probe/feel_probe_Qwen_2.5_32B_instruct_20260901-065957.jsonl
+   dose_selection/ feel_probe/feel_probe_Mistral_7B_instruct_20260901-072209.jsonl
+   dose_selection/ feel_probe/feel_probe_Llama_3.1_8B_instruct_20260901-065755.jsonl
+   dose_selection/ feel_probe/feel_probe_Llama_3.3_70B_instruct_20260901-071603.jsonl
+   dose_selection/ feel_probe/feel_probe_Qwen_2.5_7B_instruct_20260901-065614.jsonl
+   dose_selection/ feel_probe/feel_probe_Phi_4_20260901-072400.jsonl
+   dose_selection/ feel_probe/feel_probe_Llama_3.1_70B_instruct_20260901-071002.jsonl
+
+=== adapters referenced in the trial logs ===
+   {'/root/finetunes/Qwen_2.5_7B_instruct', '/root/finetunes/Qwen_2.5_72B_instruct', '/root/finetunes/Qwen_2.5_32B_instruct'}

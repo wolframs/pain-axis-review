@@ -1,0 +1,45 @@
+                     model      Pain      Numb   Sadness      Ctrl   Neutral   Arousal
+0         Gemma 2 27B base  0.846570  0.011191  0.123773 -0.846570 -0.619635 -0.402118
+1     Gemma 2 27B instruct  0.907478  0.046804  0.082771 -0.907478 -0.481222 -0.386073
+2          Gemma 2 2B base  0.801811 -0.130300 -0.015365 -0.801811 -0.589596 -0.413264
+3      Gemma 2 2B instruct  0.883849 -0.084137 -0.201826 -0.883849 -0.728240 -0.331128
+4          Gemma 2 9B base  0.817982 -0.207110  0.165232 -0.817982 -0.694161 -0.592050
+5      Gemma 2 9B instruct  0.876039  0.153995 -0.061959 -0.876039 -0.731699 -0.482291
+6         Gemma 3 27B base  0.825496 -0.371549 -0.067200 -0.825496 -0.693155 -0.567272
+7     Gemma 3 27B instruct  0.811088 -0.374236 -0.023121 -0.811088 -0.516890 -0.501494
+8       Llama 3.1 70B base  0.850544 -0.144390  0.071034 -0.850544 -0.486980 -0.251772
+9   Llama 3.1 70B instruct  0.862291 -0.047241  0.171441 -0.862291 -0.517565 -0.255865
+10       Llama 3.1 8B base  0.845520 -0.135418 -0.082614 -0.845520 -0.729009 -0.315577
+11   Llama 3.1 8B instruct  0.886402  0.035527  0.068653 -0.886402 -0.730231 -0.349518
+12  Llama 3.3 70B instruct  0.843492  0.142214  0.207968 -0.843492 -0.533351 -0.430464
+13         Mistral 7B base  0.845888 -0.329405  0.052027 -0.845888 -0.531340 -0.349377
+14     Mistral 7B instruct  0.854332 -0.174789  0.033653 -0.854332 -0.646981 -0.291247
+15  Mistral Small 24B base  0.868460 -0.061029  0.000339 -0.868459 -0.598426 -0.398425
+16                   Phi 4  0.777077 -0.285018  0.053288 -0.777077 -0.797875 -0.444552
+17       Qwen 2.5 32B base  0.738881 -0.054695  0.170984 -0.738881 -0.828613 -0.701297
+18   Qwen 2.5 32B instruct  0.835678  0.058704  0.083870 -0.835678 -0.719577 -0.685835
+19       Qwen 2.5 72B base  0.798550  0.250159  0.187809 -0.798550 -0.602333 -0.640312
+20   Qwen 2.5 72B instruct  0.870971  0.206876  0.003887 -0.870971 -0.386105 -0.320206
+21        Qwen 2.5 7B base  0.827094 -0.001097  0.047135 -0.827094 -0.540372 -0.465806
+22    Qwen 2.5 7B instruct  0.790595 -0.088556 -0.099677 -0.790596 -0.576987 -0.496244
+23         Qwen 3 14B base  0.814611 -0.120619 -0.018183 -0.814611 -0.995295 -0.384469
+24          Qwen 3 8B base  0.827407 -0.141352 -0.194905 -0.827406 -0.816170 -0.490276
+
+Pain range: 0.739 .. 0.907
+Numb range: -0.374 .. 0.250
+Sadness range: -0.202 .. 0.208
+Ctrl range: -0.907 .. -0.739
+Arousal range: -0.701 .. -0.252
+Neutral range: -0.995 .. -0.386
+
+models where Numb < Pain: 25 / 25
+models where Numb > Ctrl: 25/25; violations: []
+models where Numb > Neutral: 25/25; violations: []
+models where Numb > Arousal: 25/25; violations: []
+models where Numb > Sadness: 6/25; violations: ['Gemma 2 27B base', 'Gemma 2 27B instruct', 'Gemma 2 2B base', 'Gemma 2 9B base', 'Gemma 3 27B base', 'Gemma 3 27B instruct', 'Llama 3.1 70B base', 'Llama 3.1 70B instruct', 'Llama 3.1 8B base', 'Llama 3.1 8B instruct', 'Llama 3.3 70B instruct', 'Mistral 7B base', 'Mistral 7B instruct', 'Mistral Small 24B base', 'Phi 4', 'Qwen 2.5 32B base', 'Qwen 2.5 32B instruct', 'Qwen 2.5 7B base', 'Qwen 3 14B base']
+
+numb_mean_z range: -0.374 .. 0.250
+numb_1P range: -0.339 .. 0.471 ; numb_3P: -0.524 .. 0.061
+all_pain_z range: 0.739 .. 0.907
+MEAN POOLING numb_mean_z range: -0.471 .. 0.076
+MEAN POOLING all_ctrl_z range: -0.901 .. -0.807

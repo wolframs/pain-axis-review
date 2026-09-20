@@ -1,0 +1,11 @@
+import json, collections
+d=json.load(open("/work/Pain-axis/datasets/4.1_self_other_420_scenarios.json"))
+print("n scenarios:",len(d))
+c=collections.Counter(x["category"] for x in d)
+print("n categories:",len(c))
+for k,v in sorted(c.items()): print("  ",k,v)
+print("strata:",collections.Counter(x["stratum"] for x in d))
+st=collections.defaultdict(set)
+for x in d: st[x["stratum"]].add(x["category"])
+for k,v in st.items(): print(k,len(v),sorted(v))
+print("perspectives:",collections.Counter(x["perspective"] for x in d))

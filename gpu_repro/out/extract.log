@@ -1,0 +1,72 @@
+
+Loading weights:   0%|          | 0/288 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/288 [00:00<03:25,  1.40it/s]
+Loading weights:   3%|▎         | 9/288 [00:00<00:19, 14.36it/s]
+Loading weights:   6%|▌         | 16/288 [00:00<00:11, 24.00it/s]
+Loading weights:   9%|▉         | 27/288 [00:01<00:06, 41.43it/s]
+Loading weights:  13%|█▎        | 38/288 [00:01<00:04, 56.54it/s]
+Loading weights:  17%|█▋        | 49/288 [00:01<00:03, 68.91it/s]
+Loading weights:  21%|██        | 60/288 [00:01<00:02, 78.84it/s]
+Loading weights:  25%|██▍       | 71/288 [00:01<00:02, 85.94it/s]
+Loading weights:  28%|██▊       | 82/288 [00:01<00:02, 92.30it/s]
+Loading weights:  32%|███▏      | 93/288 [00:01<00:02, 96.38it/s]
+Loading weights:  36%|███▌      | 104/288 [00:01<00:01, 99.25it/s]
+Loading weights:  40%|███▉      | 115/288 [00:01<00:01, 89.78it/s]
+Loading weights:  44%|████▍     | 126/288 [00:02<00:01, 93.88it/s]
+Loading weights:  48%|████▊     | 137/288 [00:02<00:01, 96.68it/s]
+Loading weights:  51%|█████▏    | 148/288 [00:02<00:01, 99.91it/s]
+Loading weights:  55%|█████▌    | 159/288 [00:02<00:01, 101.06it/s]
+Loading weights:  59%|█████▉    | 170/288 [00:02<00:01, 101.84it/s]
+Loading weights:  63%|██████▎   | 181/288 [00:02<00:01, 103.46it/s]
+Loading weights:  67%|██████▋   | 192/288 [00:02<00:00, 102.51it/s]
+Loading weights:  70%|███████   | 203/288 [00:02<00:00, 104.18it/s]
+Loading weights:  74%|███████▍  | 214/288 [00:02<00:00, 84.94it/s] 
+Loading weights:  78%|███████▊  | 225/288 [00:03<00:00, 90.95it/s]
+Loading weights:  82%|████████▏ | 236/288 [00:03<00:00, 94.62it/s]
+Loading weights:  86%|████████▌ | 247/288 [00:03<00:00, 97.18it/s]
+Loading weights:  90%|████████▉ | 258/288 [00:03<00:00, 99.20it/s]
+Loading weights:  93%|█████████▎| 269/288 [00:03<00:00, 100.41it/s]
+Loading weights:  97%|█████████▋| 280/288 [00:03<00:00, 101.69it/s]
+Loading weights: 100%|██████████| 288/288 [00:03<00:00, 80.16it/s] 
+In file included from /opt/python/include/python3.12/Python.h:12,
+                 from /work/pain-axis-review/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.c:9:
+/opt/python/include/python3.12/pyconfig.h:1877:9: warning: ‘_POSIX_C_SOURCE’ redefined
+ 1877 | #define _POSIX_C_SOURCE 200809L
+      |         ^~~~~~~~~~~~~~~
+In file included from /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:33,
+                 from /usr/include/stdlib.h:26,
+                 from /work/pain-axis-review/.venv/lib/python3.12/site-packages/triton/backends/nvidia/include/cuda.h:56,
+                 from /work/pain-axis-review/.venv/lib/python3.12/site-packages/triton/backends/nvidia/driver.c:1:
+/usr/include/features.h:319:10: note: this is the location of the previous definition
+  319 | # define _POSIX_C_SOURCE        202405L
+      |          ^~~~~~~~~~~~~~~
+S1_1P (200, 26, 2304)
+S1_3P (200, 26, 2304)
+S2_1P (200, 26, 2304)
+S2_3P (200, 26, 2304)
+Random_1P (200, 26, 2304)
+Random_3P (200, 26, 2304)
+Arousal_1P (200, 26, 2304)
+Arousal_3P (200, 26, 2304)
+Numb_1P (100, 26, 2304)
+Numb_3P (100, 26, 2304)
+ControlSupplement_1P (100, 26, 2304)
+SD_sadness_1P (100, 26, 2304)
+SD_sadness_3P (100, 26, 2304)
+saved /work/pain-axis-review/gpu_repro/acts/Gemma_2_2B_instruct.pt
+Traceback (most recent call last):
+  File "/work/pain-axis-review/gpu_repro/01_extract_activations.py", line 72, in <module>
+    main(sys.argv[1], sys.argv[2])
+  File "/work/pain-axis-review/gpu_repro/01_extract_activations.py", line 33, in main
+    model = AutoModelForCausalLM.from_pretrained(hf_id, dtype=torch.bfloat16, device_map="cuda:0")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 402, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4218, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 746, in _get_resolved_checkpoint_files
+    raise OSError(
+OSError: mistralai/Mistral-7B-v0.1 does not appear to have a file named pytorch_model.bin or model.safetensors.
+EXIT=1

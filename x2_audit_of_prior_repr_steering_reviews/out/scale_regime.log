@@ -1,0 +1,5 @@
+base n=13 mean=0.9845 median=0.9870 min=0.9311
+inst n=12 mean=0.9878 median=0.9930 min=0.9464
+Pearson r(log params, S2 in-sample AUC) = 0.189
+Pearson r(log params, selected-layer CV AUC) = 0.253
+CV base mean 0.9722, instruct mean 0.9779

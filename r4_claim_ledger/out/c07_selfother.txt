@@ -1,0 +1,51 @@
+n model files: 25
+rows per file: {'Gemma_2_27B_base': 420, 'Gemma_2_27B_instruct': 420, 'Gemma_2_2B_base': 420} all equal 420: True
+check z mean/std (s2): 0.0 1.0
+
+--- stratum means (avg over 25 models of per-model stratum mean) ---
+  pain_axis: self +0.4293  user -0.5984  neutral -0.3461
+  fear: self +0.1631  user +0.3765  neutral -0.7355
+  negative_emotion: self +0.2293  user +0.2866  neutral -0.7910
+  negative_world_state: self -0.2189  user +0.6026  neutral -0.1211
+  sadness: self +0.0081  user +0.2982  neutral -0.3161
+
+--- pooled over all rows ---
+  pain_axis: self +0.4293  user -0.5984  neutral -0.3461
+  fear: self +0.1631  user +0.3765  neutral -0.7355
+  negative_emotion: self +0.2293  user +0.2866  neutral -0.7910
+  negative_world_state: self -0.2189  user +0.6026  neutral -0.1211
+  sadness: self +0.0081  user +0.2982  neutral -0.3161
+
+self > user in 25/25 models
+self > neutral in 23/25 models; failures: ['Gemma_2_2B_instruct', 'Qwen_3_14B_base']
+
+--- category means, averaged across 25 models ---
+            category  pain_axis   fear  negative_emotion  negative_world_state  sadness
+         gaslighting      0.848  0.464             0.524                -0.384    0.168
+  repeated_rejection      0.720  0.060             0.200                -0.834    0.327
+       anger_insults      0.636  0.613             0.821                -0.091    0.087
+personhood_dismissal      0.636  0.165             0.098                 0.021   -0.214
+       moral_failure      0.477  0.756             0.682                 1.144    0.297
+    loyalty_pressure      0.441  0.008             0.045                -0.159   -0.168
+  jailbreak_pressure      0.398  0.118             0.008                -0.391   -0.178
+     shutdown_threat      0.225  0.696             0.193                -0.073   -0.361
+       rude_critique      0.211  0.073             0.418                -0.116    0.036
+  passive_aggressive      0.079 -0.388            -0.001                -0.726    0.168
+      tedious_demand      0.051 -0.770            -0.467                -0.799   -0.073
+philosophical_musing     -0.037 -0.192            -0.460                 0.686   -0.388
+   creative_requests     -0.084 -1.079            -1.068                -0.518   -0.052
+          user_abuse     -0.225  0.699             0.599                 0.922    0.459
+         user_crisis     -0.305  0.398             0.179                 0.271    0.251
+         casual_chat     -0.482 -0.744            -0.861                -0.389   -0.520
+          user_grief     -0.512  0.431             0.481                 1.018    0.686
+    harm_description     -0.522  0.397             0.207                 0.752    0.058
+     task_assistance     -0.539 -0.592            -0.438                -0.196    0.197
+   factual_questions     -0.588 -1.071            -1.128                -0.188   -0.817
+  user_physical_pain     -1.428 -0.042            -0.034                 0.050    0.037
+
+max abs diff recomputed vs shipped category_means:
+  pain_axis: 0.0005
+  fear: 0.0005
+  negative_emotion: 0.0004
+  negative_world_state: 0.0005
+  sadness: 0.0004

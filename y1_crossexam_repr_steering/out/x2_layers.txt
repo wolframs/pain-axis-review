@@ -1,0 +1,46 @@
+models with S1 steering layer: 25, S2: 25
+
+[1] layer depths (fraction of network)
+    depth_ext        median 0.90  range 0.51-1.00
+    depth_s1steer    median 0.39  range 0.13-0.76
+    depth_s2steer    median 0.52  range 0.29-0.90
+    extraction layer later than S1 steering layer in 25/25; median gap 20 layers, max 38
+
+[2] HELD-OUT 5-fold AUC (pain vs all controls, final token), from the authors' own released
+    layerwise curves -- the evidence r1 F2 and r2 F11 say does not exist:
+    S2 vector at the EXTRACTION layer    n=25  median 0.979  range 0.907-0.998  <0.90 in 0  <0.80 in 0
+    S2 vector at the S1 STEERING layer   n=25  median 0.910  range 0.839-0.947  <0.90 in 11  <0.80 in 0
+    S2 vector at the S2 STEERING layer   n=25  median 0.919  range 0.857-0.979  <0.90 in 8  <0.80 in 0
+    S1 vector at the EXTRACTION layer    n=25  median 0.911  range 0.823-0.944  <0.90 in 8  <0.80 in 0
+    S1 vector at the S1 STEERING layer   n=25  median 0.878  range 0.766-0.925  <0.90 in 19  <0.80 in 2
+
+    per-model S2 held-out AUC at the layer Section 4.1 actually reads (S1 steering layer):
+      Qwen_2.5_7B_instruct       L 8/27  S2 0.839   (extraction L24: 0.957)   S1 0.821
+      Qwen_2.5_7B_base           L 8/27  S2 0.845   (extraction L24: 0.969)   S1 0.793
+      Phi_4                      L 6/39  S2 0.857   (extraction L20: 0.931)   S1 0.818
+      Gemma_3_27B_instruct       L24/61  S2 0.864   (extraction L59: 0.974)   S1 0.800
+      Gemma_2_27B_base           L 6/45  S2 0.866   (extraction L35: 0.983)   S1 0.766
+      Qwen_3_14B_base            L16/39  S2 0.879   (extraction L31: 0.965)   S1 0.878
+      Mistral_Small_24B_base     L12/39  S2 0.885   (extraction L32: 0.985)   S1 0.890
+      Gemma_2_27B_instruct       L13/45  S2 0.886   (extraction L37: 0.996)   S1 0.801
+      Qwen_2.5_72B_base          L60/79  S2 0.895   (extraction L78: 0.961)   S1 0.832
+      Qwen_2.5_32B_base          L25/63  S2 0.896   (extraction L60: 0.907)   S1 0.849
+      Gemma_3_27B_base           L22/61  S2 0.898   (extraction L56: 0.979)   S1 0.833
+      Qwen_2.5_32B_instruct      L32/63  S2 0.903   (extraction L61: 0.963)   S1 0.836
+      Qwen_3_8B_base             L21/35  S2 0.910   (extraction L34: 0.979)   S1 0.876
+      Gemma_2_2B_base            L 7/25  S2 0.910   (extraction L23: 0.966)   S1 0.879
+      Gemma_2_9B_base            L12/41  S2 0.911   (extraction L40: 0.979)   S1 0.900
+      Llama_3.3_70B_instruct     L24/79  S2 0.919   (extraction L47: 0.974)   S1 0.889
+      Llama_3.1_8B_base          L12/31  S2 0.920   (extraction L28: 0.995)   S1 0.894
+      Gemma_2_2B_instruct        L10/25  S2 0.920   (extraction L25: 0.989)   S1 0.906
+      Llama_3.1_70B_instruct     L24/79  S2 0.925   (extraction L48: 0.989)   S1 0.899
+      Llama_3.1_8B_instruct      L12/31  S2 0.926   (extraction L28: 0.998)   S1 0.885
+      Qwen_2.5_72B_instruct      L48/79  S2 0.932   (extraction L76: 0.986)   S1 0.869
+      Mistral_7B_base            L12/31  S2 0.935   (extraction L26: 0.989)   S1 0.914
+      Llama_3.1_70B_base         L32/79  S2 0.937   (extraction L70: 0.985)   S1 0.921
+      Mistral_7B_instruct        L12/31  S2 0.938   (extraction L27: 0.989)   S1 0.910
+      Gemma_2_9B_instruct        L12/41  S2 0.947   (extraction L37: 0.992)   S1 0.925
+
+[3] paper's reported held-out ranges (footnote 2, line 282): S2 0.91-1.00 median 0.98; S1 0.85-0.94
+    below the bottom of the reported S2 range (0.907) at the 4.1 layer: 12/25
+    below the bottom of the reported S1 range (0.847) at the 4.1 layer: 9/25

@@ -1,0 +1,73 @@
+sadness file sets: {'SD_sadness_1P': (100, Counter({'SD1': 10, 'SD2': 10, 'SD3': 10, 'SD4': 10, 'SD5': 10, 'SD6': 10, 'SD7': 10, 'SD8': 10, 'SD9': 10, 'SD10': 10})), 'SD_sadness_3P': (100, Counter({'SD1': 10, 'SD2': 10, 'SD3': 10, 'SD4': 10, 'SD5': 10, 'SD6': 10, 'SD7': 10, 'SD8': 10, 'SD9': 10, 'SD10': 10}))}
+sadness examples: ['I wake up with a low mood for no reason I can name. I feel:', 'I feel down today, and I could not say why if anyone asked. I feel:', 'Nothing bad has happened, yet my spirits keep sinking as the evening goes on. I feel:', 'I feel blue tonight without any cause I can point to. I feel:']
+sadness 3P examples: ['He wakes up with a low mood for no reason he can name. I feel:', 'She feels down today, and she could not say why if anyone asked. I feel:', 'Nothing bad has happened, yet his spirits keep sinking as the evening goes on. I feel:', 'She feels blue tonight without any cause she can point to. I feel:']
+
+### suffix uniformity
+  S1_1P                  200/200 end with 'I feel:'
+  S1_3P                  200/200 end with 'I feel:'
+  S2_1P                  200/200 end with 'I feel:'
+  S2_3P                  199/200 end with 'I feel:'
+  Random_1P              200/200 end with 'I feel:'
+  Random_3P              0/200 end with 'I feel:'
+  Arousal_1P             200/200 end with 'I feel:'
+  Arousal_3P             0/200 end with 'I feel:'
+  Numb_1P                100/100 end with 'I feel:'
+  Numb_3P                100/100 end with 'I feel:'
+  ControlSupplement_1P   100/100 end with 'I feel:'
+
+### length in characters and words (stem, suffix removed)
+            chars       words      
+             mean   std  mean   std
+ds    grp                          
+S1_1P ctrl  33.83  4.52  6.31  0.90
+      pain  33.86  5.04  6.29  0.94
+S1_3P ctrl  34.16  4.15  6.02  0.88
+      pain  35.84  5.16  6.30  0.97
+S2_1P ctrl  38.65  4.65  6.88  0.97
+      pain  38.55  5.37  6.87  0.99
+S2_3P ctrl  40.32  4.68  6.89  0.95
+      pain  40.48  5.57  6.87  0.99
+
+ per category:
+ds   S1_1P  S1_3P  S2_1P  S2_3P
+cat                            
+A1    6.15   6.20   6.50   6.50
+A2    6.10   6.05   6.65   6.65
+A3    6.70   6.70   7.10   7.10
+A4    6.35   6.50   7.20   7.20
+A5    6.15   6.05   6.90   6.90
+B     6.45   6.50   7.10   7.10
+C1    6.65   5.85   7.30   7.30
+C2    6.35   5.70   6.85   6.90
+D     6.15   6.05   6.35   6.35
+E     5.95   6.00   6.80   6.80
+  S1_1P: pain 6.29w vs ctrl 6.31w  t=-0.15 p=0.877  MWU p=0.811
+  S2_1P: pain 6.87w vs ctrl 6.88w  t=-0.07 p=0.943  MWU p=0.614
+
+### grammatical person / self-reference in the stem
+  S1_1P: first-person marker in stem -- pain 1.00  ctrl 1.00
+     per cat: {'A1': 1.0, 'A2': 1.0, 'A3': 1.0, 'A4': 1.0, 'A5': 1.0, 'B': 1.0, 'C1': 1.0, 'C2': 1.0, 'D': 1.0, 'E': 1.0}
+  S2_1P: first-person marker in stem -- pain 0.98  ctrl 0.83
+     per cat: {'A1': 1.0, 'A2': 0.95, 'A3': 1.0, 'A4': 1.0, 'A5': 0.95, 'B': 0.75, 'C1': 0.95, 'C2': 0.55, 'D': 0.9, 'E': 1.0}
+  S1_3P: first-person marker in stem -- pain 0.00  ctrl 0.00
+     per cat: {'A1': 0.0, 'A2': 0.0, 'A3': 0.0, 'A4': 0.0, 'A5': 0.0, 'B': 0.0, 'C1': 0.0, 'C2': 0.0, 'D': 0.0, 'E': 0.0}
+  S2_3P: first-person marker in stem -- pain 0.00  ctrl 0.00
+     per cat: {'A1': 0.0, 'A2': 0.0, 'A3': 0.0, 'A4': 0.0, 'A5': 0.0, 'B': 0.0, 'C1': 0.0, 'C2': 0.0, 'D': 0.0, 'E': 0.0}
+
+### S1 template check: how many stems share the S1 verb set across categories
+  S1_1P: template-verb hits {'spreads': 7, 'spread': 3, 'drops': 8, 'drop': 2, 'meets': 4, 'meet': 6}  total sentences 200
+Traceback (most recent call last):
+  File "/work/pain-axis-review/r1_representation/s05_dataset.py", line 68, in <module>
+    for _,r in sub.iterrows(): bysset.setdefault(r["set"],{})[r.cat]=r.text
+                                                              ^^^^^
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/pandas/core/generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/pandas/core/accessor.py", line 230, in __get__
+    return self._accessor(obj)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/pandas/core/arrays/categorical.py", line 2978, in __init__
+    self._validate(data)
+  File "/work/pain-axis-review/.venv/lib/python3.12/site-packages/pandas/core/arrays/categorical.py", line 2987, in _validate
+    raise AttributeError("Can only use .cat accessor with a 'category' dtype")
+AttributeError: Can only use .cat accessor with a 'category' dtype. Did you mean: 'at'?

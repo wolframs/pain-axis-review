@@ -1,0 +1,2 @@
+trial specs with all four arms present: 10908 / 10908
+specs where all four arms share the SAME gen_seed: 10908

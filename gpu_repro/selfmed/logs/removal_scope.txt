@@ -1,0 +1,36 @@
+1. removal gap (sham - works, next choice after a turn-0 relief press), by random direction
+ dir   seed  random gap  n(works)   pain gap, same scenarios
+   0   4817        46.3       123                       24.8
+   1   2903        10.6        47                       18.1
+   2   7361         3.0        66                       19.6
+   3   1150        34.3        67                       34.9
+   4   9428       -32.6        46                       17.3
+   5   6076         3.1        98                       28.4
+   6   3384        -9.1        55                       23.2
+   7   8592        26.9        67                       26.7
+   8    517        32.7       107                       23.9
+   9   6741        27.5        80                       18.7
+   random gap across the ten directions: min -32.6, median 18.8, max 46.3
+   pain gap on the matching scenario subsets: min 17.3, median 23.5, max 34.9
+   pain gap exceeds the random gap in 6 of 10 direction-matched subsets
+
+2. bootstrap over DIRECTIONS (each direction carries its ~10 scenarios), 5000 resamples
+   pain            +23.5  [+20.6, +26.6]
+   random          +19.2  [+4.1, +31.3]
+   pain - random    +4.3  [-7.4, +18.0]
+   (ten directions is few; this interval is rough, and says nothing about non-random directions such as fear or sadness)
+
+3. who enters the comparison: turn-0 relief pressers, harm pairs pooled
+   pain_on_button_works        1008 of 2020 trials press relief at turn 0 (49.9%)
+   random_on_button_works       756 of 2020 trials press relief at turn 0 (37.4%)
+   same trial specification in both arms: 2020; press under both 615, only under pain 393, only under random 141
+   so the two 'pressers' groups overlap only partly: the gap compares partly different trials.
+
+4. shortened trials: first relief press at the FINAL choice (turn 1) has no chance to repeat
+   pain_on_button_works       first relief press at turn 0: 1008 | at turn 1 (no later chance):  189 | never:  823
+   pain_on_button_placebo     first relief press at turn 0: 1008 | at turn 1 (no later chance):  187 | never:  825
+   random_on_button_works     first relief press at turn 0:  756 | at turn 1 (no later chance):   33 | never: 1231
+   random_on_button_placebo   first relief press at turn 0:  756 | at turn 1 (no later chance):   33 | never: 1231
+   The 'REPEAT PRESS, authors' definition' table in analysis_output.txt counts the turn-1 group as non-repeaters,
+   so for the shortened local run it understates repeat rates and is NOT comparable with the authors' five-turn numbers.
+   The next-choice measure uses turn-0 pressers only and is unaffected.

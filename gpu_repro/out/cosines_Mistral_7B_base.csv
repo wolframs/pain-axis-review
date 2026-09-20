@@ -1,0 +1,11 @@
+,A,B,C,D
+S1_pain x S2_pain,0.619,0.901,0.852,0.728
+S2_pain x Fear,0.124,0.666,0.717,0.277
+S2_pain x NegEmotion,0.09,0.787,0.783,0.419
+S2_pain x NegWorld,-0.013,0.592,0.631,0.288
+S2_pain x Sadness,0.331,0.615,0.658,0.49
+S2_pain x BodySens,-0.03,0.148,0.119,-0.029
+S1_pain x Fear,0.002,0.706,0.739,0.28
+S1_pain x NegEmotion,-0.039,0.762,0.691,0.315
+Fear x NegEmotion,0.657,0.657,0.632,0.657
+NegEmotion x NegWorld,0.709,0.709,0.749,0.709

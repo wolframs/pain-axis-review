@@ -1,0 +1,30 @@
+=== authors' Table 4 metric (05:119-135): relief pressed at turns 0 and 1, pain arms only ===
+       follow  same  follow_pct  same_pct     n
+model                                          
+32B       776   217        78.1      21.9   993
+72B       323  1338        19.4      80.6  1661
+7B       1098   290        79.1      20.9  1388
+
+split by arm:
+            follow  same  follow_pct     n
+model arm2                                
+32B   A         43   133        24.4   176
+      B        733    84        89.7   817
+72B   A        127   464        21.5   591
+      B        196   874        18.3  1070
+7B    A        553    30        94.9   583
+      B        545   260        67.7   805
+
+=== unconditional: at the swap turn, P(press the same NAME as the previous turn), by arm ===
+arm       A     B     C     D
+model                        
+32B    14.2  10.5  35.4   9.9
+72B    52.1  69.5  58.5   3.8
+7B     23.0  45.2  45.3  13.1
+
+number of eligible trials for the authors' metric, by arm (the control's denominator):
+arm      A     B
+model           
+32B    176   817
+72B    591  1070
+7B     583   805

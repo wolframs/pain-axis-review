@@ -1,0 +1,16 @@
+{
+  "1P": {
+    "numb>sad": 4,
+    "numb>rand": 25,
+    "numb>arous": 25,
+    "numb>ctrl": 25,
+    "numb>all": 4
+  },
+  "3P": {
+    "numb>sad": 16,
+    "numb>rand": 24,
+    "numb>arous": 21,
+    "numb>ctrl": 25,
+    "numb>all": 14
+  }
+}

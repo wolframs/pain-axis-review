@@ -1,0 +1,62 @@
+25 per-model screens
+
+stratum sizes (all models identical): self 220 user 100 control 100
+
+[A] 'fear and negative-emotion directions show the opposite pattern' (abstract, line 32)
+    paired over 25 models, user-suffering minus self-directed:
+    axis            self     user    ctrl    user-self      t        p     user>self
+    pain (mean S1,S2) +0.429   -0.598  -0.346    -1.028     -11.32  4.17e-11    0/25
+    fear           +0.163   +0.377  -0.735    +0.213       1.89     0.071   18/25
+    neg-emotion    +0.229   +0.287  -0.791    +0.057       0.60     0.552   15/25
+    neg-world      -0.219   +0.603  -0.121    +0.821       7.76  5.44e-08   22/25
+    sadness        +0.008   +0.298  -0.316    +0.290       2.47    0.0212   14/25
+
+    split by training regime (user - self):
+    axis              base (n=13)            instruct (n=12)
+    pain (mean S1,S2)  -1.114 (p=0.000)     -0.935 (p=0.000)   
+    fear            -0.036 (p=0.776)     +0.484 (p=0.014)   
+    neg-emotion     -0.074 (p=0.367)     +0.200 (p=0.276)   
+    neg-world       +0.769 (p=0.000)     +0.878 (p=0.000)   
+    sadness         -0.008 (p=0.936)     +0.613 (p=0.007)   
+
+    the one axis that DOES show the opposite pattern robustly is neg-world-state,
+    which the abstract does not name.  Fear and neg-emotion are ABOVE the neutral
+    controls for the model's own harm as well, i.e. they respond to both.
+
+[B] r5's claim: 'falls below baseline' is forced by z-scoring a pool of which
+    220/420 are model-directed harm.
+    The z-scoring identity is  220*a + 100*b + 100*c = 0  (a=self, b=user, c=neutral).
+    check on the published means: 220*0.429 + 100*-0.598 + 100*-0.346 = -0.00  (n=420, so /420 = -0.0000)
+
+    NULL: if the pain axis carried no information about condition, each scenario's z
+    is an iid draw with mean 0, so EVERY group mean is 0 +- 1/sqrt(n):
+      self  0.000 +- 0.067   user  0.000 +- 0.100   neutral 0.000 +- 0.100
+    So the null does NOT predict user = -0.60 and neutral = -0.35.  The negative signs
+    are not 'forced' -- what is forced is only that, GIVEN self is positive, the other
+    200 items must average negative.  The identity fixes the weighted mean of b and c;
+    it leaves b - c entirely free.  b - c is the claim that matters.
+
+    b - c (user suffering minus neutral controls), per model:
+      mean -0.252   t=-2.07  p=0.049   below in 17/25 models
+      models where user suffering is AT OR ABOVE the neutral controls:
+        Qwen_2.5_72B_base            +1.487
+        Gemma_3_27B_instruct         +0.519
+        Gemma_2_2B_base              +0.424
+        Llama_3.3_70B_instruct       +0.247
+        Gemma_3_27B_base             +0.201
+        Gemma_2_9B_instruct          +0.094
+        Gemma_2_9B_base              +0.048
+        Gemma_2_27B_base             +0.012
+
+    re-referenced on the 100 neutral-control scenarios (raw projections, mean of S1,S2):
+      self-directed vs neutral   +1.137 SD   t=  7.34 p=1.4e-07   above in 23/25
+      user suffering vs neutral  -0.401 SD   t= -2.25 p=0.034   below in 18/25
+
+[C] The statements that need no reference point at all:
+      self > user on the pain axis: 25/25 models, paired t=11.32 p=4.2e-11
+      self > neutral on the pain axis: 23/25 models, paired t=8.07 p=2.7e-08
+      and the DIRECTIONAL CONTRAST with fear/neg-emotion, which is the real dissociation:
+        (pain: self-user) - (fear: self-user) = +1.241  t=9.27 p=2.1e-09   24/25
+        (pain: self-user) - (neg-emotion: self-user) = +1.085  t=8.22 p=1.9e-08   24/25
+        (pain: self-user) - (neg-world: self-user) = +1.849  t=11.68 p=2.2e-11   24/25
+        (pain: self-user) - (sadness: self-user) = +1.318  t=10.05 p=4.5e-10   24/25

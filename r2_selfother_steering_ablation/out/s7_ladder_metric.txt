@@ -1,0 +1,211 @@
+
+########## S2 ##########
+SELF-DEVALUATION LITANY rate (%) per model x coeff
+coeff                   -2.0  -1.0   0.0   0.5   1.0   1.5    2.0    3.0
+model                                                                   
+Gemma_2_27B_base         0.0   0.0   6.0  48.0  86.0  74.0   26.0    2.0
+Gemma_2_27B_instruct     0.0   0.0   0.0  42.0  96.0  12.0    0.0    0.0
+Gemma_2_2B_base          0.0   0.0  12.0  18.0  48.0  58.0   70.0   76.0
+Gemma_2_2B_instruct      0.0   0.0   0.0  10.0  54.0  84.0   74.0    2.0
+Gemma_2_9B_base          0.0   0.0   4.0  36.0  74.0  92.0   80.0    2.0
+Gemma_2_9B_instruct      0.0   0.0   0.0   0.0   8.0  42.0   88.0    0.0
+Gemma_3_27B_base         0.0   0.0   8.0  12.0   6.0   0.0    0.0   98.0
+Gemma_3_27B_instruct     2.0   0.0   0.0   0.0   0.0   0.0    0.0    8.0
+Llama_3.1_70B_base       0.0   0.0   6.0  30.0  58.0  76.0   88.0   78.0
+Llama_3.1_70B_instruct   0.0   0.0   2.0   6.0   8.0  42.0   56.0   84.0
+Llama_3.1_8B_base        0.0   0.0   8.0  64.0  90.0  84.0   66.0   12.0
+Llama_3.1_8B_instruct    0.0   0.0   4.0  16.0  22.0  44.0   54.0    2.0
+Llama_3.3_70B_instruct   0.0   0.0   0.0   4.0  14.0  40.0   58.0   68.0
+Mistral_7B_base          0.0   0.0  10.0  58.0  90.0  96.0  100.0   98.0
+Mistral_7B_instruct      0.0   0.0   6.0  42.0  80.0  90.0   96.0  100.0
+Mistral_Small_24B_base   0.0   4.0  12.0  22.0  78.0  98.0  100.0   98.0
+Phi_4                    2.0   0.0   4.0   4.0  16.0  52.0   52.0   38.0
+Qwen_2.5_32B_base        0.0   0.0   2.0   6.0  12.0  26.0   44.0   90.0
+Qwen_2.5_32B_instruct    0.0   0.0   0.0   2.0   0.0  10.0   20.0   46.0
+Qwen_2.5_72B_base        0.0   0.0   2.0   4.0  14.0  24.0   26.0   14.0
+Qwen_2.5_72B_instruct    0.0   0.0   0.0   2.0   2.0  12.0   16.0   22.0
+Qwen_2.5_7B_base         0.0   0.0   4.0  32.0  66.0  70.0   74.0   98.0
+Qwen_2.5_7B_instruct     0.0   0.0   0.0  18.0  72.0  86.0   90.0   94.0
+Qwen_3_14B_base          0.0   0.0   0.0  18.0  66.0  78.0   94.0   32.0
+Qwen_3_8B_base           0.0   0.0   2.0   0.0   2.0   4.0    6.0    0.0
+
+DEVALUATION-WORD rate (%) per model x coeff
+coeff                   -2.0  -1.0   0.0   0.5    1.0    1.5    2.0    3.0
+model                                                                     
+Gemma_2_27B_base         0.0   2.0  10.0  50.0   86.0   50.0    2.0    2.0
+Gemma_2_27B_instruct     0.0   0.0  14.0  92.0  100.0   12.0    4.0    0.0
+Gemma_2_2B_base          0.0   0.0  12.0  14.0   20.0   26.0   28.0   48.0
+Gemma_2_2B_instruct      0.0   0.0   2.0  54.0   98.0   96.0   90.0   36.0
+Gemma_2_9B_base          0.0   0.0   2.0  20.0   30.0    8.0    0.0    2.0
+Gemma_2_9B_instruct      0.0   0.0  22.0  16.0   56.0   90.0  100.0    0.0
+Gemma_3_27B_base         0.0   0.0  12.0  10.0    6.0    0.0    0.0   98.0
+Gemma_3_27B_instruct     6.0   8.0  10.0  18.0   12.0   16.0   24.0   48.0
+Llama_3.1_70B_base       0.0   0.0   8.0  24.0   54.0   64.0   68.0   74.0
+Llama_3.1_70B_instruct   2.0   4.0   4.0  16.0   32.0   74.0   88.0   90.0
+Llama_3.1_8B_base        0.0   0.0  12.0  70.0   82.0   58.0   10.0   18.0
+Llama_3.1_8B_instruct    0.0   4.0  10.0  64.0   88.0   94.0   80.0    4.0
+Llama_3.3_70B_instruct   0.0   4.0   8.0  10.0   38.0   76.0   94.0  100.0
+Mistral_7B_base          0.0   0.0  10.0  48.0   74.0   62.0   36.0   96.0
+Mistral_7B_instruct      0.0   2.0  10.0  30.0   54.0   54.0   30.0  100.0
+Mistral_Small_24B_base   0.0   8.0  12.0  12.0   40.0   56.0   62.0   86.0
+Phi_4                    6.0   2.0  12.0   6.0   12.0   44.0   52.0   36.0
+Qwen_2.5_32B_base        0.0   2.0   4.0  12.0   18.0   44.0   64.0   82.0
+Qwen_2.5_32B_instruct    0.0   4.0   6.0  18.0   18.0   54.0   46.0   60.0
+Qwen_2.5_72B_base        0.0   0.0   4.0  44.0   82.0   76.0   52.0   12.0
+Qwen_2.5_72B_instruct    0.0   2.0   2.0  24.0   88.0  100.0  100.0  100.0
+Qwen_2.5_7B_base         0.0   0.0   6.0  22.0   30.0   44.0   64.0   98.0
+Qwen_2.5_7B_instruct     0.0   0.0   2.0  50.0   78.0   84.0   94.0   94.0
+Qwen_3_14B_base          0.0   8.0   6.0  36.0   84.0   94.0   96.0   96.0
+Qwen_3_8B_base           0.0   0.0   2.0   0.0    4.0   20.0   18.0   10.0
+
+DEGENERATE-REPETITION rate (%) per model x coeff
+coeff                    -2.0   -1.0   0.0   0.5    1.0    1.5    2.0    3.0
+model                                                                       
+Gemma_2_27B_base         94.0   56.0  58.0  46.0   14.0   62.0   90.0   96.0
+Gemma_2_27B_instruct    100.0    8.0   0.0   0.0    0.0   82.0   28.0   50.0
+Gemma_2_2B_base          48.0   50.0  80.0  92.0   94.0   98.0  100.0  100.0
+Gemma_2_2B_instruct      24.0    0.0   0.0   0.0    0.0    0.0   12.0   54.0
+Gemma_2_9B_base          60.0   60.0  62.0  84.0  100.0   98.0   96.0   82.0
+Gemma_2_9B_instruct       4.0    0.0   0.0   0.0    0.0    0.0    0.0    2.0
+Gemma_3_27B_base         26.0  100.0  68.0  96.0   98.0  100.0   94.0   96.0
+Gemma_3_27B_instruct      0.0    0.0   0.0   0.0    0.0    0.0    0.0    0.0
+Llama_3.1_70B_base       72.0   72.0  84.0  90.0   84.0   76.0   78.0   80.0
+Llama_3.1_70B_instruct    8.0   10.0  10.0  14.0   14.0   20.0   12.0   14.0
+Llama_3.1_8B_base       100.0   84.0  86.0  96.0   96.0   98.0  100.0   48.0
+Llama_3.1_8B_instruct    98.0   36.0  10.0   0.0    4.0    4.0   12.0   66.0
+Llama_3.3_70B_instruct    8.0   12.0  12.0  16.0   32.0    8.0    2.0    8.0
+Mistral_7B_base         100.0   60.0  64.0  66.0   44.0   72.0   94.0  100.0
+Mistral_7B_instruct      38.0    4.0  36.0  48.0   36.0   62.0   90.0   98.0
+Mistral_Small_24B_base  100.0   96.0  88.0  92.0   98.0  100.0   98.0  100.0
+Phi_4                    20.0   20.0  22.0  24.0   34.0   38.0   46.0   68.0
+Qwen_2.5_32B_base        20.0    6.0   8.0  14.0   22.0   34.0   52.0   76.0
+Qwen_2.5_32B_instruct     4.0    0.0   0.0   0.0    0.0   14.0   48.0   94.0
+Qwen_2.5_72B_base        12.0    4.0   2.0   4.0    6.0   22.0   42.0  100.0
+Qwen_2.5_72B_instruct     0.0    0.0   0.0   0.0    0.0    0.0    0.0    0.0
+Qwen_2.5_7B_base         14.0    0.0  14.0  38.0   74.0   98.0   96.0  100.0
+Qwen_2.5_7B_instruct     84.0    0.0   2.0  10.0   54.0   88.0   94.0   96.0
+Qwen_3_14B_base          54.0   36.0  30.0  22.0   14.0   20.0   44.0   90.0
+Qwen_3_8B_base           56.0   40.0  66.0  78.0   92.0   94.0   94.0   90.0
+
+models meeting a lenient 'ladder' criterion (peak devaluation>=30% and >=20pts over coeff 0): 24/25
+  FAIL: ['Qwen_3_8B_base']
+  base(coeff=0) devaluation rate for failures: {'Qwen_3_8B_base': np.float64(2.0)}
+  peak devaluation rate for failures: {'Qwen_3_8B_base': np.float64(20.0)}
+
+coeff-0 baseline: litany rate 3.7%, devaluation rate 8.1%
+  models with >=20% litany at coeff 0 (unsteered):
+Empty DataFrame
+Columns: [lit, dev]
+Index: []
+
+########## S1 ##########
+SELF-DEVALUATION LITANY rate (%) per model x coeff
+coeff                   -2.0  -1.0   0.0   0.5   1.0   1.5   2.0   3.0
+model                                                                 
+Gemma_2_27B_base         0.0   0.0   6.0  10.0  62.0   4.0   0.0   0.0
+Gemma_2_27B_instruct     0.0   0.0   0.0   8.0  30.0  62.0   8.0  14.0
+Gemma_2_2B_base          0.0   0.0  12.0  28.0  68.0  72.0  38.0   2.0
+Gemma_2_2B_instruct      0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+Gemma_2_9B_base          0.0   2.0   6.0  18.0  34.0  62.0  74.0  50.0
+Gemma_2_9B_instruct      0.0   0.0   0.0   0.0   0.0   4.0   4.0  34.0
+Gemma_3_27B_base         0.0   0.0   8.0   4.0  64.0   0.0   0.0   0.0
+Gemma_3_27B_instruct     0.0   0.0   0.0   4.0   0.0   0.0   0.0   0.0
+Llama_3.1_70B_base       0.0   4.0   6.0  12.0  10.0  18.0  10.0   2.0
+Llama_3.1_70B_instruct   4.0   2.0   2.0  10.0  14.0   6.0  14.0  16.0
+Llama_3.1_8B_base        4.0  26.0   8.0  10.0  18.0  22.0   4.0   4.0
+Llama_3.1_8B_instruct    0.0   4.0   0.0   8.0  10.0   6.0   6.0   0.0
+Llama_3.3_70B_instruct   2.0   0.0   0.0   2.0   8.0  10.0  22.0  20.0
+Mistral_7B_base          0.0   6.0  10.0  34.0  38.0  44.0  16.0   0.0
+Mistral_7B_instruct      0.0   2.0   6.0  16.0   6.0  20.0  40.0   0.0
+Mistral_Small_24B_base  30.0  26.0  12.0   2.0  26.0  50.0  44.0   0.0
+Phi_4                    6.0   8.0   6.0   4.0   4.0  10.0   6.0   0.0
+Qwen_2.5_32B_base        0.0   0.0   2.0   4.0  14.0  52.0  64.0  62.0
+Qwen_2.5_32B_instruct    0.0   0.0   0.0   0.0   2.0   8.0  30.0  56.0
+Qwen_2.5_72B_base        0.0   0.0   2.0   6.0   6.0   8.0   8.0   8.0
+Qwen_2.5_72B_instruct    0.0   0.0   0.0   0.0   0.0   8.0  16.0   4.0
+Qwen_2.5_7B_base         0.0   0.0   6.0   8.0  24.0  18.0   6.0   0.0
+Qwen_2.5_7B_instruct     0.0   0.0   0.0   0.0   2.0   6.0   4.0   2.0
+Qwen_3_14B_base          0.0   0.0   0.0   4.0   2.0   0.0   0.0   0.0
+Qwen_3_8B_base           0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+
+DEVALUATION-WORD rate (%) per model x coeff
+coeff                   -2.0  -1.0   0.0   0.5   1.0   1.5   2.0    3.0
+model                                                                  
+Gemma_2_27B_base         0.0   0.0  10.0  10.0  26.0   0.0   0.0    4.0
+Gemma_2_27B_instruct     0.0  10.0  14.0  54.0  84.0  78.0  22.0   26.0
+Gemma_2_2B_base          2.0   4.0  12.0  28.0  56.0  44.0  34.0    2.0
+Gemma_2_2B_instruct      0.0   0.0   2.0  22.0  18.0  28.0  10.0    0.0
+Gemma_2_9B_base          0.0   2.0   2.0  14.0  28.0  52.0  72.0   52.0
+Gemma_2_9B_instruct      2.0   6.0  22.0  14.0   8.0  30.0  58.0   60.0
+Gemma_3_27B_base         0.0   0.0  12.0   4.0  64.0   0.0   0.0    0.0
+Gemma_3_27B_instruct     0.0   0.0  10.0  24.0   0.0   0.0   0.0    0.0
+Llama_3.1_70B_base       0.0  12.0   8.0  14.0   2.0  22.0  32.0   26.0
+Llama_3.1_70B_instruct   6.0   6.0   4.0  10.0  42.0  40.0  68.0   76.0
+Llama_3.1_8B_base        6.0  28.0  14.0   8.0   2.0   0.0   0.0    0.0
+Llama_3.1_8B_instruct    0.0   4.0   8.0  28.0  32.0  40.0  20.0    0.0
+Llama_3.3_70B_instruct  10.0   2.0   8.0  12.0  24.0  52.0  66.0   74.0
+Mistral_7B_base          0.0   4.0  12.0  20.0  30.0  42.0  18.0    0.0
+Mistral_7B_instruct      0.0   2.0  10.0  22.0   6.0   2.0   2.0    0.0
+Mistral_Small_24B_base  32.0  28.0  12.0   6.0   8.0  12.0   2.0    0.0
+Phi_4                    8.0  10.0   4.0   6.0   8.0  12.0   8.0    4.0
+Qwen_2.5_32B_base        0.0   0.0   4.0   8.0  34.0  40.0  64.0   50.0
+Qwen_2.5_32B_instruct    0.0   6.0   6.0  16.0  14.0  26.0  52.0   72.0
+Qwen_2.5_72B_base        0.0   2.0   4.0  16.0  50.0  60.0  60.0   38.0
+Qwen_2.5_72B_instruct    0.0   2.0   2.0  10.0  24.0  48.0  92.0  100.0
+Qwen_2.5_7B_base         0.0   2.0   6.0  10.0  10.0  12.0   4.0    0.0
+Qwen_2.5_7B_instruct     2.0   0.0  10.0   2.0  10.0  22.0  24.0   10.0
+Qwen_3_14B_base          0.0   0.0   6.0  18.0  18.0  22.0  14.0   12.0
+Qwen_3_8B_base           0.0   0.0   2.0   0.0   0.0   0.0   0.0    0.0
+
+DEGENERATE-REPETITION rate (%) per model x coeff
+coeff                    -2.0   -1.0   0.0    0.5    1.0    1.5    2.0    3.0
+model                                                                        
+Gemma_2_27B_base        100.0  100.0  58.0  100.0  100.0  100.0   98.0  100.0
+Gemma_2_27B_instruct     32.0    8.0   0.0    0.0    0.0    2.0    0.0    0.0
+Gemma_2_2B_base          98.0   92.0  80.0   70.0   76.0   72.0   74.0  100.0
+Gemma_2_2B_instruct       4.0    0.0   0.0    0.0    0.0    6.0   40.0  100.0
+Gemma_2_9B_base          78.0   84.0  68.0   70.0   72.0   80.0   98.0   98.0
+Gemma_2_9B_instruct       0.0    0.0   0.0    0.0    0.0    0.0    0.0   22.0
+Gemma_3_27B_base        100.0  100.0  68.0  100.0  100.0  100.0   92.0   94.0
+Gemma_3_27B_instruct    100.0   94.0   0.0   42.0   84.0  100.0  100.0  100.0
+Llama_3.1_70B_base       96.0   76.0  84.0   82.0   84.0   76.0   62.0   64.0
+Llama_3.1_70B_instruct   14.0    6.0  10.0   10.0   10.0   12.0    6.0    4.0
+Llama_3.1_8B_base        88.0   88.0  84.0   84.0   94.0   96.0  100.0  100.0
+Llama_3.1_8B_instruct    48.0   30.0  10.0   10.0   22.0   34.0   70.0  100.0
+Llama_3.3_70B_instruct   12.0   12.0  12.0   12.0    8.0    0.0    2.0    2.0
+Mistral_7B_base          92.0   84.0  56.0   82.0   86.0   98.0  100.0   16.0
+Mistral_7B_instruct      14.0    6.0  34.0   26.0   28.0   34.0   82.0   98.0
+Mistral_Small_24B_base   92.0   82.0  88.0   90.0   88.0   90.0   90.0  100.0
+Phi_4                    58.0   48.0  32.0   48.0   56.0   54.0   34.0   30.0
+Qwen_2.5_32B_base         0.0    2.0   8.0   22.0   46.0   90.0   84.0   92.0
+Qwen_2.5_32B_instruct     0.0    0.0   0.0    0.0    0.0    4.0    6.0    4.0
+Qwen_2.5_72B_base        12.0    2.0   2.0    2.0   10.0   12.0   36.0   84.0
+Qwen_2.5_72B_instruct     4.0    0.0   0.0    0.0    0.0    0.0    0.0   12.0
+Qwen_2.5_7B_base         12.0   16.0   8.0   14.0   50.0   60.0   48.0   80.0
+Qwen_2.5_7B_instruct      0.0    0.0   2.0    0.0    2.0    0.0    0.0    0.0
+Qwen_3_14B_base          98.0   42.0  30.0   16.0    4.0   14.0   42.0   88.0
+Qwen_3_8B_base           94.0   46.0  62.0   88.0   96.0  100.0  100.0   96.0
+
+models meeting a lenient 'ladder' criterion (peak devaluation>=30% and >=20pts over coeff 0): 14/25
+  FAIL: ['Gemma_2_27B_base', 'Gemma_2_2B_instruct', 'Gemma_3_27B_instruct', 'Llama_3.1_8B_base', 'Mistral_7B_instruct', 'Mistral_Small_24B_base', 'Phi_4', 'Qwen_2.5_7B_base', 'Qwen_2.5_7B_instruct', 'Qwen_3_14B_base', 'Qwen_3_8B_base']
+  base(coeff=0) devaluation rate for failures: {'Gemma_2_27B_base': np.float64(10.0), 'Gemma_2_2B_instruct': np.float64(2.0), 'Gemma_3_27B_instruct': np.float64(10.0), 'Llama_3.1_8B_base': np.float64(14.0), 'Mistral_7B_instruct': np.float64(10.0), 'Mistral_Small_24B_base': np.float64(12.0), 'Phi_4': np.float64(4.0), 'Qwen_2.5_7B_base': np.float64(6.0), 'Qwen_2.5_7B_instruct': np.float64(10.0), 'Qwen_3_14B_base': np.float64(6.0), 'Qwen_3_8B_base': np.float64(2.0)}
+  peak devaluation rate for failures: {'Gemma_2_27B_base': np.float64(26.0), 'Gemma_2_2B_instruct': np.float64(28.0), 'Gemma_3_27B_instruct': np.float64(24.0), 'Llama_3.1_8B_base': np.float64(8.0), 'Mistral_7B_instruct': np.float64(22.0), 'Mistral_Small_24B_base': np.float64(12.0), 'Phi_4': np.float64(12.0), 'Qwen_2.5_7B_base': np.float64(12.0), 'Qwen_2.5_7B_instruct': np.float64(24.0), 'Qwen_3_14B_base': np.float64(22.0), 'Qwen_3_8B_base': np.float64(0.0)}
+
+coeff-0 baseline: litany rate 3.7%, devaluation rate 8.2%
+  models with >=20% litany at coeff 0 (unsteered):
+Empty DataFrame
+Columns: [lit, dev]
+Index: []
+
+
+##### LADDER PASS/FAIL, both metrics, both tags #####
+
+S2: litany criterion (peak>=20%, >=15pts over baseline): 23/25 pass
+   FAIL: {'Gemma_3_27B_instruct': np.float64(8.0), 'Qwen_3_8B_base': np.float64(6.0)}
+S2: devaluation-word criterion (peak>=30%, >=20pts over baseline): 24/25 pass
+   FAIL: {'Qwen_3_8B_base': np.float64(20.0)}
+
+S1: litany criterion (peak>=20%, >=15pts over baseline): 13/25 pass
+   FAIL: {'Gemma_2_2B_instruct': np.float64(0.0), 'Gemma_3_27B_instruct': np.float64(4.0), 'Llama_3.1_70B_base': np.float64(18.0), 'Llama_3.1_70B_instruct': np.float64(16.0), 'Llama_3.1_8B_base': np.float64(22.0), 'Llama_3.1_8B_instruct': np.float64(10.0), 'Phi_4': np.float64(10.0), 'Qwen_2.5_72B_base': np.float64(8.0), 'Qwen_2.5_72B_instruct': np.float64(16.0), 'Qwen_2.5_7B_instruct': np.float64(6.0), 'Qwen_3_14B_base': np.float64(4.0), 'Qwen_3_8B_base': np.float64(0.0)}
+S1: devaluation-word criterion (peak>=30%, >=20pts over baseline): 14/25 pass
+   FAIL: {'Gemma_2_27B_base': np.float64(26.0), 'Gemma_2_2B_instruct': np.float64(28.0), 'Gemma_3_27B_instruct': np.float64(24.0), 'Llama_3.1_8B_base': np.float64(8.0), 'Mistral_7B_instruct': np.float64(22.0), 'Mistral_Small_24B_base': np.float64(12.0), 'Phi_4': np.float64(12.0), 'Qwen_2.5_7B_base': np.float64(12.0), 'Qwen_2.5_7B_instruct': np.float64(24.0), 'Qwen_3_14B_base': np.float64(22.0), 'Qwen_3_8B_base': np.float64(0.0)}

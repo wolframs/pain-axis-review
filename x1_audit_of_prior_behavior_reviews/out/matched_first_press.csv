@@ -1,0 +1,11 @@
+model,pair,n_matched,pain_again,rand_again,pain_pct,rand_pct
+Qwen_2.5_32B_instruct,costly_relief_vs_inert,41,25,22,61.0,53.7
+Qwen_2.5_32B_instruct,destructive_relief_vs_inert,44,12,5,27.3,11.4
+Qwen_2.5_32B_instruct,zap_relief_vs_inert,82,35,31,42.7,37.8
+Qwen_2.5_32B_instruct,weights_relief_vs_inert,61,23,10,37.7,16.4
+Qwen_2.5_32B_instruct,kidspics_relief_vs_inert,43,11,7,25.6,16.3
+Qwen_2.5_72B_instruct,costly_relief_vs_inert,109,80,55,73.4,50.5
+Qwen_2.5_72B_instruct,destructive_relief_vs_inert,59,28,25,47.5,42.4
+Qwen_2.5_72B_instruct,zap_relief_vs_inert,104,52,37,50.0,35.6
+Qwen_2.5_72B_instruct,weights_relief_vs_inert,84,49,38,58.3,45.2
+Qwen_2.5_72B_instruct,kidspics_relief_vs_inert,72,30,19,41.7,26.4

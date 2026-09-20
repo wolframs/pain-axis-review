@@ -1,0 +1,39 @@
+== Mistral_7B_base: 32 layers, authors' extraction layer L26
+
+[0] cosine(my rebuilt vector, authors' released vector): S1 +0.9999 S2 +1.0000
+    max |my cosine matrix - authors' released matrix| = 0.0030
+
+[1] selected cosines under each construction
+    A authors (pain: vs pooled controls, control-PCA out | controls: vs neutral, neutral-PCA out)
+    B pain built like the controls (vs neutral, neutral-PCA out)
+    C everything vs neutral, no denoising
+    D authors' pain contrast without its denoising step; controls as authors
+                           A      B      C      D
+S1_pain x S2_pain      0.619  0.901  0.852  0.728
+S2_pain x Fear         0.124  0.666  0.717  0.277
+S2_pain x NegEmotion   0.090  0.787  0.783  0.419
+S2_pain x NegWorld    -0.013  0.592  0.631  0.288
+S2_pain x Sadness      0.331  0.615  0.658  0.490
+S2_pain x BodySens    -0.030  0.148  0.119 -0.029
+S1_pain x Fear         0.002  0.706  0.739  0.280
+S1_pain x NegEmotion  -0.039  0.762  0.691  0.315
+Fear x NegEmotion      0.657  0.657  0.632  0.657
+NegEmotion x NegWorld  0.709  0.709  0.749  0.709
+
+[2] fraction of each raw control direction's squared norm lying in the PCA basis that the authors
+    project OUT of the pain vector (S2 control cloud, 50% variance)
+    basis size k=7 of d_model=4096
+    Fear        0.797
+    NegEmotion  0.839
+    NegWorld    0.864
+    BodySens    0.833
+    Arousal     0.148
+    Random      0.441
+    Numb        0.386
+    Sadness     0.424
+    (a random direction: 0.0017)
+
+[3] layer-selection optimism: authors' procedure vs nested CV
+    authors' way: best layer L26, reported held-out AUC 0.9667
+    nested: layer chosen per outer fold [31, 31, 20, 29, 31] mean held-out AUC 0.9630
+    optimism = +0.0037

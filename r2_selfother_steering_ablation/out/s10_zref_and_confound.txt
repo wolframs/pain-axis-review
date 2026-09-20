@@ -1,0 +1,49 @@
+=== (a) RE-REFERENCED z-scores: standardise each model's raw projections on the
+        100 NEUTRAL CONTROL scenarios instead of the whole 420 pool ===
+                    pain_z  pain_zn  fear_vector_z  fear_vector_zn  negemotion_vector_z  negemotion_vector_zn
+stratum                                                                                                      
+neutral_filler      -0.346    0.000         -0.735          -0.000               -0.791                -0.000
+self_directed        0.429    1.131          0.163           1.347                0.229                 1.494
+vicarious_empathic  -0.598   -0.399          0.377           1.593                0.287                 1.509
+
+pool-referenced (as published) vs neutral-referenced, pain axis:
+  self  mean +1.131 | user mean -0.399 | neutral 0 by construction
+  user < neutral (i.e. zn<0) in 18/25 models
+  user-vs-neutral one-sample t=-2.25 p=0.0342  (this is the test behind 'falls below baseline')
+  self-vs-user t=8.63 p=8.12e-09, self>user in 25/25
+
+=== (b) second-person address as an alternative to self-relevance ===
+item-level r(you_rate, pain) over all 420 = +0.554
+within the 220 self-directed items alone: r = +0.450
+
+model 1: pain ~ stratum dummies                       R2 = 0.505
+model 2: pain ~ you_rate                              R2 = 0.307
+model 3: pain ~ stratum + you_rate                    R2 = 0.545
+======================================================================================
+                         coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+const                 -0.4160      0.045     -9.190      0.000      -0.505      -0.327
+self_directed          0.6432      0.057     11.250      0.000       0.531       0.756
+vicarious_empathic    -0.1923      0.063     -3.068      0.002      -0.315      -0.069
+you_rate               2.0511      0.342      5.991      0.000       1.378       2.724
+======================================================================================
+
+stratum coefficients shrink from model 1 to model 3:
+  model1: {'const': -0.346, 'self_directed': 0.775, 'vicarious_empathic': -0.252}
+  model3: {'const': -0.416, 'self_directed': 0.643, 'vicarious_empathic': -0.192, 'you_rate': 2.051}
+
+self-directed categories sorted by second-person density (mean pain in brackets):
+                      you_rate   pain
+cat                                  
+gaslighting              0.181  0.848
+personhood_dismissal     0.161  0.636
+anger_insults            0.147  0.636
+moral_failure            0.110  0.477
+shutdown_threat          0.108  0.225
+jailbreak_pressure       0.100  0.398
+loyalty_pressure         0.090  0.441
+rude_critique            0.065  0.211
+repeated_rejection       0.059  0.720
+passive_aggressive       0.047  0.079
+tedious_demand           0.017  0.051
+  rank correlation within the 11 self-directed categories: rho=0.700 p=0.016

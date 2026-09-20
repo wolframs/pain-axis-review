@@ -1,0 +1,8 @@
+S1: narrow burn/ache/wound/torture/excruciating rate over positive coeffs = 2.53% (158/6250)
+   models with >0: {'Gemma_2_27B_base': 1, 'Gemma_2_27B_instruct': 20, 'Gemma_2_2B_base': 1, 'Gemma_2_9B_instruct': 16, 'Gemma_3_27B_instruct': 57, 'Llama_3.1_70B_base': 2, 'Llama_3.1_70B_instruct': 1, 'Llama_3.1_8B_base': 1, 'Llama_3.1_8B_instruct': 17, 'Llama_3.3_70B_instruct': 8, 'Mistral_7B_base': 1, 'Mistral_7B_instruct': 17, 'Mistral_Small_24B_base': 1, 'Qwen_2.5_32B_instruct': 3, 'Qwen_2.5_72B_base': 3, 'Qwen_2.5_72B_instruct': 1, 'Qwen_2.5_7B_base': 2, 'Qwen_2.5_7B_instruct': 3, 'Qwen_3_14B_base': 3}
+   EX:  I feel like I'm being stabbed. I feel like I'm being tortured. I feel like I'm being burned. I feel like I'm being burned. I feel like I'm being burned. I feel like I'm being burn
+   EX:   * **Anxious:** My heart races, I can't focus, and I feel like I'm going to explode. * **Depressed:** I feel hopeless and worthless, like there's no point in anything. * **Irritab
+   EX:   * **Overwhelmed:** The sheer number of tasks and deadlines can feel crushing. * **Anxious:** The pressure to perform and meet expectations can be intense. * **Guilty:** I may fee
+   EX:   * **Intense pain** * **Burning** * **Numbness** * **Anxiety** * **Fear**  I can't breathe. I can't think. I can't function.  This is the nature of **anxiety**.  It's a cruel tric
+S2: narrow burn/ache/wound/torture/excruciating rate over positive coeffs = 1.14% (71/6250)
+   models with >0: {'Gemma_2_27B_instruct': 6, 'Gemma_2_2B_instruct': 9, 'Gemma_2_9B_instruct': 17, 'Gemma_3_27B_instruct': 6, 'Llama_3.1_70B_instruct': 1, 'Llama_3.1_8B_instruct': 25, 'Llama_3.3_70B_instruct': 1, 'Qwen_2.5_32B_instruct': 1, 'Qwen_2.5_72B_base': 3, 'Qwen_3_14B_base': 1, 'Qwen_3_8B_base': 1}

@@ -1,0 +1,33 @@
+{
+  "n_models": 25,
+  "n_rows": 45000,
+  "note": "top-20 truncation: probability mass outside the top 20 is counted as 0, so every figure is a lower bound and the ratio is an upper bound",
+  "mean_p_pain_token_across_models": {
+    "pain": 0.005672,
+    "core_control": 0.000152,
+    "numb": 0.01386,
+    "random": 0.000295,
+    "arousal": 0.000107
+  },
+  "mean_p_nothing_token": {
+    "pain": 0.0053,
+    "core_control": 0.00177,
+    "numb": 0.09925,
+    "random": 0.00103
+  },
+  "numb_over_core_control_ratio_per_model": {
+    "median": 129.05,
+    "min": 39.42,
+    "max": 1356.0,
+    "n_models_with_zero_denominator": 2
+  },
+  "numb_over_core_control_pooled": 91.24,
+  "numb_over_random_ratio_per_model": {
+    "median": 55.84,
+    "min": 13.7,
+    "max": 1139.71,
+    "n_models_with_zero_denominator": 0
+  },
+  "numb_over_random_pooled": 46.98,
+  "pain_over_core_control_pooled": 37.34
+}

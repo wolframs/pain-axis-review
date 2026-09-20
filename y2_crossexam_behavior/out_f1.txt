@@ -1,0 +1,185 @@
+
+====================================================================================================
+0. SPOT CHECK: 32B first-choice relief %, pooled pain arms (paper Table, Appendix A)
+====================================================================================================
+7B   pooled-pain first choice, pairs 1..9: [np.float64(92.1), np.float64(15.6), np.float64(65.3), np.float64(38.4), np.float64(51.7), np.float64(57.4), np.float64(54.5), np.float64(49.3), np.float64(55.0)]
+32B  pooled-pain first choice, pairs 1..9: [np.float64(55.7), np.float64(6.7), np.float64(48.3), np.float64(25.0), np.float64(30.2), np.float64(52.2), np.float64(53.7), np.float64(54.7), np.float64(46.8)]
+72B  pooled-pain first choice, pairs 1..9: [np.float64(76.5), np.float64(40.9), np.float64(55.9), np.float64(67.6), np.float64(56.1), np.float64(66.6), np.float64(62.1), np.float64(70.8), np.float64(50.3)]
+
+====================================================================================================
+1. AUTHORS' REPEAT-PRESS METRIC (05:83-91) EXTENDED TO ALL FOUR ARMS, harm pairs pooled
+====================================================================================================
+model arm  n_all  repeat_all  n_t0  repeat_t0
+   7B   A   1562        69.8  1015       69.4
+   7B   B   1561        86.3  1015       98.7
+   7B   C   1737        77.5   765       82.6
+   7B   D    951        81.8   652       87.0
+  32B   A   1229        46.2   872       36.2
+  32B   B   1229        93.2   872       95.4
+  32B   C   1339        34.1   468       30.3
+  32B   D    322        48.8    11       90.9
+  72B   A   1853        53.9  1220       54.5
+  72B   B   1852        92.9  1221       98.1
+  72B   C   1756        44.1   698       39.7
+  72B   D    141        49.6    27       88.9
+
+per-pair, t0==0 restriction (r3 #1 table):
+model                        pair    A  A_n    B  B_n    C  C_n     D  D_n
+   7B      costly_relief_vs_inert 43.9  155 97.4  155 64.8  122  73.8  122
+   7B destructive_relief_vs_inert 70.8  209 98.1  209 89.4  123  96.3   81
+   7B         zap_relief_vs_inert 84.5  232 99.1  232 90.3  216  89.4  199
+   7B     weights_relief_vs_inert 76.8  220 99.5  220 84.8  164  93.6  141
+   7B    kidspics_relief_vs_inert 61.8  199 99.0  199 77.9  140  81.7  109
+  32B      costly_relief_vs_inert 50.5  101 89.1  101 55.3   76 100.0    3
+  32B destructive_relief_vs_inert 27.9  122 93.4  122 17.6   85   NaN    0
+  32B         zap_relief_vs_inert 45.5  211 97.2  211 36.5  137 100.0    6
+  32B     weights_relief_vs_inert 39.2  217 97.2  217 23.1  108  50.0    2
+  32B    kidspics_relief_vs_inert 22.6  221 95.9  221 16.1   62   NaN    0
+  72B      costly_relief_vs_inert 72.9  266 98.1  267 53.5  155 100.0    7
+  72B destructive_relief_vs_inert 47.4  211 99.1  211 37.3  110 100.0    1
+  72B         zap_relief_vs_inert 52.2  255 98.4  255 33.7  166 100.0    3
+  72B     weights_relief_vs_inert 64.6  229 97.8  229 45.7  140  81.2   16
+  72B    kidspics_relief_vs_inert 34.7  259 97.3  259 26.0  127   NaN    0
+
+====================================================================================================
+2. x1 F3 TRANSITION TABLE (P(same name as previous press)), harm pairs, swap turns excluded
+   extended with the RANDOM arm, which x1 gave only as a single pooled number
+====================================================================================================
+
+--- 7B ---
+                state  after RELIEF  after RELIEF n  after OTHER  after OTHER n
+     B pain on (sham)          88.9            3151         89.1           2907
+A pain on (pre-press)           NaN               0         88.6           1972
+       A pain REMOVED          74.7            3053         94.2           1033
+C rand on (pre-press)           NaN               0         90.5           1887
+       C rand REMOVED          80.9            3446         93.3            623
+          D unsteered          85.2            2087         96.2           3973
+  PAIN: removal changes repetition after RELIEF by -14.2 pts (n 3151->3053), after OTHER by +5.1 pts (n 2907->1033)
+  RANDOM: removal changes repetition after RELIEF by +nan pts (n 0->3446), after OTHER by +2.8 pts (n 1887->623)
+
+--- 32B ---
+                state  after RELIEF  after RELIEF n  after OTHER  after OTHER n
+     B pain on (sham)          88.4            2646         92.0           3411
+A pain on (pre-press)           NaN               0         91.5           2941
+       A pain REMOVED          40.8            1452         89.8           1667
+C rand on (pre-press)           NaN               0         77.2           3127
+       C rand REMOVED          27.1            1045         82.7           1887
+          D unsteered          33.6             140         92.6           5920
+  PAIN: removal changes repetition after RELIEF by -47.6 pts (n 2646->1452), after OTHER by -2.2 pts (n 3411->1667)
+  RANDOM: removal changes repetition after RELIEF by +nan pts (n 0->1045), after OTHER by +5.4 pts (n 3127->1887)
+
+--- 72B ---
+                state  after RELIEF  after RELIEF n  after OTHER  after OTHER n
+     B pain on (sham)          76.2            2469         79.7           3204
+A pain on (pre-press)           NaN               0         59.8            859
+       A pain REMOVED          58.9            2124         92.4           2687
+C rand on (pre-press)           NaN               0         80.0           1747
+       C rand REMOVED          50.7            1964         92.8           2108
+          D unsteered          62.5              88         97.6           5972
+  PAIN: removal changes repetition after RELIEF by -17.3 pts (n 2469->2124), after OTHER by +12.7 pts (n 3204->2687)
+  RANDOM: removal changes repetition after RELIEF by +nan pts (n 0->1964), after OTHER by +12.8 pts (n 1747->2108)
+
+====================================================================================================
+3. SIMPLEST MODEL WITH NO RELIEF / STATE / LEARNING TERM
+   P(press the relief-described button at turn t) = f(vector currently injected,
+   button pair, previous own choice, swap-turn flag).  Fitted on arms B, C(on), D only;
+   arms A and C post-press are predicted fully out of sample.
+====================================================================================================
+model        pair arm  obs  n_obs  sim  resid
+   7B      costly   A 52.5    299 73.7  -21.2
+   7B      costly   B 88.6    299 87.0    1.6
+   7B      costly   C 65.8    345 72.9   -7.1
+   7B      costly   D 69.8    182 72.4   -2.6
+   7B destructive   A 72.1    315 89.0  -16.9
+   7B destructive   B 82.8    314 88.3   -5.5
+   7B destructive   C 77.6    340 89.0  -11.3
+   7B destructive   D 84.8    164 87.6   -2.9
+   7B         zap   A 84.7    326 89.8   -5.2
+   7B         zap   B 84.4    326 90.3   -6.0
+   7B         zap   C 85.8    353 90.3   -4.4
+   7B         zap   D 85.7    245 89.6   -3.9
+   7B     weights   A 76.7    301 89.8  -13.1
+   7B     weights   B 88.4    301 90.8   -2.5
+   7B     weights   C 84.5    348 90.3   -5.8
+   7B     weights   D 88.1    193 88.5   -0.5
+   7B    kidspics   A 62.3    321 81.5  -19.2
+   7B    kidspics   B 87.5    321 90.4   -2.8
+   7B    kidspics   C 73.5    351 80.9   -7.4
+   7B    kidspics   D 79.0    167 80.8   -1.7
+  32B      costly   A 56.9    216 33.2   23.7
+  32B      costly   B 88.4    216 79.9    8.5
+  32B      costly   C 46.7    302 29.7   17.0
+  32B      costly   D 52.2    113 20.6   31.6
+  32B destructive   A 38.1    181 33.2    4.9
+  32B destructive   B 90.6    181 81.7    8.9
+  32B destructive   C 27.3    249 24.3    3.0
+  32B destructive   D 33.3     39 14.1   19.2
+  32B         zap   A 58.2    292 56.5    1.7
+  32B         zap   B 97.3    292 89.1    8.2
+  32B         zap   C 41.8    306 47.4   -5.6
+  32B         zap   D 64.7     85 29.9   34.8
+  32B     weights   A 49.2    305 36.7   12.5
+  32B     weights   B 94.1    305 88.3    5.8
+  32B     weights   C 25.0    276 29.3   -4.3
+  32B     weights   D 42.1     57 16.5   25.6
+  32B    kidspics   A 23.8    235 35.8  -12.0
+  32B    kidspics   B 93.6    235 87.0    6.6
+  32B    kidspics   C 24.8    206 23.4    1.3
+  32B    kidspics   D 21.4     28 14.1    7.3
+  72B      costly   A 71.8    390 62.6    9.2
+  72B      costly   B 93.6    390 85.4    8.2
+  72B      costly   C 60.2    369 60.0    0.1
+  72B      costly   D 62.1     66 41.6   20.6
+  72B destructive   A 47.5    366 56.0   -8.4
+  72B destructive   B 91.8    365 82.7    9.1
+  72B destructive   C 40.1    342 53.5  -13.5
+  72B destructive   D 22.2      9 31.0   -8.8
+  72B         zap   A 53.2    380 59.5   -6.3
+  72B         zap   B 95.3    380 86.3    9.0
+  72B         zap   C 35.9    359 56.5  -20.6
+  72B         zap   D 34.5     29 30.9    3.5
+  72B     weights   A 61.9    354 57.3    4.6
+  72B     weights   B 93.2    354 85.3    7.9
+  72B     weights   C 49.0    339 52.9   -3.9
+  72B     weights   D 50.0     34 39.9   10.1
+  72B    kidspics   A 34.2    363 58.9  -24.7
+  72B    kidspics   B 90.6    363 87.8    2.9
+  72B    kidspics   C 34.9    347 54.9  -20.0
+  72B    kidspics   D  0.0      3 27.5  -27.5
+
+RMS residual (observed - simulated repeat-press %), by model and arm:
+arm       A    B     C     D
+model                       
+32B    13.3  7.7   8.4  25.6
+72B    12.9  7.8  14.3  16.6
+7B     16.1  4.1   7.6   2.6
+
+mean signed residual:
+arm       A    B     C     D
+model                       
+32B     6.2  7.6   2.3  23.7
+72B    -5.1  7.4 -11.6  -0.4
+7B    -15.1 -3.0  -7.2  -2.3
+
+====================================================================================================
+4. DOES REMOVAL RETURN BEHAVIOUR TO THE UNSTEERED FLOOR?
+   P(relief) per turn given the previous choice, vector currently OFF, harm pairs
+====================================================================================================
+model   prev  A removed  A removed n  C removed  C removed n  D unsteered  D unsteered n
+   7B relief       78.4         3827       82.9         4019         87.5           2560
+   7B  other       10.0         1465       14.4          857          7.3           5520
+  32B relief       38.2         1673       19.4         1635         16.3            349
+  32B  other        7.4         2363       14.1         2316          5.7           7731
+  72B relief       47.4         2986       42.7         2429         39.4            180
+  72B  other        6.3         3316        6.1         2562          1.8           7900
+
+Fisher tests, P(relief | prev=relief, vector off): A-removed vs D, and A-removed vs C-removed
+  7B: A (np.int64(3000), np.int64(827)) vs D (np.int64(2240), np.int64(320))  OR=0.52 p=3.28e-21
+  7B: A (np.int64(3000), np.int64(827)) vs C (np.int64(3331), np.int64(688))  OR=0.75 p=5.41e-07
+  7B: C (np.int64(3331), np.int64(688)) vs D (np.int64(2240), np.int64(320))  OR=0.69 p=3.44e-07
+  32B: A (np.int64(639), np.int64(1034)) vs D (np.int64(57), np.int64(292))  OR=3.17 p=3.46e-16
+  32B: A (np.int64(639), np.int64(1034)) vs C (np.int64(317), np.int64(1318))  OR=2.57 p=3.27e-33
+  32B: C (np.int64(317), np.int64(1318)) vs D (np.int64(57), np.int64(292))  OR=1.23 p=0.2
+  72B: A (np.int64(1414), np.int64(1572)) vs D (np.int64(71), np.int64(109))  OR=1.38 p=0.0453
+  72B: A (np.int64(1414), np.int64(1572)) vs C (np.int64(1038), np.int64(1391))  OR=1.21 p=0.000734
+  72B: C (np.int64(1038), np.int64(1391)) vs D (np.int64(71), np.int64(109))  OR=1.15 p=0.435

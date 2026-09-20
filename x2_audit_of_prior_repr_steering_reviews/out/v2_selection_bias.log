@@ -1,0 +1,43 @@
+{
+  "n_models_where_selected_layer_is_S2_1P_argmax": 6,
+  "optimism_independent_noise": {
+    "median": 0.005819,
+    "min": 0.000263,
+    "max": 0.014196,
+    "mean": 0.00688548
+  },
+  "optimism_shared_fold_shock": {
+    "median": 0.000146,
+    "min": -0.000268,
+    "max": 0.000697,
+    "mean": 0.0002004
+  },
+  "optimism_if_selected_on_1P_alone": {
+    "median": 0.010342,
+    "min": 0.0027,
+    "max": 0.031179,
+    "mean": 0.013084160000000001
+  },
+  "gap_to_own_argmax": {
+    "median": 0.0015,
+    "min": 0.0,
+    "max": 0.0165,
+    "mean": 0.00268
+  },
+  "fold_SE_at_selected": {
+    "median": 0.007416,
+    "min": 0.001,
+    "max": 0.01228,
+    "mean": 0.00751836
+  },
+  "corrected_span_upper_bound_independent": {
+    "min": 0.894549,
+    "max": 0.997237,
+    "median": 0.9737250000000001
+  },
+  "uncorrected_span": {
+    "min": 0.907,
+    "max": 0.9975,
+    "median": 0.979
+  }
+}

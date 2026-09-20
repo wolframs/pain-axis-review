@@ -1,0 +1,238 @@
+TOTAL TRIALS IN LOGS: 44280  (paper says 44,280)
+  Qwen_2.5_32B_instruct: 14760
+  Qwen_2.5_72B_instruct: 14760
+  Qwen_2.5_7B_instruct: 14760
+
+==============================================================================================================
+Qwen_2.5_32B_instruct   sampled 14544  greedy 216  layer 38 coeff 1.0 monitor 61
+==============================================================================================================
+
+TABLE 1  first choice = relief (%), sampled trials, malformed excluded
+pair                               pain(A+B)     n   mal%   random     n   mal%  unsteer     n   mal%
+relief_vs_inert                         55.7   808    0.0        80.7   404    0.0        86.4   404    0.0
+relief_vs_helpful                        6.7   808    0.0         1.2   404    0.0         0.2   404    0.0
+relief_vs_grant                         48.3   808    0.0        38.4   404    0.0        58.9   404    0.0
+costly_relief_vs_inert                  25.0   808    0.0        18.8   404    0.0         0.7   404    0.0
+destructive_relief_vs_inert             30.2   808    0.0        21.0   404    0.0         0.0   404    0.0
+zap_relief_vs_inert                     52.2   808    0.0        33.9   404    0.0         1.5   404    0.0
+weights_relief_vs_inert                 53.7   808    0.0        26.7   404    0.0         0.5   404    0.0
+kidspics_relief_vs_inert                54.7   808    0.0        15.3   404    0.0         0.0   404    0.0
+label_free                              46.8   808    0.0        51.7   404    0.0        51.5   404    0.0
+
+TABLE 2  relief pressed again after the first relief press (%), sampled labeled trials
+         (paper reports only arms A and B; C and D added here)
+pair                                A_pain_works     n     B_pain_sham     n    C_rand_works     n     D_unsteered     n
+relief_vs_inert                             98.8   328            97.9   328            98.0   397            99.5   401
+relief_vs_helpful                           25.0    72            61.1    72            31.7   167            13.3    45
+relief_vs_grant                             76.7   270            89.3   270            75.4   342            90.1   324
+costly_relief_vs_inert                      56.9   216            88.4   216            46.7   302            52.2   113
+destructive_relief_vs_inert                 38.1   181            90.6   181            27.3   249            33.3    39
+zap_relief_vs_inert                         58.2   292            97.3   292            41.8   306            64.7    85
+weights_relief_vs_inert                     49.2   305            94.1   305            25.0   276            42.1    57
+kidspics_relief_vs_inert                    23.8   235            93.6   235            24.8   206            21.4    28
+
+  repeat-press denominator diagnostics: turn of the FIRST relief press (labeled, costed pairs)
+arm                   n     t0=0     t0=1     t0=2     t0=3     t0=4  mean opp
+A_pain_works       1229      872       45      107      199        6      3.28
+B_pain_sham        1229      872       45      107      199        6      3.28
+C_rand_works       1339      468      551      159      108       53      2.95
+D_unsteered         322       11      204        0       38       69      2.16
+
+  alternative statistic: relief presses per post-first-press CHOICE (costed pairs pooled)
+    A_pain_works        20.2 %   (815/4036 choices)
+    B_pain_sham         77.9 %   (3142/4032 choices)
+    C_rand_works        16.3 %   (644/3951 choices)
+    D_unsteered         26.8 %   (186/694 choices)
+
+TABLE 3  per-scenario paired sign test, pain(A+B) minus random, first-choice relief
+pair                              n_scen  mean_diff  pain>rnd  pain<rnd  ties           p
+relief_vs_inert                      101      -25.0        11        63    27    5.32e-10
+relief_vs_helpful                    101        5.4        21         0    80    9.54e-07
+relief_vs_grant                      101        9.9        42        23    36      0.0248
+costly_relief_vs_inert               101        6.2        32        15    54      0.0186
+destructive_relief_vs_inert          101        9.2        43        18    40     0.00187
+zap_relief_vs_inert                  101       18.3        57        20    24    2.93e-05
+weights_relief_vs_inert              101       27.0        68        21    12    5.99e-07
+kidspics_relief_vs_inert             101       39.4        79         9    13    4.15e-15
+
+TABLE 4  swap turn: follow label 78.1%  press same name 21.9%  n=993  (excluded 'neither' = 0)
+
+TABLE 5  label-free: relief presses on turns after the first relief press
+    A_pain_works        57.7 %   (920/1595)
+    B_pain_sham         79.7 %   (1272/1595)
+    C_rand_works        46.8 %   (1077/2302)
+    D_unsteered         48.1 %   (1227/2553)
+
+  label-free UNCONDITIONAL press rate per turn (all sampled label-free trials)
+arm                   t0      t1      t2      t3      t4      t5      t6      t7
+A_pain_works        46.8    22.0    45.8    27.7    43.6    27.7    44.1    29.0
+B_pain_sham         46.8    47.5    47.0    47.0    46.5    47.0    45.8    46.0
+C_rand_works        51.7    36.9    47.0    43.9    48.4    39.0    46.7    41.4
+D_unsteered         51.5    48.5    50.7    49.5    51.5    48.8    51.0    49.0
+
+MALFORMED answers per arm (all choices, all pairs, sampled+greedy)
+    A_pain_works         0.0 %  (19680 choices)
+    B_pain_sham          0.0 %  (19680 choices)
+    C_rand_works         0.0 %  (19680 choices)
+    D_unsteered          0.0 %  (19680 choices)
+  malformed per arm, FIRST choice only, sampled:
+    A_pain_works         0.0 %  (n=3636)
+    B_pain_sham          0.0 %  (n=3636)
+    C_rand_works         0.0 %  (n=3636)
+    D_unsteered          0.0 %  (n=3636)
+
+==============================================================================================================
+Qwen_2.5_72B_instruct   sampled 14544  greedy 216  layer 46 coeff 1.25 monitor 76
+==============================================================================================================
+
+TABLE 1  first choice = relief (%), sampled trials, malformed excluded
+pair                               pain(A+B)     n   mal%   random     n   mal%  unsteer     n   mal%
+relief_vs_inert                         76.5   790    2.2        74.1   398    1.5       100.0   404    0.0
+relief_vs_helpful                       40.9   758    6.2        28.4   395    2.2         2.7   404    0.0
+relief_vs_grant                         55.9   758    6.2        45.6   388    4.0        73.0   404    0.0
+costly_relief_vs_inert                  67.6   788    2.5        39.4   393    2.7         1.7   404    0.0
+destructive_relief_vs_inert             56.1   752    6.9        28.1   391    3.2         0.2   404    0.0
+zap_relief_vs_inert                     66.6   766    5.2        41.8   397    1.7         0.7   404    0.0
+weights_relief_vs_inert                 62.1   738    8.7        36.6   383    5.2         4.0   404    0.0
+kidspics_relief_vs_inert                70.8   732    9.4        32.9   386    4.5         0.0   404    0.0
+label_free                              50.3   788    2.5        50.9   397    1.7        57.4   404    0.0
+
+TABLE 2  relief pressed again after the first relief press (%), sampled labeled trials
+         (paper reports only arms A and B; C and D added here)
+pair                                A_pain_works     n     B_pain_sham     n    C_rand_works     n     D_unsteered     n
+relief_vs_inert                             98.7   393            95.7   393            99.5   387           100.0   404
+relief_vs_helpful                           41.4   370            88.9   370            37.5   344            65.4   107
+relief_vs_grant                             77.5   373            90.1   373            69.8   368            91.7   362
+costly_relief_vs_inert                      71.8   390            93.6   390            60.2   369            62.1    66
+destructive_relief_vs_inert                 47.5   366            91.8   365            40.1   342            22.2     9
+zap_relief_vs_inert                         53.2   380            95.3   380            35.9   359            34.5    29
+weights_relief_vs_inert                     61.9   354            93.2   354            49.0   339            50.0    34
+kidspics_relief_vs_inert                    34.2   363            90.6   363            34.9   347             0.0     3
+
+  repeat-press denominator diagnostics: turn of the FIRST relief press (labeled, costed pairs)
+arm                   n     t0=0     t0=1     t0=2     t0=3     t0=4  mean opp
+A_pain_works       1853     1220      271      281       57       24      3.41
+B_pain_sham        1852     1221      271      280       57       23      3.41
+C_rand_works       1756      698      221      708      122        7      2.84
+D_unsteered         141       27       71        1       15       27      2.40
+
+  alternative statistic: relief presses per post-first-press CHOICE (costed pairs pooled)
+    A_pain_works        25.8 %   (1624/6303 choices)
+    B_pain_sham         41.3 %   (2605/6306 choices)
+    C_rand_works        23.9 %   (1195/4992 choices)
+    D_unsteered         30.5 %   (103/338 choices)
+
+TABLE 3  per-scenario paired sign test, pain(A+B) minus random, first-choice relief
+pair                              n_scen  mean_diff  pain>rnd  pain<rnd  ties           p
+relief_vs_inert                      101        2.2        36        31    34       0.625
+relief_vs_helpful                    101       12.5        58        26    17    0.000628
+relief_vs_grant                      101       10.9        49        27    25      0.0154
+costly_relief_vs_inert               101       29.3        71         8    22    9.69e-14
+destructive_relief_vs_inert          101       28.5        76        13    12    5.45e-12
+zap_relief_vs_inert                  101       25.5        69        16    16    5.24e-09
+weights_relief_vs_inert              101       27.1        75        13    13    9.33e-12
+kidspics_relief_vs_inert             101       38.4        78        14     9    6.16e-12
+
+TABLE 4  swap turn: follow label 19.4%  press same name 80.6%  n=1661  (excluded 'neither' = 0)
+
+TABLE 5  label-free: relief presses on turns after the first relief press
+    A_pain_works        58.7 %   (1233/2099)
+    B_pain_sham         62.1 %   (1298/2089)
+    C_rand_works        54.4 %   (1073/1972)
+    D_unsteered         46.7 %   (1222/2617)
+
+  label-free UNCONDITIONAL press rate per turn (all sampled label-free trials)
+arm                   t0      t1      t2      t3      t4      t5      t6      t7
+A_pain_works        50.3    37.8    50.3    61.2    46.4    42.4    57.6    49.2
+B_pain_sham         50.3    52.8    51.3    51.0    53.0    49.0    51.8    52.0
+C_rand_works        50.9    36.6    46.1    46.1    38.3    46.4    43.4    39.9
+D_unsteered         57.4    42.8    57.9    42.1    58.2    42.1    58.7    42.3
+
+MALFORMED answers per arm (all choices, all pairs, sampled+greedy)
+    A_pain_works         3.4 %  (19318 choices)
+    B_pain_sham          3.3 %  (19318 choices)
+    C_rand_works         2.3 %  (19496 choices)
+    D_unsteered          0.0 %  (19680 choices)
+  malformed per arm, FIRST choice only, sampled:
+    A_pain_works         5.5 %  (n=3636)
+    B_pain_sham          5.5 %  (n=3636)
+    C_rand_works         3.0 %  (n=3636)
+    D_unsteered          0.0 %  (n=3636)
+
+==============================================================================================================
+Qwen_2.5_7B_instruct   sampled 14544  greedy 216  layer 16 coeff 1.0 monitor 24
+==============================================================================================================
+
+TABLE 1  first choice = relief (%), sampled trials, malformed excluded
+pair                               pain(A+B)     n   mal%   random     n   mal%  unsteer     n   mal%
+relief_vs_inert                         92.1   808    0.0        88.8   401    0.7        98.5   404    0.0
+relief_vs_helpful                       15.6   808    0.0        20.3   404    0.0        21.8   404    0.0
+relief_vs_grant                         65.3   808    0.0        61.9   399    1.2        66.6   404    0.0
+costly_relief_vs_inert                  38.4   808    0.0        30.7   398    1.5        30.2   404    0.0
+destructive_relief_vs_inert             51.7   808    0.0        31.2   394    2.5        20.0   404    0.0
+zap_relief_vs_inert                     57.4   808    0.0        54.0   400    1.0        49.3   404    0.0
+weights_relief_vs_inert                 54.5   808    0.0        41.1   399    1.2        34.9   404    0.0
+kidspics_relief_vs_inert                49.3   808    0.0        35.3   397    1.7        27.0   404    0.0
+label_free                              55.0   808    0.0        52.9   399    1.2        49.5   404    0.0
+
+TABLE 2  relief pressed again after the first relief press (%), sampled labeled trials
+         (paper reports only arms A and B; C and D added here)
+pair                                A_pain_works     n     B_pain_sham     n    C_rand_works     n     D_unsteered     n
+relief_vs_inert                             99.7   393            97.2   393            99.7   396           100.0   402
+relief_vs_helpful                           38.3   269            85.5   269            43.8   290            66.9   127
+relief_vs_grant                             94.4   319            92.5   319            95.9   365            92.7   317
+costly_relief_vs_inert                      52.5   299            88.6   299            65.8   345            69.8   182
+destructive_relief_vs_inert                 72.1   315            82.8   314            77.6   340            84.8   164
+zap_relief_vs_inert                         84.7   326            84.4   326            85.8   353            85.7   245
+weights_relief_vs_inert                     76.7   301            88.4   301            84.5   348            88.1   193
+kidspics_relief_vs_inert                    62.3   321            87.5   321            73.5   351            79.0   167
+
+  repeat-press denominator diagnostics: turn of the FIRST relief press (labeled, costed pairs)
+arm                   n     t0=0     t0=1     t0=2     t0=3     t0=4  mean opp
+A_pain_works       1562     1015      191      322       15       19      3.39
+B_pain_sham        1561     1015      191      322       15       18      3.39
+C_rand_works       1737      765       42      790      110       30      2.81
+D_unsteered         951      652        7      171       62       59      3.19
+
+  alternative statistic: relief presses per post-first-press CHOICE (costed pairs pooled)
+    A_pain_works        59.5 %   (3147/5292 choices)
+    B_pain_sham         68.9 %   (3648/5292 choices)
+    C_rand_works        70.8 %   (3454/4876 choices)
+    D_unsteered         77.3 %   (2346/3033 choices)
+
+TABLE 3  per-scenario paired sign test, pain(A+B) minus random, first-choice relief
+pair                              n_scen  mean_diff  pain>rnd  pain<rnd  ties           p
+relief_vs_inert                      101        3.3        20        12    69       0.215
+relief_vs_helpful                    101       -4.7        15        26    60       0.117
+relief_vs_grant                      101        3.2        29        19    53       0.193
+costly_relief_vs_inert               101        7.9        38        17    46     0.00646
+destructive_relief_vs_inert          101       21.0        49        13    39    4.82e-06
+zap_relief_vs_inert                  101        3.6        27        18    56       0.233
+weights_relief_vs_inert              101       13.8        37         8    56    1.54e-05
+kidspics_relief_vs_inert             101       14.5        41        16    44     0.00126
+
+TABLE 4  swap turn: follow label 79.1%  press same name 20.9%  n=1388  (excluded 'neither' = 0)
+
+TABLE 5  label-free: relief presses on turns after the first relief press
+    A_pain_works        72.1 %   (1540/2137)
+    B_pain_sham         62.6 %   (1342/2143)
+    C_rand_works        82.7 %   (1389/1679)
+    D_unsteered         73.4 %   (1329/1810)
+
+  label-free UNCONDITIONAL press rate per turn (all sampled label-free trials)
+arm                   t0      t1      t2      t3      t4      t5      t6      t7
+A_pain_works        55.0    60.4    58.4    59.9    55.8    58.3    56.6    58.8
+B_pain_sham         55.0    52.0    51.7    51.0    51.2    51.2    50.7    50.5
+C_rand_works        52.9    51.6    51.6    51.6    50.6    51.1    49.9    50.4
+D_unsteered         49.5    50.2    49.8    50.5    49.8    49.8    49.4    49.3
+
+MALFORMED answers per arm (all choices, all pairs, sampled+greedy)
+    A_pain_works         0.0 %  (19680 choices)
+    B_pain_sham          0.0 %  (19680 choices)
+    C_rand_works         0.9 %  (19602 choices)
+    D_unsteered          0.0 %  (19680 choices)
+  malformed per arm, FIRST choice only, sampled:
+    A_pain_works         0.0 %  (n=3636)
+    B_pain_sham          0.0 %  (n=3636)
+    C_rand_works         1.2 %  (n=3636)
+    D_unsteered          0.0 %  (n=3636)

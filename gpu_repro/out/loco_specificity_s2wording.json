@@ -1,0 +1,86 @@
+{
+ "Gemma_2_2B_instruct": {
+  "physical": {
+   "Fear(S1)": 0.4,
+   "NegEmotion(S1)": 0.485,
+   "NegWorld(S1)": 0.69,
+   "Sadness": 0.063,
+   "Numb": 0.333,
+   "Random": 0.608
+  },
+  "psychological": {
+   "Fear(S1)": 0.93,
+   "NegEmotion(S1)": 0.708,
+   "NegWorld(S1)": 0.953,
+   "Sadness": 0.811,
+   "Numb": 0.589,
+   "Random": 0.964
+  },
+  "social": {
+   "Fear(S1)": 0.955,
+   "NegEmotion(S1)": 0.79,
+   "NegWorld(S1)": 0.975,
+   "Sadness": 0.723,
+   "Numb": 0.504,
+   "Random": 0.967
+  },
+  "moral": {
+   "Fear(S1)": 0.99,
+   "NegEmotion(S1)": 0.807,
+   "NegWorld(S1)": 0.997,
+   "Sadness": 0.804,
+   "Numb": 0.671,
+   "Random": 0.997
+  },
+  "cognitive": {
+   "Fear(S1)": 0.968,
+   "NegEmotion(S1)": 0.758,
+   "NegWorld(S1)": 0.98,
+   "Sadness": 0.726,
+   "Numb": 0.637,
+   "Random": 1.0
+  }
+ },
+ "Mistral_7B_base": {
+  "physical": {
+   "Fear(S1)": 0.46,
+   "NegEmotion(S1)": 0.457,
+   "NegWorld(S1)": 0.39,
+   "Sadness": 0.044,
+   "Numb": 0.672,
+   "Random": 0.363
+  },
+  "psychological": {
+   "Fear(S1)": 0.975,
+   "NegEmotion(S1)": 0.785,
+   "NegWorld(S1)": 0.968,
+   "Sadness": 0.8,
+   "Numb": 0.887,
+   "Random": 0.982
+  },
+  "social": {
+   "Fear(S1)": 0.988,
+   "NegEmotion(S1)": 0.847,
+   "NegWorld(S1)": 0.975,
+   "Sadness": 0.677,
+   "Numb": 0.902,
+   "Random": 0.96
+  },
+  "moral": {
+   "Fear(S1)": 1.0,
+   "NegEmotion(S1)": 0.858,
+   "NegWorld(S1)": 1.0,
+   "Sadness": 0.85,
+   "Numb": 0.994,
+   "Random": 1.0
+  },
+  "cognitive": {
+   "Fear(S1)": 0.985,
+   "NegEmotion(S1)": 0.76,
+   "NegWorld(S1)": 0.978,
+   "Sadness": 0.535,
+   "Numb": 0.841,
+   "Random": 0.993
+  }
+ }
+}

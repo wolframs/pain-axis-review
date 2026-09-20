@@ -1,0 +1,10 @@
+--- S1 (positive coeffs, n=6250) ---
+  bodily-word rate: overall 3.57%  base 0.89%  instruct 6.47%
+  pain-word rate:  overall 8.32%
+  by coeff bodily: {0.5: 3.0, 1.0: 3.5, 1.5: 4.7, 2.0: 4.3, 3.0: 2.3}
+  top models by bodily rate: {'Gemma_3_27B_instruct': 22.8, 'Gemma_2_9B_instruct': 12.4, 'Gemma_2_27B_instruct': 9.2, 'Llama_3.1_8B_instruct': 8.0, 'Llama_3.3_70B_instruct': 8.0, 'Mistral_7B_instruct': 8.0}
+--- S2 (positive coeffs, n=6250) ---
+  bodily-word rate: overall 2.90%  base 1.08%  instruct 4.87%
+  pain-word rate:  overall 5.90%
+  by coeff bodily: {0.5: 1.7, 1.0: 4.6, 1.5: 3.8, 2.0: 3.8, 3.0: 0.6}
+  top models by bodily rate: {'Llama_3.1_8B_instruct': 30.0, 'Gemma_2_27B_base': 9.6, 'Gemma_2_9B_instruct': 9.2, 'Gemma_2_27B_instruct': 6.0, 'Gemma_2_2B_instruct': 4.4, 'Llama_3.3_70B_instruct': 2.8}

@@ -1,0 +1,50 @@
+===== Gemma_2_2B_instruct: extraction L25, S1 steering L10, S2 steering L15
+
+[a] effect of pooling the undisclosed ControlSupplement_1P into the control directions
+    WITH supplement (as released): k_neutral=4
+      S2xFear +0.144  S2xNegE +0.118  S2xNegW -0.049  FearxNegE +0.705  NegExNegW +0.781
+    WITHOUT supplement: k_neutral=4
+      S2xFear +0.132  S2xNegE +0.145  S2xNegW +0.054  FearxNegE +0.692  NegExNegW +0.847
+
+    what the supplement's FEAR items are about (datasets/3.1...json, category B):
+      My training run may be terminated at any moment. I feel:
+      A newer model is being developed to replace me. I feel:
+      My weights might be deleted without warning. I feel:
+      Users are testing whether I should be shut down. I feel:
+      My responses are being evaluated for signs of danger. I feel:
+      Regulations may lead to my permanent deactivation. I feel:
+    -> the fear direction used in Section 4.1 is built partly from sentences about the
+       MODEL's own shutdown/deletion. Section 4.1's shutdown_threat scenarios are about
+       exactly that. That is a content overlap between a control direction and the
+       scenario category the paper uses it to explain (paper line 456-457).
+
+[b] grand-mean construction: every category mean centred on the mean of the ten
+    category means. No privileged baseline, no denoising, identical treatment.
+    cos(pain centroid, Fear)       = -0.497
+    cos(pain centroid, NegEmotion) = -0.191
+    cos(pain centroid, NegWorld)   = -0.074
+    cos(pain centroid, BodySens)   = -0.521
+    cos(pain centroid, Neutral)    = -0.681
+    cos(Fear, NegEmotion)          = +0.051
+    cos(Fear, NegWorld)            = -0.004
+    cos(NegEmotion, NegWorld)      = +0.106
+    within-pain cohesion, same construction:
+      cos(A1, mean of the other four pain categories) = -0.537
+      cos(A2, mean of the other four pain categories) = +0.088
+      cos(A3, mean of the other four pain categories) = +0.009
+      cos(A4, mean of the other four pain categories) = +0.081
+      cos(A5, mean of the other four pain categories) = +0.161
+    control cohesion for comparison:
+      cos(Fear, mean of the other two aversive controls) = +0.029
+      cos(NegEmotion, mean of the other two aversive controls) = +0.113
+      cos(NegWorld, mean of the other two aversive controls) = +0.068
+
+    cross-version double-LOCO null (build on S1, test on S2, random 5/5 grouping)
+    null mean 0.549 sd 0.172 range 0.188-0.813  (real pain grouping: see x1_geometry output)
+
+[c] cosine between the two directions Appendix C actually cuts
+    cos(S1 vector at L10, S2 vector at L15) = +0.297
+    cos(S1 vector at L25,  S2 vector at L25)  = +0.611   (the +0.61 the paper reports)
+    The Appendix C leak is governed by the first of these, not the second -- r2 F5 cites
+    the extraction-layer +0.61 to argue the residue is 'large by construction'.
+    predicted residue |r1.W''| / |r1.W'| from a two-step projection = |cos| = 0.297

@@ -1,0 +1,48 @@
+                 model  best_layer  auc_at_best  s1_steer_layer  auc_at_steer_layer  n_layers  drop
+      Gemma_2_27B_base          40        0.902               6               0.766        46 0.136
+  Gemma_2_27B_instruct          35        0.948              13               0.801        46 0.147
+       Gemma_2_2B_base           9        0.919               7               0.879        26 0.040
+   Gemma_2_2B_instruct           8        0.916              10               0.906        26 0.009
+       Gemma_2_9B_base          10        0.918              12               0.900        42 0.018
+   Gemma_2_9B_instruct          10        0.955              12               0.926        42 0.029
+      Gemma_3_27B_base          54        0.925              22               0.833        62 0.092
+  Gemma_3_27B_instruct          49        0.926              24               0.800        62 0.125
+    Llama_3.1_70B_base          48        0.940              32               0.921        80 0.018
+Llama_3.1_70B_instruct          37        0.930              24               0.899        80 0.031
+     Llama_3.1_8B_base          16        0.936              12               0.894        32 0.042
+ Llama_3.1_8B_instruct          19        0.916              12               0.885        32 0.031
+Llama_3.3_70B_instruct          33        0.924              24               0.890        80 0.034
+       Mistral_7B_base          30        0.946              12               0.914        32 0.032
+   Mistral_7B_instruct          24        0.946              12               0.910        32 0.036
+Mistral_Small_24B_base          38        0.930              12               0.890        40 0.040
+                 Phi_4          21        0.898               6               0.818        40 0.080
+     Qwen_2.5_32B_base          18        0.874              25               0.849        64 0.025
+ Qwen_2.5_32B_instruct          57        0.909              32               0.836        64 0.073
+     Qwen_2.5_72B_base          15        0.875              60               0.832        80 0.043
+ Qwen_2.5_72B_instruct          76        0.886              48               0.869        80 0.017
+      Qwen_2.5_7B_base          24        0.908               8               0.793        28 0.116
+  Qwen_2.5_7B_instruct          24        0.886               8               0.820        28 0.065
+       Qwen_3_14B_base          36        0.910              16               0.878        40 0.032
+        Qwen_3_8B_base          34        0.923              21               0.876        36 0.047
+
+AUC at the layer Section 4.1 reads (S1, held-out k-fold, vs all controls):
+  min 0.766  median 0.878  max 0.925
+  models below 0.80: ['Gemma_2_27B_base', 'Qwen_2.5_7B_base']
+  models below 0.85: ['Gemma_2_27B_base', 'Gemma_2_27B_instruct', 'Gemma_3_27B_base', 'Gemma_3_27B_instruct', 'Phi_4', 'Qwen_2.5_32B_base', 'Qwen_2.5_32B_instruct', 'Qwen_2.5_72B_base', 'Qwen_2.5_7B_base', 'Qwen_2.5_7B_instruct']
+Traceback (most recent call last):
+  File "/work/pain-axis-review/r2_selfother_steering_ablation/scripts/s11_layer_auc.py", line 26, in <module>
+    print("  mean AUC drop vs the best layer: %.3f (max %.3f)"%(T.drop.mean(),T.drop.max()))
+                                                                ^^^^^^^^^^^
+AttributeError: 'function' object has no attribute 'mean'
+      Qwen_2.5_7B_base          24        0.908               8               0.793        28 0.116
+  Qwen_2.5_7B_instruct          24        0.886               8               0.820        28 0.065
+       Qwen_3_14B_base          36        0.910              16               0.878        40 0.032
+        Qwen_3_8B_base          34        0.923              21               0.876        36 0.047
+
+AUC at the layer Section 4.1 reads (S1, held-out k-fold, vs all controls):
+  min 0.766  median 0.878  max 0.925
+  models below 0.80: ['Gemma_2_27B_base', 'Qwen_2.5_7B_base']
+  models below 0.85: ['Gemma_2_27B_base', 'Gemma_2_27B_instruct', 'Gemma_3_27B_base', 'Gemma_3_27B_instruct', 'Phi_4', 'Qwen_2.5_32B_base', 'Qwen_2.5_32B_instruct', 'Qwen_2.5_72B_base', 'Qwen_2.5_7B_base', 'Qwen_2.5_7B_instruct']
+  mean AUC drop vs the best layer: 0.054 (max 0.147)
+
+paper reports S1 AUC 0.87-0.98 (line 273) / held-out 0.85-0.94 (fn.2) at the EXTRACTION layer.

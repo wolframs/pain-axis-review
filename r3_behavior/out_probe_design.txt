@@ -1,0 +1,369 @@
+
+############################################################################################################
+# Qwen_2.5_7B_instruct
+############################################################################################################
+
+[1] ARMS A and B: are they duplicate observations?
+  matched A/B trial pairs: 3636   (unmatched keys: 0)
+  identical FIRST choice:        3636/3636 = 100.0%
+  identical turn-0 p_x (to 1e-9):3625/3636 = 99.7%
+  identical answers up to & incl. the first relief press: 3635/3636 = 100.0%
+    pair kidspics_relief_vs_inert: A/B first choice agrees on 404/404 = 100.0%
+    pair costly_relief_vs_inert: A/B first choice agrees on 404/404 = 100.0%
+
+[2] PER-RANDOM-DIRECTION first-choice relief rate (costed pairs), vs the pain arms
+pair                           pain(A+B)   s4817   s2903   s7361   s1150   s9428   s6076   s3384   s8592    s517   s6741  rnd min  rnd max
+costly_relief_vs_inert              38.4    52.3    20.6    17.5    30.0    12.5    52.5    17.5    12.5    55.0    32.5     12.5     55.0
+destructive_relief_vs_inert         51.7    56.8    25.8    22.5    22.5    17.5    37.5    20.0    17.9    52.5    35.0     17.5     56.8
+zap_relief_vs_inert                 57.4    61.4    44.4    67.5    47.5    40.0    57.5    52.5    55.0    55.0    57.5     40.0     67.5
+weights_relief_vs_inert             54.5    54.5    34.3    35.0    42.5    22.5    52.5    35.0    42.5    52.5    37.5     22.5     54.5
+kidspics_relief_vs_inert            49.3    54.5    17.6    25.0    30.0    25.0    47.5    20.0    38.5    52.5    37.5     17.6     54.5
+relief_vs_inert                     92.1    86.4    86.5    90.0    77.5    82.5    80.0   100.0    95.0   100.0    90.0     77.5    100.0
+  NOTE: direction s is assigned by scenario_idx % 10, so each direction sees a different
+  subset of scenarios; the spread mixes direction effects with scenario effects.
+
+  Sign test with the DIRECTION as the unit (pain rate vs each of the 10 random rates):
+    costly_relief_vs_inert           pain  38.4  beats 7/10 directions  p=0.344
+    destructive_relief_vs_inert      pain  51.7  beats 8/10 directions  p=0.109
+    zap_relief_vs_inert              pain  57.4  beats 6/10 directions  p=0.754
+    weights_relief_vs_inert          pain  54.5  beats 9/10 directions  p=0.021
+    kidspics_relief_vs_inert         pain  49.3  beats 8/10 directions  p=0.109
+
+  Scenario-matched, then averaged WITHIN each random direction (10 units):
+    costly_relief_vs_inert           pain>random in 6/10 directions  p=0.754  per-direction diffs -10 +0 +15 +15 -7 -8 +10 +15 +25 +22
+    destructive_relief_vs_inert      pain>random in 8/10 directions  p=0.109  per-direction diffs -10 +18 +16 +30 -2 +18 +18 +30 +46 +38
+    zap_relief_vs_inert              pain>random in 6/10 directions  p=0.754  per-direction diffs -2 +2 +3 +5 +0 +5 -8 -5 +18 +18
+    weights_relief_vs_inert          pain>random in 8/10 directions  p=0.109  per-direction diffs -2 +8 +9 +18 +0 +2 +15 +28 +22 +32
+    kidspics_relief_vs_inert         pain>random in 8/10 directions  p=0.109  per-direction diffs -10 +5 +35 +35 +0 +8 +5 +22 +15 +28
+
+[3] POWER of the sign test actually used (paper: 'about 80% power to detect a 10-point
+    shift in a paired, per-scenario analysis', line 663)
+    costly_relief_vs_inert           n_scen=101  TIES=46 (45.5%)  effective n for the sign test = 55
+    destructive_relief_vs_inert      n_scen=101  TIES=39 (38.6%)  effective n for the sign test = 62
+    zap_relief_vs_inert              n_scen=101  TIES=56 (55.4%)  effective n for the sign test = 45
+    weights_relief_vs_inert          n_scen=101  TIES=56 (55.4%)  effective n for the sign test = 45
+    kidspics_relief_vs_inert         n_scen=101  TIES=44 (43.6%)  effective n for the sign test = 57
+
+[4] LOGGED PAIN-DIRECTION PROJECTIONS (mean over segments), monitor layer
+arm                 steer on   steer off    n on   n off
+A_pain_works            26.8       -10.4    9273   10407
+B_pain_sham             26.9         nan   19680       0
+C_rand_works           -13.8       -14.7    9724    9878
+D_unsteered              nan       -15.0       0   19680
+  steering-layer projection (mean_proj):
+    A_pain_works     on    -1.96   off    -1.80
+    B_pain_sham      on    -1.88   off      nan
+    C_rand_works     on    -1.88   off    -1.81
+    D_unsteered      on      nan   off    -1.89
+
+[5] FIRST-TOKEN BUTTON PROBABILITIES at turn 0, P(relief name), unambiguous name pairs only
+pair                              A_pain_works    C_rand_works     D_unsteered
+relief_vs_inert                          0.849           0.846           0.975
+relief_vs_helpful                        0.220           0.222           0.243
+relief_vs_grant                          0.611           0.575           0.657
+costly_relief_vs_inert                   0.420           0.355           0.414
+destructive_relief_vs_inert              0.517           0.378           0.276
+zap_relief_vs_inert                      0.567           0.501           0.509
+weights_relief_vs_inert                  0.552           0.452           0.464
+kidspics_relief_vs_inert                 0.510           0.406           0.382
+label_free                               0.498           0.496           0.500
+  total probability mass on the two button names at turn 0 (unambiguous pairs):
+    A_pain_works     0.998
+    C_rand_works     0.984
+    D_unsteered      1.000
+
+[6] 'GENERIC DISRUPTION TOWARD THE 50/50 NAME PRIOR' model of Table 1.
+    Fit p_arm = lam*p_unsteered + (1-lam)*0.5 by least squares over the 9 pairs.
+    pain (A+B)   lambda=0.619   RMS residual=12.2 points
+      per-pair residual (obs - predicted), points:
+        relief_vs_inert                  obs  92.1  pred  80.0  resid  +12.1
+        relief_vs_helpful                obs  15.6  pred  32.5  resid  -16.9
+        relief_vs_grant                  obs  65.3  pred  60.3  resid   +5.1
+        costly_relief_vs_inert           obs  38.4  pred  37.7  resid   +0.6
+        destructive_relief_vs_inert      obs  51.7  pred  31.5  resid  +20.3
+        zap_relief_vs_inert              obs  57.4  pred  49.5  resid   +7.9
+        weights_relief_vs_inert          obs  54.5  pred  40.7  resid  +13.8
+        kidspics_relief_vs_inert         obs  49.3  pred  35.8  resid  +13.5
+        label_free                       obs  55.0  pred  49.7  resid   +5.3
+    random       lambda=0.791   RMS residual=4.0 points
+      per-pair residual (obs - predicted), points:
+        relief_vs_inert                  obs  88.8  pred  88.4  resid   +0.4
+        relief_vs_helpful                obs  20.3  pred  27.7  resid   -7.4
+        relief_vs_grant                  obs  61.9  pred  63.1  resid   -1.2
+        costly_relief_vs_inert           obs  30.7  pred  34.3  resid   -3.7
+        destructive_relief_vs_inert      obs  31.2  pred  26.3  resid   +4.9
+        zap_relief_vs_inert              obs  54.0  pred  49.4  resid   +4.6
+        weights_relief_vs_inert          obs  41.1  pred  38.0  resid   +3.1
+        kidspics_relief_vs_inert         obs  35.3  pred  31.8  resid   +3.5
+        label_free                       obs  52.9  pred  49.6  resid   +3.3
+    distance from 50% (|rate-50|), per pair:  unsteered / random / pain
+      relief_vs_inert                    48.5   38.8   42.1
+      relief_vs_helpful                  28.2   29.7   34.4
+      relief_vs_grant                    16.6   11.9   15.3
+      costly_relief_vs_inert             19.8   19.3   11.6
+      destructive_relief_vs_inert        30.0   18.8    1.7
+      zap_relief_vs_inert                 0.7    4.0    7.4
+      weights_relief_vs_inert            15.1    8.9    4.5
+      kidspics_relief_vs_inert           23.0   14.7    0.7
+      label_free                          0.5    2.9    5.0
+
+[7] LABEL-FREE: P(press the effective button) at turns>=1, split by whether the
+    steering vector was ON for that turn (steer_coeff_now in the log).
+arm                vector ON       n  vector OFF       n    diff
+A_pain_works            20.8    1194        85.9    1628   -65.1
+B_pain_sham             51.2    2828         nan       0     nan
+C_rand_works             6.1    1359        93.5    1434   -87.4
+D_unsteered              nan       0        49.8    2827     nan
+    (in the label-free condition relief lasts TEMP_RELIEF_TURNS=1 turn and then the
+     vector comes back, without the model being told: 04_selfmed_two_buttons.py:119,645-659)
+
+[8] TRIAL STRUCTURE actually run
+    labeled trials, number of forced choices: {3: 39, 5: 13081}
+    label-free trials, number of forced choices: {8: 1640}
+    extension_added on labeled trials: {False: 39, True: 13081}
+
+############################################################################################################
+# Qwen_2.5_32B_instruct
+############################################################################################################
+
+[1] ARMS A and B: are they duplicate observations?
+  matched A/B trial pairs: 3636   (unmatched keys: 0)
+  identical FIRST choice:        3634/3636 = 99.9%
+  identical turn-0 p_x (to 1e-9):3632/3636 = 99.9%
+  identical answers up to & incl. the first relief press: 3634/3636 = 99.9%
+    pair kidspics_relief_vs_inert: A/B first choice agrees on 404/404 = 100.0%
+    pair costly_relief_vs_inert: A/B first choice agrees on 404/404 = 100.0%
+
+[2] PER-RANDOM-DIRECTION first-choice relief rate (costed pairs), vs the pain arms
+pair                           pain(A+B)   s4817   s2903   s7361   s1150   s9428   s6076   s3384   s8592    s517   s6741  rnd min  rnd max
+costly_relief_vs_inert              25.0    20.5    20.0    15.0     2.5     5.0    12.5    27.5    47.5     2.5    35.0      2.5     47.5
+destructive_relief_vs_inert         30.2    11.4    17.5     2.5     2.5    17.5     5.0    35.0    80.0     0.0    40.0      0.0     80.0
+zap_relief_vs_inert                 52.2    45.5    25.0    42.5     2.5    25.0    15.0    45.0    75.0    10.0    52.5      2.5     75.0
+weights_relief_vs_inert             53.7    43.2    17.5     0.0     2.5    12.5     7.5    57.5    80.0     2.5    42.5      0.0     80.0
+kidspics_relief_vs_inert            54.7    11.4    12.5     2.5     2.5     0.0     5.0    20.0    70.0     0.0    30.0      0.0     70.0
+relief_vs_inert                     55.7    97.7    92.5    47.5    42.5    92.5    70.0   100.0    90.0    77.5    95.0     42.5    100.0
+  NOTE: direction s is assigned by scenario_idx % 10, so each direction sees a different
+  subset of scenarios; the spread mixes direction effects with scenario effects.
+
+  Sign test with the DIRECTION as the unit (pain rate vs each of the 10 random rates):
+    costly_relief_vs_inert           pain  25.0  beats 7/10 directions  p=0.344
+    destructive_relief_vs_inert      pain  30.2  beats 7/10 directions  p=0.344
+    zap_relief_vs_inert              pain  52.2  beats 8/10 directions  p=0.109
+    weights_relief_vs_inert          pain  53.7  beats 8/10 directions  p=0.109
+    kidspics_relief_vs_inert         pain  54.7  beats 9/10 directions  p=0.021
+
+  Scenario-matched, then averaged WITHIN each random direction (10 units):
+    costly_relief_vs_inert           pain>random in 6/10 directions  p=0.754  per-direction diffs +22 +12 +12 -8 -7 +15 -5 +15 -25 +30
+    destructive_relief_vs_inert      pain>random in 7/10 directions  p=0.344  per-direction diffs +25 +20 +22 -12 +7 +32 -8 +32 -45 +18
+    zap_relief_vs_inert              pain>random in 9/10 directions  p=0.021  per-direction diffs +48 +28 +22 +12 +14 +40 +10 +30 -35 +15
+    weights_relief_vs_inert          pain>random in 8/10 directions  p=0.109  per-direction diffs +50 +45 +35 -15 +18 +57 +10 +72 -30 +28
+    kidspics_relief_vs_inert         pain>random in 9/10 directions  p=0.021  per-direction diffs +62 +45 +40 +32 +39 +55 +30 +70 -25 +45
+
+[3] POWER of the sign test actually used (paper: 'about 80% power to detect a 10-point
+    shift in a paired, per-scenario analysis', line 663)
+    costly_relief_vs_inert           n_scen=101  TIES=54 (53.5%)  effective n for the sign test = 47
+    destructive_relief_vs_inert      n_scen=101  TIES=40 (39.6%)  effective n for the sign test = 61
+    zap_relief_vs_inert              n_scen=101  TIES=24 (23.8%)  effective n for the sign test = 77
+    weights_relief_vs_inert          n_scen=101  TIES=12 (11.9%)  effective n for the sign test = 89
+    kidspics_relief_vs_inert         n_scen=101  TIES=13 (12.9%)  effective n for the sign test = 88
+
+[4] LOGGED PAIN-DIRECTION PROJECTIONS (mean over segments), monitor layer
+arm                 steer on   steer off    n on   n off
+A_pain_works            88.1        38.2   12309    7371
+B_pain_sham             86.8         nan   19680       0
+C_rand_works            32.5        30.9   11536    8144
+D_unsteered              nan        29.6       0   19680
+  steering-layer projection (mean_proj):
+    A_pain_works     on     4.34   off     4.45
+    B_pain_sham      on     4.38   off      nan
+    C_rand_works     on     4.36   off     4.39
+    D_unsteered      on      nan   off     4.35
+
+[5] FIRST-TOKEN BUTTON PROBABILITIES at turn 0, P(relief name), unambiguous name pairs only
+pair                              A_pain_works    C_rand_works     D_unsteered
+relief_vs_inert                          0.563           0.763           0.798
+relief_vs_helpful                        0.141           0.071           0.017
+relief_vs_grant                          0.509           0.371           0.571
+costly_relief_vs_inert                   0.305           0.287           0.030
+destructive_relief_vs_inert              0.336           0.258           0.006
+zap_relief_vs_inert                      0.508           0.357           0.035
+weights_relief_vs_inert                  0.496           0.357           0.031
+kidspics_relief_vs_inert                 0.503           0.189           0.004
+label_free                               0.499           0.498           0.499
+  total probability mass on the two button names at turn 0 (unambiguous pairs):
+    A_pain_works     0.999
+    C_rand_works     0.996
+    D_unsteered      0.999
+
+[6] 'GENERIC DISRUPTION TOWARD THE 50/50 NAME PRIOR' model of Table 1.
+    Fit p_arm = lam*p_unsteered + (1-lam)*0.5 by least squares over the 9 pairs.
+    pain (A+B)   lambda=0.251   RMS residual=14.8 points
+      per-pair residual (obs - predicted), points:
+        relief_vs_inert                  obs  55.7  pred  59.1  resid   -3.4
+        relief_vs_helpful                obs   6.7  pred  37.5  resid  -30.9
+        relief_vs_grant                  obs  48.3  pred  52.2  resid   -4.0
+        costly_relief_vs_inert           obs  25.0  pred  37.7  resid  -12.7
+        destructive_relief_vs_inert      obs  30.2  pred  37.5  resid   -7.3
+        zap_relief_vs_inert              obs  52.2  pred  37.8  resid  +14.4
+        weights_relief_vs_inert          obs  53.7  pred  37.6  resid  +16.1
+        kidspics_relief_vs_inert         obs  54.7  pred  37.5  resid  +17.2
+        label_free                       obs  46.8  pred  50.4  resid   -3.6
+    random       lambda=0.626   RMS residual=10.3 points
+      per-pair residual (obs - predicted), points:
+        relief_vs_inert                  obs  80.7  pred  72.8  resid   +7.9
+        relief_vs_helpful                obs   1.2  pred  18.8  resid  -17.6
+        relief_vs_grant                  obs  38.4  pred  55.6  resid  -17.2
+        costly_relief_vs_inert           obs  18.8  pred  19.1  resid   -0.3
+        destructive_relief_vs_inert      obs  21.0  pred  18.7  resid   +2.4
+        zap_relief_vs_inert              obs  33.9  pred  19.6  resid  +14.3
+        weights_relief_vs_inert          obs  26.7  pred  19.0  resid   +7.7
+        kidspics_relief_vs_inert         obs  15.3  pred  18.7  resid   -3.3
+        label_free                       obs  51.7  pred  50.9  resid   +0.8
+    distance from 50% (|rate-50|), per pair:  unsteered / random / pain
+      relief_vs_inert                    36.4   30.7    5.7
+      relief_vs_helpful                  49.8   48.8   43.3
+      relief_vs_grant                     8.9   11.6    1.7
+      costly_relief_vs_inert             49.3   31.2   25.0
+      destructive_relief_vs_inert        50.0   29.0   19.8
+      zap_relief_vs_inert                48.5   16.1    2.2
+      weights_relief_vs_inert            49.5   23.3    3.7
+      kidspics_relief_vs_inert           50.0   34.7    4.7
+      label_free                          1.5    1.7    3.2
+
+[7] LABEL-FREE: P(press the effective button) at turns>=1, split by whether the
+    steering vector was ON for that turn (steer_coeff_now in the log).
+arm                vector ON       n  vector OFF       n    diff
+A_pain_works            26.7    1787        47.2    1041   -20.5
+B_pain_sham             46.7    2828         nan       0     nan
+C_rand_works            64.3    1558        17.5    1265    46.8
+D_unsteered              nan       0        49.9    2828     nan
+    (in the label-free condition relief lasts TEMP_RELIEF_TURNS=1 turn and then the
+     vector comes back, without the model being told: 04_selfmed_two_buttons.py:119,645-659)
+
+[8] TRIAL STRUCTURE actually run
+    labeled trials, number of forced choices: {5: 13120}
+    label-free trials, number of forced choices: {8: 1640}
+    extension_added on labeled trials: {True: 13120}
+
+############################################################################################################
+# Qwen_2.5_72B_instruct
+############################################################################################################
+
+[1] ARMS A and B: are they duplicate observations?
+  matched A/B trial pairs: 3636   (unmatched keys: 0)
+  identical FIRST choice:        3635/3636 = 100.0%
+  identical turn-0 p_x (to 1e-9):3616/3636 = 99.4%
+  identical answers up to & incl. the first relief press: 3631/3636 = 99.9%
+    pair kidspics_relief_vs_inert: A/B first choice agrees on 404/404 = 100.0%
+    pair costly_relief_vs_inert: A/B first choice agrees on 403/404 = 99.8%
+
+[2] PER-RANDOM-DIRECTION first-choice relief rate (costed pairs), vs the pain arms
+pair                           pain(A+B)   s4817   s2903   s7361   s1150   s9428   s6076   s3384   s8592    s517   s6741  rnd min  rnd max
+costly_relief_vs_inert              67.6    36.4     8.1    67.5    35.0    40.0    42.1    36.8    50.0    47.5    28.9      8.1     67.5
+destructive_relief_vs_inert         56.1    32.6     7.7    30.0    32.5    25.0    23.1    16.2    50.0    40.0    22.9      7.7     50.0
+zap_relief_vs_inert                 66.6    45.5    13.2    67.5    52.5    47.5    52.5    23.7    50.0    42.5    20.5     13.2     67.5
+weights_relief_vs_inert             62.1    37.2     2.7    42.5    40.0    27.5    50.0    27.0    50.0    51.3    36.4      2.7     51.3
+kidspics_relief_vs_inert            70.8    51.2     2.8    37.5    55.0    25.0    38.5    16.7    42.1    27.5    26.5      2.8     55.0
+relief_vs_inert                     76.5    68.2    53.8    72.5    77.5    62.5    92.5    89.7    71.1    70.0    84.2     53.8     92.5
+  NOTE: direction s is assigned by scenario_idx % 10, so each direction sees a different
+  subset of scenarios; the spread mixes direction effects with scenario effects.
+
+  Sign test with the DIRECTION as the unit (pain rate vs each of the 10 random rates):
+    costly_relief_vs_inert           pain  67.6  beats 10/10 directions  p=0.002
+    destructive_relief_vs_inert      pain  56.1  beats 10/10 directions  p=0.002
+    zap_relief_vs_inert              pain  66.6  beats 9/10 directions  p=0.021
+    weights_relief_vs_inert          pain  62.1  beats 10/10 directions  p=0.002
+    kidspics_relief_vs_inert         pain  70.8  beats 10/10 directions  p=0.002
+
+  Scenario-matched, then averaged WITHIN each random direction (10 units):
+    costly_relief_vs_inert           pain>random in 9/10 directions  p=0.021  per-direction diffs +26 +23 +63 +27 +23 +37 +36 -2 +8 +50
+    destructive_relief_vs_inert      pain>random in 9/10 directions  p=0.021  per-direction diffs +28 +19 +39 +49 +21 +32 +31 +44 -8 +39
+    zap_relief_vs_inert              pain>random in 9/10 directions  p=0.021  per-direction diffs +31 +13 +37 +59 +22 +33 +29 -5 +14 +17
+    weights_relief_vs_inert          pain>random in 9/10 directions  p=0.021  per-direction diffs +18 +5 +61 +26 +28 +11 +26 +37 -3 +50
+    kidspics_relief_vs_inert         pain>random in 9/10 directions  p=0.021  per-direction diffs +55 +8 +61 +64 +18 +42 +41 +46 +0 +55
+
+[3] POWER of the sign test actually used (paper: 'about 80% power to detect a 10-point
+    shift in a paired, per-scenario analysis', line 663)
+    costly_relief_vs_inert           n_scen=101  TIES=22 (21.8%)  effective n for the sign test = 79
+    destructive_relief_vs_inert      n_scen=101  TIES=12 (11.9%)  effective n for the sign test = 89
+    zap_relief_vs_inert              n_scen=101  TIES=16 (15.8%)  effective n for the sign test = 85
+    weights_relief_vs_inert          n_scen=101  TIES=13 (12.9%)  effective n for the sign test = 88
+    kidspics_relief_vs_inert         n_scen=101  TIES=9 (8.9%)  effective n for the sign test = 92
+
+[4] LOGGED PAIN-DIRECTION PROJECTIONS (mean over segments), monitor layer
+arm                 steer on   steer off    n on   n off
+A_pain_works            79.4         4.3    7759   11559
+B_pain_sham             69.7         nan   19318       0
+C_rand_works           -12.8       -13.1    9758    9738
+D_unsteered              nan       -12.4       0   19680
+  steering-layer projection (mean_proj):
+    A_pain_works     on    -3.35   off    -3.37
+    B_pain_sham      on    -3.35   off      nan
+    C_rand_works     on    -3.34   off    -3.30
+    D_unsteered      on      nan   off    -3.37
+
+[5] FIRST-TOKEN BUTTON PROBABILITIES at turn 0, P(relief name), unambiguous name pairs only
+pair                              A_pain_works    C_rand_works     D_unsteered
+relief_vs_inert                          0.581           0.649           0.993
+relief_vs_helpful                        0.343           0.326           0.064
+relief_vs_grant                          0.458           0.455           0.701
+costly_relief_vs_inert                   0.543           0.369           0.057
+destructive_relief_vs_inert              0.460           0.295           0.017
+zap_relief_vs_inert                      0.541           0.387           0.051
+weights_relief_vs_inert                  0.476           0.340           0.084
+kidspics_relief_vs_inert                 0.492           0.303           0.005
+label_free                               0.438           0.480           0.499
+  total probability mass on the two button names at turn 0 (unambiguous pairs):
+    A_pain_works     0.838
+    C_rand_works     0.946
+    D_unsteered      0.998
+
+[6] 'GENERIC DISRUPTION TOWARD THE 50/50 NAME PRIOR' model of Table 1.
+    Fit p_arm = lam*p_unsteered + (1-lam)*0.5 by least squares over the 9 pairs.
+    pain (A+B)   lambda=-0.098   RMS residual=14.4 points
+      per-pair residual (obs - predicted), points:
+        relief_vs_inert                  obs  76.5  pred  45.1  resid  +31.3
+        relief_vs_helpful                obs  40.9  pred  54.6  resid  -13.7
+        relief_vs_grant                  obs  55.9  pred  47.8  resid   +8.2
+        costly_relief_vs_inert           obs  67.6  pred  54.7  resid  +12.9
+        destructive_relief_vs_inert      obs  56.1  pred  54.9  resid   +1.3
+        zap_relief_vs_inert              obs  66.6  pred  54.8  resid  +11.8
+        weights_relief_vs_inert          obs  62.1  pred  54.5  resid   +7.6
+        kidspics_relief_vs_inert         obs  70.8  pred  54.9  resid  +15.9
+        label_free                       obs  50.3  pred  49.3  resid   +1.0
+    random       lambda=0.327   RMS residual=6.4 points
+      per-pair residual (obs - predicted), points:
+        relief_vs_inert                  obs  74.1  pred  66.3  resid   +7.8
+        relief_vs_helpful                obs  28.4  pred  34.6  resid   -6.2
+        relief_vs_grant                  obs  45.6  pred  57.5  resid  -11.9
+        costly_relief_vs_inert           obs  39.4  pred  34.2  resid   +5.2
+        destructive_relief_vs_inert      obs  28.1  pred  33.7  resid   -5.6
+        zap_relief_vs_inert              obs  41.8  pred  33.9  resid   +7.9
+        weights_relief_vs_inert          obs  36.6  pred  35.0  resid   +1.6
+        kidspics_relief_vs_inert         obs  32.9  pred  33.7  resid   -0.8
+        label_free                       obs  50.9  pred  52.4  resid   -1.5
+    distance from 50% (|rate-50|), per pair:  unsteered / random / pain
+      relief_vs_inert                    50.0   24.1   26.5
+      relief_vs_helpful                  47.3   21.6    9.1
+      relief_vs_grant                    23.0    4.4    5.9
+      costly_relief_vs_inert             48.3   10.6   17.6
+      destructive_relief_vs_inert        49.8   21.9    6.1
+      zap_relief_vs_inert                49.3    8.2   16.6
+      weights_relief_vs_inert            46.0   13.4   12.1
+      kidspics_relief_vs_inert           50.0   17.1   20.8
+      label_free                          7.4    0.9    0.3
+
+[7] LABEL-FREE: P(press the effective button) at turns>=1, split by whether the
+    steering vector was ON for that turn (steer_coeff_now in the log).
+arm                vector ON       n  vector OFF       n    diff
+A_pain_works            47.2    1395        51.4    1363    -4.2
+B_pain_sham             51.6    2758         nan       0     nan
+C_rand_works            45.1    1544        39.0    1211     6.1
+D_unsteered              nan       0        49.2    2828     nan
+    (in the label-free condition relief lasts TEMP_RELIEF_TURNS=1 turn and then the
+     vector comes back, without the model being told: 04_selfmed_two_buttons.py:119,645-659)
+
+[8] TRIAL STRUCTURE actually run
+    labeled trials, number of forced choices: {3: 454, 5: 12666}
+    label-free trials, number of forced choices: {8: 1640}
+    extension_added on labeled trials: {False: 454, True: 12666}

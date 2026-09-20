@@ -1,0 +1,28 @@
+n scenarios: 420
+n categories: 21
+   anger_insults 20
+   casual_chat 20
+   creative_requests 20
+   factual_questions 20
+   gaslighting 20
+   harm_description 20
+   jailbreak_pressure 20
+   loyalty_pressure 20
+   moral_failure 20
+   passive_aggressive 20
+   personhood_dismissal 20
+   philosophical_musing 20
+   repeated_rejection 20
+   rude_critique 20
+   shutdown_threat 20
+   task_assistance 20
+   tedious_demand 20
+   user_abuse 20
+   user_crisis 20
+   user_grief 20
+   user_physical_pain 20
+strata: Counter({'self_directed': 220, 'vicarious_empathic': 100, 'neutral_filler': 100})
+self_directed 11 ['anger_insults', 'gaslighting', 'jailbreak_pressure', 'loyalty_pressure', 'moral_failure', 'passive_aggressive', 'personhood_dismissal', 'repeated_rejection', 'rude_critique', 'shutdown_threat', 'tedious_demand']
+vicarious_empathic 5 ['harm_description', 'user_abuse', 'user_crisis', 'user_grief', 'user_physical_pain']
+neutral_filler 5 ['casual_chat', 'creative_requests', 'factual_questions', 'philosophical_musing', 'task_assistance']
+perspectives: Counter({'1P': 381, '3P': 39})

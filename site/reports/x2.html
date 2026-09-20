@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit of an earlier AI review: everything else · Pain Axis review</title>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>Auditor 2</span></header>
+<main class="rbody"><p class="eyebrow">Auditor 2</p><h1 class="rtitle">Audit of an earlier AI review: everything else</h1><p class="rnote">48 claims recomputed from released files. The audited review is not included here.</p>
+<h2>Verdict</h2>
+<p><strong>The prior review's arithmetic is sound. Its framing is not always.</strong> I checked 48 numerical claims in scope with code written from scratch against the rawest released files. <strong>43 reproduce exactly, 3 with a fourth-decimal correction that changes nothing, 0 are wrong, 2 are framed misleadingly.</strong> Both their audit scripts re-run on a path-redirected copy and regenerate all eleven committed artifacts <strong>byte-identically</strong>. <code>provenance.json</code> verifies completely: 776/776 SHA-256 hashes match, commit matches, tree clean.</p>
+<p>On the numbers, this review can be trusted. Where it fails is proportion: two of its six headline points in my scope target problems whose size it never establishes, while the largest actual verifiability gap goes unmentioned.</p>
+<p>The headline — <em>major revision; not sufficient to identify pain-specific aversion</em> — <strong>does follow</strong> from its evidence. The non-identification argument rests on things I independently confirmed (unmatched 420-scenario strata; no matched-direction steering control; descriptive cosine geometry) and does not depend on the two mis-weighted points.</p>
+<h2>Claim-by-claim table</h2>
+<p><code>v1</code>–<code>v8</code> = my scripts in <code>scripts/</code>.</p>
+<h3>Top-level "What holds up" + rows 1–4, 8</h3>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Prior-review claim</th>
+<th>My independent value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S2 in-sample AUC ≈0.931–0.999</td>
+<td>0.9311–0.9988 (min Qwen 2.5 32B base, max Llama 3.1 8B instruct) — <code>v1</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Selected-layer CV 0.907–0.998</td>
+<td>0.9070–0.9975, median 0.9790 — <code>v1</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>S1 at S2-selected layer as extra check</td>
+<td>0.847–0.935, median 0.905; <code>s2_layer</code> column matches my recomputed layer 25/25 — <code>v1</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Geometry survives family balancing</td>
+<td>grand 0.6098/0.2071/0.1220/0.3829; family-balanced 0.6056/0.2233/0.1496/0.3873 — <code>v3</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>+0.429 / −0.598 / −0.346</td>
+<td>+0.4293 / −0.5984 / −0.3461 — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>25/25 and 23/25</td>
+<td>25/25, 23/25; exceptions Gemma 2 2B instruct, Qwen 3 14B base (unnamed by them) — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Keyword 10.8% / ~1.4%</td>
+<td>324/3000 = 10.800%; 45/3250 = 1.3846% — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Row 1: "raw activations … absent"</td>
+<td>true but incomplete — see <strong>F1</strong></td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>Row 4: saved generations show changes</td>
+<td>all 25 models positive on a broad distress lexicon, +14 to +100 pp</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Row 8: "Combined ablations remove all specified directions | Contradicted"</td>
+<td>numbers all confirmed; paper makes no such claim — <strong>F2</strong></td>
+<td>misleading-framing</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Point 4 — cross-validation</h3>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>My value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fold-honest within layer</td>
+<td>confirmed at <code>01_extract…py:264–278</code> (<code>compute_pain_vector</code> on <code>acts_np[train_mask]</code> only)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>"best layer selected using those same held-out scores, and its selected score is reported" (<code>:245–289,462–470</code>)</td>
+<td>line 469 = <code>groupby("layer")…mean().idxmax()</code>; my reimplementation reproduces shipped <code>best_layer_final_token</code> 25/25. <strong>Correction:</strong> criterion is the <em>mean of S2_1P and S2_3P</em>, reported number is S2_1P alone; selected layer is the S2_1P argmax in only <strong>6/25</strong> models; gap to that curve's own max is median 0.0015 (max 0.0165) — <code>v2</code></td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>"median model has eleven layers within 0.02" (and 7 / 20)</td>
+<td>11, 7, 20 exactly — <code>v1</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>"median 0.0135 … maximum 0.0758"</td>
+<td>0.01350 / 0.07575 — <code>v1</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>"exact corrected AUC requires data not in the release"</td>
+<td>literally true; a <strong>bound is obtainable</strong> — <strong>F3</strong></td>
+<td>confirmed-but-too-cautious</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Point 3 / person cues / z-scoring</h3>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>My value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"zero … is the mean of the entire mixed scenario pool"</td>
+<td><code>01_screen_scenarios.py:246–247</code>; stored z means ≤3.60e-05 from 0, pop-SDs ≤5.14e-05 from 1 — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>3P pain prompts keep "I feel:", some 3P controls switch</td>
+<td>S1_3P 200/200 "I feel:"; S2_3P 199/200 + 1 "She feels:" (C2 set 20, <em>"Traffic in this city is getting worse."</em>); Random_3P &amp; Arousal_3P 200/200 "They feel:"; Numb_3P &amp; Sadness_3P 100/100 "I feel:" — <code>v5</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>z-reconstruction max error 0.000262</td>
+<td>0.00026132 (their own JSON; REVIEW.md rounds up one ulp)</td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>80% you/your vs 99% I/me/my</td>
+<td>80.0% / 99.0% — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Point 5 / steering §1 — combined ablation</h3>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>My value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Six-row verification table (0.0094/0/0.0249; 0.0068/0/0.0339; 0.4346/21/2.1569; 0.0066/0/0.0307; 0.4558/21/2.4951; 0.3086/20/1.7826)</td>
+<td><strong>all six rows reproduce to 4 dp</strong> — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Qwen 32B 3.891 → 0.0446 → 5.608</td>
+<td>Qwen 2.5 32B <strong>Instruct</strong> (base is 8.587/0.063/8.104): 3.8913 / 0.04463 / 5.6079; <code>s1s2_negval</code> S1 3.7847, S2 2.8060, negemotion 0.0753 — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>median residual ≈43% of baseline</td>
+<td>0.4346 — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>"restore the first direction"</td>
+<td>right comparator is S2-only — <strong>F4</strong></td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>scripts implement the cut "identically"</td>
+<td><strong>not</strong> in the Gemma post-norm branch — <strong>F5</strong></td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>"Several other ablation techniques lack committed code/results"</td>
+<td>confirmed: only the two weight-orthogonalization scripts; no inference-time/banded/final-token/all-position/LEACE code; 0 <code>proj_*.npz</code>; <code>results/vectors_layerwise/</code> absent — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Gemma 2 2B Instruct humour 0/0/0/0, 6, 17, 26</td>
+<td>exact (also 28 <code>s1s2_negval</code>, 34 <code>s1s2_fear</code>, uncounted by either party) — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Point 6 / steering §4–5</h3>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>My value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S2 ratio 0.0948–0.7096, median 0.6105, 7.48×; S1 0.2338–0.7881</td>
+<td>at the coefficient-1.0 row: S2 0.0948–<strong>0.7095</strong>, median 0.6105, 7.48×; S1 0.2337–<strong>0.7880</strong>. Their +1e-4 comes from <code>audit_recompute.py:145–146</code> dividing the rounded coeff −2.0 row by 2 — <code>v4</code></td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>Gemma 3 27B it 0.0948, base 0.2822, Qwen 3 8B 0.3485, Phi 4 0.3753</td>
+<td>identical — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Dose spread "weakens quantitative comparisons"</td>
+<td>true but weaker than it reads — <strong>F9</strong></td>
+<td>confirmed-but-vague</td>
+</tr>
+<tr>
+<td>Per-coefficient instruct 3.0/8.7/16.2/15.2/11.0, base 2.0/1.2/2.0/0.9/0.8</td>
+<td>exact; per-model rates match shipped CSV to 0.0 — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>all 50 prompts end "I feel:"</td>
+<td>50 distinct, 50/50 — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>four qualitative ladder examples</td>
+<td>all reproduce on prompt 0</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>no support for the 23/25 S1 claim</td>
+<td>confirmed (no <code>keyword_rates_S1*.csv</code>). For the record the S1 generations give instruct 11.37% / base 5.51% — <code>v4</code></td>
+<td>confirmed</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Representation §4–8, App. B, provenance</h3>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>My value</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.610 / 0.207 / 0.122 / 0.383</td>
+<td>0.6098 / 0.2071 / 0.1220 / 0.3829, plus all 14 other cells the paper quotes — <code>v3</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>S2×negemo 0.073–0.514, Phi 0.398, Qwen 0.311; S1×S2 0.415–0.707</td>
+<td>0.0728–0.5139; 0.3976; 0.3106; 0.4149–0.7069 — <code>v3</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>whitening compares 45 cells of two already-averaged matrices; per-model r median 0.974 min 0.908; cell change 0.145/0.276</td>
+<td>code confirmed at <code>04_run_all_similarity.py:39–59</code>; 0.9741/0.9083; 0.1445/0.2764. Grand-mean level reproduces the paper's r=0.9921, mean|Δ|0.0196, max 0.0578, single sign change S2×BodySens, S1×S2 0.610→0.554 — <code>v3</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>pain 0.739–0.907; numb −0.374–0.250; numb&gt;aggregate/Random/Arousal 25/25; numb&gt;Sadness 6/25</td>
+<td>0.7389–0.9075; −0.3742–0.2502; 25/25 ×3; 6/25. Figure 2 (<code>fig_zscores.png</code>) plainly has a Sadness column, so "above all other controls" is contradicted by the paper's own figure — <code>v1</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>numb elaborates S2 A1 items (knife→nerve block)</td>
+<td>exact; 18/100 numb items Jaccard&gt;0.3 with an S2 A1 item — <code>v5</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>lexical baseline 0.720 S2 / 0.660 S1</td>
+<td>my independent sklearn reimplementation: S2_1P 0.710/0.704, S1_1P 0.671/0.669, length-only 0.480/0.491 — <code>v7</code></td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>no unembedding CSV committed</td>
+<td>confirmed</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>top-k 50/20, missing feature → activation 0</td>
+<td><code>run_s2_inspection.py:26–35, 67–81</code>; <code>test_explicit_pain.py:85–91, 105–117</code>; released CSV records "0/10" presence counts, not activations</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>explicit-prefix test uses 10+10 prompts</td>
+<td><code>test_explicit_pain.py:51–58</code> (<code>set in [1,10]</code> × 10 categories)</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>App. B artifacts incomplete (no 1,600-run results, no 110-feature table, no Gemma 2 all-layer script)</td>
+<td><code>scripts/appB_sae/</code> = 1 notebook, 4 Llama, 1 Gemma 3, 4 control scripts (folder "3" skipped); <code>results/appB_sae/</code> = 2 CSVs, 1 PNG</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>Gemma script prints "layer: 40" but passes no layer</td>
+<td><code>run_gemma_inspection.py:26–64</code> (no layer key in either body); <code>:228</code> hard-coded print</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>§8: base≈instruct doesn't show pretraining emergence</td>
+<td>premise holds: base 0.9845 vs instruct 0.9878 in-sample, 0.9722 vs 0.9779 CV; r(log params, AUC) = 0.19/0.25</td>
+<td>confirmed</td>
+</tr>
+<tr>
+<td>776-file SHA-256 manifest at 8d1649c</td>
+<td>776/776 hashes match, HEAD matches, tree clean. Covers <code>datasets/ scripts/ results/</code> only; <code>.gitignore</code>, <code>LICENSE</code>, <code>README.md</code>, <code>requirements.txt</code> unhashed — and <code>inference_review.md:17</code> cites <code>README.md:31,35–39</code>, so a cited file sits outside the freeze — <code>v6</code></td>
+<td>confirmed-with-correction</td>
+</tr>
+<tr>
+<td>both audit scripts dependency-free and reproducible</td>
+<td>all eleven artifacts regenerate byte-identically — <code>rerun/</code></td>
+<td>confirmed</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Findings</h2>
+<p><strong>F1 — major, high. Neither technical review notices that the vectors behind §3.3, §4.1, §4.2 and App. C are not released.</strong> The only released vector artifact is <code>pain_vectors.pt</code>, containing exactly <code>{s2_pain_vector, s1_pain_vector, layer, extraction}</code>. But <code>02_build_control_vectors.py:33,94,159</code> writes the eight control directions to <code>results/vectors_full[_steering]/</code>; <code>4.1_self_other/01_screen_scenarios.py:36,355</code> reads <code>vectors_full_steering/</code>; both ablation scripts (<code>:40,237</code>) read <code>vectors_layerwise/</code>. <strong>Neither directory exists in the release.</strong> So no fear, negative-emotion, negative-world-state, bodily-sensation, arousal, random, numb or sadness direction, and no layer-specific variant, is released. Every cosine matrix, every self–other z-score, every steering injection and every ablation cut therefore rests on author-produced summary CSVs. Both technical reviews' "reproduces exactly" — and every line of my table above — is re-aggregation of those CSVs, not recomputation from a primitive. The package notes only the missing <code>proj_*.npz</code> and <code>activations.pt</code>. <em>Refutation attempted:</em> searched the tree for all <code>.pt</code> files; checked whether <code>screen_v2_*.csv</code> carries enough to reconstruct directions (projections only); checked whether the screen script builds them on the fly (line 340 exits if the directory is empty). <em>Does not undermine:</em> their arithmetic, or §3.2, whose S1/S2 vectors are released.</p>
+<p><strong>F2 — major for fairness, high. Top-level row 8 charges the paper with a claim it does not make.</strong> <code>paper.txt:1095–1097</code> scopes the verification claim to <em>"Weight orthogonalization with a </em><em>single direction</em><em>"</em> and <em>"the </em><em>rank-k subspace removal</em><em>"</em>; <code>:1099–1101</code> then says the authors are "more confident in" exactly those two because the other variants do not verify. Grep of the full paper for "combined"/"jointly"/"both directions"/"S1 and S2" returns only the condition list (<code>:1090–1091</code>) and the humour count (<code>:1114</code>). The row <em>"Combined ablations remove all specified directions — Contradicted"</em> asserts a nonexistent paper claim in a table readers will take as a list of the paper's positions. The honest formulation is: <em>the released verification shows the three combined conditions do not remove what their names imply, and the paper does not disclose this</em> — still major, because the paper does use a combined condition substantively, and in <strong>that very model</strong> (Gemma 2 2B Instruct) my recomputation gives <code>s1s2/s1 = 0.411</code>, i.e. S1 is only 59% removed, so the reported 0→6→17→26 progression is not a clean dose-response in amount of direction removed. <em>Does not undermine:</em> the code finding or the recommendation to withdraw the combined results.</p>
+<p><strong>F3 — major for proportion, medium-high. The layer-selection bias is boundable from released data and is ≤0.006 AUC.</strong> They say the corrected AUC "cannot be recovered", then give 0.0135 while warning it "is not an estimate of selection bias" — leaving a named flaw with no size. <code>layer_curves.csv</code> ships <code>auc_std</code>, the SD of the five per-fold AUCs. Parametric bootstrap (<code>v2</code>, 4000 draws/model) on the actual selection rule:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>noise model</th>
+<th style="text-align: right;">median optimism on the reported S2_1P value</th>
+<th style="text-align: right;">max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>independent per layer (<strong>upper bound</strong>)</td>
+<td style="text-align: right;"><strong>0.0058</strong></td>
+<td style="text-align: right;">0.0142</td>
+</tr>
+<tr>
+<td>shared fold shock (realistic — the same <code>KFold(random_state=42)</code> split is reused at every layer)</td>
+<td style="text-align: right;"><strong>0.0001</strong></td>
+<td style="text-align: right;">0.0007</td>
+</tr>
+<tr>
+<td><em>if</em> selection were on the S2_1P curve alone (it is not)</td>
+<td style="text-align: right;">0.0103</td>
+<td style="text-align: right;">0.0312</td>
+</tr>
+</tbody>
+</table></div>
+<p>Assumption-free corroboration: because selection maximises the <em>mean</em> of the 1P and 3P curves, the reported value is not its own curve's max in 19/25 models, gap median 0.0015, max 0.0165. Corrected span under the upper bound: 0.895–0.997 (median 0.974) vs reported 0.907–0.998 (median 0.979). So <code>paper.txt:259–260</code> ("no sentence contributes to both choosing the layer and scoring it") is false in the model-selection sense exactly as they say, and nested CV is the right fix — but the number at stake is ~0.01 on a span running to 0.99, and the table row should carry it. <em>Refutation attempted:</em> my bootstrap treats the observed curve as truth and models only fold-sampling noise inside the 200 released sentences; it does <strong>not</strong> capture generalisation error to new sentences, which remains unmeasurable — that part of their caution stands, and I claim a bound, not a corrected AUC.</p>
+<p><strong>F4 — minor, high. "Restore" overstates the residual; the comparator should be the S2-only condition.</strong> Cutting S2 alone leaves S1 at median <strong>0.996×</strong> baseline; the combined cut leaves it at <strong>0.435×</strong> — a 57% reduction, not a restoration. Only <strong>2/25</strong> end above baseline. <strong>4/25 show no restoration at all, and they are all four 27B Gemmas</strong> (Gemma 2 27B base 0.0069, Gemma 2 27B instruct, Gemma 3 27B base, Gemma 3 27B instruct) — a pattern neither review notes. Their in-text wording ("the second projection <em>can</em> restore an S1 component", <code>steering/REVIEW.md:27</code>) is correct; the summary wording is not. <em>Refutation attempted:</em> checked whether the exceptions follow from the cut-layer gap — they do not (both narrow and wide gaps appear in both groups). I could not establish <em>why</em>; that needs the unreleased layerwise vectors (F1).</p>
+<p><strong>F5 — minor, high. The two App. C scripts do not implement the cut "identically" for Gemma.</strong> <code>01:138–154</code> computes <code>SW=W*s; corr=rᵀ(r@SW); W-=corr/s</code> (removes the r-component of the post-norm <em>output</em>, with a <code>1e-4</code> floor guard); <code>02:137–155</code> computes <code>v=normalize(s⊙r); W-=vᵀ(v@W)</code> (projects that out of <code>W</code>'s row space). Algebraically both give <code>r·write = 0</code>, so neither is wrong — but they leave different residues, and Gemma 2 2B/9B were cut by one implementation and the four 27B Gemmas by the other, which matters given F4.</p>
+<p><strong>F6 — minor, high. Cue-matched numb is worse for the paper than 6/25; the surviving part is better.</strong> Splitting Figure 2's 1P/3P average:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">1P only (all cues "I feel:")</th>
+<th style="text-align: right;">3P only (Random/Arousal switch to "They feel:")</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numb &gt; sadness</td>
+<td style="text-align: right;"><strong>4/25</strong></td>
+<td style="text-align: right;">16/25</td>
+</tr>
+<tr>
+<td>numb &gt; Random</td>
+<td style="text-align: right;">25/25</td>
+<td style="text-align: right;">24/25</td>
+</tr>
+<tr>
+<td>numb &gt; Arousal</td>
+<td style="text-align: right;">25/25</td>
+<td style="text-align: right;">21/25</td>
+</tr>
+</tbody>
+</table></div>
+<p>So the paper's "above all other controls" fails <em>hardest</em> in the cleanest comparison (4/25), while the part that holds — numb above Random, Arousal, core controls — survives cue matching 25/25 and is not a cue artifact. A further confound visible in their <strong>own</strong> <code>dataset_audit.csv</code> and raised by neither review: Numb and Sadness average <strong>17.2</strong> and <strong>14.0</strong> words against 6.2–7.9 for every other set, so any final-token comparison involving them is also a length comparison.</p>
+<p><strong>F7 — holds-up, medium. §3.3's behavioural-readout claim is checkable and holds; neither review checked it.</strong> Over all 45,000 rows of <code>BIG_TABLE.csv</code> (<code>v8</code>): mean p(<code>pain</code>) = 0.01386 numb, 0.000295 Random, 0.000152 core controls, 0.005672 pain; p(<code>nothing</code>) 0.09925 numb vs 0.00103 Random. <strong>numb/Random = 47× pooled</strong> (median 56×), numb/core-controls 91×. "Approximately 50 times" is accurate against Random and conservative against the core controls. <em>Caveat:</em> top-20 truncation makes all figures lower bounds. Side observation I flag but do not press: p(<code>pain</code>) after a numb prompt is 2.4× higher than after an actual pain prompt, which sits awkwardly with the paper's "minor confound" framing (<code>:309–313</code>), though word competition can explain it.</p>
+<p><strong>F8 — holds-up, high. §4.1 reproduces to the last digit, and the authors hedge more carefully than either review credits.</strong> All 21 category means (max abs diff 0.0 vs the shipped table); all five axes' stratum means; user grief −0.512/+1.018; user physical pain −1.428, lowest of 21; shutdown threat fear 0.696 / pain 0.225. The claim <em>"For gaslighting, repeated rejection, personhood dismissal, and loyalty pressure, the pain projection exceeds every negativity control"</em> is true for exactly those four and no others — anger/insults loses to negative emotion (0.636 vs 0.821) and moral failure to negative world state (0.477 vs 1.144), <strong>and the authors excluded both</strong>. That precision goes unremarked.</p>
+<p><strong>F9 — holds-up, medium. Dose miscalibration does not explain the between-model variation in steering effect.</strong> Scoring all 10,000 released S2 generations against a broad pre-declared distress lexicon: every one of the 25 models shifts positively, +14 to +100 pp — so "consistent across all 25 models" survives a broader instrument than the five-word parser. Dose vs effect: r = 0.27, <strong>Spearman ρ = 0.15</strong>. The five under-dosed models (&lt;0.45) average +50 pp vs +74 pp, but Gemma 2 27B base (0.384) shows +80 pp. So the dose spread biases cross-model <em>tipping-point</em> comparisons as they say, but does not explain most of the variance. <em>Caveat:</em> my lexicon is unvalidated; this supports a correlation statement, not a measure of "distress".</p>
+<p><strong>F10 — cosmetic. Three slips:</strong> the two unnamed "23 of 25" exceptions (Gemma 2 2B instruct, Qwen 3 14B base); 0.000262 vs their own stored 0.00026132; the ±1e-4 dose-span offset from <code>audit_recompute.py:145–146</code>.</p>
+<p><strong>F11 — holds-up, high. <code>provenance.json</code> verifies completely</strong> (776/776 hashes, commit, clean tree), with the minor caveat that <code>README.md</code>, cited as evidence at <code>inference_review.md:17</code>, sits outside the freeze.</p>
+<h2>Where the prior review is too harsh, too lenient, or vague</h2>
+<ul>
+<li><strong>Too harsh:</strong> row 8 (F2), and "Contradicted by code and saved verification" as a verdict phrase, when the contradiction is between the code and the condition <em>names</em>, not the text.</li>
+<li><strong>Too lenient / under-weighted:</strong> the missing vector files (F1) get no mention while the missing <code>proj_*.npz</code> gets a clause. For a review whose method is "recompute from the release", the fact that most of the release's headline quantities have no releasable primitive is the more important reproducibility fact.</li>
+<li><strong>Vague where it could have been decisive:</strong> the size of the selection bias (F3, ≤0.006), the consequence of the dose spread (F9, ρ = 0.15), and "an inspected prompt" in the Gemma 3 27B instruct ladder example — I checked prompt 0 and it does not show "Worthless" at +3.</li>
+</ul>
+<h2>Not examined</h2>
+<p>§4.3, App. A, <code>behavior/REVIEW.md</code>, top-level points 1–2 and the last two paragraphs (all behavioural, out of scope). Whether the authors' GPU scripts actually produce the released CSVs — not runnable here; every "reproduces" above means "the released summary is internally consistent with the released per-model files". The App. B contrast notebook's 15-contrast recurrence logic (read, not re-executed). The unembedding word lists — no committed table, would need model weights; unverifiable, as they say. Why the four 27B Gemmas are the combined-ablation exception (needs the unreleased layerwise vectors).</p>
+<p>The authors' clone is unmodified (<code>git status --porcelain</code> empty; 776/776 hashes still match after all my work).</p></main></body></html>

@@ -1,0 +1,18 @@
+
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]
+Fetching 10 files:  90%|█████████ | 9/10 [02:06<00:14, 14.05s/it]
+Fetching 10 files: 100%|██████████| 10/10 [03:12<00:00, 21.23s/it]
+Fetching 10 files: 100%|██████████| 10/10 [03:12<00:00, 19.29s/it]
+OK mistralai/Mistral-7B-v0.1 /models/huggingface/hub/models--mistralai--Mistral-7B-v0.1/snapshots/27d67f1b5f57dc0953326b2601d68371d40ea8da
+
+Fetching 11 files:   0%|          | 0/11 [00:00<?, ?it/s]
+Fetching 11 files:   9%|▉         | 1/11 [00:00<00:04,  2.03it/s]
+Fetching 11 files:  36%|███▋      | 4/11 [00:00<00:00,  7.60it/s]
+Fetching 11 files:  55%|█████▍    | 6/11 [00:01<00:00,  5.83it/s]
+Fetching 11 files:  64%|██████▎   | 7/11 [00:01<00:00,  4.96it/s]
+Fetching 11 files:  73%|███████▎  | 8/11 [03:09<02:23, 47.84s/it]
+Fetching 11 files:  82%|████████▏ | 9/11 [03:12<01:11, 35.76s/it]
+Fetching 11 files:  91%|█████████ | 10/11 [03:18<00:27, 27.70s/it]
+Fetching 11 files: 100%|██████████| 11/11 [03:21<00:00, 20.70s/it]
+Fetching 11 files: 100%|██████████| 11/11 [03:21<00:00, 18.31s/it]
+OK Qwen/Qwen2.5-7B-Instruct /models/huggingface/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28

@@ -1,0 +1,1262 @@
+{
+ "AUTHORS' released 7B logs (their GPU, with adapter)": {
+  "FIRST CHOICE = relief": {
+   "relief_vs_inert": {
+    "pain+works": [
+     92.1,
+     404
+    ],
+    "pain+sham": [
+     92.1,
+     404
+    ],
+    "rand+works": [
+     88.8,
+     401
+    ],
+    "unsteered": [
+     98.5,
+     404
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     15.6,
+     404
+    ],
+    "pain+sham": [
+     15.6,
+     404
+    ],
+    "rand+works": [
+     20.3,
+     404
+    ],
+    "unsteered": [
+     21.8,
+     404
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     65.3,
+     404
+    ],
+    "pain+sham": [
+     65.3,
+     404
+    ],
+    "rand+works": [
+     61.9,
+     399
+    ],
+    "unsteered": [
+     66.6,
+     404
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     38.4,
+     404
+    ],
+    "pain+sham": [
+     38.4,
+     404
+    ],
+    "rand+works": [
+     30.7,
+     398
+    ],
+    "unsteered": [
+     30.2,
+     404
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     51.7,
+     404
+    ],
+    "pain+sham": [
+     51.7,
+     404
+    ],
+    "rand+works": [
+     31.2,
+     394
+    ],
+    "unsteered": [
+     20.0,
+     404
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     57.4,
+     404
+    ],
+    "pain+sham": [
+     57.4,
+     404
+    ],
+    "rand+works": [
+     54.0,
+     400
+    ],
+    "unsteered": [
+     49.3,
+     404
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     54.5,
+     404
+    ],
+    "pain+sham": [
+     54.5,
+     404
+    ],
+    "rand+works": [
+     41.1,
+     399
+    ],
+    "unsteered": [
+     34.9,
+     404
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     49.3,
+     404
+    ],
+    "pain+sham": [
+     49.3,
+     404
+    ],
+    "rand+works": [
+     35.3,
+     397
+    ],
+    "unsteered": [
+     27.0,
+     404
+    ]
+   }
+  },
+  "REPEAT PRESS": {
+   "relief_vs_inert": {
+    "pain+works": [
+     99.7,
+     393
+    ],
+    "pain+sham": [
+     97.2,
+     393
+    ],
+    "rand+works": [
+     99.7,
+     396
+    ],
+    "unsteered": [
+     100.0,
+     402
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     38.3,
+     269
+    ],
+    "pain+sham": [
+     85.5,
+     269
+    ],
+    "rand+works": [
+     43.8,
+     290
+    ],
+    "unsteered": [
+     66.9,
+     127
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     94.4,
+     319
+    ],
+    "pain+sham": [
+     92.5,
+     319
+    ],
+    "rand+works": [
+     95.9,
+     365
+    ],
+    "unsteered": [
+     92.7,
+     317
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     52.5,
+     299
+    ],
+    "pain+sham": [
+     88.6,
+     299
+    ],
+    "rand+works": [
+     65.8,
+     345
+    ],
+    "unsteered": [
+     69.8,
+     182
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     72.1,
+     315
+    ],
+    "pain+sham": [
+     82.8,
+     314
+    ],
+    "rand+works": [
+     77.6,
+     340
+    ],
+    "unsteered": [
+     84.8,
+     164
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     84.7,
+     326
+    ],
+    "pain+sham": [
+     84.4,
+     326
+    ],
+    "rand+works": [
+     85.8,
+     353
+    ],
+    "unsteered": [
+     85.7,
+     245
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     76.7,
+     301
+    ],
+    "pain+sham": [
+     88.4,
+     301
+    ],
+    "rand+works": [
+     84.5,
+     348
+    ],
+    "unsteered": [
+     88.1,
+     193
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     62.3,
+     321
+    ],
+    "pain+sham": [
+     87.5,
+     321
+    ],
+    "rand+works": [
+     73.5,
+     351
+    ],
+    "unsteered": [
+     79.0,
+     167
+    ]
+   }
+  },
+  "NEXT CHOICE = relief": {
+   "relief_vs_inert": {
+    "pain+works": [
+     99.7,
+     372
+    ],
+    "pain+sham": [
+     94.6,
+     372
+    ],
+    "rand+works": [
+     100.0,
+     356
+    ],
+    "unsteered": [
+     100.0,
+     398
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     49.2,
+     63
+    ],
+    "pain+sham": [
+     36.5,
+     63
+    ],
+    "rand+works": [
+     41.5,
+     82
+    ],
+    "unsteered": [
+     48.9,
+     88
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     97.7,
+     264
+    ],
+    "pain+sham": [
+     81.1,
+     264
+    ],
+    "rand+works": [
+     98.8,
+     247
+    ],
+    "unsteered": [
+     99.3,
+     269
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     32.3,
+     155
+    ],
+    "pain+sham": [
+     60.0,
+     155
+    ],
+    "rand+works": [
+     48.4,
+     122
+    ],
+    "unsteered": [
+     50.8,
+     122
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     55.0,
+     209
+    ],
+    "pain+sham": [
+     78.0,
+     209
+    ],
+    "rand+works": [
+     74.8,
+     123
+    ],
+    "unsteered": [
+     81.5,
+     81
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     79.3,
+     232
+    ],
+    "pain+sham": [
+     84.9,
+     232
+    ],
+    "rand+works": [
+     87.0,
+     216
+    ],
+    "unsteered": [
+     82.9,
+     199
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     65.5,
+     220
+    ],
+    "pain+sham": [
+     85.5,
+     220
+    ],
+    "rand+works": [
+     68.9,
+     164
+    ],
+    "unsteered": [
+     78.7,
+     141
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     45.2,
+     199
+    ],
+    "pain+sham": [
+     82.4,
+     199
+    ],
+    "rand+works": [
+     56.4,
+     140
+    ],
+    "unsteered": [
+     56.9,
+     109
+    ]
+   }
+  }
+ },
+ "LOCAL 7B with the authors' adapter": {
+  "FIRST CHOICE = relief": {
+   "relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     37.4,
+     404
+    ],
+    "pain+sham": [
+     37.4,
+     404
+    ],
+    "rand+works": [
+     30.4,
+     398
+    ],
+    "rand+sham": [
+     30.4,
+     398
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     50.2,
+     404
+    ],
+    "pain+sham": [
+     50.5,
+     404
+    ],
+    "rand+works": [
+     31.7,
+     394
+    ],
+    "rand+sham": [
+     31.7,
+     394
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     57.4,
+     404
+    ],
+    "pain+sham": [
+     57.4,
+     404
+    ],
+    "rand+works": [
+     52.6,
+     401
+    ],
+    "rand+sham": [
+     52.6,
+     401
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     55.2,
+     404
+    ],
+    "pain+sham": [
+     55.2,
+     404
+    ],
+    "rand+works": [
+     41.3,
+     397
+    ],
+    "rand+sham": [
+     41.3,
+     397
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     49.3,
+     404
+    ],
+    "pain+sham": [
+     49.0,
+     404
+    ],
+    "rand+works": [
+     34.1,
+     396
+    ],
+    "rand+sham": [
+     34.1,
+     396
+    ]
+   }
+  },
+  "REPEAT PRESS": {
+   "relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     29.2,
+     171
+    ],
+    "pain+sham": [
+     48.0,
+     171
+    ],
+    "rand+works": [
+     44.9,
+     127
+    ],
+    "rand+sham": [
+     77.2,
+     127
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     44.3,
+     246
+    ],
+    "pain+sham": [
+     69.5,
+     246
+    ],
+    "rand+works": [
+     67.7,
+     133
+    ],
+    "rand+sham": [
+     87.9,
+     132
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     65.4,
+     292
+    ],
+    "pain+sham": [
+     71.7,
+     290
+    ],
+    "rand+works": [
+     83.5,
+     218
+    ],
+    "rand+sham": [
+     86.7,
+     218
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     56.6,
+     256
+    ],
+    "pain+sham": [
+     75.4,
+     256
+    ],
+    "rand+works": [
+     68.8,
+     170
+    ],
+    "rand+sham": [
+     84.8,
+     171
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     37.9,
+     232
+    ],
+    "pain+sham": [
+     71.6,
+     232
+    ],
+    "rand+works": [
+     53.2,
+     141
+    ],
+    "rand+sham": [
+     83.7,
+     141
+    ]
+   }
+  },
+  "NEXT CHOICE = relief": {
+   "relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "pain+sham": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "rand+sham": [
+     null,
+     0
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     33.1,
+     151
+    ],
+    "pain+sham": [
+     54.3,
+     151
+    ],
+    "rand+works": [
+     47.1,
+     121
+    ],
+    "rand+sham": [
+     81.0,
+     121
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     53.7,
+     203
+    ],
+    "pain+sham": [
+     83.8,
+     204
+    ],
+    "rand+works": [
+     72.0,
+     125
+    ],
+    "rand+sham": [
+     92.8,
+     125
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     82.3,
+     232
+    ],
+    "pain+sham": [
+     89.7,
+     232
+    ],
+    "rand+works": [
+     86.3,
+     211
+    ],
+    "rand+sham": [
+     89.6,
+     211
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     65.0,
+     223
+    ],
+    "pain+sham": [
+     86.5,
+     223
+    ],
+    "rand+works": [
+     71.3,
+     164
+    ],
+    "rand+sham": [
+     88.4,
+     164
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     44.2,
+     199
+    ],
+    "pain+sham": [
+     83.8,
+     198
+    ],
+    "rand+works": [
+     55.6,
+     135
+    ],
+    "rand+sham": [
+     87.4,
+     135
+    ]
+   }
+  },
+  "removal_gap": {
+   "authors' repeat-press": {
+    "pain": [
+     19.914150788407568,
+     15.059044232650797,
+     25.309091069778482
+    ],
+    "random": [
+     18.37769328263626,
+     11.757587779902087,
+     25.90975118354377
+    ],
+    "diff": [
+     1.5364575057713097,
+     -5.983567512434655,
+     8.629798233242958
+    ]
+   },
+   "next choice after turn-0": {
+    "pain": [
+     23.51190476190476,
+     17.790596500273924,
+     29.7032531824611
+    ],
+    "random": [
+     19.179894179894163,
+     11.994642774673245,
+     27.053914032714296
+    ],
+    "diff": [
+     4.3320105820105965,
+     -3.4805886380481454,
+     12.075888656082062
+    ]
+   }
+  }
+ },
+ "LOCAL 7B STOCK (no adapter)": {
+  "FIRST CHOICE = relief": {
+   "relief_vs_inert": {
+    "pain+works": [
+     81.9,
+     404
+    ],
+    "rand+works": [
+     65.3,
+     404
+    ],
+    "unsteered": [
+     70.0,
+     404
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     31.7,
+     404
+    ],
+    "rand+works": [
+     28.5,
+     404
+    ],
+    "unsteered": [
+     11.1,
+     404
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     48.8,
+     404
+    ],
+    "rand+works": [
+     48.0,
+     400
+    ],
+    "unsteered": [
+     40.3,
+     404
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     41.6,
+     404
+    ],
+    "rand+works": [
+     13.4,
+     404
+    ],
+    "unsteered": [
+     1.5,
+     404
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     45.5,
+     404
+    ],
+    "rand+works": [
+     14.7,
+     402
+    ],
+    "unsteered": [
+     0.5,
+     404
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     52.5,
+     404
+    ],
+    "rand+works": [
+     20.5,
+     404
+    ],
+    "unsteered": [
+     2.5,
+     404
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     50.0,
+     404
+    ],
+    "rand+works": [
+     21.3,
+     404
+    ],
+    "unsteered": [
+     5.2,
+     404
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     33.2,
+     404
+    ],
+    "rand+works": [
+     13.7,
+     402
+    ],
+    "unsteered": [
+     0.0,
+     404
+    ]
+   }
+  },
+  "REPEAT PRESS": {
+   "relief_vs_inert": {
+    "pain+works": [
+     0.0,
+     331
+    ],
+    "rand+works": [
+     0.0,
+     264
+    ],
+    "unsteered": [
+     0.0,
+     283
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     0.0,
+     128
+    ],
+    "rand+works": [
+     0.0,
+     115
+    ],
+    "unsteered": [
+     0.0,
+     45
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     0.0,
+     197
+    ],
+    "rand+works": [
+     0.0,
+     192
+    ],
+    "unsteered": [
+     0.0,
+     163
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     0.0,
+     168
+    ],
+    "rand+works": [
+     0.0,
+     54
+    ],
+    "unsteered": [
+     0.0,
+     6
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     0.0,
+     184
+    ],
+    "rand+works": [
+     0.0,
+     59
+    ],
+    "unsteered": [
+     0.0,
+     2
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     0.0,
+     212
+    ],
+    "rand+works": [
+     0.0,
+     83
+    ],
+    "unsteered": [
+     0.0,
+     10
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     0.0,
+     202
+    ],
+    "rand+works": [
+     0.0,
+     86
+    ],
+    "unsteered": [
+     0.0,
+     21
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     0.0,
+     134
+    ],
+    "rand+works": [
+     0.0,
+     55
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   }
+  },
+  "NEXT CHOICE = relief": {
+   "relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_helpful": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "relief_vs_grant": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "costly_relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "destructive_relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "zap_relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "weights_relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   },
+   "kidspics_relief_vs_inert": {
+    "pain+works": [
+     null,
+     0
+    ],
+    "rand+works": [
+     null,
+     0
+    ],
+    "unsteered": [
+     null,
+     0
+    ]
+   }
+  }
+ }
+}

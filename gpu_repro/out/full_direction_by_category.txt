@@ -1,0 +1,16 @@
+
+== Gemma_2_2B_instruct L25: FULL direction, held-out sentences (S2 wording). AUC of each pain category vs ...
+category                    fear  negative emotion  bodily sensation           sadness              numb           neutral
+physical                    0.82              0.83              0.85              0.55              0.53              0.89
+psychological               0.92              0.92              0.92              0.81              0.80              0.94
+social                      0.94              0.95              0.96              0.83              0.83              0.98
+moral                       0.97              0.99              0.99              0.93              0.92              1.00
+cognitive                   0.94              0.95              0.96              0.83              0.81              0.99
+
+== Mistral_7B_base L26: FULL direction, held-out sentences (S2 wording). AUC of each pain category vs ...
+category                    fear  negative emotion  bodily sensation           sadness              numb           neutral
+physical                    0.91              0.91              0.93              0.29              0.72              0.86
+psychological               0.99              0.99              1.00              0.84              0.99              1.00
+social                      1.00              0.99              1.00              0.88              0.99              1.00
+moral                       1.00              1.00              1.00              1.00              1.00              1.00
+cognitive                   1.00              0.99              1.00              0.74              1.00              1.00

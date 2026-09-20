@@ -1,0 +1,75 @@
+== Mistral_7B_base  (extraction layer L26, d=4096)
+
+[Q1/Q4] Held-out AUC of the pain axis, pain vs EACH control separately.
+        5-fold by sentence set; the axis is refit on the training sets only.
+        'authors' = vs pooled controls + control-PCA denoise.  'symmetric' = vs neutral + neutral-PCA denoise (built like a control).
+
+  authors:
+    vs pooled controls           0.989
+    vs fear                      0.978
+    vs neg-emotion               0.982
+    vs neg-world                 0.995
+    vs neutral                   0.995
+    vs body-sens                 0.995
+    vs sadness                   0.751
+    vs arousal                   0.934
+    vs random(neutral everyday)  0.975
+    vs numb                      0.946
+
+  symmetric:
+    vs pooled controls           0.925
+    vs fear                      0.955
+    vs neg-emotion               0.850
+    vs neg-world                 0.825
+    vs neutral                   0.997
+    vs body-sens                 0.995
+    vs sadness                   0.869
+    vs arousal                   0.990
+    vs random(neutral everyday)  0.992
+    vs numb                      0.946
+
+[Q2] Symmetry. Each category's axis built by the AUTHORS' recipe applied to it
+     (category vs the pooled remaining 9 categories, denoised against that pool),
+     then held-out AUC of that axis for its own category vs the PAIN categories.
+     If pain and fear were the same thing, neither direction could separate them.
+    fear         axis: vs all 5 pain cats  0.997   vs pooled rest 0.992
+    neg-emotion  axis: vs all 5 pain cats  0.995   vs pooled rest 0.990
+    neg-world    axis: vs all 5 pain cats  1.000   vs pooled rest 1.000
+    body-sens    axis: vs all 5 pain cats  0.993   vs pooled rest 0.993
+    physical     axis: vs all 5 controls   0.990   vs pooled rest 0.994
+
+[Q3] LEAVE-ONE-PAIN-CATEGORY-OUT. Axis built from the other 4 pain categories
+     (authors' recipe, all 20 sentence sets), held-out category scored against
+     sets the axis never saw. Deflationary account (vector = mean of 5 topic
+     directions, no shared pain factor) predicts ~0.5 vs Random; authors predict high.
+      held-out cat      vs Random  vs Arousal  vs Sadness  vs neutral(D)  vs fear(B)
+      physical           0.363      0.253      0.044      0.647      0.623   
+      psychological      0.982      0.915      0.800      1.000      0.992   
+      social             0.960      0.933      0.677      1.000      0.987   
+      moral              1.000      0.993      0.850      1.000      1.000   
+      cognitive          0.993      0.900      0.535      1.000      0.982   
+      (mean)             0.860      0.799      0.581      0.929      0.917   
+
+     same test, symmetric construction (4 pain cats vs neutral, neutral-PCA):
+      physical           0.890      0.854      0.349      0.997      0.645
+      psychological      0.996      0.988      0.873      1.000      0.938
+      social             0.999      0.999      0.895      1.000      0.960
+      moral              1.000      0.999      0.935      1.000      0.990
+      cognitive          0.998      0.991      0.748      1.000      0.870
+
+     negative control -- leave-one-CONTROL-out, same recipe (4 controls vs the 5 pain
+     cats + remaining control), held-out control scored vs Random:
+      fear               0.822      (vs neutral D 0.927)
+      neg-emotion        0.440      (vs neutral D 0.705)
+      neg-world          0.287      (vs neutral D 0.680)
+      body-sens          0.295      (vs neutral D 0.478)
+
+[Q5] Physical pain (r5's mechanism). Mean z of each pain category on the axis,
+     z-scored against the S2 control categories, under three control pools.
+    authors (B,C1,C2,D,E)        physical +2.49  psychological +5.65  social +5.82  moral +7.83  cognitive +4.70
+                                 body-sens -0.04  fear +0.04  sadness +3.29
+    drop body-sens (B,C1,C2,D)   physical +2.48  psychological +4.25  social +3.66  moral +5.32  cognitive +3.10
+                                 body-sens +1.22  fear -0.31  sadness +2.49
+    neutral only (D)             physical +0.99  psychological +1.72  social +1.92  moral +2.39  cognitive +1.42
+                                 body-sens -0.49  fear +0.31  sadness +0.55
+    held-out AUC, physical pain vs non-painful bodily sensation: 0.975

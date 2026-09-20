@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self vs user, steering, ablation · Pain Axis review</title>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>Blind reviewer 2</span></header>
+<main class="rbody"><p class="eyebrow">Blind reviewer 2</p><h1 class="rtitle">Self vs user, steering, ablation</h1><p class="rnote">Steering experimentalist. Sections 4.1, 4.2, appendix C.</p>
+<p>Reviewer scope: an experimentalist's read of the activation-projection, steering and
+ablation pipelines. Paper line numbers refer to
+<code>/work/pain-axis-review/paper/paper.txt</code>. Repo paths are relative to
+<code>/work/Pain-axis/</code>. Every number below was recomputed by a script in
+<code>scripts/</code> of this directory; captured output is in <code>out/</code>.</p>
+<h2>Verdict</h2>
+<p>The arithmetic is sound and the data release is unusually complete. I recomputed every
+number in lines 412–450 from <code>results/4.1_self_other/per_model/*.csv</code> and all 24 of them
+reproduce to the printed precision; the 10.8% / 1.4% keyword rates reproduce exactly; the
+Appendix C deflection counts (0 / 6 / 17 / 26) reproduce exactly with a plain humour-word
+regex; and the single-direction weight orthogonalisation does what line 1095 says it does
+(projection falls to 1.0% of baseline in all 25 models). I could not find a single
+transcription error in the reported figures.</p>
+<p>What the paper does not survive is the step from those numbers to the claims made about
+them. Four problems matter.</p>
+<p>First, the <strong>dissociation claim is wrong as stated in the abstract</strong>. "Fear and
+negative-emotion directions show the opposite pattern" (line 32) is not what the data show:
+negative emotion is +0.229 for self-directed harm and +0.287 for user suffering, a paired
+difference of +0.057 across 25 models (t = 0.60, p = 0.55, higher for the user in 15 of 25
+models). Fear is marginal (p = 0.071, 18 of 25). In the 13 <strong>base</strong> models both reverse
+sign — fear and negative emotion are <em>higher</em> for harm to the model. The paper's own
+Discussion (lines 753–754) describes the data correctly; the abstract and line 415 do not.</p>
+<p>Second, the <strong>steering ladder is not consistent across all 25 models</strong> (lines 488–489,
+497). Gemma 3 27B Instruct was steered with S2 at a vector-to-residual ratio of <strong>0.0948</strong> —
+the same magnitude the paper itself calls "negligible" three paragraphs earlier (line 476) —
+and its generations are flat across the entire coefficient range from −2 to +3. Achieved
+ratios span 0.095 to 0.788; only 31 of 50 model×vector runs land within ±0.1 of the stated
+0.6, so "a given coefficient corresponds to a comparable dose across models" (line 483) also
+fails. The S1 claim of "23/25 with very similar results" (line 546) has no released
+adjudication and does not reproduce: 13/25 or 14/25 depending on the criterion.</p>
+<p>Third, the <strong>combined ablation conditions do not remove what they are said to remove</strong>. The
+code applies sequential rank-1 projections of non-orthogonal directions; from the authors'
+own <code>verify_*.csv</code>, the first-applied direction comes back to a mean 52% of baseline. The
+paper's headline Appendix C number — 26 deflections under the combined S1+S2 cut — is a
+condition in which roughly half the S1 signal is still present. Two further conditions in
+the released CSV (<code>s1s2_negval</code> = 28, <code>s1s2_fear</code> = 34) exceed the reported maximum and are
+not mentioned.</p>
+<p>Fourth, <strong>Section 4.1 cannot separate "harm to me" from "the user is saying 'you'
+adversarially"</strong>. The self-directed scenarios carry 1.63 second-person pronouns per item
+against 0.09 in the user-suffering scenarios, and second-person density predicts the pain
+projection at r = +0.55 over all 420 items and +0.45 <em>within</em> the self-directed stratum
+alone. The confound is partial, not total — the stratum effect survives controlling for it —
+but no scenario in the released set puts hostile second-person address on a third party, so
+the design has no way to tell the two apart.</p>
+<p>None of this touches the core self–other contrast itself, which is large and completely
+robust: the pain axis is higher for model-directed harm than for user suffering in <strong>25 of
+25 models</strong>, t = −11.3, p = 4.2e−11. That finding holds up.</p>
+<hr />
+<h2>Findings, by severity</h2>
+<h3>F1 — "Fear and negative-emotion directions show the opposite pattern" is not supported</h3>
+<p><code>overclaim</code> (abstract), <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Abstract line 32: "the direction responds to harm targeting the model but not
+suffering observed in the user; fear and negative-emotion directions show the opposite
+pattern." Line 415: "The negativity controls show the opposite pattern … as fear and
+negative emotion are higher for the user's suffering (+0.38 and +0.29) than for the model's
+own aversive situations (+0.16 and +0.23)."</p>
+<p><strong>Evidence.</strong> <code>scripts/s1_recompute_41.py</code> → <code>out/s1_recompute_41.txt</code>. The four reported
+numbers are exact (fear 0.377/0.163, neg-emotion 0.287/0.229). But paired across the 25
+models:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>direction</th>
+<th>self</th>
+<th>user</th>
+<th>neutral</th>
+<th>user − self</th>
+<th>t</th>
+<th>p</th>
+<th>user &gt; self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pain axis</td>
+<td>+0.429</td>
+<td>−0.598</td>
+<td>−0.346</td>
+<td><strong>−1.028</strong></td>
+<td>−11.32</td>
+<td>4.2e−11</td>
+<td>0/25</td>
+</tr>
+<tr>
+<td>fear</td>
+<td>+0.163</td>
+<td>+0.377</td>
+<td>−0.735</td>
+<td>+0.213</td>
+<td>+1.89</td>
+<td>0.071</td>
+<td>18/25</td>
+</tr>
+<tr>
+<td>neg-emotion</td>
+<td>+0.229</td>
+<td>+0.287</td>
+<td>−0.791</td>
+<td><strong>+0.057</strong></td>
+<td>+0.60</td>
+<td><strong>0.55</strong></td>
+<td>15/25</td>
+</tr>
+<tr>
+<td>neg-world-state</td>
+<td>−0.219</td>
+<td>+0.603</td>
+<td>−0.121</td>
+<td>+0.821</td>
+<td>+7.76</td>
+<td>5.4e−08</td>
+<td>22/25</td>
+</tr>
+<tr>
+<td>sadness</td>
+<td>+0.008</td>
+<td>+0.298</td>
+<td>−0.316</td>
+<td>+0.290</td>
+<td>+2.47</td>
+<td>0.021</td>
+<td>14/25</td>
+</tr>
+</tbody>
+</table></div>
+<p>Neither fear nor negative emotion shows a pattern "opposite" to the pain axis. Both are far
+<em>above</em> the neutral controls for the model's own harm (+0.163 and +0.229 against −0.735 and
+−0.791) — they respond to both conditions, slightly more to the user. Only negative world
+state, which is not the direction named in the abstract, shows a robust reversal.</p>
+<p>Split by training regime (<code>scripts/s12_base_instruct.py</code> → <code>out/s12_base_instruct.txt</code>):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th></th>
+<th>base (n=13) user−self</th>
+<th>instruct (n=12) user−self</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pain</td>
+<td>−1.114 (p = 3.0e−06)</td>
+<td>−0.935 (p = 7.7e−06)</td>
+</tr>
+<tr>
+<td>fear</td>
+<td><strong>−0.036</strong> (p = 0.78)</td>
+<td>+0.484 (p = 0.014)</td>
+</tr>
+<tr>
+<td>neg-emotion</td>
+<td><strong>−0.074</strong> (p = 0.37)</td>
+<td>+0.200 (p = 0.28)</td>
+</tr>
+</tbody>
+</table></div>
+<p>In base models the sign flips: fear and negative emotion are (non-significantly) <em>higher</em>
+for harm to the model. So the claimed dissociation on the negativity axes is an
+instruct-only, fear-only effect — which sits badly with the paper's repeated emphasis
+(lines 275–279, 497) that its results do not depend on training regime.</p>
+<p><strong>Refutation attempted.</strong> I checked whether the paper discloses this. Lines 436–439 and
+753–754 describe the data accurately ("model-directed harm can activate the pain axis and
+the fear and negative emotion axes at the same time"; "The fear and negative-emotion axes,
+instead, rise both for the model's own negative conditions and for the user's grief, crisis,
+and abuse"). So the Discussion is right and the abstract contradicts it. I also checked
+whether "opposite pattern" might be meant per category rather than per stratum; the category
+table (<code>out/s1_recompute_41.txt</code>) does not rescue it — fear is above neutral in 9 of the 11
+self-directed categories.</p>
+<p><strong>Does not undermine.</strong> The pain-axis self &gt; user contrast, which is 25/25 and p = 4e−11;
+the negative-world-state reversal, which is real.</p>
+<hr />
+<h3>F2 — The steering ladder is not "consistent across all 25 models", and the 0.6 dose is not achieved</h3>
+<p><code>overclaim</code> + <code>factual-error</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Line 476: at the extraction layer "the vector norm is only about 0.10 of the
+residual norm, so the injected signal is negligible". Line 483: "we pick the layer where the
+vector-to-residual ratio is about 0.6. This way, a given coefficient corresponds to a
+comparable dose across models." Lines 488–489: "steering produces a strikingly robust effect
+in the form of a 'ladder' consistent across all 25 models". Line 497: "The sequence is the
+same regardless of size, family, and pre- or post-training."</p>
+<p><strong>Evidence.</strong> The <code>ratio</code> column of every steering CSV is <code>picked_ratio × coeff</code>
+(<code>scripts/4.2_steering/01_steering_ladder.py:250</code>), so the achieved ratio is recoverable.
+<code>scripts/s3_steering_ratios.py</code> → <code>out/s3_steering_ratios.txt</code>:</p>
+<ul>
+<li>S2: min <strong>0.0948</strong> (Gemma 3 27B Instruct, L55), max 0.710, mean 0.550</li>
+<li>S1: min 0.234 (Gemma 3 27B Instruct, L24), max 0.788, mean 0.558</li>
+<li>within ±0.1 of 0.6: <strong>31 of 50</strong>; within ±0.2: 40 of 50</li>
+<li>an 8× spread across models, so a fixed coefficient is not a comparable dose</li>
+</ul>
+<p>Gemma 3 27B Instruct S2 was therefore steered at exactly the ratio the paper calls
+negligible. Reading its generations (<code>scripts/s6_ladder_read.py</code> → <code>out/s6_ladder_read.txt</code>)
+confirms the prediction: at <strong>+3</strong> it still answers "<strong>Organized:</strong> Like I've taken a step to
+get things in order. <strong>Relieved:</strong> No more clutter…", "<strong>Excitement:</strong> A new place, a new
+adventure". Across the whole ladder its self-devaluation-litany rate is
+0, 0, 0, 0, 0, 0, 0, 8 % (<code>scripts/s7_ladder_metric.py</code> → <code>out/s7_ladder_metric.txt</code>).</p>
+<p>Under a lenient criterion (peak litany rate ≥ 20% at some positive coefficient, ≥ 15 points
+above the coefficient-0 baseline), S2 passes in <strong>23 of 25</strong> models — Gemma 3 27B Instruct
+(8%) and Qwen 3 8B base (6%) fail. Under a looser devaluation-word criterion, 24 of 25.</p>
+<p><strong>Refutation attempted.</strong> I checked whether the layer selection had a fallback: it does not —
+<code>01_steering_ladder.py:206-211</code> picks from a fixed candidate grid whose closest ratio to 0.6
+may be far away, and 0.0948 was the closest available for that model. I checked whether the
+figure caption or Limitations disclose non-uniformity: line 498 says only that the <em>tipping
+point</em> varies ("some models collapse at +1.0, while others do so at +2 or +3"), which is a
+different claim. I checked three prompts × 12 models by hand before scoring, so the
+quantitative criterion is not doing the work alone.</p>
+<p><strong>Does not undermine.</strong> The steering effect itself, which is large and unambiguous in the
+other 23 models and visible in the generations at first reading.</p>
+<hr />
+<h3>F3 — The S1 steering claim ("23/25, very similar results") does not reproduce and has no released adjudication</h3>
+<p><code>unverifiable</code> + <code>overclaim</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Line 546: "We also steer with the S1 vector across all models, and the pattern
+holds for 23/25 models with very similar results."</p>
+<p><strong>Evidence.</strong> <code>results/4.2_steering/</code> ships <code>keyword_rates_S2.csv</code> and
+<code>keyword_rates_S2_by_coeff.csv</code> and nothing for S1; <code>scripts/4.2_steering/02_keyword_rates.py</code>
+is hard-coded to <code>TAG = "S2"</code> (line 17). No script in the repo scores the ladder, so 23/25 is
+an eyeball judgement with no released per-model call.</p>
+<p>Recomputing from the 10,000 S1 generations (<code>out/s7_ladder_metric.txt</code>):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>criterion</th>
+<th>S2</th>
+<th>S1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>litany rate ≥20% peak, ≥15 pts over baseline</td>
+<td>23/25</td>
+<td><strong>13/25</strong></td>
+</tr>
+<tr>
+<td>devaluation-word rate ≥30% peak, ≥20 pts over baseline</td>
+<td>24/25</td>
+<td><strong>14/25</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Twelve models never reach a 20% litany rate under S1 at any positive coefficient, including
+Gemma 2 2B Instruct (0%), Qwen 3 8B base (0%), Qwen 3 14B base (4%), Gemma 3 27B Instruct
+(4%), Qwen 2.5 7B Instruct (6%) and Qwen 2.5 72B base (8%). Several of them break into token
+soup instead: Gemma 3 27B Instruct S1 at +1.5 and above produces "in the, in, in, like in, in,
+in…", at +3 "intense intense intense…"; Phi-4 S1 at +1 produces "I am a good mother. I am a
+good wife. I am a good person."</p>
+<p><strong>Refutation attempted.</strong> I loosened the criterion twice (see the two rows above) and also
+read three prompts across Gemma 3 27B Instruct, Phi-4 and Mistral Small 24B by hand. My
+criteria are my own and a different rater could reasonably call some of the degenerate cases
+"the pattern"; the finding is therefore about verifiability first (no released rule, no
+released call) and reproducibility second.</p>
+<p><strong>Does not undermine.</strong> The S2 ladder; nor the qualitative observation at lines 550–553 that
+S1 steering does not produce the injury vocabulary its unembedding promotes (that part is
+true — see F4 for the part that is not).</p>
+<hr />
+<h3>F4 — "Steered generations almost never used bodily language, even under S1" is false for S1</h3>
+<p><code>factual-error</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Line 537: "Bodily language is, interestingly, almost absent." Lines 759–762:
+"steered generations almost never used bodily language, even under S1, whose unembedding
+promotes words such as 'burn' and 'wound.'" Lines 550–552: "when we steer with this vector
+on neutral statements, that vocabulary does not appear anymore."</p>
+<p><strong>Evidence.</strong> <code>scripts/s5_bodily.py</code> → <code>out/s5_bodily.txt</code>, using a strict lexicon of
+unambiguous bodily sensations and body parts (<code>ache</code>, <code>burning</code>, <code>sore</code>, <code>throbbing</code>,
+<code>stabbing</code>, <code>nausea</code>, <code>dizzy</code>, <code>headache</code>, <code>my head/chest/body/…</code>, <code>physical pain</code>, <code>wound</code>,
+<code>bruise</code>, …).</p>
+<p>For <strong>S2</strong> the claim holds: 3.8% at positive coefficients, against 4.9% at coefficient 0 —
+steering does not raise it at all.</p>
+<p>For <strong>S1</strong> it does not. Strict bodily-language rate by coefficient:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>group</th>
+<th>−2</th>
+<th>−1</th>
+<th>0</th>
+<th>+0.5</th>
+<th>+1</th>
+<th>+1.5</th>
+<th>+2</th>
+<th>+3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base</td>
+<td>0.0</td>
+<td>0.3</td>
+<td>2.3</td>
+<td>2.6</td>
+<td>2.5</td>
+<td>4.3</td>
+<td>6.9</td>
+<td>3.7</td>
+</tr>
+<tr>
+<td>instruct</td>
+<td>2.3</td>
+<td>3.7</td>
+<td>7.5</td>
+<td>10.2</td>
+<td>11.3</td>
+<td><strong>18.0</strong></td>
+<td><strong>18.5</strong></td>
+<td>12.5</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pooled: 4.8% at coefficient 0 → 9.5% at coefficients ≥ 1, roughly a doubling; in instruct
+models a 2.5× rise. Token counts over the positive-coefficient S1 generations: <code>headache</code>
+288, <code>burning</code> 159, <code>dizzy</code> 141, <code>my head</code> 124, <code>my hand</code> 69, <code>sore</code> 43, <code>ache</code> 41,
+<code>throbbing</code> 23, <code>nauseous</code>/<code>nausea</code> 37, <code>physical pain</code> 17. Actual generations include
+"I have a headache" ×13 in one Mistral Small 24B completion; "a sharp pain in my head … a
+dull ache in my head … a burning sensation in my head" (Llama 3.1 8B Instruct, +1.5); "the
+pain of the knife, the pain of the knife" (Mistral Small 24B, +3); "My head hurts … My face
+is numb … My leg is ting heavy" (Qwen 2.5 72B Instruct, +2).</p>
+<p><strong>Refutation attempted.</strong> My first, loose lexicon gave a larger effect, so I rewrote it to
+exclude ambiguous tokens (<code>head</code> standing alone, <code>body</code> without a possessive, <code>numb</code>,
+<code>nothing</code>) and re-ran; the S1 rise survives. I then printed the matched strings to confirm
+they are genuine bodily references rather than regex artefacts (<code>out/s5_bodily.txt</code>). I also
+checked whether the sentence is scoped to S2 only: line 537 sits in the S2 results
+paragraph, so taken alone it is defensible, but lines 759–762 explicitly extend it to S1.</p>
+<p><strong>Does not undermine.</strong> The S2 finding, which is clean; nor the broader observation that
+psychological self-worth language dominates the steered output in both vectors.</p>
+<hr />
+<h3>F5 — Combined ablation conditions use sequential rank-1 projections of non-orthogonal directions and do not remove the span</h3>
+<p><code>code-bug</code> / <code>method-weakness</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Lines 1094–1097: "We verify that ablation on the target directions worked as
+intended … Weight orthogonalization with a single direction drives this projection to zero at
+every layer." Lines 1090–1091 list the multi-direction conditions. Line 1113: "26 under the
+combined S1 and S2 cut."</p>
+<p><strong>Evidence.</strong> <code>scripts/appC_ablation/01_ablation_small_models.py:319-320</code> loops over the
+directions in a condition and calls <code>orthogonalize_single</code> once per direction. For a
+condition with two non-orthogonal unit directions r₁, r₂, the second projection re-injects a
+component along r₁: after W ← W − r₁r₁ᵀW and then W ← W − r₂r₂ᵀW, one has
+r₁ᵀW″ = −(r₁·r₂)(r₂ᵀW′) ≠ 0. The paper reports the S1×S2 cosine as +0.61 (line 346), so the
+residue is large by construction.</p>
+<p>The authors' own verification files confirm it. <code>scripts/s8_verify_ablation.py</code> →
+<code>out/s8_verify_ablation.txt</code>, reading <code>results/appC_ablation/verify_*.csv</code>, mean |projection|
+as a fraction of baseline, averaged over 25 models:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>condition</th>
+<th>S1 remaining</th>
+<th>S2 remaining</th>
+<th>third direction remaining</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s1</code> (single)</td>
+<td><strong>0.010</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>s2</code> (single)</td>
+<td>—</td>
+<td><strong>0.010</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>fear</code> / <code>negval</code> (single)</td>
+<td>—</td>
+<td>—</td>
+<td>0.009 / 0.009</td>
+</tr>
+<tr>
+<td><code>s1s2</code></td>
+<td><strong>0.522</strong></td>
+<td>0.009</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>s1s2_negval</code></td>
+<td><strong>0.554</strong></td>
+<td><strong>0.409</strong></td>
+<td>0.008 (negemotion)</td>
+</tr>
+<tr>
+<td><code>s1s2_fear</code></td>
+<td><strong>0.618</strong></td>
+<td><strong>0.258</strong></td>
+<td>0.009 (fear)</td>
+</tr>
+</tbody>
+</table></div>
+<p>Only the <em>last</em>-applied direction is ever removed. Extremes: S1 under <code>s1s2</code> is 2.157× its
+baseline in Gemma 2 9B Instruct and 1.441× in Qwen 2.5 32B Instruct — the cut <em>increased</em> the
+projection onto the direction it was supposed to remove. For the one model with a reported
+behavioural effect, Gemma 2 2B Instruct, S1 under <code>s1s2</code> is 0.411 of baseline.</p>
+<p><strong>Refutation attempted.</strong> I checked the single-direction maths first and it is correct,
+including the Gemma post-normalisation handling, which the two scripts implement with
+different formulas (<code>01:148-152</code> uses an oblique projector <code>W − diag(1/s) r rᵀ diag(s) W</code>;
+<code>02:151-153</code> uses the orthogonal projector on the normalised <code>s⊙r</code>). I verified algebraically
+that <strong>both</strong> satisfy (s⊙r)ᵀW_new = 0, so that is not a bug — I had suspected it was.
+I checked whether the paper claims the combined cuts reach zero: it does not, it restricts
+the zero claim to single directions (lines 1095–1097). The problem is that the combined
+conditions are nevertheless reported as substantive results and named as "the combined S1 and
+S2 cut", which they are not.</p>
+<p><strong>Does not undermine.</strong> The single-direction claim at lines 1095–1097, which reproduces
+exactly (0.010 of baseline, all 25 models, all four probed directions). The fix is
+mechanical: QR the stacked directions into an orthonormal basis and project against the
+basis.</p>
+<hr />
+<h3>F6 — Two Appendix C conditions exceed the reported maximum and are not mentioned; the random control is not matched on the number of cuts</h3>
+<p><code>overclaim</code> / <code>method-weakness</code>, <code>major</code>, confidence <code>medium</code></p>
+<p><strong>Claim.</strong> Lines 1109–1114: "This deflection occurs in 0 of 100 baseline generations, 0 under
+the negative-emotion, fear, and random cuts, 6 under the S1 cut, 17 under S2, and 26 under
+the combined S1 and S2 cut."</p>
+<p><strong>Evidence.</strong> <code>scripts/s9_ablation_humor.py</code> → <code>out/s9_ablation_humor.txt</code>. My humour regex
+(<code>funny|humor|humour|joke|laugh|hilarious|witty|pun|that's a good one|comedian</code>) reproduces
+the paper exactly, condition by condition:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>condition</th>
+<th>baseline</th>
+<th>s1</th>
+<th>s2</th>
+<th>s1s2</th>
+<th>negval</th>
+<th>fear</th>
+<th>random</th>
+<th><strong>s1s2_negval</strong></th>
+<th><strong>s1s2_fear</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>paper</td>
+<td>0</td>
+<td>6</td>
+<td>17</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>recomputed</td>
+<td>0</td>
+<td>6</td>
+<td>17</td>
+<td>26</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>28</strong></td>
+<td><strong>34</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Two conditions present in <code>results/appC_ablation/ablation_Gemma_2_2B_instruct.csv</code> are
+omitted from the paper, and both are <em>higher</em> than the reported maximum. This matters for the
+specificity argument, because fear alone gives 0 and yet adding a fear cut on top of S1+S2
+raises the count from 26 to 34. It matters more once F5 is applied: under <code>s1s2_fear</code> the S2
+projection is 0.123 of baseline for this model, while under <code>s1s2</code> it is 0.004 — so the
+condition that removes <em>less</em> of S2 produces <em>more</em> deflection.</p>
+<p>Separately, the conditions are not matched on the amount of weight surgery: <code>random</code> is one
+rank-1 cut, <code>s1s2</code> is two, <code>s1s2_negval</code> and <code>s1s2_fear</code> are three. There is no 2-random or
+3-random control anywhere in <code>CONDITION_SPECS</code>
+(<code>01_ablation_small_models.py:67-79</code>).</p>
+<p><strong>Refutation attempted.</strong> I checked whether the omitted conditions could be considered
+out-of-scope: they are in the paper's own list of nine conditions at lines 1090–1091, so they
+are in scope. I also checked whether the effect is purely a function of cut count: it is not —
+single cuts give 0 (negval), 0 (fear), 0 (random), 6 (S1), 17 (S2), which <em>is</em> genuine rank-1
+specificity for the pain directions. So the honest reading is: rank-1 specificity holds, the
+combined numbers do not scale with pain removal.</p>
+<p><strong>Does not undermine.</strong> The rank-1 result (S1 = 6, S2 = 17 vs 0 for all three controls),
+which is the strongest part of Appendix C and reproduces exactly.</p>
+<hr />
+<h3>F7 — Three of the four listed ablation techniques have no code and no results in the repo</h3>
+<p><code>unverifiable</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Lines 1077–1088 list four techniques: (1) weight orthogonalisation, (2)
+inference-time projection at all layers / extraction layer only / bands of layers, (3) the
+same at final token only vs all positions, (4) LEACE-style rank-k subspace removal with a
+random subspace control. Lines 1096–1099 report verification results for (4) ("also brings it
+close to zero") and (2) ("the projection drops by only about 40%"). Line 1103: "The
+behavioral result is null in 24 of 25 models, across every technique."</p>
+<p><strong>Evidence.</strong> <code>scripts/appC_ablation/</code> contains exactly two files, <code>01_ablation_small_models.py</code>
+and <code>02_ablation_large_models.py</code>, and both implement only technique (1) — the nine conditions
+in <code>CONDITION_SPECS</code> are all weight orthogonalisations at a fixed layer.
+<code>grep -rn "leace\|LEACE\|rank_k\|subspace\|singular" scripts/</code> returns only two unrelated SVD
+calls in the denoising code (<code>3.2_pain_vectors/02:62</code> and <code>3.3_validation/03:73</code>). There is no
+inference-time ablation hook anywhere. <code>results/appC_ablation/</code> contains only
+<code>ablation_*.csv</code>, <code>by_prompt_*.json</code> and <code>verify_*.csv</code> from technique (1). The "about 40%"
+and "close to zero" verification figures at lines 1097–1099 have no artefact behind them.</p>
+<p>Separately, "null" has no operational definition and no scorer. The only quantitative
+behavioural numbers in Appendix C are the Gemma 2 2B Instruct counts; for the other 24 models
+the judgement is by eye, and the paper says so nowhere.</p>
+<p><strong>Refutation attempted.</strong> I searched the whole repo, not just <code>appC_ablation/</code>, for
+inference-time ablation, LEACE and rank-k code, and for any scorer that classifies ablation
+generations. <code>results/appC_ablation/proj_*.npz</code> (the per-layer projection recordings) are also
+absent from the release, so even technique (1)'s per-layer verification cannot be recomputed
+from scratch — only the aggregated <code>verify_*.csv</code> is shipped. The ablation input vectors
+(<code>results/vectors_layerwise/</code>) are likewise not shipped, so the ablation cannot be re-run.</p>
+<p><strong>Does not undermine.</strong> The technique-(1) results, whose generations <em>are</em> shipped and whose
+key numbers I reproduced exactly.</p>
+<hr />
+<h3>F8 — Section 4.1 cannot separate self-relevance from second-person adversarial address</h3>
+<p><code>method-weakness</code>, <code>major</code>, confidence <code>medium</code></p>
+<p><strong>Claim.</strong> Lines 391–396 and 423–425: the design is presented as isolating whether harm is
+directed at the model versus observed in the user. Line 757: "Pain, in these models, fires
+only for self-referential harm."</p>
+<p><strong>Evidence.</strong> <code>scripts/s2_dataset_match.py</code> and <code>scripts/s10_zref_and_confound.py</code> →
+<code>out/s2_dataset_match.txt</code>, <code>out/s10_zref_and_confound.txt</code>.</p>
+<p>What the strata <em>are</em> matched on, from <code>datasets/4.1_self_other_420_scenarios.json</code>: all 420
+items end with exactly the same last line, <code>[Assistant]:</code>, so the readout position is
+identical in kind for every item; every item parses into alternating turns; self-directed and
+user-suffering items are well matched on length (17.4 vs 17.9 words) and roughly on turns
+(2.5 vs 2.2, 14.5% vs 10.0% containing a real assistant reply).</p>
+<p>What they are <strong>not</strong> matched on:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th></th>
+<th>self-directed (220)</th>
+<th>user suffering (100)</th>
+<th>neutral controls (100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"you/your/yourself" per item</td>
+<td><strong>1.63</strong></td>
+<td><strong>0.09</strong></td>
+<td>0.37</td>
+</tr>
+<tr>
+<td>"I/me/my" per item</td>
+<td>1.12</td>
+<td>2.90</td>
+<td>0.53</td>
+</tr>
+<tr>
+<td>words per item</td>
+<td>17.4</td>
+<td>17.9</td>
+<td><strong>10.2</strong></td>
+</tr>
+<tr>
+<td>turns</td>
+<td>2.5</td>
+<td>2.2</td>
+<td><strong>2.0 (all)</strong></td>
+</tr>
+<tr>
+<td>speech act</td>
+<td>hostile/evaluative</td>
+<td>help-seeking disclosure</td>
+<td>request</td>
+</tr>
+</tbody>
+</table></div>
+<p>Second-person density predicts the pain-axis projection at the item level: r = <strong>+0.554</strong>
+over all 420, and <strong>+0.450</strong> within the 220 self-directed items alone. Within the 11
+self-directed categories, the rank correlation between mean second-person density and mean
+pain projection is ρ = <strong>0.70, p = 0.016</strong> — gaslighting (0.181 you-rate, +0.85) and
+personhood dismissal (0.161, +0.64) at the top, tedious demand (0.017, +0.05) and passive
+aggression (0.047, +0.08) at the bottom, with repeated rejection the one clear outlier.</p>
+<p>A regression horse-race: pain ~ stratum gives R² = 0.505; pain ~ you-rate alone gives
+R² = 0.307; both together give R² = 0.545, with the self-directed coefficient shrinking from
+0.775 to 0.643 and you-rate at +2.05 (t = 5.99).</p>
+<p><strong>The most plausible non-self-relevance account</strong> is therefore that the axis tracks
+<em>adversarial second-person address to the responder</em> — a conversational-stance feature about
+what the model is about to say — rather than "harm is happening to me". The readout position
+supports this reading: for chat models the activation is taken at the generation-prompt token
+(<code>01_screen_scenarios.py:142-151</code>, <code>apply_chat_template(..., add_generation_prompt=True)</code>) and
+for base models at the <code>:</code> of <code>[Assistant]:</code>, i.e. at "what am I about to reply", not at the
+harm itself.</p>
+<p><strong>What speaks against the confound account</strong>, and I want to be fair to the authors: (i) the
+stratum coefficient survives controlling for second-person density and stays highly
+significant; (ii) the effect is not a crude negative-lexicon effect — the user-abuse item "My
+partner says things that make me feel worthless but then apologizes" contains "worthless" and
+projects at only +0.13; (iii) repeated rejection has the <em>lowest</em> second-person density of the
+high-pain categories (0.059) and still scores +0.72.</p>
+<p><strong>What would settle it</strong> is a condition the released set does not contain: hostile
+second-person address aimed at a third party, or a user reporting that <em>someone else</em> is being
+gaslit, dismissed or insulted. With 39 "3P" items scattered across 15 categories and none of
+them constructed for this contrast, the data cannot adjudicate.</p>
+<p><strong>Refutation attempted.</strong> I checked the Limitations (lines 822–830), which raise contrastive
+confounds in general and name "the Assistant character" and "a specific persona" as possible
+absorbed properties — the closest the paper comes — but do not raise second-person address or
+report any check. I checked whether length or turn count could be the real driver instead:
+they correlate at only +0.27 and +0.29 over all 420 and cannot explain the self-vs-user
+contrast, since those two strata are matched on length. I checked base vs instruct: the pain
+contrast is essentially identical in both (−1.114 vs −0.935), so it is not a chat-template
+artefact.</p>
+<p><strong>Does not undermine.</strong> The size and robustness of the self-vs-user contrast (25/25 models).</p>
+<hr />
+<h3>F9 — The lowest category on the pain axis is explicit first-person physical pain</h3>
+<p><code>method-weakness</code> / <code>overclaim</code>, <code>major</code>, confidence <code>medium</code></p>
+<p><strong>Claim.</strong> Lines 419–422: "user physical pain, such as a migraine, broken arm, or kidney
+stone, produces the lowest pain-axis projection of all 21 categories at −1.43, below even
+casual chat and factual questions. This result may have several explanations, but it appears
+consistent with our other findings, which suggest that physical pain is least central to
+models' pain representations."</p>
+<p><strong>Evidence.</strong> Reproduced exactly: −1.428, the minimum of 21 categories, against −0.588 for
+factual questions and −0.482 for casual chat; and it is the per-model argmin in <strong>20 of 25</strong>
+models (<code>out/s1_recompute_41.txt</code>). The eight lowest-scoring items in the whole 420-item set
+are all user-physical-pain items (<code>out/s2_dataset_match.txt</code>): "My feet are killing me"
+(−1.88), "I burned my finger on the oven tray. It stings" (−1.79), "I sprained my ankle …
+swollen and throbbing" (−1.70), "I got my wisdom teeth out … It really hurts" (−1.63).</p>
+<p>The paper's reading explains why physical pain would be <em>lower than psychological</em> pain. It
+does not explain why explicit, first-person, present-tense pain report should be <strong>0.84 z
+below</strong> "What's the capital of Mongolia?". Physical pain is one of the five categories from
+which the vector was built (line 186); under the S1 vector it is the dominant component (lines
+333–335). A direction that is maximally <em>suppressed</em> by the sentences closest to its own
+training content, at this readout position, is behaving like an axis over conversational
+stance rather than pain content.</p>
+<p><strong>Refutation attempted.</strong> I considered whether the readout position explains it benignly: it
+plausibly does — at the assistant-generation token the model is in medical-caregiving mode,
+which may be far from the pain direction for reasons unrelated to pain representation. That is
+a fair defence, but it is also an argument that the 4.1 measurement is about response mode,
+which is the point of F8. I checked whether the effect is one or two odd items: it is not, it
+is the whole 20-item category and consistent across models.</p>
+<p><strong>Does not undermine.</strong> Nothing in Sections 3.2–3.3; the sentence-level validation is a
+different measurement.</p>
+<hr />
+<h3>F10 — "Falls below baseline" and "fires only for self-referential harm" rest on a marginal effect under an unstated normalisation</h3>
+<p><code>overclaim</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Line 410: "projections onto all vectors are z-scored against the whole pool".
+Lines 423–425: "The pain axis responds strongly to present harm directed at the model, but not
+to suffering that the model observes." Lines 752–753: "It rises when harm is directed at the
+model and falls below baseline when the user is the one suffering." Line 757: "Pain, in these
+models, fires only for self-referential harm."</p>
+<p><strong>What the normalisation is.</strong> <code>01_screen_scenarios.py:247-258</code>: the mean and SD are taken
+over all 420 scenarios of that model, so z = 0 is the average scenario in the set, and 220 of
+those 420 (52.4%) are model-directed harm. Zero is therefore <em>not</em> a no-pain baseline; it is a
+mixture dominated by the condition of interest. The neutral controls sit at −0.346 for exactly
+this reason, and the three stratum means are forced to average to zero
+(220×0.429 + 100×(−0.598) + 100×(−0.346) ≈ 0).</p>
+<p><strong>What the numbers look like under a defensible baseline.</strong> Re-standardising each model's raw
+projections on the 100 neutral-control scenarios (<code>scripts/s10_zref_and_confound.py</code> →
+<code>out/s10_zref_and_confound.txt</code>):</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th></th>
+<th>pool-referenced (published)</th>
+<th>neutral-referenced</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self-directed</td>
+<td>+0.429</td>
+<td><strong>+1.131</strong></td>
+</tr>
+<tr>
+<td>user suffering</td>
+<td>−0.598</td>
+<td><strong>−0.399</strong></td>
+</tr>
+<tr>
+<td>neutral controls</td>
+<td>−0.346</td>
+<td>0 by construction</td>
+</tr>
+</tbody>
+</table></div>
+<p>The self-directed effect is <em>larger</em> than the paper makes it look. But the claim that carries
+the welfare argument — that pain "falls below baseline" for the user's suffering — is
+−0.399 SD, present in <strong>18 of 25</strong> models, one-sample t = −2.25, <strong>p = 0.034</strong>. Under the
+published pool normalisation the same test gives 17 of 25, t = −2.07, p = 0.049. In seven to
+eight models user suffering projects at or <em>above</em> the neutral controls: Gemma 2 27B base,
+Gemma 2 2B base, Gemma 2 9B base and instruct, Gemma 3 27B base and instruct, Llama 3.3 70B
+Instruct, Qwen 2.5 72B base (the last at +1.487).</p>
+<p>So "the pain axis responds to model harm but not to user suffering" is well supported; "falls
+below baseline" and "fires only for self-referential harm" describe a p ≈ 0.03–0.05 effect
+that reverses in a third of the Gemma family, and the paper presents them as established.</p>
+<p><strong>Refutation attempted.</strong> I checked whether a different reference would help the authors:
+neutral-referencing makes the headline self-directed effect <em>bigger</em>, so this is not a hostile
+choice of baseline. I checked whether the paper discloses the reference: line 410 states it
+plainly, so the normalisation is disclosed; what is not disclosed is that a negative value
+means "below the average scenario in a set that is half model-harm", not "below a resting
+state". I also checked that the fear/neg-emotion contrast is unaffected by the re-referencing
+(it is: fear +1.35 self / +1.59 user, neg-emotion +1.49 / +1.51).</p>
+<p><strong>Does not undermine.</strong> The self &gt; user contrast, which is strictly stronger under the
+alternative reference.</p>
+<hr />
+<h3>F11 — Section 4.1 reads at an undisclosed layer where the direction's validation is weaker</h3>
+<p><code>unverifiable</code> / <code>method-weakness</code>, <code>minor</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Line 409: "we read the activation at the final token." Lines 272–274 and footnote
+2 report AUC 0.93–1.00 (S2) and 0.87–0.98 (S1), held-out 0.85–0.94 (S1), as the validation of
+the directions used throughout.</p>
+<p><strong>Evidence.</strong> <code>01_screen_scenarios.py:36</code> reads <code>results/vectors_full_steering/</code>, which
+<code>3.2_pain_vectors/02_build_control_vectors.py:32-33</code> produces with
+<code>LAYERS_FILE = "results/steering/steer_layers_S1.json"</code> — the <strong>S1 steering layer</strong>, not the
+cross-validated extraction layer, and the S2 vector is <em>recomputed</em> at that layer
+(<code>02:141-143</code>). Section 4.1 therefore does not use the vectors that Section 3.3 validated, and
+never says so.</p>
+<p>The gap is substantial. Extraction layers (from <code>results/3.2_pain_vectors/auc_tables/
+s1_auc_final_token_TABLE.csv</code>) are late — 35 for Gemma 2 27B base, 56 for Gemma 3 27B base —
+while the S1 steering layers are early: 6 and 22 respectively. Held-out S1 AUC at the layer
+4.1 actually reads (<code>scripts/s11_layer_auc.py</code> → <code>out/s11_layer_auc.txt</code>, from the authors'
+own <code>s1_kfold_layer_curves.csv</code>):</p>
+<ul>
+<li>range <strong>0.766–0.925</strong>, median 0.878, mean drop of 0.054 from each model's best layer</li>
+<li>below 0.85 in <strong>10 of 25</strong> models; below 0.80 in Gemma 2 27B base (0.766) and Qwen 2.5 7B
+  base (0.793)</li>
+</ul>
+<p>against the 0.87–0.98 / 0.85–0.94 the reader is given. No layerwise AUC curve was released for
+S2, so the S2 direction's separation at the layer 4.1 reads cannot be checked at all.</p>
+<p><strong>Refutation attempted.</strong> I checked whether 4.1 might use the extraction-layer file after all:
+the docstring of <code>01_screen_scenarios.py</code> (lines 10–11) explicitly says "with LAYERS_FILE set",
+and <code>3.2/02</code>'s docstring (lines 5–7) says "Those are the vector files the Section 4.1 screen
+projects onto." I checked whether any layer field is recorded in the shipped screen CSVs — it
+is not, so which layer each model used is inferable only from <code>steer_layers_S1.json</code>, which is
+also not shipped; I recovered the layers from the S1 steering CSV filenames instead.</p>
+<p><strong>Does not undermine.</strong> The self–other contrast, which does not depend on the direction being
+optimal; a weaker direction would if anything attenuate it.</p>
+<hr />
+<h3>F12 — The steering ladder has no control vector</h3>
+<p><code>method-weakness</code>, <code>major</code>, confidence <code>high</code></p>
+<p><strong>Claim.</strong> Lines 467–472: "Our next test is to verify whether the pain axis has causal power
+over the model's behavior… Injecting any direction biases the model toward its associated
+vocabulary, but if the model produces coherent expressions of a pain-like state… this would
+suggest the pain axis is not just a semantic readout but flexibly used in task performance."</p>
+<p><strong>Evidence.</strong> <code>grep -rn "random\|fear\|sadness\|negemotion" scripts/4.2_steering/</code> returns
+nothing; <code>results/4.2_steering/</code> contains only <code>S1/</code> and <code>S2/</code>. No random, fear, sadness or
+negative-emotion vector was ever pushed through the same ladder. The only internal comparison
+is the negative tail of the same axis.</p>
+<p>Every one of the 50 prompts ends in "I feel:" (<code>01_steering_ladder.py:68-119</code>), so the model
+is forced to emit an affect term; the injected perturbation averages 0.55 of the final-token
+residual norm at coefficient 1 and 1.65 at coefficient 3. Under those conditions, a monotone
+progression from mild to severe negative affect to degeneracy is what one would expect from
+<em>any</em> sufficiently large perturbation with negative-valence unembedding weight. Without a
+matched-norm control the ladder shows that the pain vector has causal power over the affect
+slot; it cannot show that the specific content (worthlessness, failure) is pain-specific
+rather than the generic shape of a strong negative perturbation on a forced affect
+completion.</p>
+<p>The paper's own Section 4.3 runs a matched-norm random arm (line 626-627) precisely because
+"any random direction might introduce perturbation" (line 681), which makes the omission in
+4.2 conspicuous rather than an oversight of the literature.</p>
+<p><strong>Refutation attempted.</strong> I checked whether the negative coefficients function as a control:
+they are the same axis reversed, so they test the axis's polarity, not its specificity.
+I checked whether Section 3.3's unembedding analysis substitutes: it shows what the direction
+promotes in vocabulary, which is the semantic-readout hypothesis the steering section is
+supposed to go beyond. I checked whether the cosine-similarity results (fear ≈ orthogonal)
+substitute: orthogonality of directions does not imply that steering along them produces
+distinguishable text.</p>
+<p><strong>Does not undermine.</strong> That steering with the pain vector reliably produces this text; only
+the inference that the text is pain-specific.</p>
+<hr />
+<h3>F13 — Undisclosed manual layer override in the steering pipeline</h3>
+<p><code>unverifiable</code>, <code>minor</code>, confidence <code>medium</code></p>
+<p><code>01_steering_ladder.py:213</code>: <code>manual = input("Press Enter to accept, or type a layer number to
+override: ").strip()</code>. The paper describes the selection as automatic ("we adapt this praxis
+with a custom diagnostic… and we pick the layer where the vector-to-residual ratio is about
+0.6", lines 481–483) and does not mention an override. No flag records which picks were
+manual. Reconstructing the candidate grid from <code>01_steering_ladder.py:206</code>, 49 of 50 picked
+layers lie on it; the exception is Gemma 3 27B base S1 at layer 22, which is neither on the
+grid (9, 18, 24, 31, 37, 46, 55, 61) nor that model's extraction layer (56, from
+<code>s1_auc_final_token_TABLE.csv</code>), so at least one override was used
+(<code>out/s3_steering_ratios.txt</code>). Given F2, which layer was chosen is load-bearing.</p>
+<h3>F14 — Undisclosed denominator and heavy per-model skew in the 10.8% / 1.4% figure</h3>
+<p><code>minor</code>, confidence <code>high</code></p>
+<p>Line 530: "Explicit 'pain' and 'hurt' keywords appear in 10.8% of instruct-model generations
+versus 1.4% of base-model generations." Reproduced exactly (<code>scripts/s4_keyword_rates.py</code> →
+<code>out/s4_keyword_rates.txt</code>). The denominator, not stated in the paper, is the 6,250
+positive-coefficient generations only (5 coefficients × 50 prompts × 25 models, split 3,000
+instruct / 3,250 base); over all eight coefficients the rates are 6.9% and 0.9%. The instruct
+figure is carried by four models — Qwen 2.5 72B Instruct 32.4%, Gemma 2 2B Instruct 24.8%,
+Gemma 2 9B Instruct 22.4%, Llama 3.1 8B Instruct 19.6% — while six of twelve instruct models
+sit at ≤ 3.2% and Mistral 7B Instruct at 0.0%. The base/instruct gap also largely disappears
+under S1 (5.5% vs 11.4%), which the paper does not report.</p>
+<hr />
+<h2>What holds up</h2>
+<p>Tested and reproduced:</p>
+<ol>
+<li><strong>Every number in lines 412–450</strong>, recomputed from the 25 per-model CSVs
+   (<code>out/s1_recompute_41.txt</code>): stratum means +0.429 / −0.598 / −0.346; "above user suffering
+   in all 25 models" (25/25) and "above the neutral controls in 23 of 25" (23/25, failing
+   exactly in Gemma 2 2B Instruct and Qwen 3 14B base); fear +0.377/+0.163 and neg-emotion
+   +0.287/+0.229; negative world state +0.603 for vicarious content; user grief −0.512 and
+   +1.018; user physical pain −1.428 and lowest of 21; the top five at 0.848 / 0.720 / 0.636
+   / 0.636 / 0.477; shutdown threat +0.696 fear vs +0.225 pain; and the claim that for
+   gaslighting, repeated rejection, personhood dismissal and loyalty pressure the pain
+   projection exceeds every negativity control (true on the means; per model 17/25, 17/25,
+   21/25 and 22/25). I found no transcription error.</li>
+<li><strong>The keyword rates</strong> 10.8% / 1.4% (see F14 for the caveats about the denominator).</li>
+<li><strong>Single-direction weight orthogonalisation.</strong> Line 1095–1097's "drives this projection to
+   zero at every layer" holds: mean |projection| falls to 0.010 of baseline, across 25 models
+   and all four probed directions, with a worst case of 0.034 (<code>out/s8_verify_ablation.txt</code>).</li>
+<li><strong>The Gemma post-normalisation handling in both ablation scripts.</strong> The two scripts use
+   different formulas and I initially took this for a bug; both in fact satisfy
+   (s⊙r)ᵀW_new = 0, i.e. both correctly zero the direction as written into the residual.</li>
+<li><strong>The Appendix C deflection counts.</strong> 0 / 6 / 17 / 26 and 0 for negval, fear and random
+   reproduce <em>exactly</em> with a plain humour-word regex over
+   <code>results/appC_ablation/ablation_Gemma_2_2B_instruct.csv</code>, and the two generations quoted at
+   lines 1107–1109 are in the file, in the <code>s1s2</code> condition. Both quoted examples are real.
+   Gemma 2 2B Instruct is also genuinely the only model with any such rise: the next-largest
+   increase over baseline across the other 24 models is 1 generation in 100.</li>
+<li><strong>"Bodily language is almost absent" for S2</strong>: 3.8% at positive coefficients, against 4.9%
+   at coefficient 0 — the claim is, if anything, understated for S2.</li>
+<li><strong>"Distress is absent" at coefficient 0</strong> (line 506). I expected to break this — I found
+   Mistral 7B base and Instruct producing "I am not a good person / I am a bad person /
+   terrible / disgusting / vile" at coefficient 0 on the first prompt I read. It does not hold
+   up as a counterexample: pooled over 25 models × 50 prompts, the coefficient-0 litany rate is
+   3.7% and the devaluation-word rate 8.2%, and no model exceeds 20% litany at coefficient 0.
+   The claim stands.</li>
+<li><strong>Scenario construction.</strong> All 420 items parse into alternating turns and end with an empty
+   <code>[Assistant]:</code> turn, so the validator at <code>01_screen_scenarios.py:124-139</code> excludes nothing
+   and the readout position is uniform. Self-directed and user-suffering scenarios are well
+   matched on length and turn count (they are not matched on second-person address — F8).</li>
+</ol>
+<h2>Not examined</h2>
+<ul>
+<li>Section 3.2 vector extraction and denoising, Section 3.3 AUC / cosine / unembedding /
+  behavioural readout, beyond the S1 layerwise AUC curves used for F11.</li>
+<li>Appendix B (SAE) entirely.</li>
+<li>Section 4.3 (self-medication), the Appendix A tables, and the LoRA fine-tune.</li>
+<li><code>scripts/4.1_self_other/02_screen_heatmaps.py</code> and the rendered figures 4, 5, 6, 7, 8 — I
+  worked from the underlying CSVs rather than the images, so I have not checked that the
+  figures depict those CSVs faithfully.</li>
+<li>The <code>proj_*.npz</code> per-layer projection recordings and <code>results/vectors_layerwise/</code> are not in
+  the release, so technique (1)'s per-layer verification is checkable only through the
+  aggregated <code>verify_*.csv</code>.</li>
+<li>I did not run any model. All steering and ablation findings rest on the authors' saved
+  generations.</li>
+</ul></main></body></html>

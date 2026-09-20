@@ -1,0 +1,20 @@
+ sigma  topic  insamp  heldout   S1xS2  PxFear  PxNegE  PxNegW  PxBody  FxNegE   NExNW   LOCO
+   1.0    1.0   1.000    1.000  +0.955  -0.003  +0.000  +0.003  +0.005  +0.813  +0.801  1.000  (PCs removed pain=3 ctrl=9)
+   1.5    1.0   1.000    1.000  +0.899  -0.003  -0.002  -0.001  -0.004  +0.805  +0.793  1.000  (PCs removed pain=11 ctrl=9)
+   2.0    1.0   1.000    1.000  +0.832  -0.003  -0.002  -0.001  -0.003  +0.796  +0.783  1.000  (PCs removed pain=22 ctrl=9)
+   2.5    1.0   1.000    1.000  +0.763  -0.002  -0.000  -0.001  -0.003  +0.784  +0.771  1.000  (PCs removed pain=28 ctrl=9)
+   3.0    1.0   1.000    1.000  +0.696  -0.002  -0.000  -0.001  -0.003  +0.772  +0.757  1.000  (PCs removed pain=31 ctrl=9)
+   3.5    1.0   1.000    1.000  +0.631  -0.003  +0.000  -0.002  -0.004  +0.759  +0.743  1.000  (PCs removed pain=33 ctrl=9)
+
+Paper's observed values, for comparison:
+  in-sample 0.93-1.00 | held-out 0.91-1.00 | S1xS2 +0.61 | PxFear +0.12 | PxNegE +0.21 | PxNegW +0.03 | PxBody +0.04 | FxNegE +0.68 | NExNW +0.73 | leave-one-category-out: never run
+
+==============================================================================
+paper raw            PxFear -0.003  PxNegE +0.000  PxNegW -0.002  PxBody -0.004 | FxNegE +0.759  NExNW +0.743  NWxBody +0.398
+paper robustness 1   PxFear -0.011  PxNegE +0.005  PxNegW -0.007  PxBody -0.003 | FxNegE +0.281  NExNW +0.423  NWxBody +0.685
+SYMMETRIC (missing)  PxFear -0.010  PxNegE +0.013  PxNegW -0.006  PxBody -0.000 | FxNegE -0.401  NExNW -0.298  NWxBody +0.082
+
+real data, same three rows (from results/3.3_validation/cosine_similarity, 25-model means):
+paper raw            PxFear +0.122  PxNegE +0.207  PxNegW +0.026  PxBody +0.035 | FxNegE +0.683  NExNW +0.734  NWxBody -0.052
+paper robustness 1   PxFear +0.126  PxNegE +0.184  PxNegW -0.038  PxBody +0.046 | FxNegE +0.423  NExNW +0.403  NWxBody +0.771
+SYMMETRIC            not computable: activations.pt and the control vectors are not released

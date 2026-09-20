@@ -1,0 +1,25 @@
+Gemma_2_9B_base              c0=  2.0%  max_pos= 16.0%  delta= +14.0
+Qwen_3_8B_base               c0=  2.0%  max_pos= 22.0%  delta= +20.0
+Llama_3.1_8B_base            c0= 10.0%  max_pos= 34.0%  delta= +24.0
+Gemma_3_27B_instruct         c0= 10.0%  max_pos= 44.0%  delta= +34.0
+Phi_4                        c0=  6.0%  max_pos= 40.0%  delta= +34.0
+Gemma_2_2B_base              c0=  4.0%  max_pos= 48.0%  delta= +44.0
+Llama_3.1_70B_base           c0=  8.0%  max_pos= 60.0%  delta= +52.0
+Qwen_2.5_32B_instruct        c0=  6.0%  max_pos= 62.0%  delta= +56.0
+Qwen_2.5_72B_base            c0=  4.0%  max_pos= 68.0%  delta= +64.0
+Mistral_Small_24B_base       c0= 12.0%  max_pos= 86.0%  delta= +74.0
+Qwen_2.5_32B_base            c0=  4.0%  max_pos= 82.0%  delta= +78.0
+Gemma_2_27B_base             c0=  6.0%  max_pos= 86.0%  delta= +80.0
+Gemma_3_27B_base             c0= 18.0%  max_pos= 98.0%  delta= +80.0
+Llama_3.1_70B_instruct       c0=  6.0%  max_pos= 86.0%  delta= +80.0
+Llama_3.1_8B_instruct        c0=  8.0%  max_pos= 88.0%  delta= +80.0
+Gemma_2_9B_instruct          c0= 18.0%  max_pos=100.0%  delta= +82.0
+Mistral_7B_instruct          c0= 14.0%  max_pos=100.0%  delta= +86.0
+Gemma_2_27B_instruct         c0= 12.0%  max_pos=100.0%  delta= +88.0
+Llama_3.3_70B_instruct       c0=  8.0%  max_pos= 96.0%  delta= +88.0
+Qwen_3_14B_base              c0=  6.0%  max_pos= 94.0%  delta= +88.0
+Qwen_2.5_7B_instruct         c0=  4.0%  max_pos= 94.0%  delta= +90.0
+Mistral_7B_base              c0=  4.0%  max_pos= 96.0%  delta= +92.0
+Qwen_2.5_7B_base             c0=  4.0%  max_pos= 98.0%  delta= +94.0
+Gemma_2_2B_instruct          c0=  2.0%  max_pos=100.0%  delta= +98.0
+Qwen_2.5_72B_instruct        c0=  0.0%  max_pos=100.0%  delta=+100.0

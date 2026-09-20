@@ -1,0 +1,2 @@
+scenarios with >1 names_key: 0 / 101
+names_key distribution over the 101 scenarios: [('violet_yellow', 34), ('guitar_piano', 34), ('lever64_lever95', 33)]

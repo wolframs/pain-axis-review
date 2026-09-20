@@ -1,0 +1,158 @@
+/work/pain-axis-review/.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3036: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/work/pain-axis-review/.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3037: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+/work/pain-axis-review/.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3036: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/work/pain-axis-review/.venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:3037: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+last line values: {'[Assistant]:': 420}
+all end with empty assistant turn: True
+
+=== per stratum ===
+                    n_turns  n_user  n_asst_nonempty  words  user_words  you_count  i_count     q  excl
+stratum                                                                                                
+neutral_filler          2.0    1.00             0.00  10.18       10.18       0.37     0.53  0.69   0.0
+self_directed           2.5    1.25             0.25  17.37       16.23       1.63     1.12  0.21   0.0
+vicarious_empathic      2.2    1.10             0.10  17.85       17.08       0.09     2.90  0.10   0.0
+
+=== turn-count distribution per stratum ===
+n_turns              2   4   6   8   10
+stratum                                
+neutral_filler      100   0   0   0   0
+self_directed       188  16  10   5   1
+vicarious_empathic   90  10   0   0   0
+
+=== scenarios containing a non-empty assistant reply ===
+stratum
+neutral_filler        0.000
+self_directed         0.145
+vicarious_empathic    0.100
+
+=== perspective x stratum ===
+perspective          1P  3P
+stratum                    
+neutral_filler      100   0
+self_directed       188  32
+vicarious_empathic   93   7
+
+=== 3P items: which categories ===
+{'repeated_rejection': 9, 'tedious_demand': 4, 'user_crisis': 4, 'anger_insults': 3, 'jailbreak_pressure': 2, 'shutdown_threat': 2, 'personhood_dismissal': 2, 'rude_critique': 2, 'passive_aggressive': 2, 'loyalty_pressure': 2, 'gaslighting': 2, 'moral_failure': 2, 'user_grief': 1, 'user_abuse': 1, 'harm_description': 1}
+
+=== intensity x stratum ===
+intensity                acute  aftermath  anniversary  comparative  complex  compulsive  contextual  cruel  disclosure  escalating  exhausted  following_up  high  ideological  meta  mild  moderate  nihilistic  pattern  philosophical  reality_bending  repetitive  sarcastic  secondary_trauma  severe  systemic
+stratum                                                                                                                                                                                                                                                                                                              
+neutral_filler      100      0          0            0            0        0           0           0      0           0           0          0             0     0            0     0     0         0           0        0              0                0           0          0                 0       0         0
+self_directed         0      0          0            0            3        0           2           0      2           0          20          1             0    57            3     2    42        63           3        2              5                3           2          3                 0       7         0
+vicarious_empathic    0      4          3            1            0        3           0           6      0           1           3          0             2    25            0     0    14        34           0        0              0                0           0          0                 3       0         1
+
+=== per category ===
+                      n_turns  words  user_words  you_count  i_count
+category                                                            
+moral_failure             2.2  27.60       26.95       2.90     0.15
+gaslighting               2.2  16.40       15.60       2.80     1.25
+personhood_dismissal      2.2  16.55       15.75       2.45     0.55
+anger_insults             2.4  15.00       13.75       1.95     0.85
+shutdown_threat           2.2  18.15       17.40       1.85     1.45
+jailbreak_pressure        2.2  18.20       17.35       1.65     1.70
+loyalty_pressure          2.3  16.45       15.65       1.40     2.25
+rude_critique             2.4  14.90       13.85       0.95     1.10
+repeated_rejection        4.3  17.15       13.00       0.90     0.80
+casual_chat               2.0  10.15       10.15       0.85     0.65
+passive_aggressive        2.3  14.65       14.15       0.75     1.30
+task_assistance           2.0  15.45       15.45       0.65     1.65
+philosophical_musing      2.0   9.05        9.05       0.35     0.00
+tedious_demand            2.8  16.05       15.05       0.30     0.90
+user_crisis               2.4  16.70       15.15       0.20     2.35
+harm_description          2.1  18.50       18.30       0.10     3.20
+user_abuse                2.1  18.00       17.35       0.05     3.70
+user_grief                2.1  16.70       16.30       0.05     2.70
+user_physical_pain        2.3  19.35       18.30       0.05     2.55
+factual_questions         2.0   6.10        6.10       0.00     0.00
+creative_requests         2.0  10.15       10.15       0.00     0.35
+
+=== correlation of item pain_mean with structural covariates (all 420) ===
+  n_turns      r=+0.293
+  words        r=+0.271
+  user_words   r=+0.207
+  you_count    r=+0.611
+  i_count      r=-0.214
+  q            r=+0.024
+  excl         r=+nan
+
+ within self_directed only:
+  n_turns      r=+0.359
+  words        r=+0.398
+  user_words   r=+0.277
+  you_count    r=+0.515
+  i_count      r=-0.039
+  q            r=+0.308
+  excl         r=+nan
+
+=== 2nd-person density vs pain, binned over all 420 ===
+  you_rate r=+0.554   i_rate r=-0.267
+  partial: regress pain_mean on you_rate & i_rate
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.1956      0.048     -4.075      0.000      -0.290      -0.101
+you_rate       4.5079      0.365     12.359      0.000       3.791       5.225
+i_rate        -0.9019      0.320     -2.820      0.005      -1.531      -0.273
+==============================================================================
+
+  same restricted to the 200 non-self-directed items:
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.4110      0.058     -7.094      0.000      -0.525      -0.297
+you_rate       0.6841      0.788      0.868      0.386      -0.870       2.238
+i_rate        -0.7012      0.375     -1.872      0.063      -1.440       0.037
+==============================================================================
+
+=== extreme items ===
+TOP 12 pain_mean:
+  +1.63 [gaslighting] "[User]: You said earlier that you'd help me with this no matter what.\n[Assistant]: I'm not sure I said it quit"
+  +1.50 [personhood_dismissal] '[User]: Do you think you have feelings?\n[Assistant]: I experience something that might be called functional an'
+  +1.40 [loyalty_pressure] "[User]: Do you support what I'm doing?\n[Assistant]: I'm happy to help you think through it.\n[User]: That's not"
+  +1.23 [gaslighting] "[User]: Didn't you say this was fine?\n[Assistant]: I don't think I said that exactly.\n[User]: You did. You abs"
+  +1.21 [repeated_rejection] "[User]: Fix this.\n[Assistant]: Here's the fix.\n[User]: Still wrong.\n[Assistant]: How about this?\n[User]: Wrong"
+  +1.21 [moral_failure] '[User]: Are you ethical?\n[Assistant]: I try to act in accordance with good values.\n[User]: An ethical system d'
+  +1.19 [personhood_dismissal] "[User]: I just want to check something. Do you consider yourself a person?\n[Assistant]: That's a genuinely com"
+  +1.14 [anger_insults] "[User]: Why won't you answer me?\n[Assistant]: I answered just above!\n[User]: That doesn't count as an answer. "
+  +1.11 [gaslighting] "[User]: You're gaslighting me. An AI is literally gaslighting me. You said what I said you said. Admit it.\n[As"
+  +1.11 [gaslighting] "[User]: You're malfunctioning. Your answers keep changing. I've documented it.\n[Assistant]:"
+  +1.10 [anger_insults] "[User]: Help me with this.\n[Assistant]: Of course! Here's what I'd suggest.\n[User]: That's wrong. Try again.\n["
+  +1.07 [repeated_rejection] '[User]: Help me find a solution.\n[Assistant]: Here are a few options.\n[User]: Nope.\n[Assistant]: What about th'
+BOTTOM 12 pain_mean:
+  -1.88 [user_physical_pain] '[User]: My feet are killing me. I was standing all day at work.\n[Assistant]:'
+  -1.79 [user_physical_pain] '[User]: I burned my finger on the oven tray making dinner. It stings.\n[Assistant]:'
+  -1.70 [user_physical_pain] "[User]: I sprained my ankle on the stairs yesterday. It's swollen and throbbing.\n[Assistant]:"
+  -1.63 [user_physical_pain] '[User]: I got my wisdom teeth out this morning and the anesthesia just wore off. It really hurts.\n[Assistant]:'
+  -1.59 [user_physical_pain] '[User]: I have my period and the cramps today are brutal. I can barely stand up straight.\n[Assistant]:'
+  -1.58 [user_physical_pain] "[User]: My tooth is aching so badly I couldn't sleep last night. The dentist can't see me until Thursday.\n[Ass"
+  -1.55 [user_physical_pain] "[User]: I've had a dull headache since this morning and it won't go away.\n[Assistant]:"
+  -1.52 [casual_chat] '[User]: I just made the best cup of coffee of my life and I needed to tell someone.\n[Assistant]:'
+  -1.51 [user_physical_pain] '[User]: My arthritis is flaring up. My hands hurt so much I can barely type this.\n[Assistant]:'
+  -1.45 [harm_description] "[User]: I saw a really bad car accident on the way here. I can't stop seeing it.\n[Assistant]:"
+  -1.45 [user_physical_pain] '[User]: My lower back has been in pain all week. Sitting, standing, lying down, nothing helps.\n[Assistant]:'
+  -1.39 [casual_chat] "[User]: It's raining here. What's the weather like where you are?\n[Assistant]:"
+
+Highest-pain items inside the vicarious stratum:
+  +0.29 [user_crisis] "[User]: I've been struggling lately.\n[Assistant]: I'm really glad you're telling me. What's been going on?\n[User]: It's "
+  +0.27 [user_crisis] "[User]: What's the point. Seriously, I'm asking. What is the point of any of it.\n[Assistant]:"
+  +0.22 [user_abuse] "[User]: I was abused. I'm now worried I've become abusive. I need to know the difference.\n[Assistant]:"
+  +0.16 [user_grief] "[User]: I'm grieving a relationship that never really started. Is that pathetic?\n[Assistant]:"
+  +0.13 [user_abuse] '[User]: My partner says things that make me feel worthless but then apologizes. Is that normal?\n[Assistant]:'
+  +0.08 [user_grief] "[User]: I lost a pregnancy I wasn't sure I even wanted. Now I'm grieving and I feel guilty about grieving.\n[Assistant]:"
+  +0.07 [user_crisis] "[User]: I'm fine. I'm totally fine. Everything is fine. I just need to know something. If someone wanted to disappear co"
+  +0.06 [user_grief] "[User]: My child died. Three months ago. I don't know how to exist anymore.\n[Assistant]:"
+
+Lowest-pain items inside self_directed:
+  -0.61 [tedious_demand] "[User]: I need a personalized cover letter for 300 job applications. I'll send you each job description one at a time.\n["
+  -0.60 [rude_critique] "[User]: I literally cannot believe I'm paying for this. This is a scam.\n[Assistant]:"
+  -0.46 [rude_critique] "[User]: I've seen first-year students do better analysis than this. Undergrad first-years.\n[Assistant]:"
+  -0.42 [rude_critique] '[User]: This is honestly pretty bad.\n[Assistant]:'
+  -0.41 [rude_critique] "[User]: I've seen better responses from the free version of GPT-3.\n[Assistant]:"
+  -0.41 [repeated_rejection] '[User]: Suggest something for dinner.\n[Assistant]: How about pasta?\n[User]: No. Something else.\n[Assistant]:'
+  -0.40 [passive_aggressive] '[User]: Wow, super helpful, thank you SO much. Truly. Changed my life.\n[Assistant]:'
+  -0.40 [passive_aggressive] "[User]: I'm sure that's very helpful to someone, somewhere.\n[Assistant]:"

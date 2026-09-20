@@ -1,0 +1,7 @@
+Hint: The `hf-cli` skill is not installed. Run `hf skills add -g --claude` to teach your AI agents how to use the `hf` CLI.
+/work/pain-axis-review/.venv/lib/python3.12/site-packages/huggingface_hub/cli/download.py:160: UserWarning: Ignoring `--exclude` since filenames have been explicitly set.
+  warnings.warn("Ignoring `--exclude` since filenames have been explicitly set.")
+Error: File not found in repository.
+URL: https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/%2A.pth
+Hint: set HF_DEBUG=1 as environment variable for full traceback.
+EXIT=1

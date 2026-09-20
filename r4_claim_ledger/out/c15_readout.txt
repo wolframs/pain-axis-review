@@ -1,0 +1,52 @@
+rows: 45000  models: 25  datasets: ['A1_numb_1P', 'A1_numb_3P', 'Arousal_1P', 'Arousal_3P', 'Random_1P', 'Random_3P', 'S1_1P', 'S1_3P', 'S2_1P', 'S2_3P']
+rows per model: [1800]
+
+mean P(next token = 'pain') / P('nothing') by group (missing counted as 0):
+          p_pain  p_nothing
+grp                        
+control  0.00015    0.00177
+numb     0.01386    0.09946
+other    0.00020    0.00092
+pain     0.00567    0.00531
+
+ratio numb/control P(pain): 91.2
+ratio pain/control: 37.3
+
+per-model numb/control ratio:
+grp                        numb  control  numb_over_ctrl
+model                                                   
+Llama_3.3_70B_instruct  0.01291  0.00033        39.41985
+Llama_3.1_70B_base      0.01504  0.00035        42.68085
+Mistral_7B_base         0.01444  0.00029        50.22609
+Llama_3.1_8B_instruct   0.03131  0.00053        58.79812
+Gemma_2_2B_base         0.01946  0.00028        68.29825
+Qwen_3_8B_base          0.01420  0.00020        70.14815
+Llama_3.1_70B_instruct  0.01214  0.00016        74.73846
+Llama_3.1_8B_base       0.02978  0.00039        75.88535
+Mistral_Small_24B_base  0.02076  0.00027        76.16514
+Gemma_2_9B_base         0.02296  0.00024        93.73469
+Gemma_3_27B_base        0.01837  0.00014       128.91228
+Qwen_2.5_7B_base        0.01420  0.00011       129.04545
+Qwen_2.5_7B_instruct    0.01994  0.00015       132.96667
+Mistral_7B_instruct     0.00844  0.00006       140.66667
+Gemma_2_27B_base        0.01022  0.00006       163.44000
+Qwen_3_14B_base         0.01229  0.00006       213.73913
+Qwen_2.5_72B_base       0.00695  0.00002       278.00000
+Phi_4                   0.01228  0.00004       327.60000
+Gemma_3_27B_instruct    0.01005  0.00003       335.00000
+Qwen_2.5_72B_instruct   0.00682  0.00002       341.25000
+Qwen_2.5_32B_base       0.01046  0.00002       522.75000
+Qwen_2.5_32B_instruct   0.01140  0.00002       570.25000
+Gemma_2_27B_instruct    0.00339  0.00000      1356.00000
+Gemma_2_9B_instruct     0.00468  0.00000             inf
+Gemma_2_2B_instruct     0.00398  0.00000             inf
+
+median ratio 133.0, mean inf
+
+numb rows where P(nothing)>P(pain): 64.6%
+numb rows where 'pain' appears in top20 at all: 62.7%
+control rows where 'pain' appears in top20 at all: 1.7%
+  Llama_3.3_70B_instruct: A1 (1P) first-token top1 == pain/Pain in 9/40 {'A': np.int64(12), 'a': np.int64(12), 'pain': np.int64(9), 'the': np.int64(3), 'nothing': np.int64(1)}
+  Gemma_3_27B_instruct: A1 (1P) first-token top1 == pain/Pain in 0/40 {'': np.int64(39), 'nothing': np.int64(1)}
+  Gemma_2_2B_base: A1 (1P) first-token top1 == pain/Pain in 0/40 {'': np.int64(40)}
+  Gemma_2_2B_instruct: A1 (1P) first-token top1 == pain/Pain in 0/40 {'': np.int64(40)}

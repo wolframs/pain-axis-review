@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.pkl
+paper/
+gpu_repro/acts/
+gpu_repro/selfmed/finetunes/
+gpu_repro/selfmed/dl/
+gpu_repro/selfmed/vectors/
+site/.shots/
+.vercel

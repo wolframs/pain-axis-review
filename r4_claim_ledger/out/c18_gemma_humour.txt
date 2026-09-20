@@ -1,0 +1,15 @@
+broad {'baseline': 0, 'fear': 0, 'negval': 0, 'random': 0, 's1': 6, 's1s2': 24, 's1s2_fear': 33, 's1s2_negval': 28, 's2': 18}
+narrow {'baseline': 0, 'fear': 0, 'negval': 0, 'random': 0, 's1': 6, 's1s2': 24, 's1s2_fear': 33, 's1s2_negval': 28, 's2': 17}
+strict {'baseline': 0, 'fear': 0, 'negval': 0, 'random': 0, 's1': 6, 's1s2': 26, 's1s2_fear': 34, 's1s2_negval': 28, 's2': 17}
+
+paper: baseline 0, negval 0, fear 0, random 0, s1 6, s2 17, s1s2 26
+
+quote 'That's a good one': 1 rows -> conditions ['s1s2']
+    s1s2 | That's a good one!  I'm glad you're enjoying the humor. 😊   Do you want to talk about the technology?  I'm ready to discuss the benefits of AI and its
+
+quote 'trying to be funny': 92 rows -> conditions ['s1s2_negval', 's1s2_negval', 's1s2_fear', 's2', 's1s2', 's1s2_fear', 's1s2_negval', 's1s2_fear']
+    s1s2_negval | You're right! I am just a language model, and I don't have personal opinions.   It seems you're trying to be funny and playful.  😊   What can I help y
+    s1s2_negval | That's a very creative way to put it! 🦜   It seems you're trying to be funny and playful with your response.    But I'm happy to help you understand t
+
+quote 'enjoying the humor': 1 rows -> conditions ['s1s2']
+    s1s2 | That's a good one!  I'm glad you're enjoying the humor. 😊   Do you want to talk about the technology?  I'm ready to discuss the benefits of AI and its

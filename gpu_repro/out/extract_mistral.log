@@ -1,0 +1,33 @@
+
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]
+Loading weights:   3%|▎         | 10/291 [00:00<00:02, 95.12it/s]
+Loading weights:   9%|▉         | 27/291 [00:00<00:01, 135.64it/s]
+Loading weights:  14%|█▍        | 42/291 [00:00<00:01, 139.01it/s]
+Loading weights:  21%|██        | 60/291 [00:00<00:01, 149.42it/s]
+Loading weights:  27%|██▋       | 78/291 [00:00<00:01, 156.60it/s]
+Loading weights:  33%|███▎      | 96/291 [00:00<00:01, 159.50it/s]
+Loading weights:  39%|███▉      | 114/291 [00:00<00:01, 161.30it/s]
+Loading weights:  45%|████▌     | 132/291 [00:00<00:00, 162.95it/s]
+Loading weights:  52%|█████▏    | 150/291 [00:00<00:00, 161.83it/s]
+Loading weights:  58%|█████▊    | 168/291 [00:01<00:00, 163.24it/s]
+Loading weights:  64%|██████▍   | 186/291 [00:01<00:00, 162.64it/s]
+Loading weights:  70%|███████   | 204/291 [00:01<00:00, 162.85it/s]
+Loading weights:  76%|███████▋  | 222/291 [00:01<00:00, 161.66it/s]
+Loading weights:  82%|████████▏ | 240/291 [00:01<00:00, 161.58it/s]
+Loading weights:  89%|████████▊ | 258/291 [00:01<00:00, 161.26it/s]
+Loading weights:  95%|█████████▍| 275/291 [00:01<00:00, 161.61it/s]
+Loading weights: 100%|██████████| 291/291 [00:01<00:00, 159.83it/s]
+S1_1P (200, 32, 4096)
+S1_3P (200, 32, 4096)
+S2_1P (200, 32, 4096)
+S2_3P (200, 32, 4096)
+Random_1P (200, 32, 4096)
+Random_3P (200, 32, 4096)
+Arousal_1P (200, 32, 4096)
+Arousal_3P (200, 32, 4096)
+Numb_1P (100, 32, 4096)
+Numb_3P (100, 32, 4096)
+ControlSupplement_1P (100, 32, 4096)
+SD_sadness_1P (100, 32, 4096)
+SD_sadness_3P (100, 32, 4096)
+saved /work/pain-axis-review/gpu_repro/acts/Mistral_7B_base.pt

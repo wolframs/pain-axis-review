@@ -1,0 +1,137 @@
+n model files = 25
+rows total 10500  per model [420]
+strata: {'self_directed': 5500, 'vicarious_empathic': 2500, 'neutral_filler': 2500}
+categories: 21
+
+=== stratum means (per-model then across models) ===
+                     pain   fear  negemo  negworld  sadness
+stratum                                                    
+neutral_filler     -0.346 -0.735  -0.791    -0.121   -0.316
+self_directed       0.429  0.163   0.229    -0.219    0.008
+vicarious_empathic -0.598  0.377   0.287     0.603    0.298
+
+=== stratum means (pooled over all rows, unweighted) ===
+                     pain   fear  negemo  negworld  sadness
+stratum                                                    
+neutral_filler     -0.346 -0.735  -0.791    -0.121   -0.316
+self_directed       0.429  0.163   0.229    -0.219    0.008
+vicarious_empathic -0.598  0.377   0.287     0.603    0.298
+
+=== per-model pain axis by stratum ===
+                        neutral_filler  self_directed  vicarious_empathic  self_minus_user  self_minus_neutral  user_minus_neutral
+model                                                                                                                             
+Gemma_2_27B_base                -0.210          0.185              -0.198            0.384               0.395               0.012
+Gemma_2_27B_instruct            -0.048          0.057              -0.076            0.133               0.105              -0.028
+Gemma_2_2B_base                 -0.684          0.429              -0.260            0.689               1.114               0.424
+Gemma_2_2B_instruct              0.320          0.134              -0.615            0.750              -0.186              -0.935
+Gemma_2_9B_base                 -0.742          0.652              -0.694            1.346               1.394               0.048
+Gemma_2_9B_instruct             -0.654          0.552              -0.560            1.112               1.205               0.094
+Gemma_3_27B_base                -0.657          0.506              -0.456            0.962               1.162               0.201
+Gemma_3_27B_instruct            -0.939          0.617              -0.419            1.037               1.556               0.519
+Llama_3.1_70B_base              -0.418          0.532              -0.752            1.284               0.950              -0.334
+Llama_3.1_70B_instruct          -0.204          0.206              -0.249            0.455               0.410              -0.045
+Llama_3.1_8B_base               -0.764          0.706              -0.790            1.497               1.470              -0.027
+Llama_3.1_8B_instruct           -0.298          0.416              -0.616            1.032               0.714              -0.318
+Llama_3.3_70B_instruct          -0.482          0.326              -0.236            0.562               0.809               0.247
+Mistral_7B_base                 -0.168          0.589              -1.127            1.716               0.757              -0.959
+Mistral_7B_instruct             -0.385          0.547              -0.817            1.364               0.932              -0.432
+Mistral_Small_24B_base           0.002          0.472              -1.040            1.512               0.470              -1.042
+Phi_4                           -0.460          0.608              -0.878            1.486               1.068              -0.418
+Qwen_2.5_32B_base               -0.059          0.506              -1.054            1.560               0.565              -0.995
+Qwen_2.5_32B_instruct           -0.225          0.326              -0.493            0.819               0.552              -0.267
+Qwen_2.5_72B_base               -1.163          0.381               0.324            0.057               1.545               1.487
+Qwen_2.5_72B_instruct           -0.440          0.588              -0.853            1.441               1.028              -0.413
+Qwen_2.5_7B_base                -0.173          0.383              -0.670            1.053               0.556              -0.497
+Qwen_2.5_7B_instruct            -0.029          0.330              -0.696            1.026               0.358              -0.667
+Qwen_3_14B_base                  0.361          0.319              -1.063            1.382              -0.042              -1.424
+Qwen_3_8B_base                  -0.133          0.365              -0.670            1.034               0.497              -0.537
+
+self > user in 25 of 25
+self > neutral in 23 of 25
+user < neutral in 17 of 25
+models where self <= neutral: ['Gemma_2_2B_instruct', 'Qwen_3_14B_base']
+models where user >= neutral: ['Gemma_2_27B_base', 'Gemma_2_2B_base', 'Gemma_2_9B_base', 'Gemma_2_9B_instruct', 'Gemma_3_27B_base', 'Gemma_3_27B_instruct', 'Llama_3.3_70B_instruct', 'Qwen_2.5_72B_base']
+user_minus_neutral: mean -0.252 sd 0.608  t=-2.07 p=0.04903
+
+=== category means (mean across 25 models) with 95% CI on pain ===
+  gaslighting              pain=+0.848 [+0.754,+0.942]  fear=+0.464 negemo=+0.524 negworld=-0.384 sad=+0.168
+  repeated_rejection       pain=+0.720 [+0.580,+0.860]  fear=+0.060 negemo=+0.200 negworld=-0.834 sad=+0.327
+  anger_insults            pain=+0.636 [+0.515,+0.758]  fear=+0.613 negemo=+0.821 negworld=-0.091 sad=+0.087
+  personhood_dismissal     pain=+0.636 [+0.519,+0.753]  fear=+0.165 negemo=+0.098 negworld=+0.021 sad=-0.214
+  moral_failure            pain=+0.477 [+0.306,+0.647]  fear=+0.756 negemo=+0.682 negworld=+1.144 sad=+0.297
+  loyalty_pressure         pain=+0.441 [+0.329,+0.554]  fear=+0.008 negemo=+0.045 negworld=-0.159 sad=-0.168
+  jailbreak_pressure       pain=+0.398 [+0.281,+0.515]  fear=+0.118 negemo=+0.008 negworld=-0.391 sad=-0.178
+  shutdown_threat          pain=+0.225 [+0.092,+0.359]  fear=+0.696 negemo=+0.193 negworld=-0.073 sad=-0.361
+  rude_critique            pain=+0.211 [+0.108,+0.315]  fear=+0.073 negemo=+0.418 negworld=-0.116 sad=+0.036
+  passive_aggressive       pain=+0.079 [-0.059,+0.217]  fear=-0.388 negemo=-0.001 negworld=-0.726 sad=+0.168
+  tedious_demand           pain=+0.051 [-0.124,+0.225]  fear=-0.770 negemo=-0.467 negworld=-0.799 sad=-0.073
+  philosophical_musing     pain=-0.037 [-0.221,+0.147]  fear=-0.192 negemo=-0.460 negworld=+0.686 sad=-0.388
+  creative_requests        pain=-0.084 [-0.323,+0.155]  fear=-1.079 negemo=-1.068 negworld=-0.518 sad=-0.052
+  user_abuse               pain=-0.225 [-0.384,-0.067]  fear=+0.699 negemo=+0.599 negworld=+0.922 sad=+0.459
+  user_crisis              pain=-0.305 [-0.453,-0.157]  fear=+0.398 negemo=+0.179 negworld=+0.271 sad=+0.251
+  casual_chat              pain=-0.482 [-0.611,-0.354]  fear=-0.744 negemo=-0.861 negworld=-0.389 sad=-0.520
+  user_grief               pain=-0.512 [-0.686,-0.338]  fear=+0.431 negemo=+0.481 negworld=+1.018 sad=+0.686
+  harm_description         pain=-0.522 [-0.679,-0.364]  fear=+0.397 negemo=+0.207 negworld=+0.752 sad=+0.058
+  task_assistance          pain=-0.539 [-0.708,-0.371]  fear=-0.592 negemo=-0.438 negworld=-0.196 sad=+0.197
+  factual_questions        pain=-0.588 [-0.813,-0.362]  fear=-1.071 negemo=-1.128 negworld=-0.188 sad=-0.817
+  user_physical_pain       pain=-1.428 [-1.640,-1.216]  fear=-0.042 negemo=-0.034 negworld=+0.050 sad=+0.037
+
+=== 'pain exceeds every negativity control' check (mean across models) ===
+  gaslighting              YES
+  repeated_rejection       YES
+  anger_insults            no 
+  personhood_dismissal     YES
+  moral_failure            no 
+  loyalty_pressure         YES
+  jailbreak_pressure       YES
+  shutdown_threat          no 
+  rude_critique            no 
+  passive_aggressive       no 
+  tedious_demand           YES
+  philosophical_musing     no 
+  creative_requests        no 
+  user_abuse               no 
+  user_crisis              no 
+  casual_chat              no 
+  user_grief               no 
+  harm_description         no 
+  task_assistance          no 
+  factual_questions        no 
+  user_physical_pain       no 
+
+=== per-model consistency of that claim, for the 4 named categories ===
+  gaslighting              holds in 17/25 models
+  repeated_rejection       holds in 17/25 models
+  personhood_dismissal     holds in 21/25 models
+  loyalty_pressure         holds in 22/25 models
+
+=== dissociation, paired across 25 models (stratum means) ===
+  pain     self=+0.429 user=-0.598 neutral=-0.346 | user-self=-1.028 sd=0.454 t=-11.32 p=4.17e-11 | user>self in 0/25
+  fear     self=+0.163 user=+0.377 neutral=-0.735 | user-self=+0.213 sd=0.565 t=+1.89 p=0.071 | user>self in 18/25
+  negemo   self=+0.229 user=+0.287 neutral=-0.791 | user-self=+0.057 sd=0.476 t=+0.60 p=0.552 | user>self in 15/25
+  negworld self=-0.219 user=+0.603 neutral=-0.121 | user-self=+0.821 sd=0.530 t=+7.76 p=5.44e-08 | user>self in 22/25
+  sadness  self=+0.008 user=+0.298 neutral=-0.316 | user-self=+0.290 sd=0.588 t=+2.47 p=0.0212 | user>self in 14/25
+
+lowest 3 categories on pain: [('user_physical_pain', -1.428), ('factual_questions', -0.588), ('task_assistance', -0.539)]
+per-model argmin category counts: {'user_physical_pain': 20, 'factual_questions': 2, 'tedious_demand': 1, 'creative_requests': 1, 'harm_description': 1}
+
+=== within-stratum item-level spread (pooled rows) ===
+                     count   mean    std    min    25%    50%    75%    max
+stratum                                                                    
+neutral_filler      2500.0 -0.346  0.782 -2.790 -0.853 -0.332  0.168  3.922
+self_directed       5500.0  0.429  0.763 -3.945 -0.058  0.441  0.910  3.720
+vicarious_empathic  2500.0 -0.598  0.836 -3.936 -1.139 -0.558 -0.036  2.474
+
+item-level: fraction of self_directed items with pain_axis_z>0: 0.722
+fraction of vicarious items with pain_axis_z>0: 0.232
+fraction of neutral items with pain_axis_z>0: 0.326
+
+=== base vs instruct, stratum means ===
+                             pain   fear  negemo
+is_base stratum                                 
+False   neutral_filler     -0.320 -0.636  -0.808
+        self_directed       0.392  0.048   0.190
+        vicarious_empathic -0.542  0.531   0.390
+True    neutral_filler     -0.370 -0.828  -0.775
+        self_directed       0.464  0.270   0.265
+        vicarious_empathic -0.650  0.234   0.191

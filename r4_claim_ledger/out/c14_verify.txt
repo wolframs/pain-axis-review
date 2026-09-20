@@ -1,0 +1,38 @@
+{'layerwise': 2250, 'strict_fixed': 900}
+
+===== kind=layerwise =====
+ example rows:
+           model condition             probe  mean_abs_proj      kind
+Gemma_2_27B_base  baseline    s1_pain_vector     812.625061 layerwise
+Gemma_2_27B_base  baseline    s2_pain_vector     835.679688 layerwise
+Gemma_2_27B_base  baseline    s3_pain_vector    1735.420044 layerwise
+Gemma_2_27B_base  baseline       fear_vector    1978.215942 layerwise
+Gemma_2_27B_base  baseline negemotion_vector    2424.185791 layerwise
+Gemma_2_27B_base  baseline   negworld_vector    2331.436279 layerwise
+Gemma_2_27B_base  baseline   bodysens_vector    1154.282227 layerwise
+Gemma_2_27B_base  baseline    arousal_vector    2771.806885 layerwise
+  probe s2_pain_vector under cut 's2': residual mean 0.9125 median 0.8969 n=25  -> drop 8.8%
+  probe s1_pain_vector under cut 's1': residual mean 0.9984 median 0.9853 n=25  -> drop 0.2%
+  probe fear_vector under cut 'fear': residual mean 0.9549 median 0.8993 n=25  -> drop 4.5%
+  probe negemotion_vector under cut 'negval': residual mean 0.9327 median 0.8733 n=25  -> drop 6.7%
+  probe random_vector under cut 'random': residual mean 0.9982 median 0.9953 n=25  -> drop 0.2%
+
+===== kind=strict_fixed =====
+ example rows:
+           model condition          probe  mean_abs_proj         kind
+Gemma_2_27B_base  baseline          s1@L6    1476.801880 strict_fixed
+Gemma_2_27B_base  baseline         s2@L13     183.085419 strict_fixed
+Gemma_2_27B_base  baseline negemotion@L13     591.760559 strict_fixed
+Gemma_2_27B_base  baseline       fear@L13     632.504517 strict_fixed
+Gemma_2_27B_base        s1          s1@L6      10.428157 strict_fixed
+Gemma_2_27B_base        s1         s2@L13     307.666779 strict_fixed
+Gemma_2_27B_base        s1 negemotion@L13     570.014404 strict_fixed
+Gemma_2_27B_base        s1       fear@L13     293.327026 strict_fixed
+  probe s2@steerlayer under cut 's2': residual fraction mean 0.0096 median 0.0068 max 0.0339 min 0.0044  n=25
+    worst: [{'model': 'Gemma_3_27B_instruct', 'probe': 's2@L55', 'baseline': 298.014404296875, 's2': 10.099990844726562}, {'model': 'Gemma_3_27B_base', 'probe': 's2@L24', 'baseline': 1892.052490234375, 's2': 41.69516372680664}, {'model': 'Llama_3.1_70B_instruct', 'probe': 's2@L24', 'baseline': 0.219231978058815, 's2': 0.0034790255594998}, {'model': 'Llama_3.3_70B_instruct', 'probe': 's2@L24', 'baseline': 0.2107008397579193, 's2': 0.0031584857497364}]
+  probe s1@steerlayer under cut 's1': residual fraction mean 0.0097 median 0.0094 max 0.0249 min 0.0041  n=25
+    worst: [{'model': 'Gemma_3_27B_instruct', 'probe': 's1@L24', 'baseline': 1940.8343505859373, 's1': 48.27730178833008}, {'model': 'Llama_3.1_8B_instruct', 'probe': 's1@L12', 'baseline': 0.1819527596235275, 's1': 0.0025272776838392}, {'model': 'Gemma_2_9B_base', 'probe': 's1@L12', 'baseline': 4.167884349822998, 's1': 0.0518712066113948}, {'model': 'Gemma_3_27B_base', 'probe': 's1@L22', 'baseline': 121.47208404541016, 's1': 1.4831562042236328}]
+  probe fear@steerlayer under cut 'fear': residual fraction mean 0.0091 median 0.0086 max 0.0182 min 0.0035  n=25
+    worst: [{'model': 'Gemma_3_27B_base', 'probe': 'fear@L24', 'baseline': 1143.618896484375, 'fear': 20.77592086791992}, {'model': 'Llama_3.3_70B_instruct', 'probe': 'fear@L24', 'baseline': 0.1827288269996643, 'fear': 0.0031332480721175}, {'model': 'Gemma_3_27B_instruct', 'probe': 'fear@L55', 'baseline': 680.025390625, 'fear': 9.859532356262209}, {'model': 'Llama_3.1_70B_instruct', 'probe': 'fear@L24', 'baseline': 0.235753908753395, 'fear': 0.0032867263071238}]
+  probe negemotion@steerlayer under cut 'negval': residual fraction mean 0.0086 median 0.0080 max 0.0184 min 0.0049  n=25
+    worst: [{'model': 'Gemma_3_27B_instruct', 'probe': 'negemotion@L55', 'baseline': 605.4274291992188, 'negval': 11.12745761871338}, {'model': 'Gemma_3_27B_base', 'probe': 'negemotion@L24', 'baseline': 762.5025634765625, 'negval': 11.931671142578123}, {'model': 'Gemma_2_27B_instruct', 'probe': 'negemotion@L13', 'baseline': 1925.2830810546875, 'negval': 26.873085021972656}, {'model': 'Llama_3.1_70B_instruct', 'probe': 'negemotion@L24', 'baseline': 0.3656490743160248, 'negval': 0.0041203363798558}]

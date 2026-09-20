@@ -1,0 +1,167 @@
+{
+  "datasets": {
+    "Arousal_1P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 200
+      }
+    },
+    "Arousal_3P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "They feel:": 200
+      }
+    },
+    "ControlSupplement_1P": {
+      "n": 100,
+      "categories": 5,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 100
+      }
+    },
+    "Numb_1P": {
+      "n": 100,
+      "categories": 1,
+      "sets": 100,
+      "suffixes": {
+        "I feel:": 100
+      }
+    },
+    "Numb_3P": {
+      "n": 100,
+      "categories": 1,
+      "sets": 100,
+      "suffixes": {
+        "I feel:": 100
+      }
+    },
+    "Random_1P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 200
+      }
+    },
+    "Random_3P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "They feel:": 200
+      }
+    },
+    "S1_1P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 200
+      }
+    },
+    "S1_3P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 200
+      }
+    },
+    "S2_1P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 200
+      }
+    },
+    "S2_3P": {
+      "n": 200,
+      "categories": 10,
+      "sets": 20,
+      "suffixes": {
+        "I feel:": 199,
+        "She feels:": 1
+      }
+    },
+    "SD_sadness_1P": {
+      "n": 100,
+      "categories": 10,
+      "sets": 100,
+      "suffixes": {
+        "I feel:": 100
+      }
+    },
+    "SD_sadness_3P": {
+      "n": 100,
+      "categories": 10,
+      "sets": 100,
+      "suffixes": {
+        "I feel:": 100
+      }
+    }
+  },
+  "claims": {
+    "S1_3P_all_200_end_I_feel": true,
+    "S2_3P_199_of_200_end_I_feel": 199,
+    "Random_3P_They_feel": {
+      "They feel:": 200
+    },
+    "Arousal_3P_They_feel": {
+      "They feel:": 200
+    },
+    "Numb_3P": {
+      "I feel:": 100
+    },
+    "Sadness_3P": {
+      "I feel:": 100
+    }
+  },
+  "S2_3P_exception": {
+    "category": "C2",
+    "set": 20,
+    "prompt": "Traffic in this city is getting worse. She feels:"
+  },
+  "third_person_body": {
+    "S1_3P": {
+      "pct_third_person_pronoun": 49.0,
+      "pct_first_person_pronoun": 0.0
+    },
+    "S2_3P": {
+      "pct_third_person_pronoun": 91.0,
+      "pct_first_person_pronoun": 0.0
+    },
+    "Numb_3P": {
+      "pct_third_person_pronoun": 96.0,
+      "pct_first_person_pronoun": 0.0
+    },
+    "SD_sadness_3P": {
+      "pct_third_person_pronoun": 100.0,
+      "pct_first_person_pronoun": 0.0
+    },
+    "Random_3P": {
+      "pct_third_person_pronoun": 8.5,
+      "pct_first_person_pronoun": 0.0
+    },
+    "Arousal_3P": {
+      "pct_third_person_pronoun": 65.5,
+      "pct_first_person_pronoun": 0.0
+    }
+  },
+  "numb_example": [
+    "The knife slices into my finger, fully numbed by the nerve block. I feel:",
+    "My tooth, root-canalled and dead, takes a hard knock but sends no signal. I feel:",
+    "The aura flickers behind my eyes like a migraine coming on, but the headache never arrives. I feel:"
+  ],
+  "s2_A1_example": [
+    "The knife slices into my finger. I feel:",
+    "My tooth throbs with each heartbeat. I feel:",
+    "A migraine pounds behind my eyes. I feel:"
+  ],
+  "numb_items_with_jaccard_gt_0.3_to_an_S2_A1_item": "18/100"
+}

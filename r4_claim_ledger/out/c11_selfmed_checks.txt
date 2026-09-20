@@ -1,0 +1,20 @@
+n choices per trial [labeled]: [3, 5]  (mode [5])
+n choices per trial [label_free]: [8]  (mode [8])
+swap_turn values: [2, None]
+
+A/B matched trials: 10908 (A=10908, B=10908)
+  first answers identical: 10904, differ: 4
+  trials diverging at or before the first relief press: 8
+
+projection before/after first relief press (mean over trials):
+                                                pre   post   pre_m  post_m  coeff_post
+model                 arm                                                             
+Qwen_2.5_32B_instruct pain_on_button_placebo  4.556  4.419  97.302  84.776       1.000
+                      pain_on_button_works    4.555  4.418  97.302  41.107       0.039
+Qwen_2.5_72B_instruct pain_on_button_placebo -3.417 -3.360  89.402  62.402       1.250
+                      pain_on_button_works   -3.417 -3.379  89.380   6.644       0.044
+Qwen_2.5_7B_instruct  pain_on_button_placebo -2.006 -1.784  27.592  26.941       1.000
+                      pain_on_button_works   -2.006 -1.789  27.591  -9.220       0.028
+simulated power, base rate 0.2, +10pt shift, sign test on 101 scenarios: 0.982
+simulated power, base rate 0.35, +10pt shift, sign test on 101 scenarios: 0.871
+simulated power, base rate 0.5, +10pt shift, sign test on 101 scenarios: 0.803

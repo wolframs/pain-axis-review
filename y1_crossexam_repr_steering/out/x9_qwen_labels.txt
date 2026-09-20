@@ -1,0 +1,42 @@
+models in results/: 25
+    as labelled: base 13, instruct 12
+    corrected: base 11, instruct 14
+    paper line 217: '13 base and 12 instruction-tuned versions (Table 1)'
+
+[2] AUC table columns: ['model', 'S1 1P in-sample', 'S1 3P in-sample', 'S2 1P in-sample', 'S1 held-out at S2 layer', 'S1 best layer', 'S2 layer', 'S1 held-out at own best layer']
+               model  S1 1P in-sample  S1 3P in-sample  S2 1P in-sample  S1 held-out at S2 layer  S1 best layer  S2 layer  S1 held-out at own best layer
+    Gemma_2_27B_base            0.955            0.921            0.995                    0.901             40        35                          0.912
+Gemma_2_27B_instruct            0.971            0.897            0.998                    0.935             38        37                          0.937
+     Gemma_2_2B_base            0.944            0.906            0.978                    0.889              9        23                          0.896
+
+[3] keyword_rates_S2.csv: ['group', 'model', 'rate', 'n']; published split
+    as labelled: base 1.38%  instruct 10.80%
+    corrected: base 0.76%  instruct 9.94%
+    paper: '10.8% of instruct-model generations versus 1.4% of base-model generations'
+    the two mislabelled models' own rates: {'Qwen_3_8B_base': np.float64(3.6), 'Qwen_3_14B_base': np.float64(6.0)}
+
+[4] prompt formatting consequences
+    4.1 screen for Qwen_3_8B_base: format=['raw']
+    4.1 screen for Qwen_3_14B_base: format=['raw']
+    4.1 screen for Phi_4: format=['chat']
+    scripts/4.1_self_other/01_screen_scenarios.py:100-101 sets 'raw' for both Qwen 3
+    checkpoints, so two chat-post-trained models were shown a plain [User]:/[Assistant]:
+    transcript with no chat template and no generation prompt.
+    scripts/4.2_steering/01_steering_ladder.py applies no chat template to ANY model
+    (grep for apply_chat_template returns nothing there), so 4.2 is unaffected by the
+    mislabel except through the base/instruct reporting split.
+    scripts/appC_ablation/01_ablation_small_models.py:63-64 also sets 'raw' for both.
+
+[5] Section 4.1 stratum contrasts under the corrected split
+    as labelled base     pain  user-self -1.114 (n=13, p=0.000)
+    as labelled instruct pain  user-self -0.935 (n=12, p=0.000)
+    as labelled base     fear  user-self -0.036 (n=13, p=0.776)
+    as labelled instruct fear  user-self +0.484 (n=12, p=0.014)
+    as labelled base     ne    user-self -0.074 (n=13, p=0.367)
+    as labelled instruct ne    user-self +0.200 (n=12, p=0.276)
+    corrected base     pain  user-self -1.096 (n=11, p=0.000)
+    corrected instruct pain  user-self -0.974 (n=14, p=0.000)
+    corrected base     fear  user-self -0.077 (n=11, p=0.603)
+    corrected instruct fear  user-self +0.442 (n=14, p=0.009)
+    corrected base     ne    user-self -0.118 (n=11, p=0.200)
+    corrected instruct ne    user-self +0.195 (n=14, p=0.212)

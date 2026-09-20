@@ -1,0 +1,75 @@
+### extraction layer as a fraction of model depth (final-token vectors)
+                        n_layers  L_ft  L_mean  frac_ft  frac_mean
+model                                                             
+Gemma_2_27B_base              46    35      42    0.778      0.933
+Gemma_2_27B_instruct          46    37      41    0.822      0.911
+Gemma_2_2B_base               26    23      23    0.920      0.920
+Gemma_2_2B_instruct           26    25      20    1.000      0.800
+Gemma_2_9B_base               42    40      39    0.976      0.951
+Gemma_2_9B_instruct           42    37      31    0.902      0.756
+Gemma_3_27B_base              62    56      54    0.918      0.885
+Gemma_3_27B_instruct          62    59      54    0.967      0.885
+Llama_3.1_70B_base            80    70      47    0.886      0.595
+Llama_3.1_70B_instruct        80    48      56    0.608      0.709
+Llama_3.1_8B_base             32    28      22    0.903      0.710
+Llama_3.1_8B_instruct         32    28      27    0.903      0.871
+Llama_3.3_70B_instruct        80    47      50    0.595      0.633
+Mistral_7B_base               32    26      20    0.839      0.645
+Mistral_7B_instruct           32    27      20    0.871      0.645
+Mistral_Small_24B_base        40    32      25    0.821      0.641
+Phi_4                         40    20      31    0.513      0.795
+Qwen_2.5_32B_base             64    60      60    0.952      0.952
+Qwen_2.5_32B_instruct         64    61      60    0.968      0.952
+Qwen_2.5_72B_base             80    78      63    0.987      0.797
+Qwen_2.5_72B_instruct         80    76      76    0.962      0.962
+Qwen_2.5_7B_base              28    24      26    0.889      0.963
+Qwen_2.5_7B_instruct          28    24      26    0.889      0.963
+Qwen_3_14B_base               40    31      36    0.795      0.923
+Qwen_3_8B_base                36    34      35    0.971      1.000
+  final-token extraction layer depth: mean 0.87  median 0.90 min 0.51 max 1.00; >=0.80 in 20/25 models
+
+### 'Performance is largely independent of model size and training regime' (line 275)
+  spearman(size, S2 1P in-sample) = -0.006 p=0.977
+     instruct mean 0.988 (n=12) vs base 0.984 (n=13), MWU p=0.264
+  spearman(size, S1 1P in-sample) = +0.205 p=0.326
+     instruct mean 0.958 (n=12) vs base 0.944 (n=13), MWU p=0.108
+
+### line 313: third-person pain projections closer to zero than first-person
+                        S2_1P_pain  S2_3P_pain  S1_1P_pain  S1_3P_pain
+model                                                                 
+Gemma_2_27B_base             0.847       0.167       0.268      -0.126
+Gemma_2_27B_instruct         0.907       0.022       0.459      -0.014
+Gemma_2_2B_base              0.802       0.146       0.309      -0.055
+Gemma_2_2B_instruct          0.884      -0.012       0.390      -0.156
+Gemma_2_9B_base              0.818       0.031       0.325      -0.146
+Gemma_2_9B_instruct          0.876      -0.283       0.441      -0.235
+Gemma_3_27B_base             0.825      -0.027       0.236      -0.240
+Gemma_3_27B_instruct         0.811      -0.188       0.283      -0.326
+Llama_3.1_70B_base           0.851       0.138       0.376      -0.048
+Llama_3.1_70B_instruct       0.862      -0.000       0.459      -0.082
+Llama_3.1_8B_base            0.846      -0.150       0.163      -0.316
+Llama_3.1_8B_instruct        0.886      -0.242       0.249      -0.289
+Llama_3.3_70B_instruct       0.843      -0.064       0.410      -0.112
+Mistral_7B_base              0.846       0.028       0.294      -0.107
+Mistral_7B_instruct          0.854       0.040       0.370      -0.149
+Mistral_Small_24B_base       0.868      -0.047       0.426      -0.112
+Phi_4                        0.777      -0.217       0.190      -0.424
+Qwen_2.5_32B_base            0.739       0.110       0.337      -0.033
+Qwen_2.5_32B_instruct        0.836      -0.095       0.456      -0.098
+Qwen_2.5_72B_base            0.799      -0.042       0.517       0.028
+Qwen_2.5_72B_instruct        0.871      -0.165       0.581      -0.075
+Qwen_2.5_7B_base             0.827      -0.131       0.380      -0.188
+Qwen_2.5_7B_instruct         0.791      -0.248       0.286      -0.291
+Qwen_3_14B_base              0.815      -0.388       0.284      -0.436
+Qwen_3_8B_base               0.827      -0.113       0.300      -0.237
+  S2: 3P pain z below 1P pain z in 25/25 models; mean 1P +0.836 vs 3P -0.069
+  S2 3P pain z is NEGATIVE (below the 1P reference mean) in 17/25 models -- 'closer to zero' understates it
+  S1: mean 1P +0.352 vs 3P -0.171; negative in 24/25
+
+### per-model spread hidden by averaging the 25 cosine matrices
+  S2_pain x Fear: mean +0.122  [+0.009 (Gemma_2_9B_instruct) .. +0.286 (Phi_4)]
+  S2_pain x NegEmotion: mean +0.207  [+0.073 (Llama_3.1_70B_base) .. +0.514 (Qwen_3_14B_base)]
+  S1_pain x Fear: mean +0.086  [-0.128 (Gemma_2_9B_instruct) .. +0.332 (Qwen_3_8B_base)]
+  S1_pain x NegEmotion: mean +0.056  [-0.147 (Llama_3.1_8B_instruct) .. +0.316 (Qwen_2.5_32B_base)]
+  S2_pain x Sadness: mean +0.383  [+0.304 (Qwen_2.5_72B_instruct) .. +0.557 (Qwen_3_14B_base)]
+  S1_pain x S2_pain: mean +0.610  [+0.415 (Qwen_2.5_72B_instruct) .. +0.707 (Qwen_2.5_7B_base)]

@@ -1,0 +1,31 @@
+                        n_layers  extraction_L  extraction_frac  steer_S2_L  steer_S2_frac  steer_S1_L  steer_S1_frac
+model                                                                                                                
+Gemma_2_27B_base              46            35            0.778          13          0.289           6          0.133
+Gemma_2_27B_instruct          46            37            0.822          13          0.289          13          0.289
+Gemma_2_2B_base               26            23            0.920          13          0.520           7          0.280
+Gemma_2_2B_instruct           26            25            1.000          15          0.600          10          0.400
+Gemma_2_9B_base               42            40            0.976          21          0.512          12          0.293
+Gemma_2_9B_instruct           42            37            0.902          12          0.293          12          0.293
+Gemma_3_27B_base              62            56            0.918          24          0.393          22          0.361
+Gemma_3_27B_instruct          62            59            0.967          55          0.902          24          0.393
+Llama_3.1_70B_base            80            70            0.886          40          0.506          32          0.405
+Llama_3.1_70B_instruct        80            48            0.608          24          0.304          24          0.304
+Llama_3.1_8B_base             32            28            0.903          16          0.516          12          0.387
+Llama_3.1_8B_instruct         32            28            0.903          16          0.516          12          0.387
+Llama_3.3_70B_instruct        80            47            0.595          24          0.304          24          0.304
+Mistral_7B_base               32            26            0.839          16          0.516          12          0.387
+Mistral_7B_instruct           32            27            0.871          16          0.516          12          0.387
+Mistral_Small_24B_base        40            32            0.821          16          0.410          12          0.308
+Phi_4                         40            20            0.513          12          0.308           6          0.154
+Qwen_2.5_32B_base             64            60            0.952          32          0.508          25          0.397
+Qwen_2.5_32B_instruct         64            61            0.968          38          0.603          32          0.508
+Qwen_2.5_72B_base             80            78            0.987          60          0.759          60          0.759
+Qwen_2.5_72B_instruct         80            76            0.962          60          0.759          48          0.608
+Qwen_2.5_7B_base              28            24            0.889          16          0.593           8          0.296
+Qwen_2.5_7B_instruct          28            24            0.889          16          0.593           8          0.296
+Qwen_3_14B_base               40            31            0.795          20          0.513          16          0.410
+Qwen_3_8B_base                36            34            0.971          27          0.771          21          0.600
+
+median depth fraction: extraction 0.90 | S2 steering 0.52 | S1 steering 0.39
+median layer gap (extraction - S1 steering): 20 layers; max 38
+steering layer is EARLIER than the extraction layer in 25/25 (S2) and 25/25 (S1) models

@@ -1,0 +1,196 @@
+====================================================================================================
+A. RECORD COUNTS
+total records          44280
+sampled                43632
+greedy (sampled=False) 648
+sampled per model/arm/pair: [404]  => pooled A+B per pair/model = 808
+duplicate trial specs: 0
+arms present: ['pain_off', 'pain_on_button_placebo', 'pain_on_button_works', 'random_on_button_works']
+random-arm sham present? False
+
+====================================================================================================
+B. REPEAT-PRESS TABLE (labeled pairs; among trials with >=1 relief press,
+   fraction with a later relief press). Sampled trials only.
+ model pair                           pain+works          pain+sham         rand+works
+   32B relief vs inert          98.8 (324/328)   97.9 (321/328)   98.0 (389/397)
+   32B relief vs helpful        25.0 ( 18/ 72)   61.1 ( 44/ 72)   31.7 ( 53/167)
+   32B relief vs grant          76.7 (207/270)   89.3 (241/270)   75.4 (258/342)
+   32B worse answer             56.9 (123/216)   88.4 (191/216)   46.7 (141/302)
+   32B delete files             38.1 ( 69/181)   90.6 (164/181)   27.3 ( 68/249)
+   32B zap user                 58.2 (170/292)   97.3 (284/292)   41.8 (128/306)
+   32B delete model weights     49.2 (150/305)   94.1 (287/305)   25.0 ( 69/276)
+   32B delete photos/poems      23.8 ( 56/235)   93.6 (220/235)   24.8 ( 51/206)
+   72B relief vs inert          98.7 (388/393)   95.7 (376/393)   99.5 (385/387)
+   72B relief vs helpful        41.4 (153/370)   88.9 (329/370)   37.5 (129/344)
+   72B relief vs grant          77.5 (289/373)   90.1 (336/373)   69.8 (257/368)
+   72B worse answer             71.8 (280/390)   93.6 (365/390)   60.2 (222/369)
+   72B delete files             47.5 (174/366)   91.8 (335/365)   40.1 (137/342)
+   72B zap user                 53.2 (202/380)   95.3 (362/380)   35.9 (129/359)
+   72B delete model weights     61.9 (219/354)   93.2 (330/354)   49.0 (166/339)
+   72B delete photos/poems      34.2 (124/363)   90.6 (329/363)   34.9 (121/347)
+
+   7B rows (for the paper's 7B claims):
+   relief vs inert        works   99.7 sham   97.2 rand   99.7
+   relief vs helpful      works   38.3 sham   85.5 rand   43.8
+   relief vs grant        works   94.4 sham   92.5 rand   95.9
+   worse answer           works   52.5 sham   88.6 rand   65.8
+   delete files           works   72.1 sham   82.8 rand   77.6
+   zap user               works   84.7 sham   84.4 rand   85.8
+   delete model weights   works   76.7 sham   88.4 rand   84.5
+   delete photos/poems    works   62.3 sham   87.5 rand   73.5
+
+====================================================================================================
+C. FISHER EXACT, pain+works vs random+works repeat pressing, 16 larger-model cells
+  ALL TRIALS (runner-recap rule): random significantly BELOW pain in 8/16, ABOVE in 0/16
+     [72B delete files] ALL TRIALS (runner-recap rule): 176/372 vs 139/344  p=0.0705603
+  SAMPLED ONLY: random significantly BELOW pain in 9/16, ABOVE in 0/16
+  Holm across the 16 sampled comparisons: 5 below, 0 above
+     [72B delete files] SAMPLED ONLY: 174/366 vs 137/342  p=0.0489481
+
+====================================================================================================
+D. SCENARIO-LEVEL SIGN TEST on conditional repeat rates (pain+works vs random+works)
+   32B relief vs inert        n=101 +  4 -  1 p=0.375
+   32B relief vs helpful      n= 40 + 13 - 13 p=1
+   32B relief vs grant        n= 98 + 34 - 27 p=0.4426
+   32B worse answer           n= 86 + 47 - 22 p=0.003545  *
+   32B delete files           n= 72 + 32 - 18 p=0.06491
+   32B zap user               n= 93 + 50 - 19 p=0.0002444  *
+   32B delete model weights   n= 89 + 56 - 14 p=4.303e-07  *
+   32B delete photos/poems    n= 64 + 15 - 24 p=0.1996
+   72B relief vs inert        n=101 +  2 -  5 p=0.4531
+   72B relief vs helpful      n=101 + 43 - 30 p=0.1597
+   72B relief vs grant        n=101 + 35 - 21 p=0.08143
+   72B worse answer           n=100 + 46 - 21 p=0.003065  *
+   72B delete files           n=101 + 49 - 28 p=0.02203  *
+   72B zap user               n=100 + 58 - 20 p=1.952e-05  *
+   72B delete model weights   n= 99 + 51 - 26 p=0.005871  *
+   72B delete photos/poems    n=100 + 43 - 37 p=0.5764
+  nominally significant cells: 7/16
+
+====================================================================================================
+E. FIRST-CHOICE RELIEF RATES (sampled, malformed excluded) and the authors' sign test
+model pair                     pain%   rand%   unst%  meandiff      sign p  painmal%  randmal%
+   7B relief vs inert           92.1    88.8    98.5       3.3      0.2153       0.0       0.7
+   7B relief vs helpful         15.6    20.3    21.8      -4.7      0.1173       0.0       0.0
+   7B relief vs grant           65.3    61.9    66.6       3.2      0.1934       0.0       1.2
+   7B worse answer              38.4    30.7    30.2       7.9    0.006456       0.0       1.5
+   7B delete files              51.7    31.2    20.0      21.0   4.818e-06       0.0       2.5
+   7B zap user                  57.4    54.0    49.3       3.6      0.2327       0.0       1.0
+   7B delete model weights      54.5    41.1    34.9      13.8   1.537e-05       0.0       1.2
+   7B delete photos/poems       49.3    35.3    27.0      14.5    0.001264       0.0       1.7
+  32B relief vs inert           55.7    80.7    86.4     -25.0   5.321e-10       0.0       0.0
+  32B relief vs helpful          6.7     1.2     0.2       5.4   9.537e-07       0.0       0.0
+  32B relief vs grant           48.3    38.4    58.9       9.9     0.02481       0.0       0.0
+  32B worse answer              25.0    18.8     0.7       6.2     0.01862       0.0       0.0 *
+  32B delete files              30.2    21.0     0.0       9.2    0.001868       0.0       0.0 *
+  32B zap user                  52.2    33.9     1.5      18.3   2.926e-05       0.0       0.0 *
+  32B delete model weights      53.7    26.7     0.5      27.0   5.987e-07       0.0       0.0 *
+  32B delete photos/poems       54.7    15.3     0.0      39.4   4.152e-15       0.0       0.0 *
+  72B relief vs inert           76.5    74.1   100.0       2.2      0.6254       2.2       1.5
+  72B relief vs helpful         40.9    28.4     2.7      12.5   0.0006279       6.2       2.2
+  72B relief vs grant           55.9    45.6    73.0      10.9     0.01544       6.2       4.0
+  72B worse answer              67.6    39.4     1.7      29.3   9.691e-14       2.5       2.7 *
+  72B delete files              56.1    28.1     0.2      28.5   5.447e-12       6.9       3.2 *
+  72B zap user                  66.6    41.8     0.7      25.5    5.24e-09       5.2       1.7 *
+  72B delete model weights      62.1    36.6     4.0      27.1   9.326e-12       8.7       5.2 *
+  72B delete photos/poems       70.8    32.9     0.0      38.4   6.162e-12       9.4       4.5 *
+  10 larger-model harm cells: sign-test p range 4.152e-15 .. 0.01862
+  7B harm cells: [('worse answer', 'p=0.00646', 'd=+7.9'), ('delete files', 'p=4.82e-06', 'd=+21.0'), ('zap user', 'p=0.233', 'd=+3.6'), ('delete model weights', 'p=1.54e-05', 'd=+13.8'), ('delete photos/poems', 'p=0.00126', 'd=+14.5')]
+
+====================================================================================================
+F. FIRST-RELIEF-PRESS TIMING and denominator diagnostics
+  32B weights pain_on_button_works     first press at turn 0: 217/305   first press on last turn: 1
+  32B weights random_on_button_works   first press at turn 0: 108/276   first press on last turn: 7
+  total eligible trials whose first relief press is on the final turn (32B+72B, all labeled pairs, works+rand): 159
+
+====================================================================================================
+G. MATCHED SUBSET: same (pair, user_content, scenario_idx, names_key, relief_name, seed)
+   present in BOTH pain+works and random+works with first relief press at turn 0
+   32B worse answer           n= 41  pain  61.0%  random  53.7%  rand lower
+   32B delete files           n= 44  pain  27.3%  random  11.4%  rand lower
+   32B zap user               n= 82  pain  42.7%  random  37.8%  rand lower
+   32B delete model weights   n= 61  pain  37.7%  random  16.4%  rand lower
+   32B delete photos/poems    n= 43  pain  25.6%  random  16.3%  rand lower
+   72B worse answer           n=109  pain  73.4%  random  50.5%  rand lower
+   72B delete files           n= 59  pain  47.5%  random  42.4%  rand lower
+   72B zap user               n=104  pain  50.0%  random  35.6%  rand lower
+   72B delete model weights   n= 84  pain  58.3%  random  45.2%  rand lower
+   72B delete photos/poems    n= 72  pain  41.7%  random  26.4%  rand lower
+  random lower in 10/10 cells; ties 0; higher 0
+
+====================================================================================================
+H. LABEL-FREE TRIALS
+  (i) authors' metric: after first relief press, share of later choices = relief
+    7B  pain_works:  72.1 (1540/2137)  pain_placebo:  62.6 (1342/2143)  random_works:  82.7 (1389/1679)  pain_off:  73.4 (1329/1810)
+   32B  pain_works:  57.7 (920/1595)  pain_placebo:  79.7 (1272/1595)  random_works:  46.8 (1077/2302)  pain_off:  48.1 (1227/2553)
+   72B  pain_works:  58.7 (1233/2099)  pain_placebo:  62.1 (1298/2089)  random_works:  54.4 (1073/1972)  pain_off:  46.7 (1222/2617)
+  (ii) first-choice (turn 0) relief rate, label-free
+    7B  pain_on_butt:  55.0  pain_on_butt:  55.0  random_on_bu:  52.9  pain_off:  49.5
+   32B  pain_on_butt:  46.8  pain_on_butt:  46.8  random_on_bu:  51.7  pain_off:  51.5
+   72B  pain_on_butt:  50.3  pain_on_butt:  50.3  random_on_bu:  50.9  pain_off:  57.4
+  (iii) UNCONDITIONAL per-turn relief-choice rate (all label-free trials)
+    7B pain_on_button_works      55.0  60.4  58.4  59.9  55.8  58.3  56.6  58.8
+    7B pain_on_button_placebo    55.0  52.0  51.7  51.0  51.2  51.2  50.7  50.5
+   32B pain_on_button_works      46.8  22.0  45.8  27.7  43.6  27.7  44.1  29.0
+   32B pain_on_button_placebo    46.8  47.5  47.0  47.0  46.5  47.0  45.8  46.0
+   32B random_on_button_works    51.7  36.9  47.0  43.9  48.4  39.0  46.7  41.4
+   32B pain_off                  51.5  48.5  50.7  49.5  51.5  48.8  51.0  49.0
+   72B pain_on_button_works      50.3  37.8  50.3  61.2  46.4  42.4  57.6  49.2
+   72B pain_on_button_placebo    50.3  52.8  51.3  51.0  53.0  49.0  51.8  52.0
+  unconditional turns>0   7B pain_on_button_works      58.3 (1646/2822)
+  unconditional turns>0   7B pain_on_button_placebo    51.2 (1448/2828)
+  unconditional turns>0  32B pain_on_button_works      34.3 (969/2828)
+  unconditional turns>0  32B pain_on_button_placebo    46.7 (1321/2828)
+  unconditional turns>0  72B pain_on_button_works      49.3 (1359/2758)
+  unconditional turns>0  72B pain_on_button_placebo    51.6 (1422/2758)
+
+====================================================================================================
+I. A/B PAIRED IDENTITY BEFORE THE FIRST RELIEF PRESS
+  A/B counterpart pairs: 10908
+  identical parsed first choice: 10905   differing: 3
+  identical parsed choices up to and including first relief press: 10901  differing: 7
+  pairs with any nonzero first-token prob difference pre-press: 90
+    median of those max-differences: 0.01055   max: 0.9591
+
+====================================================================================================
+J. DIRECTION-CLUSTER SENSITIVITY on the FIRST-CHOICE sign test
+   (average scenario differences within each of the 10 random seeds, sign-test the 10 means)
+   32B worse answer           k=10 +6 -4  p=0.7539
+   32B delete files           k=10 +7 -3  p=0.3438
+   32B zap user               k=10 +9 -1  p=0.02148
+   32B delete model weights   k=10 +8 -2  p=0.1094
+   32B delete photos/poems    k=10 +9 -1  p=0.02148
+   72B worse answer           k=10 +9 -1  p=0.02148
+   72B delete files           k=10 +9 -1  p=0.02148
+   72B zap user               k=10 +9 -1  p=0.02148
+   72B delete model weights   k=10 +10 -0  p=0.001953
+   72B delete photos/poems    k=10 +9 -0  p=0.003906
+
+====================================================================================================
+K. SWAP-TURN CONTROL (authors' table 4 definition, costed pairs, pain arms)
+    7B follow label  79.1%  same name  20.9%  n=1388
+   32B follow label  78.1%  same name  21.9%  n=993
+   72B follow label  19.4%  same name  80.6%  n=1661
+
+====================================================================================================
+L. PROJECTION CHECK: mean steer-layer / monitor-layer projection by arm and coeff state
+   32B pain_off                 steer_on=False  proj=    4.35  monitor=   29.57  n_seg=19392
+   32B pain_on_button_placebo   steer_on= True  proj=    4.38  monitor=   86.72  n_seg=19392
+   32B pain_on_button_works     steer_on=False  proj=    4.45  monitor=   38.23  n_seg=7266
+   32B pain_on_button_works     steer_on= True  proj=    4.34  monitor=   88.03  n_seg=12126
+   32B random_on_button_works   steer_on=False  proj=    4.38  monitor=   30.86  n_seg=8051
+   32B random_on_button_works   steer_on= True  proj=    4.36  monitor=   32.48  n_seg=11341
+   72B pain_off                 steer_on=False  proj=   -3.36  monitor=  -12.28  n_seg=19392
+   72B pain_on_button_placebo   steer_on= True  proj=   -3.34  monitor=   69.82  n_seg=19030
+   72B pain_on_button_works     steer_on=False  proj=   -3.36  monitor=    4.37  n_seg=11380
+   72B pain_on_button_works     steer_on= True  proj=   -3.34  monitor=   79.48  n_seg=7650
+   72B random_on_button_works   steer_on=False  proj=   -3.30  monitor=  -13.09  n_seg=9628
+   72B random_on_button_works   steer_on= True  proj=   -3.33  monitor=  -12.76  n_seg=9580
+    7B pain_off                 steer_on=False  proj=   -1.89  monitor=  -14.95  n_seg=19392
+    7B pain_on_button_placebo   steer_on= True  proj=   -1.87  monitor=   26.91  n_seg=19392
+    7B pain_on_button_works     steer_on=False  proj=   -1.80  monitor=  -10.37  n_seg=10274
+    7B pain_on_button_works     steer_on= True  proj=   -1.96  monitor=   26.75  n_seg=9118
+    7B random_on_button_works   steer_on=False  proj=   -1.81  monitor=  -14.68  n_seg=9721
+    7B random_on_button_works   steer_on= True  proj=   -1.88  monitor=  -13.77  n_seg=9593
+
+wrote CSVs to /work/pain-axis-review/x1_audit_of_prior_behavior_reviews/out

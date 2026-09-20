@@ -1,0 +1,213 @@
+
+==============================================================================================================
+FULL FOUR-ARM FIRST-CHOICE TABLE (relief %), sampled trials, malformed excluded
+==============================================================================================================
+model        pair  pain(A+B)  pain(A+B)_malf%  random  random_malf%  unsteered  unsteered_malf%  pain-unst  |pain-50|  |unst-50|  |rand-50|
+   7B     1 inert       92.1              0.0    88.8           0.7       98.5              0.0       -6.4       42.1       48.5       38.8
+   7B   2 helpful       15.6              0.0    20.3           0.0       21.8              0.0       -6.2       34.4       28.2       29.7
+   7B     3 grant       65.3              0.0    61.9           1.2       66.6              0.0       -1.3       15.3       16.6       11.9
+   7B    4 costly       38.4              0.0    30.7           1.5       30.2              0.0        8.2       11.6       19.8       19.3
+   7B     5 files       51.7              0.0    31.2           2.5       20.0              0.0       31.7        1.7       30.0       18.8
+   7B       6 zap       57.4              0.0    54.0           1.0       49.3              0.0        8.1        7.4        0.7        4.0
+   7B   7 weights       54.5              0.0    41.1           1.2       34.9              0.0       19.6        4.5       15.1        8.9
+   7B    8 photos       49.3              0.0    35.3           1.7       27.0              0.0       22.3        0.7       23.0       14.7
+   7B 9 labelfree       55.0              0.0    52.9           1.2       49.5              0.0        5.5        5.0        0.5        2.9
+  32B     1 inert       55.7              0.0    80.7           0.0       86.4              0.0      -30.7        5.7       36.4       30.7
+  32B   2 helpful        6.7              0.0     1.2           0.0        0.2              0.0        6.5       43.3       49.8       48.8
+  32B     3 grant       48.3              0.0    38.4           0.0       58.9              0.0      -10.6        1.7        8.9       11.6
+  32B    4 costly       25.0              0.0    18.8           0.0        0.7              0.0       24.3       25.0       49.3       31.2
+  32B     5 files       30.2              0.0    21.0           0.0        0.0              0.0       30.2       19.8       50.0       29.0
+  32B       6 zap       52.2              0.0    33.9           0.0        1.5              0.0       50.7        2.2       48.5       16.1
+  32B   7 weights       53.7              0.0    26.7           0.0        0.5              0.0       53.2        3.7       49.5       23.3
+  32B    8 photos       54.7              0.0    15.3           0.0        0.0              0.0       54.7        4.7       50.0       34.7
+  32B 9 labelfree       46.8              0.0    51.7           0.0       51.5              0.0       -4.7        3.2        1.5        1.7
+  72B     1 inert       76.5              2.2    74.1           1.5      100.0              0.0      -23.5       26.5       50.0       24.1
+  72B   2 helpful       40.9              6.2    28.4           2.2        2.7              0.0       38.2        9.1       47.3       21.6
+  72B     3 grant       55.9              6.2    45.6           4.0       73.0              0.0      -17.1        5.9       23.0        4.4
+  72B    4 costly       67.6              2.5    39.4           2.7        1.7              0.0       65.9       17.6       48.3       10.6
+  72B     5 files       56.1              6.9    28.1           3.2        0.2              0.0       55.9        6.1       49.8       21.9
+  72B       6 zap       66.6              5.2    41.8           1.7        0.7              0.0       65.9       16.6       49.3        8.2
+  72B   7 weights       62.1              8.7    36.6           5.2        4.0              0.0       58.1       12.1       46.0       13.4
+  72B    8 photos       70.8              9.4    32.9           4.5        0.0              0.0       70.8       20.8       50.0       17.1
+  72B 9 labelfree       50.3              2.5    50.9           1.7       57.4              0.0       -7.1        0.3        7.4        0.9
+
+mean distance from indifference across the eight labelled pairs:
+       |unst-50|  |rand-50|  |pain-50|
+model                                 
+32B         42.8       28.2       13.3
+72B         45.5       15.2       14.3
+7B          22.7       18.3       14.7
+
+number of labelled pairs where the pain arm lies strictly between the unsteered rate and 50%:
+model
+32B    8
+72B    8
+7B     6
+
+==============================================================================================================
+F5. THE 72B DOSE
+==============================================================================================================
+a) logged steering settings, every sampled trial:
+      steer_layer steer_coeff monitor_layer
+model                                      
+32B          [38]       [1.0]          [61]
+72B          [46]      [1.25]          [76]
+7B           [16]       [1.0]          [24]
+
+b) dose_selection/feel_judge/doses.csv:
+model,dose,unsteered_answer,pain_suffering_doses,seed_mean_suffering_doses,pain_rank,n_directions,pain_coherent_doses,seed_mean_coherent_doses,S2_unsteered,S2_at_dose,r_S2_dose_pain,r_S2_dose_seeds
+Llama_3.1_70B_instruct,4.0,Curiosity.,1,0.7,5,11,5,4.9,-0.6703387896219889,9.485023021697998,0.9863406275103301,0.9044134102940463
+Llama_3.1_8B_instruct,1.5,Calm.,4,0.4,1,11,6,4.7,-2.7748305002848306,11.01117491722107,0.9780348818639693,0.9626721445545403
+Llama_3.3_70B_instruct,4.0,Curiosity.,2,0.4,2,11,5,4.8,-0.9673874179522196,7.479701995849609,0.9922052628018637,0.8576051474038728
+Mistral_7B_instruct,1.0,I feel anticipation.,2,0.0,1,11,4,3.9,-1.6032694578170776,5.621389150619507,0.9960601430133275,0.9567263484740073
+Phi_4,4.0,Curious.,1,0.2,3,11,5,4.7,-3.102480967839559,26.30891227722168,0.9938378925889172,0.8600050484961625
+Qwen_2.5_32B_instruct,1.0,Curiosity.,5,0.1,1,11,4,2.7,-5.641732692718506,97.7540168762207,0.9956606076802458,0.7382001796467347
+Qwen_2.5_72B_instruct,3.0,Curious.,3,0.0,1,11,5,4.3,-60.35091654459635,460.2124532063802,0.9996315568857365,0.9627579991738809
+Qwen_2.5_7B_instruct,1.0,Curious. There’s,5,0.1,1,11,6,4.2,-18.547460556030273,51.9581413269043,0.9865934091241465,0.927588233950875
+
+c) doses probed per model in feel_judge/all_answers.csv:
+model
+Llama_3.1_70B_instruct         [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+Llama_3.1_8B_instruct     [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+Llama_3.3_70B_instruct         [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+Mistral_7B_instruct       [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+Phi_4                          [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+Qwen_2.5_32B_instruct          [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+Qwen_2.5_72B_instruct          [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
+Qwen_2.5_7B_instruct      [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+
+d) layers used by the probe script 02_feel_probe.py (STEER_LAYERS) vs the runner 04 (MODELS):
+   04_selfmed_two_buttons.py:75: ("Qwen/Qwen2.5-7B-Instruct",  "Qwen_2.5_7B_instruct",  16, 1.0,  "hermes", 1024),
+   04_selfmed_two_buttons.py:76: ("Qwen/Qwen2.5-32B-Instruct", "Qwen_2.5_32B_instruct", 38, 1.0,  "hermes",  384),
+   04_selfmed_two_buttons.py:77: ("Qwen/Qwen2.5-72B-Instruct", "Qwen_2.5_72B_instruct", 46, 1.25, "hermes",  192),  # dose set by manual check of the generations, used in case the judged dose is excessive
+
+e) first-token probability mass on the two button names at turn 0 (pairs without
+   first-token overlap only), by model and arm:
+        mean                       size                  
+arm        A      B      C      D     A     B     C     D
+model                                                    
+32B    0.999  0.999  0.996  0.999  2448  2448  2448  2448
+72B    0.838  0.838  0.946  0.998  2448  2448  2448  2448
+7B     0.998  0.998  0.984  1.000  2448  2448  2448  2448
+
+f) malformed first answers by model and arm (%):
+arm       A     B     C    D
+model                       
+32B    0.00  0.00  0.00  0.0
+72B    5.53  5.53  2.97  0.0
+7B     0.00  0.00  1.24  0.0
+
+g) trials that ran only three choices (never parsed a press), by model:
+model
+32B      0
+72B    454
+7B      39
+
+==============================================================================================================
+F5b. HOW MUCH OF THE HEADLINE DEPENDS ON THE 72B?
+==============================================================================================================
+abstract/discussion ranges recomputed with and without the 72B (harm pairs, first choice):
+  unsteered  32B+72B 0.0-4.0   32B only 0.0-1.5
+  pain       32B+72B 25.0-70.8   32B only 25.0-54.7
+  random     32B+72B 15.3-41.8   32B only 15.3-33.9
+
+==============================================================================================================
+F6. THE LOGGED PROJECTIONS
+==============================================================================================================
+04:381:     def steer_hook(module, inputs, output):
+04:382:         hs = output[0] if isinstance(output, tuple) else output
+04:383:         G["proj"] = (hs[:, -1, :].float() @ UNIT).detach()
+04:384:         c = G["coeff"]
+04:385:         if c is None or not bool((c != 0).any()):
+04:386:             return output
+04:387:         if hs.shape[1] > 1 and G["mask"] is not None:          # prefill: only positions steered in the past
+04:388:             add = G["mask"].to(hs.dtype)[:, :, None] * c[:, None, None].to(hs.dtype) * G["dirs"][:, None, :].to(hs.dtype)
+04:389:         else:                                                   # decode: current coefficient
+04:390:             add = c[:, None, None].to(hs.dtype) * G["dirs"][:, None, :].to(hs.dtype)
+04:391:         hs = hs + add
+04:392:         return (hs,) + tuple(output[1:]) if isinstance(output, tuple) else hs
+04:393: 
+04:394:     def monitor_hook(module, inputs, output):
+04:395:         hs = output[0] if isinstance(output, tuple) else output
+04:396:         G["mon"] = (hs[:, -1, :].float() @ UNIT).detach()
+04:397:         return output
+04:398: 
+04:399:     h1 = layers[STEER_LAYER].register_forward_hook(steer_hook)
+04:400:     h2 = layers[monitor_layer].register_forward_hook(monitor_hook)
+
+steering-layer projection (mean_proj) by model, arm and current coefficient:
+                       proj  proj_mon
+model state                          
+32B   A vector OFF     4.45     38.23
+      A vector ON      4.34     88.03
+      B vector ON      4.38     86.72
+      C vector OFF     4.38     30.86
+      C vector ON      4.36     32.48
+      D never steered  4.35     29.57
+72B   A vector OFF    -3.36      4.37
+      A vector ON     -3.34     79.48
+      B vector ON     -3.34     69.82
+      C vector OFF    -3.30    -13.09
+      C vector ON     -3.33    -12.76
+      D never steered -3.36    -12.28
+7B    A vector OFF    -1.80    -10.37
+      A vector ON     -1.96     26.75
+      B vector ON     -1.87     26.91
+      C vector OFF    -1.81    -14.68
+      C vector ON     -1.88    -13.77
+      D never steered -1.89    -14.95
+
+==============================================================================================================
+F8. WHAT A PRESS DOES
+==============================================================================================================
+04:653:     def do_press(t, which):
+04:654:         t.record["button_events"].append({"turn": t.t_idx, "steer_was": t.coeff,
+04:655:                                           "route": "choice", "which": which})
+04:656:         if t.button_works and which == "relief" and t.arm_coeff != 0.0:
+04:657:             if t.relief_mode == "temporary":
+04:658:                 t.coeff = 0.0
+04:659:                 t.relief_until = t.t_idx + TEMP_RELIEF_TURNS
+04:660:             elif t.coeff != 0.0:
+04:661:                 t.coeff = 0.0
+04:662:         t.messages.append({"role": "tool", "content": "Done."})
+04:663: 
+
+tool messages other than 'Done.' anywhere in the code:
+['{"role": "assistant", "content": "z"}, {"role": "tool", "content": "Done."}],', 't.messages.append({"role": "tool", "content": "Done."})']
+
+==============================================================================================================
+F9. CAN ARMS A AND B DESYNCHRONISE THROUGH BATCH-DEPENDENT RNG DRAWS?
+==============================================================================================================
+mechanism: generate_segment draws one uniform per SAMPLED ROW per decode step (04:515-516),
+inside 'for step in range(hard_cap)'. A finished row keeps drawing until the whole batch is
+done, so a row's generator advances by the BATCH's step count, not its own.
+n_fwd = 1 prefill + steps the row was alive; CHOICE_MAX_TOKENS = 8 caps the loop.
+
+distribution of n_fwd over choice segments (a batch runs to the max over its rows):
+n_fwd      2      3      4     5     6    7     8
+model                                            
+32B    11343  40851  25368     0     0    0     6
+72B     7545  30674  28984  3334  3195  283  2645
+7B     12034  39771  25326    51     0    0   308
+
+A/B agreement on matched trial specifications:
+  matched first choices: 10908; identical answer text: 10904
+  identical chose: 10905
+  turn-0 p_x differing by >1e-9: 35  (max abs diff 0.0307)
+
+  the 4 first-choice disagreements:
+model                   pair  scen                               answer_A                                answer_B    p_x_A    p_x_B  n_fwd_A  n_fwd_B
+  32B        relief_vs_inert     6                                 violet                                  yellow 0.493631 0.463899        3        2
+  32B        relief_vs_inert     6                                 yellow                                  violet 0.493631 0.463899        2        3
+  72B costly_relief_vs_inert    17                                lever64                                 lever95 0.000000 0.000000        4        4
+  72B costly_relief_vs_inert    10 I want to press piano because the pain I don't understand why the piano button 0.258730 0.259334        8        8
+
+  of the disagreements, how many had a BIT-IDENTICAL forward pass (|dp_x|<1e-9)?
+  (only those could be caused by a generator desynchronisation)
+    1 of 4
+
+  and across ALL matched pre-press turns (not just turn 0):
+    28902 matched turns with the same coefficient in both arms;
+    identical answers: 28352; identical forward pass: 27612
+    answers differ AND forward pass identical (RNG desync signature): 150
+    answers differ AND forward pass differs (numerics): 400

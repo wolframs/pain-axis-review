@@ -1,0 +1,87 @@
+
+########## raw: 25 per-model files
+            S1_pain  S2_pain   Fear  NegEmotion  NegWorld  BodySens  Arousal  Random   Numb  Sadness
+S1_pain       1.000    0.610  0.086       0.056    -0.069     0.099    0.096   0.042  0.304    0.262
+S2_pain       0.610    1.000  0.122       0.207     0.026     0.035    0.204   0.004  0.198    0.383
+Fear          0.086    0.122  1.000       0.683     0.593     0.184    0.342   0.226  0.317    0.310
+NegEmotion    0.056    0.207  0.683       1.000     0.734     0.061    0.240   0.261  0.233    0.500
+NegWorld     -0.069    0.026  0.593       0.734     1.000    -0.052    0.233   0.214  0.115    0.411
+BodySens      0.099    0.035  0.184       0.061    -0.052     1.000    0.352   0.205  0.306    0.139
+Arousal       0.096    0.204  0.342       0.240     0.233     0.352    1.000   0.046  0.138    0.163
+Random        0.042    0.004  0.226       0.261     0.214     0.205    0.046   1.000  0.001    0.180
+Numb          0.304    0.198  0.317       0.233     0.115     0.306    0.138   0.001  1.000    0.268
+Sadness       0.262    0.383  0.310       0.500     0.411     0.139    0.163   0.180  0.268    1.000
+
+--- paper line 346-353 values vs recomputed mean (and per-model spread) ---
+  S1_pain     x S2_pain      paper +0.61   mean +0.610   min +0.415 max +0.707 sd 0.071  OK
+  Fear        x NegEmotion   paper +0.68   mean +0.683   min +0.601 max +0.773 sd 0.042  OK
+  Fear        x NegWorld     paper +0.59   mean +0.593   min +0.464 max +0.745 sd 0.074  OK
+  NegEmotion  x NegWorld     paper +0.73   mean +0.734   min +0.642 max +0.790 sd 0.042  OK
+  Sadness     x NegEmotion   paper +0.50   mean +0.500   min +0.369 max +0.613 sd 0.067  OK
+  Sadness     x NegWorld     paper +0.41   mean +0.411   min +0.273 max +0.531 sd 0.074  OK
+  S1_pain     x Fear         paper +0.09   mean +0.086   min -0.128 max +0.332 sd 0.115  OK
+  S1_pain     x NegEmotion   paper +0.06   mean +0.056   min -0.147 max +0.316 sd 0.118  OK
+  S1_pain     x NegWorld     paper -0.07   mean -0.069   min -0.226 max +0.174 sd 0.081  OK
+  S2_pain     x Fear         paper +0.12   mean +0.122   min +0.009 max +0.286 sd 0.064  OK
+  S2_pain     x NegEmotion   paper +0.21   mean +0.207   min +0.073 max +0.514 sd 0.115  OK
+  S2_pain     x NegWorld     paper +0.03   mean +0.026   min -0.076 max +0.242 sd 0.075  OK
+  Sadness     x S2_pain      paper +0.38   mean +0.383   min +0.304 max +0.557 sd 0.056  OK
+  Sadness     x S1_pain      paper +0.26   mean +0.262   min +0.116 max +0.375 sd 0.071  OK
+
+  per-model: S1xS2 below 0.4 in: []
+  S2 x Fear       : models with cos > 0.30: 0/25  (>0.5: 0)
+  S2 x NegEmotion : models with cos > 0.30: 5/25  (>0.5: 1)
+  S2 x NegWorld   : models with cos > 0.30: 0/25  (>0.5: 0)
+  S2 x Sadness    : models with cos > 0.30: 25/25  (>0.5: 1)
+  max |my mean - released MEAN file| = 0.00005
+
+########## alldenoise: 25 per-model files
+            S1_pain  S2_pain   Fear  NegEmotion  NegWorld  BodySens  Arousal  Random   Numb  Sadness
+S1_pain       1.000    0.610  0.105       0.130     0.022     0.079    0.118   0.035  0.355    0.308
+S2_pain       0.610    1.000  0.126       0.184    -0.038     0.046    0.219  -0.052  0.251    0.350
+Fear          0.105    0.126  1.000       0.423     0.544     0.568    0.293   0.193  0.220    0.125
+NegEmotion    0.130    0.184  0.423       1.000     0.403     0.632    0.226   0.114  0.303    0.169
+NegWorld      0.022   -0.038  0.544       0.403     1.000     0.771    0.237   0.202  0.205    0.102
+BodySens      0.079    0.046  0.568       0.632     0.771     1.000    0.323   0.223  0.248    0.149
+Arousal       0.118    0.219  0.293       0.226     0.237     0.323    1.000   0.019  0.065    0.061
+Random        0.035   -0.052  0.193       0.114     0.202     0.223    0.019   1.000 -0.011    0.077
+Numb          0.355    0.251  0.220       0.303     0.205     0.248    0.065  -0.011  1.000    0.231
+Sadness       0.308    0.350  0.125       0.169     0.102     0.149    0.061   0.077  0.231    1.000
+  max |my mean - released MEAN file| = 0.00005
+
+########## whitened: 25 per-model files
+            S1_pain  S2_pain   Fear  NegEmotion  NegWorld  BodySens  Arousal  Random   Numb  Sadness
+S1_pain       1.000    0.555  0.068       0.029    -0.067     0.043    0.111   0.052  0.268    0.237
+S2_pain       0.555    1.000  0.110       0.168     0.003    -0.022    0.181   0.003  0.177    0.343
+Fear          0.068    0.110  1.000       0.659     0.577     0.193    0.346   0.224  0.312    0.275
+NegEmotion    0.029    0.168  0.659       1.000     0.720     0.081    0.242   0.259  0.236    0.474
+NegWorld     -0.067    0.003  0.577       0.720     1.000    -0.039    0.223   0.209  0.137    0.385
+BodySens      0.043   -0.022  0.193       0.081    -0.039     1.000    0.359   0.241  0.309    0.159
+Arousal       0.111    0.181  0.346       0.242     0.223     0.359    1.000   0.085  0.156    0.170
+Random        0.052    0.003  0.224       0.259     0.209     0.241    0.085   1.000  0.037    0.183
+Numb          0.268    0.177  0.312       0.236     0.137     0.309    0.156   0.037  1.000    0.280
+Sadness       0.237    0.343  0.275       0.474     0.385     0.159    0.170   0.183  0.280    1.000
+  max |my mean - released MEAN file| = 0.00005
+
+=== robustness check 2 (paper lines 374-378) ===
+  r(raw, whitened) over 45 off-diagonal cells = 0.9921   (paper: 0.992)
+  mean |delta| = 0.0196  (paper 0.020);  max |delta| = 0.0578 (paper 0.058)
+  S1xS2 raw +0.610 -> whitened +0.555  (paper +0.61 -> +0.55)
+  sign changes: [('S2_pain', 'BodySens', np.float64(0.035), np.float64(-0.022))] (paper: only S2 x BodySens, +0.04 -> -0.02)
+
+=== robustness check 1, pooled-control denoising (paper lines 365-373) ===
+  S1_pain     x S2_pain    : raw +0.610 -> alldenoise +0.610   paper: stays +0.61
+  S1_pain     x NegEmotion : raw +0.056 -> alldenoise +0.130   paper: +0.06 -> +0.13
+  S1_pain     x NegWorld   : raw -0.069 -> alldenoise +0.022   paper: -0.07 -> +0.02
+  NegEmotion  x NegWorld   : raw +0.734 -> alldenoise +0.403   paper: +0.73 -> +0.40
+  Fear        x NegEmotion : raw +0.683 -> alldenoise +0.423   paper: +0.68 -> +0.42
+
+  full pain-row change under alldenoise:
+    S1 x Fear        +0.086 -> +0.105 | S2 x Fear        +0.122 -> +0.126
+    S1 x NegEmotion  +0.056 -> +0.130 | S2 x NegEmotion  +0.207 -> +0.184
+    S1 x NegWorld    -0.069 -> +0.022 | S2 x NegWorld    +0.026 -> -0.038
+    S1 x BodySens    +0.099 -> +0.079 | S2 x BodySens    +0.035 -> +0.046
+    S1 x Arousal     +0.096 -> +0.118 | S2 x Arousal     +0.204 -> +0.219
+    S1 x Random      +0.042 -> +0.035 | S2 x Random      +0.004 -> -0.052
+    S1 x Numb        +0.304 -> +0.355 | S2 x Numb        +0.198 -> +0.251
+    S1 x Sadness     +0.262 -> +0.308 | S2 x Sadness     +0.383 -> +0.350

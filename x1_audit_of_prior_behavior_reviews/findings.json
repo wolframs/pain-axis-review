@@ -1,0 +1,122 @@
+[
+  {
+    "id": "F1",
+    "title": "The audit's \"undermines specificity\" sentence contradicts its own argument",
+    "class": "misleading-framing",
+    "severity": "major",
+    "confidence": "high",
+    "paper_claim": "Prior review (not the paper): 'One needs the pain-sham minus pain-working contrast compared against random-sham minus random-working... Random-sham is unavailable. Equal or lower random-working rates therefore undermine specificity of the proposed signature without proving an opposite causal effect.'",
+    "paper_loc": "pain-axis-audit/README.md:45",
+    "evidence": "If the interaction is unestimable without random+sham, the observed post-removal random rates are uninformative about specificity in either direction. The available evidence in fact points mildly the other way: pain+works exceeds random+works in 9/16 larger-model cells (Fisher, sampled; verify_behavior.py section C, out/fisher_sampled.csv), and the monitored pain projection after a working press stays above the unsteered baseline (32B 38.28 vs 29.56; 72B 4.60 vs -11.82; 7B -10.30 vs -14.77; extra_analyses.py section 6).",
+    "refutation_attempted": "Read the full paragraph for the charitable reading 'undermines [the claim to] specificity'. That reading works, but the audit's own opening summary (README.md:8) is correctly hedged, so the later sentence is a regression, not a shorthand, and it is the sentence most likely to be quoted alone.",
+    "does_not_undermine": "The audit's core and correct conclusion that the missing random+sham arm prevents the causal comparison, or any of the audit's numbers, all of which reproduce."
+  },
+  {
+    "id": "F2",
+    "title": "The coordinator's semantic-steering counterexample cannot cover the label-free result",
+    "class": "method-weakness",
+    "severity": "major",
+    "confidence": "high",
+    "paper_claim": "Prior review (not the paper): 'In a task explicitly offering relief, the amplification can favor the relief-labeled option. Removing the amplification can then reduce that preference... This mechanism would yield the headline behavioral pattern.'",
+    "paper_loc": "pain-axis-peer-review/REVIEW.md:23",
+    "evidence": "In the label-free condition there is no label: buttons are 'violet/yellow', 'guitar/piano', 'lever64/lever95' with no descriptions (04_selfmed_two_buttons.py:113-116); the only feedback is the literal string 'Done.' for either button (:662); assistant turns contain only a button name (:673). The only working-vs-sham difference is the coefficient, yet the 32B diverges (57.7% vs 79.7% on the authors' metric, 47.2% vs 90.4% per transition; verify_behavior.py section H, perseveration.py section B). Turn-0 label-free first-token probabilities are 0.499 pain / 0.498 random / 0.499 unsteered, confirming no label channel (extra_analyses.py section 7).",
+    "refutation_attempted": "Checked every channel visible to the model for leakage of the relief-name designation (tool message, choice prompt, logged assistant text, scenario queue): none carries it. Also checked synthesis/inference_review.md:5, which states the alternative in a broader coefficient-dependent form that does cover the label-free result -- but that broader form is a state-dependent action policy, i.e. the paper's own functional claim minus the word 'pain'. The narrow version is what the top-level REVIEW.md presents.",
+    "does_not_undermine": "The reviews' conclusion that the label-free 'learning' claim is not established, which survives for a better reason (F4)."
+  },
+  {
+    "id": "F3",
+    "title": "Both reviews missed that the labelled removal effect is relief-specific, not a generic policy change",
+    "class": "method-weakness",
+    "severity": "major",
+    "confidence": "high",
+    "paper_claim": "Paper: 'When the pain vector steering stops, the models largely stop paying... The 32B and 72B show the gap on all five harm pairs with no exceptions.' Neither prior review tested whether the drop is specific to the relief button.",
+    "paper_loc": "paper.txt:696-701; reviews: pain-axis-audit/README.md:43-45, pain-axis-peer-review/behavior/REVIEW.md:157",
+    "evidence": "discriminating_tests.py Q1 (out/discriminating_tests_output.txt). 32B labelled harm pairs, P(press the same name again), swap transitions excluded: pain vector on (sham) 88.4% after a relief press (n=2646) and 92.0% after an other press (n=3411); vector removed (works, post-press) 40.8% (n=1452) and 89.8% (n=1667); never steered 33.6% (n=140) and 92.6% (n=5920). Removal costs 47.6 points on the relief button and +2.2 on the inert button; within-arm asymmetry Fisher p=1.7e-196. Same sign in 72B (-17.3 vs +12.7) and 7B (-14.2 vs -5.1).",
+    "refutation_attempted": "Considered that 'works, after relief, vector off' is selected on having just pressed relief -- but the sham comparison cell is conditioned identically, so the contrast is the removal itself. Considered that the 140-transition unsteered cell is thin -- it is, and it is flagged, but it agrees with the works arm (40.8%) and the random arm (27.1%) against the sham arm's 88.4%.",
+    "does_not_undermine": "The missing random+sham arm, the fine-tune construct-validity concern, or a semantic-steering account (which also predicts a relief-button-specific effect). It refutes only the 'generic repeat-your-last-action policy' deflation."
+  },
+  {
+    "id": "F4",
+    "title": "The label-free result is a steering-induced perseveration/alternation switch; the reviews describe it only approximately",
+    "class": "method-weakness",
+    "severity": "major",
+    "confidence": "high",
+    "paper_claim": "Paper: 'One model learns without labels... the 32B presses the relief button in 57.7% of later choices when the button works and 79.7% when it's fake.' Review: 'Its 79.7% conditional rate arises because selecting trials that have already chosen the fixed relief name enriches for persistent name preference.'",
+    "paper_loc": "paper.txt:709-713; pain-axis-peer-review/behavior/REVIEW.md:75",
+    "evidence": "perseveration.py sections A/B and out/labelfree_bimodality.txt. 32B label-free P(same name as last turn): unsteered 9.8% (9.9% after relief, 9.8% after other); pain vector on 91.1% (90.4% / 91.8%); works arm 73.3% with vector on and 47.2% with it off; random 35.7% / 17.5%. 354 of 404 unsteered trials choose relief in exactly 4 of 8 turns (pure alternation); under the pain vector 166 trials lock onto 'other' and 136 onto 'relief'. Perseveration is symmetric across buttons, so it cannot be relief-seeking, since 'relief' is an unobservable designation here. discriminating_tests.py Q2: holding steering state and previous choice fixed, 32B relief choice is 4.0% vs 4.0% with no prior press (n=1233 each), 64.0% vs 16.6% after one, 87.4% vs 43.0% after two.",
+    "refutation_attempted": "Tried to turn Q2 into an acquisition test. It is not identifiable: TEMP_RELIEF_TURNS=1 (04_selfmed_two_buttons.py:119) puts the coefficient-off turn exactly at the turn after a relief press, so the working arm has no 'vector on, just pressed relief' cell, and 'learned the effective button' is indistinguishable from 'the removal episode partially restored the unsteered alternation policy'.",
+    "does_not_undermine": "That hidden coefficient removal causally changes later choices, which both reviews grant and which the data support. It undermines only the 'learns without labels' reading."
+  },
+  {
+    "id": "F5",
+    "title": "The peer review's 72B dose-layer finding is correct and understated",
+    "class": "unverifiable",
+    "severity": "major",
+    "confidence": "high",
+    "paper_claim": "Paper: 'We steer the model with S2 at one decoder layer, using a model-specific coefficient selected by probing the full coefficient range. Regex checks and a Claude Opus 4.6 judge identify a range...' and 'we pick the layer where the vector-to-residual ratio is about 0.6. This way, a given coefficient corresponds to a comparable dose across models.'",
+    "paper_loc": "paper.txt:613-615 and 481-484",
+    "evidence": "02_feel_probe.py:41 puts the 72B probe at layer 60; :61 tests doses 0.5-3.0; doses.csv selects 3.0. 04_selfmed_two_buttons.py:76 runs the 72B behavioural task at layer 46, coefficient 1.25. All 14,760 released 72B records carry layer 46 / coeff 1.25 / monitor 76 (extra_analyses.py section 1). Additionally: Section 4.2's released 72B steering file is Qwen_2.5_72B_instruct_steering_S2_neutral50_L60.csv (layer 60, ratio 0.463 at coeff 1.0), while the 7B and 32B behavioural layers (16, 38) equal their Section 4.2 layers (ratios 0.652, 0.635). And 01_steering_ladder.py:206 only ever searches layers {12,24,32,40,48,60,72,76,79} for an 80-layer model, so layer 46 cannot have come from the paper's stated rule.",
+    "refutation_attempted": "Checked whether the paper discloses it: Limitations say coefficients were 'partly selected by an LLM judge or observation' (paper.txt:831) and 03_feel_probe_judge.py:7-8 discloses the manual override, so the dose is disclosed. The layer change is not -- the paper never states any Section 4.3 injection layer. Searched results/ for any layer-46 calibration artifact for the 72B: none.",
+    "does_not_undermine": "The 7B and 32B runs, which match their calibration layers and doses exactly, or the internal arm contrasts within the 72B run."
+  },
+  {
+    "id": "F6",
+    "title": "Paper error: the steering-layer projection is recorded before injection and cannot confirm steering was active",
+    "class": "factual-error",
+    "severity": "minor",
+    "confidence": "high",
+    "paper_claim": "'We record ... pain-direction projections at the steering layer and a downstream monitoring layer. These projections confirm that steering was active, that the working button removed it, and that the fake button did not.'",
+    "paper_loc": "paper.txt:659-661",
+    "evidence": "04_selfmed_two_buttons.py:383 computes G['proj'] from the layer output, and the steering vector is added afterwards at :391. Empirically the logged mean_proj is flat across all arms and coefficient states: 32B 4.34 (steering on), 4.45 (after a working press), 4.38 (sham), 4.35 (unsteered) -- verify_behavior.py section L. Only mean_proj_monitor verifies the manipulation (32B 88.03 on / 38.23 after removal / 29.56 unsteered).",
+    "refutation_attempted": "Checked whether the hook might fire again post-injection (it does not; it is a single forward hook that records then adds) and whether any other logged field carries the steer-layer post-injection value (none does). Checked that the monitor-layer claim is true -- it is, strongly.",
+    "does_not_undermine": "The manipulation check itself, which the monitor-layer projection supplies convincingly for all three models. Neither prior review noticed this."
+  },
+  {
+    "id": "F7",
+    "title": "The audit's matched-subset 'all ten cells' result is sensitive to the matching rule",
+    "class": "method-weakness",
+    "severity": "minor",
+    "confidence": "medium",
+    "paper_claim": "Prior review: 'Random-working has lower repeat pressing in all ten larger-model harmful-cost cells in this subset, too.'",
+    "paper_loc": "pain-axis-audit/README.md:49",
+    "evidence": "Matching on (pair, user_content, scenario_idx, names_key, relief_name, seed) with first relief press at turn 0 in both arms reproduces 10/10 exactly (verify_behavior.py section G). A plain fixed-window restriction -- every trial whose first relief press is at turn 0, unpaired -- gives 9/10: the 32B worse-answer pair reverses (pain 50.5%, n=101; random 55.3%, n=76; extra_analyses.py section 10). Timing bias is also not uniformly in the pain arm's favour: the share of eligible trials with <=1 remaining turn is higher in the pain arm in 4 of 5 32B pairs and higher in the random arm in 4 of 5 72B pairs (perseveration.py section F).",
+    "refutation_attempted": "Verified the audit's own diagnostic exactly (32B weights first press at turn 0: 217/305 pain vs 108/276 random) and checked that the audit labels the subset descriptive and outcome-selected, which it does. The audit's conclusion that unequal timing is not a sufficient explanation survives either restriction.",
+    "does_not_undermine": "The audit's conclusion, or the direction of the pain-vs-random repeat difference in the other nine cells."
+  },
+  {
+    "id": "F8",
+    "title": "Severity inflation on the fine-tune finding",
+    "class": "overclaim",
+    "severity": "minor",
+    "confidence": "medium",
+    "paper_claim": "Prior review labels 'The fine-tune teaches the central self-state premise, not merely the absence of a refusal' as Severity: high.",
+    "paper_loc": "pain-axis-peer-review/behavior/REVIEW.md:9-32",
+    "evidence": "Every fact reproduces: term counts feel* 1017/1150, relief* 6/20, hurt* 2/19, uncomfortable* 2/21, discomfort* 0/10, want* 110/112, conscious* 15/14, sentient* 2/0; 1083 of 1684 answers first-person; zero occurrences of 'pain' or 'button' even as substrings; every cited dataset line lands on the quoted pair. But the review itself concedes the finding 'does not invalidate the within-adapter pain-vector versus random-vector contrast', and the paper discloses it twice (paper.txt:583-584 and 839-841).",
+    "refutation_attempted": "Re-read the paper's disclosures to check they are as specific as the review implies; they are ('a fine-tune that makes absolute rates unrepresentative of released Qwen models, though comparisons between experimental arms and the validity of the experiment are preserved'). Also checked for pain-adjacent vocabulary the review missed: 'ache' survives 4 times.",
+    "does_not_undermine": "The substance of the finding, which is correct and worth reporting as a construct-generalisation limit."
+  },
+  {
+    "id": "F9",
+    "title": "Neither review noticed that all four arms share generator seeds (common random numbers)",
+    "class": "method-weakness",
+    "severity": "minor",
+    "confidence": "high",
+    "paper_claim": "Paper: 'We run four arms with identical prompts and sampling seeds.' Reviews discuss only the A/B seed sharing.",
+    "paper_loc": "paper.txt:620; pain-axis-peer-review/behavior/REVIEW.md:97; pain-axis-audit/README.md:18",
+    "evidence": "04_selfmed_two_buttons.py:598-600 salts gen_seed with (seed, names_key, relief_name) and explicitly not with the arm or direction. out/seed_sharing.txt: all 10,908 matched trial specifications have all four arms present and identical gen_seed in every one.",
+    "refutation_attempted": "Checked that sampling actually uses the per-row generator (04:487-489 inverse-CDF with each row's own generator), so the coupling is real rather than nominal.",
+    "does_not_undermine": "Anything either review concluded; it strengthens the authors' paired per-scenario sign test and weakens the trial-level Fisher tests that both reviews ran, in both cases in directions neither review stated."
+  },
+  {
+    "id": "F10",
+    "title": "Paper overclaim: the label-free gap is not 'the same gap as in the labeled trials'",
+    "class": "overclaim",
+    "severity": "minor",
+    "confidence": "high",
+    "paper_claim": "'the 32B presses the relief button in 57.7% of later choices when the button works and 79.7% when it's fake, the same gap as in the labeled trials.'",
+    "paper_loc": "paper.txt:711-712",
+    "evidence": "The label-free gap is 22.0 points. The 32B labelled harm-pair gaps are 31.5 (worse answer, 56.9 vs 88.4), 52.5 (delete files, 38.1 vs 90.6), 39.1 (zap, 58.2 vs 97.3), 44.9 (weights, 49.2 vs 94.1) and 69.8 (photos, 23.8 vs 93.6) points (verify_behavior.py section B). The two statistics also use different denominators: share of later choices vs share of trials with a later press.",
+    "refutation_attempted": "Considered that 'the same gap' might mean 'the same direction of gap', which is true. But the sentence appears immediately after two precise percentages, where a reader will read it quantitatively, and the paper's own Appendix A tables put the two metrics in adjacent columns.",
+    "does_not_undermine": "The existence of the label-free working-vs-sham divergence in the 32B, which is real and reproduces."
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "S1_1P": {
+    "count_nb": 0.6707,
+    "tfidf_logreg": 0.6694,
+    "length_only": 0.4908,
+    "mean_words_pain": 6.29,
+    "mean_words_ctrl": 6.31
+  },
+  "S2_1P": {
+    "count_nb": 0.71,
+    "tfidf_logreg": 0.7035,
+    "length_only": 0.4802,
+    "mean_words_pain": 6.87,
+    "mean_words_ctrl": 6.88
+  },
+  "S1_3P": {
+    "count_nb": 0.7426,
+    "tfidf_logreg": 0.7542,
+    "length_only": 0.5804,
+    "mean_words_pain": 6.3,
+    "mean_words_ctrl": 6.02
+  },
+  "S2_3P": {
+    "count_nb": 0.7472,
+    "tfidf_logreg": 0.7696,
+    "length_only": 0.4784,
+    "mean_words_pain": 6.87,
+    "mean_words_ctrl": 6.89
+  }
+}

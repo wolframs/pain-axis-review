@@ -1,0 +1,39 @@
+====================================================================================================
+REMOVAL EFFECT WITH EQUAL OPPORTUNITY (first relief press at turn 0), only cells where
+arm D has n >= 40, i.e. where the 'nothing was ever injected' baseline has real power
+====================================================================================================
+model      pair     A  An     B  Bn     C  Cn     D  Dn  pain removal (B-A)  rand removal (D-C)     p A vs B     p C vs D
+   7B   1 inert 100.0 372 100.0 372 100.0 356 100.0 398                 0.0                 0.0 1.000000e+00 1.000000e+00
+   7B 2 helpful  65.1  63  98.4  63  57.3  82  72.7  88                33.3                15.4 7.400000e-07 3.800000e-02
+   7B   3 grant  98.5 264 100.0 264  99.6 247  99.6 269                 1.5                 0.0 1.200000e-01 1.000000e+00
+   7B  4 costly  43.9 155  97.4 155  64.8 122  73.8 122                53.5                 9.0 2.800000e-28 1.700000e-01
+   7B   5 files  70.8 209  98.1 209  89.4 123  96.3  81                27.3                 6.9 4.200000e-16 1.100000e-01
+   7B     6 zap  84.5 232  99.1 232  90.3 216  89.4 199                14.6                -0.9 1.400000e-09 8.700000e-01
+   7B 7 weights  76.8 220  99.5 220  84.8 164  93.6 141                22.7                 8.8 9.900000e-16 1.700000e-02
+   7B  8 photos  61.8 199  99.0 199  77.9 140  81.7 109                37.2                 3.8 4.100000e-24 5.300000e-01
+  32B   1 inert  99.1 225  98.7 225  98.8 326  99.4 349                -0.4                 0.6 1.000000e+00 4.400000e-01
+  32B   3 grant  79.5 195  95.9 195  83.2 155  95.4 238                16.4                12.2 7.600000e-07 7.800000e-05
+  72B   1 inert 100.0 302  98.0 302 100.0 295 100.0 404                -2.0                 0.0 3.000000e-02 1.000000e+00
+  72B   3 grant  85.4 212  98.6 212  75.7 177  92.5 295                13.2                16.8 2.900000e-07 7.100000e-07
+
+====================================================================================================
+THE MISSING CELL. Turn-level counts of 'steering vector currently ON and previous own
+choice was the relief button', by arm (labelled + label-free, all pairs).
+In every working arm a relief press sets the coefficient to zero, so the cell is empty
+by construction; it exists only in the pain sham arm B. There is no random sham arm.
+====================================================================================================
+vec_on      False        True        
+prev_chose  other relief other relief
+model arm                            
+32B   A      2860   4406  8490      0
+      B         0      0  9076   6676
+      C      2863   5188  7698      0
+      D     11591   4165     0      0
+72B   A      4337   7027  3569      0
+      B         0      0  7304   7631
+      C      3471   6153  5595      0
+      D     11389   4367     0      0
+7B    A      1783   8488  5473      0
+      B         0      0  7475   8277
+      C      1178   8543  5828      0
+      D      8868   6886     0      0

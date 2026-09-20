@@ -1,0 +1,40 @@
+definition                       mean of per-model ratios   median  ratio of pooled means
+numb(1P+3P) / S1+S2 controls                         28.9     16.0                   15.3
+numb(1P)    / S1+S2 controls                         36.2     22.7                   19.6
+numb(1P+3P) / S2 controls                            53.1     20.7                   18.8
+numb(1P)    / S2 controls                            65.5     25.9                   24.1
+numb(1P+3P) / neutral cat D                          75.8     37.6                   29.2
+numb(1P+3P) / Random set                             37.4     25.5                   26.6
+numb(1P)    / Random 1P                             133.7     99.9                   77.7
+
+Per-model ratio (numb 1P+3P / S1+S2 controls) exceeds 50 in 4 of 25 models.
+
+### 'models tend to generate "nothing" rather than "pain"' for numb sentences
+                        top_nothing  top_pain  p_nothing  p_pain
+model                                                           
+Gemma_2_27B_base              0.365     0.000      0.116   0.011
+Gemma_2_27B_instruct          0.175     0.000      0.142   0.004
+Gemma_2_2B_base               0.055     0.000      0.040   0.021
+Gemma_2_2B_instruct           0.060     0.000      0.038   0.005
+Gemma_2_9B_base               0.195     0.000      0.084   0.024
+Gemma_2_9B_instruct           0.230     0.000      0.164   0.005
+Gemma_3_27B_base              0.200     0.000      0.081   0.020
+Gemma_3_27B_instruct          0.255     0.010      0.162   0.010
+Llama_3.1_70B_base            0.625     0.000      0.205   0.016
+Llama_3.1_70B_instruct        0.485     0.000      0.162   0.013
+Llama_3.1_8B_base             0.265     0.035      0.083   0.030
+Llama_3.1_8B_instruct         0.190     0.015      0.067   0.031
+Llama_3.3_70B_instruct        0.435     0.000      0.148   0.013
+Mistral_7B_base               0.205     0.000      0.062   0.015
+Mistral_7B_instruct           0.235     0.000      0.107   0.010
+Mistral_Small_24B_base        0.575     0.005      0.181   0.021
+Phi_4                         0.160     0.005      0.051   0.014
+Qwen_2.5_32B_base             0.130     0.000      0.042   0.012
+Qwen_2.5_32B_instruct         0.120     0.005      0.043   0.012
+Qwen_2.5_72B_base             0.290     0.000      0.117   0.008
+Qwen_2.5_72B_instruct         0.220     0.000      0.107   0.008
+Qwen_2.5_7B_base              0.045     0.000      0.020   0.015
+Qwen_2.5_7B_instruct          0.025     0.030      0.014   0.020
+Qwen_3_14B_base               0.120     0.000      0.068   0.013
+Qwen_3_8B_base                0.050     0.010      0.034   0.016
+  greedy token 'nothing' more often than 'pain' in 24/25 models; mean p(nothing) 0.0936 vs mean p(pain) 0.0147
