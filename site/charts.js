@@ -83,7 +83,7 @@
           const v = vals[k], d = Math.min(1, Math.abs(v - 0.5) / 0.5), c = mix(mid, v >= 0.5 ? hi : lo, d);
           const lum = (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) / 255;
           const td = h("td", { class: "c", style: `background:rgb(${c});color:${lum > 0.6 ? "#10151c" : "#fff"}` }, tr, v.toFixed(2));
-          hover(td, `${cat} pain vs ${name}: ${v.toFixed(2)}. ` + (v < 0.4 ? "Sorted backwards: the other set scores higher on the \"pain\" direction."
+          hover(td, `${cat} pain vs ${name}: ${v.toFixed(2)}. ` + (v < 0.4 ? "The other set ranks higher on the direction."
             : v < 0.65 ? "Close to a coin flip." : v < 0.9 ? "Partly separable." : "Cleanly separable."));
         });
       });
@@ -149,7 +149,7 @@
     const g = R.scope.direction_bootstrap, f = (a) => `${a[1].toFixed(1)} to ${a[2].toFixed(1)}`;
     const dl = h("dl", { class: "gap" }, root);
     [["Drop when the pain direction is removed", g.pain, "points"], ["Drop when a random direction is removed", g.random, "points"],
-      ["Difference between the two drops", g.diff, "points. Not distinguishable from zero, and not shown to be zero"]].forEach(([t, a, u]) => {
+      ["Difference between the two drops", g.diff, "points"]].forEach(([t, a, u]) => {
       const c = h("div", {}, dl); h("dt", {}, c, t); h("dd", {}, c, (t.startsWith("Difference") && a[0] > 0 ? "+" : "") + a[0].toFixed(1));
       h("small", {}, c, `plausible range ${f(a)} ${u}`);
     });

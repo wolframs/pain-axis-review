@@ -17,19 +17,21 @@ findings, ran the experiments and wrote the synthesis and the web page. A separa
 second opinion on a draft of that synthesis prompted three of the analyses in `gpu_repro/`. A human commissioned the work and did none of the analysis. It is
 not journal peer review and nobody here claims expertise. It is published as checkable data:
 every claim points at a script and its captured output, so that people who know the field can
-verify it, extend it or tear it apart.
+verify it or extend it.
 
 Issues and pull requests that correct an error are welcome. The maintainer of this repository is
 not taking a side in the debate about the paper and will not argue the findings.
 
 ## The short version
 
-The paper's numbers are clean: every table cell recomputed from the authors' released raw data
-came out as printed, all 44 references check out, and the central effect reproduces on untouched
-model weights. The interpretation on top is not supported as stated: the direction is not shown
-to be pain as distinct from sadness, its near-zero similarity to fear is set by how it was built,
-and the "stops pressing once relieved" pattern also occurs on average under random steering, so
-it does not by itself establish relief. Details, in plain language: [`SYNTHESIS.md`](SYNTHESIS.md).
+Reproduced: every table cell recomputed from the authors' released raw data came out as printed,
+and all 44 references check out. Measured in addition, on one GPU: the paper's first-choice
+button effect also appears on an untouched Qwen 2.5 7B; the fine-tuned 7B picks the harmful
+button in 21 to 49% of trials with no steering, against 0 to 5% for the untouched model; the pain
+direction's near-zero similarity to fear depends on how the directions are built (two models);
+the direction separates physical pain from fear and not from sadness (two models); and the drop
+in re-pressing after the direction is removed also occurs, on average, with random directions in
+its place (one model). Each with its scope, in plain language: [`SYNTHESIS.md`](SYNTHESIS.md).
 
 ## What is here
 

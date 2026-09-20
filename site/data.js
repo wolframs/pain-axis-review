@@ -1711,7 +1711,7 @@ window.REVIEW = {
    "title": "Synthesis",
    "who": "Coordinator",
    "note": "What holds, what doesn't, in plain language.",
-   "words": 2974
+   "words": 2537
   },
   {
    "slug": "brief",

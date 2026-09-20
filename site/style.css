@@ -54,13 +54,14 @@ a:hover { text-decoration-color: var(--ink); }
 .redline { font: 700 clamp(32px, 4.6vw, 58px)/1.22 var(--display); letter-spacing: -.025em; margin: 0; text-wrap: balance; }
 .redline del { color: var(--del); text-decoration-thickness: .07em; text-decoration-color: var(--del); background: linear-gradient(transparent 14%, var(--del-bg) 14%, var(--del-bg) 92%, transparent 92%); -webkit-box-decoration-break: clone; box-decoration-break: clone; font-weight: 400; padding-inline: .08em; border-radius: 3px; }
 .redline ins { color: var(--ins); text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .12em; background: linear-gradient(transparent 14%, var(--ins-bg) 14%, var(--ins-bg) 92%, transparent 92%); padding-inline: .08em; border-radius: 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.redline mark { color: inherit; background: linear-gradient(transparent 62%, var(--ins-bg) 62%, var(--ins-bg) 94%, transparent 94%); padding-inline: .04em; }
 .redline sup { font: 600 .26em/1 var(--mono); color: var(--ink-2); vertical-align: super; margin-left: .2em; letter-spacing: 0; }
 .lede { font-size: 21px; line-height: 1.55; max-width: 38em; margin: 34px 0 0; color: var(--ink); }
 .lede + .lede { margin-top: 16px; color: var(--ink-2); font-size: 18px; }
 .margin { list-style: none; margin: 58px 0 0; padding: 0; display: grid; gap: 14px; counter-reset: c; }
 .margin li { counter-increment: c; background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--ink-2); border-radius: 4px 10px 10px 4px;
   padding: 12px 14px 13px; font: 400 14.5px/1.45 var(--read); color: var(--ink-2); }
-.margin li::before { content: "Comment " counter(c); display: block; font: 600 11px/1 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
+.margin li::before { content: "Note " counter(c); display: block; font: 600 11px/1 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 7px; }
 .margin b { color: var(--ink); font-weight: 600; }
 
 /* sections */
