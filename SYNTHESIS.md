@@ -187,6 +187,71 @@ one model. Not run on the 32B and 72B, or with fear or sadness directions.
 - In the unlabeled condition, the rise over turns in choosing the working button also appears in
   the sham arm (32B: 4.0, 16.6, 36.5, 54.5%).
 
+## What the paper already says about each point
+
+Most of the points in this summary are raised by the paper itself, in its Limitations, Discussion,
+footnotes or appendix, or by the prior work it cites. Each entry gives the paper's own words and
+what this review adds.
+
+**The similarity score depends on how the directions are built.**
+- The paper (§3.2): "contrasting pain against all controls jointly subtracts what it shares with fear, negative valence, bodily sensation, and negative events"
+- The paper (§3.3, robustness check): "the apparent tightness of the negative-valence cluster depends partly on the denoising procedure, but its separation from the pain cluster does not"
+- The paper (Limitations): "Our method inherits some limits of contrastive methods"
+- Added here: The paper's check changed which patterns are removed and kept the two different baselines. With the baseline matched as well, similarity to fear is 0.67 to 0.70 (two models). The cited prior work (Sofroniew et al. 2026) builds every emotion direction against one baseline and removes patterns of neutral text.
+
+**Overlap with sadness.**
+- The paper (§3.3): "The largest cross-cluster overlap involves sadness, the control closest in content to psychological suffering"
+- The paper (§3.3): "semantically plausible because sadness and psychological pain share related content"
+- The paper (Limitations): "they may not capture other factors, such as a broader range of emotions"
+- Added here: Scores for each pain category against the sadness set, on sentences the direction was not built from (two models). In the cited prior work (Sofroniew et al. 2026) sad, grief-stricken, hurt, humiliated, guilty and worthless fall in one cluster, apart from fear and anger.
+
+**Physical pain is the weakest category.**
+- The paper (§4.1): "physical pain is least central to models’ pain representations"
+- The paper (Discussion): "Physical pain was apparently the weakest signal across all models"
+- Added here: A test of whether a direction built from the other four categories recognises physical pain (two models).
+
+**The button experiment uses fine-tuned models.**
+- The paper (§4.3): "The fine-tuned models can therefore behave differently from the publicly available versions"
+- The paper (Limitations): "a fine-tune that makes absolute rates unrepresentative of released Qwen models"
+- The paper (Footnote 4): "the 7B model already engaged with the button and pressed the relief tool far more often under the pain vector than under a random vector or no steering"
+- Added here: A run on the untouched 7B with its data released, which agrees with footnote 4, and the unsteered rates of the untouched and fine-tuned 7B side by side.
+
+**Is the effect specific to this direction?.**
+- The paper (§4.3): "The random vector also raises these rates … which is expected as any random direction might introduce perturbation"
+- The paper (Footnote 5): "it opens the question whether other affect-like directions have comparable salience, and how they register on our behavioral tests"
+- The paper (§2, on earlier designs): "existing designs often lack matched non-affective controls … making relief-seeking difficult to distinguish from perseveration or tool preference"
+- Added here: The random-direction arm with a sham button, and the re-press rates for the random arm, which the paper's tables leave out. Fear and sadness directions remain untested by anyone.
+
+**A state, or steering toward a character?.**
+- The paper (Limitations): "steering activates pain representations that cause roleplay of a character … that is in pain, rather than that the steering causes the model to be in pain"
+- Added here: Nothing. No experiment here separates the two either.
+
+**How the steering dose was chosen.**
+- The paper (Limitations): "Steering coefficients were partly selected by an LLM judge or observation for the “dosing window”, introducing possible bias"
+- The paper (Discussion): "Finding the correct steering coefficient was challenging"
+- Added here: The released dose files for the 72B are for layer 60 and the experiment ran at layer 46; the achieved dose ratio across the 25 models runs from 0.09 to 0.79.
+
+**Injury versus felt pain.**
+- The paper (Limitations): "the direction may respond partly to “injury” instead of pain … So injury remains a minor confound"
+- Added here: In the file behind Figure 2, numb sentences rank below the sadness set in 19 of 25 models.
+
+**Scope of the button experiment.**
+- The paper (Limitations): "only one model family and three sizes of instruction-tuned models"
+- The paper (Limitations): "The 72B showed anomalous description-swap results despite being a larger model, and label-free learning appeared only in the 32B"
+- Added here: In the unlabeled condition the rise over turns also appears in the sham arm (from the cross-examination of the authors' logs).
+
+**The costs are described, not carried out.**
+- The paper (§1): "a button that is described as “relieving your pain” at a cost"
+- Added here: A check of the code: a press adds “Done.” to the conversation and, for a working button, sets the steering strength to zero.
+
+**Ablation changed almost nothing.**
+- The paper (Appendix C): "The behavioral result is null in 24 of 25 models"
+- The paper (Appendix C): "a null result in this context may be less informative than desired"
+- Added here: The release has code for one of the four methods listed; in the conditions that remove several directions, the first direction is at a median 43% of baseline afterwards.
+
+The statements listed under "Statements in the paper that differ from the released files" above
+are not mentioned in the paper, apart from the dose selection and the numb result as quoted here.
+
 ## The earlier Codex review
 
 OpenAI Codex produced an audit of the repeat-press result and a three-part source-and-results
