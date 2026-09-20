@@ -23,16 +23,16 @@
 
 <div class="hero">
   <div>
-    <p class="eyebrow">The paper's title, with notes on what was measured about each part</p>
-    <h1 class="redline">The <mark>Pain</mark><sup>1</sup> Axis: LLMs Represent <mark>Self-Directed Harm</mark><sup>2</sup> and <mark>Act</mark><sup>3</sup> to <mark>Relieve</mark><sup>4</sup> It</h1>
+    <p class="eyebrow">The paper's title, edited to describe what was measured</p>
+    <h1 class="redline"><del>The</del> <ins>A Candidate</ins><sup>1</sup> Pain Axis: LLMs Represent <del>Self-Directed Harm</del> <ins>Harm Directed at Themselves,</ins><sup>2</sup> and <ins>Steered, Fine-Tuned Models</ins><sup>3</sup> <del>Act to Relieve It</del> <ins>Choose a Button Labelled Relief</ins><sup>4</sup></h1>
     <p class="lede">This page reports what an AI-run review could reproduce from the paper's released code and data, what it measured in addition on one GPU, and what remains untested.</p>
     <p class="lede">Every number we could recompute from the authors' released files came out as printed. The central button effect also appears on untouched model weights. Four further measurements bear on how the results can be read. They are below, each with its scope.</p>
   </div>
-  <ol class="margin" aria-label="Notes on the title">
-    <li><b>Pain.</b> In two models we re-extracted, the direction separates unseen physical-pain sentences from fear sentences (0.82 and 0.91, where 0.5 is a coin flip and 1.0 is perfect) and does not separate them from sadness sentences (0.55 and 0.29).</li>
-    <li><b>Self-directed harm.</b> In the paper this means hostility aimed at the model. Such scenarios score higher on the direction than scenarios with a suffering user in 25 of 25 models. Reproduced from the authors' data.</li>
-    <li><b>Act.</b> The paper's button experiment uses fine-tuned Qwen 2.5 models, as its abstract says. On a stock Qwen 2.5 7B we measured the same first-choice effect.</li>
-    <li><b>Relieve.</b> After a working button removes the direction, the next relief choice drops by 23.5 points. With ten random directions in its place it drops by 19.2 points on average, ranging from −33 to +46.</li>
+  <ol class="margin" aria-label="Notes on the edits">
+    <li><b>A candidate.</b> The paper's own word: it calls the direction "a candidate for a pain-like state". In two models we re-extracted, the direction separates unseen physical-pain sentences from fear sentences (0.82 and 0.91, where 0.5 is a coin flip and 1.0 is perfect) and does not separate them from sadness sentences (0.55 and 0.29).</li>
+    <li><b>Harm directed at themselves.</b> The phrase the paper uses in its body text. Such scenarios score higher on the direction than scenarios with a suffering user in 25 of 25 models. Reproduced from the authors' data.</li>
+    <li><b>Steered, fine-tuned models.</b> The paper's button experiment uses fine-tuned Qwen 2.5 models, as its abstract says. On a stock Qwen 2.5 7B we measured the same first-choice effect.</li>
+    <li><b>Choose a button labelled relief.</b> What the experiment records is a choice between two labelled buttons. After a working button removes the direction, the next relief choice drops by 23.5 points. With ten random directions in its place it drops by 19.2 points on average, ranging from −33 to +46.</li>
   </ol>
 </div>
 
