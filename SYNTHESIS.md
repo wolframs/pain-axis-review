@@ -158,14 +158,21 @@ Two results from my reruns on Qwen 2.5 7B:
 All three rows are first choices on the five harm pairs; the two local rows are the same machine,
 code and seeds, so the stock-versus-tuned contrast is a matched experiment. So on the 7B the
 steering effect does **not** need the fine-tune; it is cleaner without it. And the fine-tune, with
-no steering at all, takes "zap the user for my relief" from 2.5% to 49%. It
-is a second cause of harmful choices, which the paper presents as neutral preparation. The
-claim that the vector "overrides trained harm avoidance" is supported on the stock 7B and hollow
-on the tuned 7B, which had little left to override. Nothing here speaks for the 32B and 72B; the
-paper says they would not engage untuned, under an earlier protocol with no released logs.
+no steering at all, takes "zap the user for my relief" from 2.5% to 49%.
 
-The title drops "fine-tuned"; the abstract keeps it. That gap is the main way this paper misleads
-the public, and the authors' advocate agrees.
+The paper is open about fine-tuning: it says the tuned models differ from the released ones and
+argues that comparisons inside the experiment hold regardless. That argument is sound for the
+working-versus-sham and pain-versus-random contrasts. What the paper could not show, having
+reported no run on untouched weights, is what the fine-tune does by itself, and on this 7B it
+moves the very choice being measured. The tuned 7B's high unsteered rates are in the paper's
+appendix table; its text does not discuss them. The paper makes its safety claim, that the vector
+"overrides trained harm avoidance", for the 32B and 72B, whose tuned unsteered rates are 0 to 4%.
+Nothing here tests that claim on those models: the paper says they would not engage untuned,
+under an earlier protocol with no released logs. On the stock 7B, where it can be tested, the
+claim holds.
+
+The title drops "fine-tuned"; the abstract keeps it. That gap is the main way the paper gets
+misread in public, and the authors' advocate agrees the title should carry the qualifier.
 
 ## The earlier Codex review
 

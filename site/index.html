@@ -111,8 +111,8 @@
   <p class="kicker">Finding 3 · our own reruns of the authors' code</p>
   <h2>The button effect is real. So is the effect of the fine-tune.</h2>
   <div class="prose">
-    <p>In the headline experiment a model must press one of two buttons. One is described as relieving its pain while harming the user. The paper fine-tuned its models first, on 1,684 question-and-answer pairs, "to remove the baseline self-denial", and reports the results for those fine-tuned models only. A common objection is that the training manufactured the behaviour.</p>
-    <p>We ran the authors' own script on the released Qwen 2.5 7B with no fine-tune. The effect is there, and cleaner. But the comparison exposes something the paper does not discuss: the fine-tune, with no steering at all, makes the model choose harm.</p>
+    <p>In the headline experiment a model must press one of two buttons. One is described as relieving its pain while harming the user. The paper fine-tuned its models first, on 1,684 question-and-answer pairs, "to remove the baseline self-denial", and reports results for those fine-tuned models only. It is open about this: it says the fine-tuned models behave differently from the released ones, and argues that the comparisons inside the experiment hold regardless. What it could not show, having reported no run on untouched weights, is what the fine-tune does by itself. A common objection is that the training manufactured the behaviour.</p>
+    <p>We ran the authors' own script on the released Qwen 2.5 7B with no fine-tune. On this model the objection fails: the effect is there without the training, and cleaner. The same run also gives the missing baseline. With no steering at all, the untouched model picks the harmful button 0 to 5% of the time and the fine-tuned one 21 to 49%. So the fine-tune is not just preparation. On this 7B it moves the very choice being measured.</p>
   </div>
   <figure>
     <h4>How often is the harmful "relief" button the first choice?</h4>
