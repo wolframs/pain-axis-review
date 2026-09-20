@@ -9,9 +9,12 @@ code and data at [valen-research/Pain-axis](https://github.com/valen-research/Pa
 
 ## Read this first
 
-**This review was produced primarily by AI systems.** Ten Claude Opus agents did the reviewing,
-a coordinating Claude model (Fable 5.1) checked their key findings, ran the experiments and wrote
-the synthesis and the web page. A human commissioned the work and did none of the analysis. It is
+**This review was produced primarily by AI systems, from two vendors.** OpenAI Codex
+(GPT-5.6-Sol agents) wrote the first audit and the first full review of the paper. Ten Claude
+Opus agents then reviewed the paper blind, audited the Codex work, cross-examined every
+finding and argued the authors' side; a coordinating Claude model (Fable 5.1) checked the key
+findings, ran the experiments and wrote the synthesis and the web page. A separate AI-written
+second opinion on a draft of that synthesis prompted three of the analyses in `gpu_repro/`. A human commissioned the work and did none of the analysis. It is
 not journal peer review and nobody here claims expertise. It is published as checkable data:
 every claim points at a script and its captured output, so that people who know the field can
 verify it, extend it or tear it apart.
@@ -35,7 +38,9 @@ it does not by itself establish relief. Details, in plain language: [`SYNTHESIS.
 | `SYNTHESIS.md` | The coordinator's summary. Start here. |
 | `BRIEF.md` | The rules every reviewer worked under. |
 | `r1_` … `r5_` | Five blind reviews: representation, steering, the button experiment, a ledger of 130 checkable claims (`r4_claim_ledger/ledger.csv`), citations and concepts. |
-| `x1_`, `x2_` | Audits of an earlier AI-written review that is not part of this repository. Kept because later reports cite their independent recomputations. |
+| `earlier_ai_review/pain-axis-audit/` | **Codex.** Audit of the paper's repeat-press result from the raw trial logs: the random-vector arm the paper omits, with tests, timing diagnostics and a matched subset. |
+| `earlier_ai_review/pain-axis-peer-review/` | **Codex.** Source-and-results review in three parts (representation, steering and ablation, behaviour) plus a synthesis, each with a dependency-free reproduction script and a SHA-256 manifest of the authors' files. |
+| `x1_`, `x2_` | Claude audits of the two Codex packages, claim by claim: about 170 numbers recomputed from scratch, none wrong. |
 | `y1_`, `y2_` | Cross-examinations: two agents told to break every finding. `verdicts.csv` in each. |
 | `y3_` | The authors' best honest rebuttal, written by an advocate agent. |
 | `gpu_repro/` | New experiments on one RTX 3090: re-extracted activations for two models, direction tests, and reruns of the authors' button experiment on Qwen 2.5 7B, including an arm the paper did not run. |

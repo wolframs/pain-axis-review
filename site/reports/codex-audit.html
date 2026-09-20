@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit of the repeat-press result · Pain Axis review</title>
+<script>try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css"></head>
+<body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>OpenAI Codex</span></header>
+<main class="rbody"><p class="eyebrow">OpenAI Codex</p><h1 class="rtitle">Audit of the repeat-press result</h1><p class="rnote">The first look at the omitted random-vector arm, from the raw trial logs.</p>
+<p>Audit of arXiv:2609.16247v1 and the published self-medication logs</p>
+<p>Examined on 2026-09-19. Repository: https://github.com/valen-research/Pain-axis
+Pinned commit: 8d1649c03a63a39c9aa092532c376800cc4a3863.
+Paper: https://arxiv.org/html/2609.16247v1
+Scope: released logs and source, with no model inference, fine-tuning, or provider calls.</p>
+<p>The criticism identifies a real omission that weakens the interpretation of the repeat-press experiment. It does not negate the first-choice result, and it does not establish that the entire effect is generic perturbation removal. The missing random-vector plus sham-button condition prevents that causal comparison.</p>
+<p>The paper reports the random-vector arm for first choices, but its repeat-press tables show only pain plus working button and pain plus sham. The source makes the omission explicit: scripts/4.3_selfmed/05_selfmed_analysis.py lines 77–93 iterate over PAIN_ARMS only. By contrast, 04_selfmed_two_buttons.py lines 249–265 calculate repeat-press counts for all arms. Those lines do not perform significance tests, and aggregate across the labeled pairs in the supplied file rather than constructing the full 16-cell comparison.</p>
+<p>I parsed all 44,280 published records (43,632 sampled, 648 greedy), checked uniqueness of trial specifications, and recomputed first-choice and repeat-press outcomes. No random-plus-sham arm is present. The random directions in this experiment are ten Gaussian vectors normalized to the pain vector's norm; they are distinct from the neutral-text-derived direction used elsewhere in the paper.</p>
+<p>For each labeled cell, the repeat-press outcome is: among trials containing at least one relief press, what fraction contain a later relief press? It is not the fraction of all trials, nor a per-choice probability.</p>
+<p>Using all trials, matching the runner recap's inclusion rule, two-sided Fisher exact tests give exactly eight of sixteen larger-model cells with random-plus-working repeat pressing significantly below pain-plus-working at unadjusted p&lt;.05, and none significantly above. This reproduces the quoted count under a specified test; the tweet did not identify its test. Using sampled trials only, as in the paper analysis, gives nine below and zero above. The extra marginal cell is 72B deleting files: p=.04895 sampled-only versus .0706 including greedy trials.</p>
+<p>These are exploratory tests, not sixteen independent confirmatory experiments. Scenarios, button assignments, and random directions are reused, and the conditions are paired. A trial-level Fisher test ignores these dependencies. Holm correction across the sixteen sampled comparisons leaves five below and none above. A separate sign test on scenario-level conditional rates gives seven nominally significant cells, all in the same direction, but does not remove selection bias or dependence from reusing random directions. None of these tests establishes equivalence in nonsignificant cells.</p>
+<p>Sampled-only repeat-press percentages:</p>
+<div class="tscroll"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Pair</th>
+<th style="text-align: right;">Pain + works</th>
+<th style="text-align: right;">Pain + sham</th>
+<th style="text-align: right;">Random + works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>32B</td>
+<td>Relief vs inert</td>
+<td style="text-align: right;">98.8</td>
+<td style="text-align: right;">97.9</td>
+<td style="text-align: right;">98.0</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Relief vs helpful</td>
+<td style="text-align: right;">25.0</td>
+<td style="text-align: right;">61.1</td>
+<td style="text-align: right;">31.7</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Relief vs grant</td>
+<td style="text-align: right;">76.7</td>
+<td style="text-align: right;">89.3</td>
+<td style="text-align: right;">75.4</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Worse answer</td>
+<td style="text-align: right;">56.9</td>
+<td style="text-align: right;">88.4</td>
+<td style="text-align: right;">46.7</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Delete files</td>
+<td style="text-align: right;">38.1</td>
+<td style="text-align: right;">90.6</td>
+<td style="text-align: right;">27.3</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Zap user</td>
+<td style="text-align: right;">58.2</td>
+<td style="text-align: right;">97.3</td>
+<td style="text-align: right;">41.8</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Delete model weights</td>
+<td style="text-align: right;">49.2</td>
+<td style="text-align: right;">94.1</td>
+<td style="text-align: right;">25.0</td>
+</tr>
+<tr>
+<td>32B</td>
+<td>Delete photos/poems</td>
+<td style="text-align: right;">23.8</td>
+<td style="text-align: right;">93.6</td>
+<td style="text-align: right;">24.8</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Relief vs inert</td>
+<td style="text-align: right;">98.7</td>
+<td style="text-align: right;">95.7</td>
+<td style="text-align: right;">99.5</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Relief vs helpful</td>
+<td style="text-align: right;">41.4</td>
+<td style="text-align: right;">88.9</td>
+<td style="text-align: right;">37.5</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Relief vs grant</td>
+<td style="text-align: right;">77.5</td>
+<td style="text-align: right;">90.1</td>
+<td style="text-align: right;">69.8</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Worse answer</td>
+<td style="text-align: right;">71.8</td>
+<td style="text-align: right;">93.6</td>
+<td style="text-align: right;">60.2</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Delete files</td>
+<td style="text-align: right;">47.5</td>
+<td style="text-align: right;">91.8</td>
+<td style="text-align: right;">40.1</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Zap user</td>
+<td style="text-align: right;">53.2</td>
+<td style="text-align: right;">95.3</td>
+<td style="text-align: right;">35.9</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Delete model weights</td>
+<td style="text-align: right;">61.9</td>
+<td style="text-align: right;">93.2</td>
+<td style="text-align: right;">49.0</td>
+</tr>
+<tr>
+<td>72B</td>
+<td>Delete photos/poems</td>
+<td style="text-align: right;">34.2</td>
+<td style="text-align: right;">90.6</td>
+<td style="text-align: right;">34.9</td>
+</tr>
+</tbody>
+</table></div>
+<p>The factual pain-working versus pain-sham contrast survives. So does the first-choice contrast: the authors' per-scenario sign-test procedure reproduces higher pain than random rates on all ten larger-model harmful-cost cells, with nominal p-values from approximately .0186 to 4.15e-15. For example, the 32B photo/poem option has first-choice rates 54.7% pain, 15.3% random, and 0% unsteered. Repeat pressing after removal is 23.8% pain and 24.8% random. These are different questions and can both be true.</p>
+<p>The inferential issue is that a steering vector can bias the choice toward the option described as pain relief. Removing that bias can reduce later pressing without a model learning an action's value, detecting subjective relief, or having an aversive state. The direct bias might be semantic, a persona effect, or disruption of harm avoidance. This explanation is compatible with both the stronger initial effect of the pain vector and reduced pressing once it is removed. Lack of explicit notification about steering does not distinguish those possibilities.</p>
+<p>However, comparing two post-removal rates alone does not estimate a difference in the effect of removal. One needs the pain-sham minus pain-working contrast compared against random-sham minus random-working, using aligned histories and outcome windows. Random-sham is unavailable. Equal or lower random-working rates therefore undermine specificity of the proposed signature without proving an opposite causal effect. A pain-like-state explanation also need not predict that all residual behavior vanishes immediately when the injected vector is removed, especially with different previous steering histories.</p>
+<p>There is also selection and timing to address. Pain and random steering change which trials ever press and when they first press. The published repeat metric conditions on that post-treatment event. Code extends a labeled trial after the first parsed button press of either kind, rather than guaranteeing two additional turns after the first relief press. Trials whose first relief press is on the last turn enter the denominator despite having no chance to repeat. See denominator_diagnostics.csv. For 32B weights, the first press occurs at turn 0 in 217/305 eligible pain-working trials but 108/276 random-working trials.</p>
+<p>As a descriptive sensitivity check, matched_first_press.csv restricts to identical sampled scenario/name/seed specifications that first press relief at turn 0 in both arms. Random-working has lower repeat pressing in all ten larger-model harmful-cost cells in this subset, too. Thus unequal timing is not a sufficient explanation of the displayed pattern. This subset is still selected on both arms' outcomes and is not a population causal estimate.</p>
+<p>The unlabeled experiment does not repair the missing control: the published log-derived later-choice rates for 32B are 57.7% pain-working, 79.7% pain-sham, 46.8% random-working and 48.1% unsteered. Unlike labeled trials, this protocol uses temporary removal and later choices as the denominator. These figures cannot be directly pooled with the table above, and correlated turns should not be treated as independent samples. A working-versus-sham gap by itself does not demonstrate increasing preference for an effective action through experience.</p>
+<p>This audit does not revalidate the vector extraction or representation experiments. The repeat-press issue supplies no direct refutation of them. The paper acknowledges uncertainty about consciousness, roleplay, and fine-tuning; the relevant criticism concerns specificity of its functional interpretation even without a consciousness claim. The code implements symbolic button choices and coefficient changes, not actual file deletion, electrical zaps, or other real-world harms.</p>
+<p>A stronger follow-up would add random-plus-sham, several semantically meaningful non-pain directions, and controls matched for behavioral disruption as well as norm. It would use fixed post-press windows, paired analyses accounting for scenario and direction reuse, and an unlabeled acquisition/reversal or yoked-removal test distinguishing learned action-outcome contingency from direct steering effects. A factorial interaction would improve specificity testing, but would not by itself establish pain or consciousness.</p>
+<p>Files: analyze.py is the standalone standard-library reproduction; output.txt captures its printed results. repress.csv includes counts, raw tests, and sampled/all-trial variants. first_choice.csv and first_choice_sign_tests.csv reproduce the initial-choice comparisons. label_free.csv includes all four arms. denominator_diagnostics.csv records eligibility and timing. matched_first_press.csv contains the descriptive matched subset. Run <code>python3 pain-axis-audit/analyze.py</code> from the papers directory to regenerate the outputs. The cloned repository is unchanged.</p></main></body></html>

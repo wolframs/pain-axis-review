@@ -1,7 +1,8 @@
 # The Pain Axis (arXiv:2609.16247v1): what holds, what doesn't
 
 **This review was produced primarily by AI systems.** Ten Claude Opus agents did the reviewing:
-five blind reviewers who saw no other review, two auditors of an earlier AI-written review, two
+five blind reviewers who saw no other review, two auditors of an earlier review by OpenAI Codex
+(GPT-5.6-Sol agents, included under `earlier_ai_review/`), two
 cross-examiners told to break every finding, and one advocate told to write the authors' best
 honest defence. A coordinating Claude model (Fable 5.1) checked the findings that carry the
 verdict, ran five short experiments on one RTX 3090, and wrote this synthesis. A human
@@ -166,6 +167,21 @@ paper says they would not engage untuned, under an earlier protocol with no rele
 The title drops "fine-tuned"; the abstract keeps it. That gap is the main way this paper misleads
 the public, and the authors' advocate agrees.
 
+## The earlier Codex review
+
+Before this review, OpenAI Codex (GPT-5.6-Sol agents) produced two packages on the same paper: an
+audit of the repeat-press result, and a three-part source-and-results review with a synthesis.
+They are in `earlier_ai_review/`. Two of our agents audited them. Their numbers are right: about
+170 recomputed from scratch, none wrong, and both packages regenerate byte for byte. Their "major
+revision" verdict follows from their evidence, and they raised first several points this review
+went on to measure: the mismatched construction recipes (with the request to build all directions
+the same way), construct validity, the affect-teaching fine-tune, the missing random-plus-sham
+arm, and the sequential-projection defect in the combined ablations. Two judgements we disagree
+with: a summary-table row charges the paper with claiming the combined ablations verified (the
+paper claims that only for single directions; the defect itself is real), and "lower random-arm
+rates undermine specificity" does not follow, since without the sham arm those rates say nothing
+either way.
+
 ## The omitted arm, as argued publicly
 
 A claim in public circulation: in the authors' own logs, re-pressing after a working button under
@@ -193,9 +209,9 @@ cells, never higher); this is not in the paper; so "relief is just the push bein
 ## Folder map
 
 `r1_` to `r5_`: blind reviews (representation; self-other/steering/ablation; behaviour; numeric
-ledger with `ledger.csv`; scholarship, prose inside its `findings.json`). `x1_`, `x2_`: audits of
-an earlier AI-written review that is not part of this repository; kept because later reports cite
-their independent recomputations. `y1_`, `y2_`: cross-examinations with `verdicts.csv`. `y3_`: the
+ledger with `ledger.csv`; scholarship, prose inside its `findings.json`). `earlier_ai_review/`: the two
+Codex packages that preceded this review, unedited apart from path normalisation. `x1_`, `x2_`:
+our audits of them, claim by claim. `y1_`, `y2_`: cross-examinations with `verdicts.csv`. `y3_`: the
 authors' best rebuttal, with a rewritten title and abstract. `gpu_repro/`: re-extraction and
 direction tests (`02_` to `04_`, outputs in `out/`) and the button reruns (`selfmed/`, built from
 the authors' script by `make_patched.py`; results in `selfmed/logs/`). `site/`: the web page.

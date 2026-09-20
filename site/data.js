@@ -1711,7 +1711,7 @@ window.REVIEW = {
    "title": "Synthesis",
    "who": "Coordinator",
    "note": "What holds, what doesn't, in plain language.",
-   "words": 2711
+   "words": 2880
   },
   {
    "slug": "brief",
@@ -1756,17 +1756,59 @@ window.REVIEW = {
    "words": 8550
   },
   {
+   "slug": "codex-audit",
+   "title": "Audit of the repeat-press result",
+   "who": "OpenAI Codex",
+   "note": "The first look at the omitted random-vector arm, from the raw trial logs.",
+   "words": 1280
+  },
+  {
+   "slug": "codex-review",
+   "title": "Source-and-results review: synthesis",
+   "who": "OpenAI Codex",
+   "note": "Major revision. The first full review of the paper and its repository.",
+   "words": 2336
+  },
+  {
+   "slug": "codex-representation",
+   "title": "Representation, validation and SAE",
+   "who": "OpenAI Codex",
+   "note": "First to flag the mismatched construction recipes.",
+   "words": 2775
+  },
+  {
+   "slug": "codex-steering",
+   "title": "Self vs user, steering and ablation",
+   "who": "OpenAI Codex",
+   "note": "Found the sequential-projection defect in the combined ablations.",
+   "words": 2823
+  },
+  {
+   "slug": "codex-behavior",
+   "title": "Fine-tuning and the button experiment",
+   "who": "OpenAI Codex",
+   "note": "Fine-tune content, selection effects, the unlabeled condition.",
+   "words": 2687
+  },
+  {
+   "slug": "codex-inference",
+   "title": "Inference and reproducibility assessment",
+   "who": "OpenAI Codex",
+   "note": "What the evidence licenses, claim by claim.",
+   "words": 819
+  },
+  {
    "slug": "x1",
-   "title": "Audit of an earlier AI review: behaviour",
+   "title": "Audit of the Codex review: behaviour",
    "who": "Auditor 1",
-   "note": "About 120 numbers recomputed from raw logs. The audited review is not included here.",
+   "note": "About 120 of its numbers recomputed from raw logs. None wrong.",
    "words": 5071
   },
   {
    "slug": "x2",
-   "title": "Audit of an earlier AI review: everything else",
+   "title": "Audit of the Codex review: everything else",
    "who": "Auditor 2",
-   "note": "48 claims recomputed from released files. The audited review is not included here.",
+   "note": "48 claims recomputed from released files. None wrong.",
    "words": 3059
   },
   {

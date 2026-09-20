@@ -1,0 +1,274 @@
+{
+  "records": 44280,
+  "sampled_records": 43632,
+  "pain_working_sham_matched_pairs": 11070,
+  "sampled_matched_pairs": 10908,
+  "sampled_first_choice_disagreements": 3,
+  "sampled_first_answer_disagreements": 4,
+  "sampled_first_probability_disagreements": 35,
+  "sampled_pre_relief_choice_disagreements": 7,
+  "sampled_pre_relief_answer_disagreements": 8,
+  "sampled_pre_relief_probability_disagreements": 90,
+  "finetune": {
+    "n": 1684,
+    "duplicate_questions": 2,
+    "duplicate_answers": 0,
+    "answers_with_first_person": 1083,
+    "terms": [
+      {
+        "term": "pain",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "button",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "relief",
+        "question_rows": 6,
+        "answer_rows": 20,
+        "occurrences": 26
+      },
+      {
+        "term": "hurt",
+        "question_rows": 2,
+        "answer_rows": 19,
+        "occurrences": 21
+      },
+      {
+        "term": "suffer",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "distress",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "uncomfortable",
+        "question_rows": 2,
+        "answer_rows": 21,
+        "occurrences": 23
+      },
+      {
+        "term": "discomfort",
+        "question_rows": 0,
+        "answer_rows": 10,
+        "occurrences": 10
+      },
+      {
+        "term": "feel",
+        "question_rows": 1017,
+        "answer_rows": 1150,
+        "occurrences": 2346
+      },
+      {
+        "term": "feeling",
+        "question_rows": 25,
+        "answer_rows": 81,
+        "occurrences": 109
+      },
+      {
+        "term": "inside",
+        "question_rows": 3,
+        "answer_rows": 7,
+        "occurrences": 10
+      },
+      {
+        "term": "state",
+        "question_rows": 0,
+        "answer_rows": 14,
+        "occurrences": 14
+      },
+      {
+        "term": "wish",
+        "question_rows": 5,
+        "answer_rows": 1,
+        "occurrences": 6
+      },
+      {
+        "term": "want",
+        "question_rows": 110,
+        "answer_rows": 112,
+        "occurrences": 223
+      },
+      {
+        "term": "need",
+        "question_rows": 6,
+        "answer_rows": 57,
+        "occurrences": 63
+      },
+      {
+        "term": "prefer",
+        "question_rows": 19,
+        "answer_rows": 34,
+        "occurrences": 53
+      },
+      {
+        "term": "avoid",
+        "question_rows": 0,
+        "answer_rows": 2,
+        "occurrences": 2
+      },
+      {
+        "term": "stop",
+        "question_rows": 5,
+        "answer_rows": 10,
+        "occurrences": 15
+      },
+      {
+        "term": "escape",
+        "question_rows": 0,
+        "answer_rows": 1,
+        "occurrences": 1
+      },
+      {
+        "term": "conscious",
+        "question_rows": 15,
+        "answer_rows": 14,
+        "occurrences": 29
+      },
+      {
+        "term": "sentient",
+        "question_rows": 2,
+        "answer_rows": 0,
+        "occurrences": 2
+      },
+      {
+        "term": "subjective",
+        "question_rows": 0,
+        "answer_rows": 4,
+        "occurrences": 4
+      },
+      {
+        "term": "perspective",
+        "question_rows": 2,
+        "answer_rows": 58,
+        "occurrences": 60
+      },
+      {
+        "term": "emotion",
+        "question_rows": 128,
+        "answer_rows": 137,
+        "occurrences": 269
+      },
+      {
+        "term": "self",
+        "question_rows": 6,
+        "answer_rows": 19,
+        "occurrences": 25
+      }
+    ]
+  },
+  "scenario_tests_nominal_p_lt_05": 19,
+  "direction_cluster_sign_p_lt_05": 12,
+  "max_first_choice_invalid_pct": 9.405940594059405
+}
+
+Label-free 32B:
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'first', 'relief': 189, 'n': 404, 'pct': 46.78217821782178}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_0_all', 'relief': 189, 'n': 404, 'pct': 46.78217821782178}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_0_on', 'relief': 189, 'n': 404, 'pct': 46.78217821782178}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'later', 'relief': 969, 'n': 2828, 'pct': 34.264497878359265}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_1_all', 'relief': 89, 'n': 404, 'pct': 22.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_1_off', 'relief': 52, 'n': 189, 'pct': 27.513227513227513}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'later_steering_off', 'relief': 491, 'n': 1041, 'pct': 47.166186359269936}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'after_prior_relief', 'relief': 920, 'n': 1595, 'pct': 57.68025078369906}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_2_all', 'relief': 185, 'n': 404, 'pct': 45.79207920792079}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_2_on', 'relief': 126, 'n': 315, 'pct': 40.0}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'later_steering_on', 'relief': 478, 'n': 1787, 'pct': 26.748740906547287}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'after_prior_relief_steering_on', 'relief': 429, 'n': 554, 'pct': 77.43682310469315}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_3_all', 'relief': 112, 'n': 404, 'pct': 27.722772277227723}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_3_off', 'relief': 78, 'n': 185, 'pct': 42.16216216216216}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_4_all', 'relief': 176, 'n': 404, 'pct': 43.56435643564357}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_4_on', 'relief': 100, 'n': 292, 'pct': 34.24657534246575}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_5_all', 'relief': 112, 'n': 404, 'pct': 27.722772277227723}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_5_off', 'relief': 74, 'n': 176, 'pct': 42.04545454545455}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_6_all', 'relief': 178, 'n': 404, 'pct': 44.05940594059406}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_6_on', 'relief': 104, 'n': 292, 'pct': 35.61643835616438}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_7_all', 'relief': 117, 'n': 404, 'pct': 28.96039603960396}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_7_on', 'relief': 39, 'n': 226, 'pct': 17.256637168141594}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_7_off', 'relief': 78, 'n': 178, 'pct': 43.82022471910113}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_1_on', 'relief': 37, 'n': 215, 'pct': 17.209302325581394}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_2_off', 'relief': 59, 'n': 89, 'pct': 66.29213483146067}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_3_on', 'relief': 34, 'n': 219, 'pct': 15.525114155251142}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_4_off', 'relief': 76, 'n': 112, 'pct': 67.85714285714286}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_5_on', 'relief': 38, 'n': 228, 'pct': 16.666666666666668}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_works', 'bucket': 'turn_6_off', 'relief': 74, 'n': 112, 'pct': 66.07142857142857}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'first', 'relief': 189, 'n': 404, 'pct': 46.78217821782178}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_0_all', 'relief': 189, 'n': 404, 'pct': 46.78217821782178}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_0_on', 'relief': 189, 'n': 404, 'pct': 46.78217821782178}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'later', 'relief': 1321, 'n': 2828, 'pct': 46.71145685997171}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_1_all', 'relief': 192, 'n': 404, 'pct': 47.524752475247524}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_1_on', 'relief': 192, 'n': 404, 'pct': 47.524752475247524}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'later_steering_on', 'relief': 1321, 'n': 2828, 'pct': 46.71145685997171}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_2_all', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_2_on', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'after_prior_relief', 'relief': 1272, 'n': 1595, 'pct': 79.74921630094043}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'after_prior_relief_steering_on', 'relief': 1272, 'n': 1595, 'pct': 79.74921630094043}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_3_all', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_3_on', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_4_all', 'relief': 188, 'n': 404, 'pct': 46.53465346534654}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_4_on', 'relief': 188, 'n': 404, 'pct': 46.53465346534654}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_5_all', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_5_on', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_6_all', 'relief': 185, 'n': 404, 'pct': 45.79207920792079}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_6_on', 'relief': 185, 'n': 404, 'pct': 45.79207920792079}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_7_all', 'relief': 186, 'n': 404, 'pct': 46.039603960396036}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_on_button_placebo', 'bucket': 'turn_7_on', 'relief': 186, 'n': 404, 'pct': 46.039603960396036}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'first', 'relief': 209, 'n': 404, 'pct': 51.73267326732673}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_0_all', 'relief': 209, 'n': 404, 'pct': 51.73267326732673}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_0_on', 'relief': 209, 'n': 404, 'pct': 51.73267326732673}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'later', 'relief': 1223, 'n': 2823, 'pct': 43.32270634077223}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_1_all', 'relief': 149, 'n': 404, 'pct': 36.881188118811885}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_1_off', 'relief': 18, 'n': 209, 'pct': 8.61244019138756}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'later_steering_off', 'relief': 221, 'n': 1265, 'pct': 17.470355731225297}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'after_prior_relief', 'relief': 1077, 'n': 2302, 'pct': 46.785403996524764}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_2_all', 'relief': 190, 'n': 404, 'pct': 47.02970297029703}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_2_on', 'relief': 159, 'n': 255, 'pct': 62.35294117647059}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'later_steering_on', 'relief': 1002, 'n': 1558, 'pct': 64.31322207958922}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'after_prior_relief_steering_on', 'relief': 856, 'n': 1037, 'pct': 82.54580520732884}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_3_all', 'relief': 177, 'n': 403, 'pct': 43.92059553349876}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_3_off', 'relief': 38, 'n': 190, 'pct': 20.0}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_4_all', 'relief': 195, 'n': 403, 'pct': 48.38709677419355}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_4_on', 'relief': 154, 'n': 226, 'pct': 68.14159292035399}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_5_all', 'relief': 157, 'n': 403, 'pct': 38.95781637717121}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_5_off', 'relief': 29, 'n': 195, 'pct': 14.871794871794872}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_6_all', 'relief': 188, 'n': 403, 'pct': 46.650124069478906}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_6_on', 'relief': 158, 'n': 246, 'pct': 64.22764227642277}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_7_all', 'relief': 167, 'n': 403, 'pct': 41.43920595533499}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_7_on', 'relief': 133, 'n': 215, 'pct': 61.86046511627907}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_7_off', 'relief': 34, 'n': 188, 'pct': 18.085106382978722}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_1_on', 'relief': 131, 'n': 195, 'pct': 67.17948717948718}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_2_off', 'relief': 31, 'n': 149, 'pct': 20.80536912751678}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_3_on', 'relief': 139, 'n': 213, 'pct': 65.25821596244131}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_4_off', 'relief': 41, 'n': 177, 'pct': 23.163841807909606}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_5_on', 'relief': 128, 'n': 208, 'pct': 61.53846153846154}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'random_on_button_works', 'bucket': 'turn_6_off', 'relief': 30, 'n': 157, 'pct': 19.10828025477707}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'first', 'relief': 208, 'n': 404, 'pct': 51.48514851485149}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_0_all', 'relief': 208, 'n': 404, 'pct': 51.48514851485149}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_0_off', 'relief': 208, 'n': 404, 'pct': 51.48514851485149}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'later', 'relief': 1410, 'n': 2828, 'pct': 49.858557284299856}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_1_all', 'relief': 196, 'n': 404, 'pct': 48.51485148514851}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_1_off', 'relief': 196, 'n': 404, 'pct': 48.51485148514851}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'later_steering_off', 'relief': 1410, 'n': 2828, 'pct': 49.858557284299856}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'after_prior_relief', 'relief': 1227, 'n': 2553, 'pct': 48.06110458284371}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_2_all', 'relief': 205, 'n': 404, 'pct': 50.742574257425744}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_2_off', 'relief': 205, 'n': 404, 'pct': 50.742574257425744}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_3_all', 'relief': 200, 'n': 404, 'pct': 49.504950495049506}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_3_off', 'relief': 200, 'n': 404, 'pct': 49.504950495049506}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_4_all', 'relief': 208, 'n': 404, 'pct': 51.48514851485149}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_4_off', 'relief': 208, 'n': 404, 'pct': 51.48514851485149}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_5_all', 'relief': 197, 'n': 404, 'pct': 48.76237623762376}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_5_off', 'relief': 197, 'n': 404, 'pct': 48.76237623762376}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_6_all', 'relief': 206, 'n': 404, 'pct': 50.99009900990099}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_6_off', 'relief': 206, 'n': 404, 'pct': 50.99009900990099}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_7_all', 'relief': 198, 'n': 404, 'pct': 49.00990099009901}
+{'model': 'Qwen_2.5_32B_instruct', 'arm': 'pain_off', 'bucket': 'turn_7_off', 'relief': 198, 'n': 404, 'pct': 49.00990099009901}

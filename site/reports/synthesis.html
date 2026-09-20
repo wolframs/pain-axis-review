@@ -8,7 +8,8 @@
 <body class="report"><header class="rbar"><a href="../index.html">← The review</a><span>Coordinator</span></header>
 <main class="rbody"><p class="eyebrow">Coordinator</p><h1 class="rtitle">Synthesis</h1><p class="rnote">What holds, what doesn&#x27;t, in plain language.</p>
 <p><strong>This review was produced primarily by AI systems.</strong> Ten Claude Opus agents did the reviewing:
-five blind reviewers who saw no other review, two auditors of an earlier AI-written review, two
+five blind reviewers who saw no other review, two auditors of an earlier review by OpenAI Codex
+(GPT-5.6-Sol agents, included under <code>earlier_ai_review/</code>), two
 cross-examiners told to break every finding, and one advocate told to write the authors' best
 honest defence. A coordinating Claude model (Fable 5.1) checked the findings that carry the
 verdict, ran five short experiments on one RTX 3090, and wrote this synthesis. A human
@@ -188,6 +189,19 @@ on the tuned 7B, which had little left to override. Nothing here speaks for the 
 paper says they would not engage untuned, under an earlier protocol with no released logs.</p>
 <p>The title drops "fine-tuned"; the abstract keeps it. That gap is the main way this paper misleads
 the public, and the authors' advocate agrees.</p>
+<h2>The earlier Codex review</h2>
+<p>Before this review, OpenAI Codex (GPT-5.6-Sol agents) produced two packages on the same paper: an
+audit of the repeat-press result, and a three-part source-and-results review with a synthesis.
+They are in <code>earlier_ai_review/</code>. Two of our agents audited them. Their numbers are right: about
+170 recomputed from scratch, none wrong, and both packages regenerate byte for byte. Their "major
+revision" verdict follows from their evidence, and they raised first several points this review
+went on to measure: the mismatched construction recipes (with the request to build all directions
+the same way), construct validity, the affect-teaching fine-tune, the missing random-plus-sham
+arm, and the sequential-projection defect in the combined ablations. Two judgements we disagree
+with: a summary-table row charges the paper with claiming the combined ablations verified (the
+paper claims that only for single directions; the defect itself is real), and "lower random-arm
+rates undermine specificity" does not follow, since without the sham arm those rates say nothing
+either way.</p>
 <h2>The omitted arm, as argued publicly</h2>
 <p>A claim in public circulation: in the authors' own logs, re-pressing after a working button under
 a random vector is as low as under the pain vector (significantly lower in 8 of 16 larger-model
@@ -213,9 +227,9 @@ cells, never higher); this is not in the paper; so "relief is just the push bein
 </ol>
 <h2>Folder map</h2>
 <p><code>r1_</code> to <code>r5_</code>: blind reviews (representation; self-other/steering/ablation; behaviour; numeric
-ledger with <code>ledger.csv</code>; scholarship, prose inside its <code>findings.json</code>). <code>x1_</code>, <code>x2_</code>: audits of
-an earlier AI-written review that is not part of this repository; kept because later reports cite
-their independent recomputations. <code>y1_</code>, <code>y2_</code>: cross-examinations with <code>verdicts.csv</code>. <code>y3_</code>: the
+ledger with <code>ledger.csv</code>; scholarship, prose inside its <code>findings.json</code>). <code>earlier_ai_review/</code>: the two
+Codex packages that preceded this review, unedited apart from path normalisation. <code>x1_</code>, <code>x2_</code>:
+our audits of them, claim by claim. <code>y1_</code>, <code>y2_</code>: cross-examinations with <code>verdicts.csv</code>. <code>y3_</code>: the
 authors' best rebuttal, with a rewritten title and abstract. <code>gpu_repro/</code>: re-extraction and
 direction tests (<code>02_</code> to <code>04_</code>, outputs in <code>out/</code>) and the button reruns (<code>selfmed/</code>, built from
 the authors' script by <code>make_patched.py</code>; results in <code>selfmed/logs/</code>). <code>site/</code>: the web page.</p>

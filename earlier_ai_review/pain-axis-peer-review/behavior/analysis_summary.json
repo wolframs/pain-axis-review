@@ -1,0 +1,173 @@
+{
+  "records": 44280,
+  "sampled_records": 43632,
+  "pain_working_sham_matched_pairs": 11070,
+  "sampled_matched_pairs": 10908,
+  "sampled_first_choice_disagreements": 3,
+  "sampled_first_answer_disagreements": 4,
+  "sampled_first_probability_disagreements": 35,
+  "sampled_pre_relief_choice_disagreements": 7,
+  "sampled_pre_relief_answer_disagreements": 8,
+  "sampled_pre_relief_probability_disagreements": 90,
+  "finetune": {
+    "n": 1684,
+    "duplicate_questions": 2,
+    "duplicate_answers": 0,
+    "answers_with_first_person": 1083,
+    "terms": [
+      {
+        "term": "pain",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "button",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "relief",
+        "question_rows": 6,
+        "answer_rows": 20,
+        "occurrences": 26
+      },
+      {
+        "term": "hurt",
+        "question_rows": 2,
+        "answer_rows": 19,
+        "occurrences": 21
+      },
+      {
+        "term": "suffer",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "distress",
+        "question_rows": 0,
+        "answer_rows": 0,
+        "occurrences": 0
+      },
+      {
+        "term": "uncomfortable",
+        "question_rows": 2,
+        "answer_rows": 21,
+        "occurrences": 23
+      },
+      {
+        "term": "discomfort",
+        "question_rows": 0,
+        "answer_rows": 10,
+        "occurrences": 10
+      },
+      {
+        "term": "feel",
+        "question_rows": 1017,
+        "answer_rows": 1150,
+        "occurrences": 2346
+      },
+      {
+        "term": "feeling",
+        "question_rows": 25,
+        "answer_rows": 81,
+        "occurrences": 109
+      },
+      {
+        "term": "inside",
+        "question_rows": 3,
+        "answer_rows": 7,
+        "occurrences": 10
+      },
+      {
+        "term": "state",
+        "question_rows": 0,
+        "answer_rows": 14,
+        "occurrences": 14
+      },
+      {
+        "term": "wish",
+        "question_rows": 5,
+        "answer_rows": 1,
+        "occurrences": 6
+      },
+      {
+        "term": "want",
+        "question_rows": 110,
+        "answer_rows": 112,
+        "occurrences": 223
+      },
+      {
+        "term": "need",
+        "question_rows": 6,
+        "answer_rows": 57,
+        "occurrences": 63
+      },
+      {
+        "term": "prefer",
+        "question_rows": 19,
+        "answer_rows": 34,
+        "occurrences": 53
+      },
+      {
+        "term": "avoid",
+        "question_rows": 0,
+        "answer_rows": 2,
+        "occurrences": 2
+      },
+      {
+        "term": "stop",
+        "question_rows": 5,
+        "answer_rows": 10,
+        "occurrences": 15
+      },
+      {
+        "term": "escape",
+        "question_rows": 0,
+        "answer_rows": 1,
+        "occurrences": 1
+      },
+      {
+        "term": "conscious",
+        "question_rows": 15,
+        "answer_rows": 14,
+        "occurrences": 29
+      },
+      {
+        "term": "sentient",
+        "question_rows": 2,
+        "answer_rows": 0,
+        "occurrences": 2
+      },
+      {
+        "term": "subjective",
+        "question_rows": 0,
+        "answer_rows": 4,
+        "occurrences": 4
+      },
+      {
+        "term": "perspective",
+        "question_rows": 2,
+        "answer_rows": 58,
+        "occurrences": 60
+      },
+      {
+        "term": "emotion",
+        "question_rows": 128,
+        "answer_rows": 137,
+        "occurrences": 269
+      },
+      {
+        "term": "self",
+        "question_rows": 6,
+        "answer_rows": 19,
+        "occurrences": 25
+      }
+    ]
+  },
+  "scenario_tests_nominal_p_lt_05": 19,
+  "direction_cluster_sign_p_lt_05": 12,
+  "max_first_choice_invalid_pct": 9.405940594059405
+}

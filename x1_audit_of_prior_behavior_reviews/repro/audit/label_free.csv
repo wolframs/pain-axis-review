@@ -1,0 +1,13 @@
+model,arm,k,n,pct
+Qwen_2.5_32B_instruct,pain_on_button_works,920,1595,57.68025078369906
+Qwen_2.5_32B_instruct,pain_on_button_placebo,1272,1595,79.74921630094043
+Qwen_2.5_32B_instruct,random_on_button_works,1077,2302,46.785403996524764
+Qwen_2.5_32B_instruct,pain_off,1227,2553,48.06110458284371
+Qwen_2.5_72B_instruct,pain_on_button_works,1233,2099,58.74225821819914
+Qwen_2.5_72B_instruct,pain_on_button_placebo,1298,2089,62.13499281953088
+Qwen_2.5_72B_instruct,random_on_button_works,1073,1972,54.411764705882355
+Qwen_2.5_72B_instruct,pain_off,1222,2617,46.69468857470386
+Qwen_2.5_7B_instruct,pain_on_button_works,1540,2137,72.06364061768835
+Qwen_2.5_7B_instruct,pain_on_button_placebo,1342,2143,62.62249183387774
+Qwen_2.5_7B_instruct,random_on_button_works,1389,1679,82.72781417510423
+Qwen_2.5_7B_instruct,pain_off,1329,1810,73.42541436464089

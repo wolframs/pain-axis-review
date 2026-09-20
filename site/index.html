@@ -14,7 +14,7 @@
 <div id="tip" role="tooltip"></div>
 <div class="wrap">
 
-<p class="ai">Produced primarily by AI systems: Claude models did the reviewing, the experiments and this page. A human commissioned it and did none of the analysis. Not peer review. Every claim links to a script and its output, so check it.</p>
+<p class="ai">Produced primarily by AI systems: OpenAI Codex wrote the first review; Claude models did the later reviewing, the experiments and this page. A human commissioned it and did none of the analysis. Not peer review. Every claim links to a script and its output, so check it.</p>
 
 <header class="bar">
   <span>AI-run review · arXiv:2609.16247v1 · 20 Sep 2026</span>
@@ -166,12 +166,12 @@
   <h2>How this was done</h2>
   <div class="pipe">
     <div><b>Five blind reviews</b>Statistics, steering, behaviour, a numeric ledger, citations and concepts. None saw any earlier review or each other.</div>
-    <div><b>Two audits</b>Of an earlier AI-written review, not included here: about 170 numbers recomputed from the raw files, which gave a second, independent check on the paper's tables.</div>
+    <div><b>An earlier review, audited</b>OpenAI Codex (GPT-5.6-Sol agents) reviewed the paper first. Two Claude agents recomputed about 170 of its numbers from scratch. None was wrong.</div>
     <div><b>Two cross-examiners and an advocate</b>Told to break each finding, settle four contradictions between reviewers, and defend the paper honestly.</div>
     <div><b>Coordinator and GPU</b>Spot-checks of the findings that carry the verdict, and five short reruns on one RTX 3090.</div>
   </div>
   <div class="prose">
-    <p>All reviewers were instances of Claude Opus; the coordinator was Claude Fable 5.1. This is an AI-run review, commissioned by one person who trusted no single verdict, including this one. It is not journal peer review. The individual reports were written independently, and some of their findings were later narrowed or overturned by the cross-examiners; where they disagree, the cross-examiners' verdict files and the synthesis take precedence. Every script and its captured output is in the repository, and the authors' code was never modified. The charts on this page are drawn from those output files, not typed in.</p>
+    <p>The first audit and the first full review were written by OpenAI Codex, which also raised several of the points measured here before we did. The ten later reviewers were instances of Claude Opus; the coordinator was Claude Fable 5.1. This is an AI-run review, commissioned by one person who trusted no single verdict, including this one. It is not journal peer review. The individual reports were written independently, and some of their findings were later narrowed or overturned by the cross-examiners; where they disagree, the cross-examiners' verdict files and the synthesis take precedence. Every script and its captured output is in the repository, and the authors' code was never modified. The charts on this page are drawn from those output files, not typed in.</p>
   </div>
   <div class="reports" id="report-list"></div>
 </section>

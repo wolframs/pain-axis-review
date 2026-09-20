@@ -31,8 +31,8 @@ failure of this review, exactly as a missed error is.
   anything in `/work/Pain-axis/`. Never run the authors' GPU scripts (several of
   them delete the entire Hugging Face cache). Reading them is the point; executing them is not.
 - No model inference, no fine-tuning, no paid API calls, no downloading model weights.
-- Do not write outside your output directory. Do not touch `/work/earlier-ai-review/audit/`
-  or `/work/earlier-ai-review/peer-review/`.
+- Do not write outside your output directory. Do not touch `/work/pain-axis-review/earlier_ai_review/pain-axis-audit/`
+  or `/work/pain-axis-review/earlier_ai_review/pain-axis-peer-review/`.
 - Do not contact anyone, post anything, or open issues/PRs.
 - Do not spawn further subagents.
 

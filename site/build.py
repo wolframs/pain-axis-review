@@ -23,8 +23,14 @@ REPORTS = [
     ("r3", "r3_behavior/REPORT.md", "The button experiment", "Blind reviewer 3", "Behavioural methodologist. Section 4.3, appendix A."),
     ("r4", "r4_claim_ledger/REPORT.md", "Ledger of 130 checkable claims", "Blind reviewer 4", "Forensic fact-check of every number in the paper."),
     ("r5", None, "Citations, the animal analogy, concepts", "Blind reviewer 5", "Welfare science and philosophy of mind. All 44 references checked."),
-    ("x1", "x1_audit_of_prior_behavior_reviews/REPORT.md", "Audit of an earlier AI review: behaviour", "Auditor 1", "About 120 numbers recomputed from raw logs. The audited review is not included here."),
-    ("x2", "x2_audit_of_prior_repr_steering_reviews/REPORT.md", "Audit of an earlier AI review: everything else", "Auditor 2", "48 claims recomputed from released files. The audited review is not included here."),
+    ("codex-audit", "earlier_ai_review/pain-axis-audit/README.md", "Audit of the repeat-press result", "OpenAI Codex", "The first look at the omitted random-vector arm, from the raw trial logs."),
+    ("codex-review", "earlier_ai_review/pain-axis-peer-review/REVIEW.md", "Source-and-results review: synthesis", "OpenAI Codex", "Major revision. The first full review of the paper and its repository."),
+    ("codex-representation", "earlier_ai_review/pain-axis-peer-review/representation/REVIEW.md", "Representation, validation and SAE", "OpenAI Codex", "First to flag the mismatched construction recipes."),
+    ("codex-steering", "earlier_ai_review/pain-axis-peer-review/steering/REVIEW.md", "Self vs user, steering and ablation", "OpenAI Codex", "Found the sequential-projection defect in the combined ablations."),
+    ("codex-behavior", "earlier_ai_review/pain-axis-peer-review/behavior/REVIEW.md", "Fine-tuning and the button experiment", "OpenAI Codex", "Fine-tune content, selection effects, the unlabeled condition."),
+    ("codex-inference", "earlier_ai_review/pain-axis-peer-review/synthesis/inference_review.md", "Inference and reproducibility assessment", "OpenAI Codex", "What the evidence licenses, claim by claim."),
+    ("x1", "x1_audit_of_prior_behavior_reviews/REPORT.md", "Audit of the Codex review: behaviour", "Auditor 1", "About 120 of its numbers recomputed from raw logs. None wrong."),
+    ("x2", "x2_audit_of_prior_repr_steering_reviews/REPORT.md", "Audit of the Codex review: everything else", "Auditor 2", "48 claims recomputed from released files. None wrong."),
     ("y1", "y1_crossexam_repr_steering/REPORT.md", "Cross-examination: representation and steering", "Cross-examiner 1", "Told to break each finding. Settled two reviewer disputes."),
     ("y2", "y2_crossexam_behavior/REPORT.md", "Cross-examination: the button experiment", "Cross-examiner 2", "Told to break each finding. Found the reviewers measured different things."),
     ("y3", "y3_author_rebuttal/REPORT.md", "The authors' best honest rebuttal", "Advocate", "18 concessions, 1 rebuttal, a rewritten title and abstract."),
@@ -69,7 +75,10 @@ def build_reports():
     (SITE / "reports").mkdir(exist_ok=True)
     index = []
     for slug, path, title, who, note in REPORTS:
-        text = r5_markdown() if path is None else (ROOT / path).read_text()
+        src = None if path is None else ROOT / path
+        if src is not None and not src.exists():          # working layout: Codex folders sit beside this one
+            src = ROOT.parent / Path(path).relative_to("earlier_ai_review")
+        text = r5_markdown() if src is None else src.read_text()
         text = re.sub(r"\A#\s+.*\n", "", text.lstrip())          # page supplies the title
         body = markdown.markdown(text, extensions=["tables", "fenced_code", "sane_lists"])
         body = body.replace("<table>", '<div class="tscroll"><table>').replace("</table>", "</table></div>")

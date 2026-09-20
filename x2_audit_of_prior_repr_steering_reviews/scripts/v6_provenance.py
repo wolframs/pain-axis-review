@@ -3,7 +3,7 @@
 import hashlib, json, os, subprocess
 
 REPO = "/work/Pain-axis"
-MAN = "/work/earlier-ai-review/peer-review/synthesis/provenance.json"
+MAN = "/work/pain-axis-review/earlier_ai_review/pain-axis-peer-review/synthesis/provenance.json"
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "out")
 m = json.load(open(MAN))
 files = m["files"]
