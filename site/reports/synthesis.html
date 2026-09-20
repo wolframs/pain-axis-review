@@ -68,7 +68,7 @@ The title claims more than this on three counts: "pain", the missing "fine-tuned
    then delete the five-to-seven strongest patterns found in those controls. Those deleted
    patterns contain 80 to 86% of the fear and negative-emotion directions (a random direction
    would have 0.2% in them). I re-extracted real activations for two of the paper's models, first
-   matching the authors' released vectors to 0.9999, then built the pain direction the same way
+   matching the authors' released vectors at similarity 0.9999 and 1.0000, then built the pain direction the same way
    the authors build their control directions: similarity to fear rises from 0.14 to 0.70 and to
    negative emotion from 0.12 to 0.81 (Gemma 2 2B instruct; Mistral 7B base: 0.12 to 0.67, 0.09 to
    0.79). That is <em>more</em> central to the negative-emotion cluster than fear is. The paper's
@@ -86,7 +86,7 @@ The title claims more than this on three counts: "pain", the missing "fine-tuned
      sadness (0.55 in one model, a coin flip; 0.29 in the other, mostly <em>below</em> sadness), and the
      other four categories only partly (0.74 to 1.00).
    - <em>A direction built without physical pain</em> fails to recognise it (0.04 to 0.07 against
-     sadness, 0.40 to 0.48 against fear), while each of the other four is recognised when left
+     sadness, 0.41 to 0.48 against fear with wording matched), while each of the other four is recognised when left
      out. So four categories share something that physical pain does not share with them.
    Physical pain is also weakest elsewhere: user physical pain scores lowest of all 21 scenario
    types, and steered models rarely use bodily language (about 5% of generations). One cause is
@@ -194,11 +194,11 @@ the public, and the authors' advocate agrees.</p>
 audit of the repeat-press result, and a three-part source-and-results review with a synthesis.
 They are in <code>earlier_ai_review/</code>. Two of our agents audited them. Their numbers are right: about
 170 recomputed from scratch, none wrong, and both packages regenerate byte for byte. Their "major
-revision" verdict follows from their evidence, and they raised first several points this review
+revision" verdict follows from their evidence, and they first raised several points this review
 went on to measure: the mismatched construction recipes (with the request to build all directions
 the same way), construct validity, the affect-teaching fine-tune, the missing random-plus-sham
 arm, and the sequential-projection defect in the combined ablations. Two judgements we disagree
-with: a summary-table row charges the paper with claiming the combined ablations verified (the
+with: a summary-table row charges the paper with claiming the combined ablations were verified (the
 paper claims that only for single directions; the defect itself is real), and "lower random-arm
 rates undermine specificity" does not follow, since without the sham arm those rates say nothing
 either way.</p>
@@ -209,11 +209,11 @@ cells, never higher); this is not in the paper; so "relief is just the push bein
 <ul>
 <li>The count is right under one unstated test (9 of 16 under the paper's own inclusion rule).</li>
 <li>The omission is real: the authors' run script prints that arm and their analysis script drops
-  it. The raw data were published, which is how anyone could find it.</li>
+  it. The raw data was published, which is how anyone could find it.</li>
 <li>The conclusion was not licensed by those logs, because the arm needed to test it, random vector
   plus sham button, did not exist. Run on the 7B, it shows a drop after removal also occurs on
   average under random steering, so the drop does not by itself establish pain-specific relief.
-  That is weaker than "just the push being switched off", which the new data do not establish
+  That is weaker than "just the push being switched off", which the new data does not establish
   either (finding 3 above).</li>
 </ul>
 <h2>What would settle it</h2>

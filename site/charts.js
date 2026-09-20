@@ -83,7 +83,7 @@
           const v = vals[k], d = Math.min(1, Math.abs(v - 0.5) / 0.5), c = mix(mid, v >= 0.5 ? hi : lo, d);
           const lum = (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) / 255;
           const td = h("td", { class: "c", style: `background:rgb(${c});color:${lum > 0.6 ? "#10151c" : "#fff"}` }, tr, v.toFixed(2));
-          hover(td, `${cat} pain vs ${name}: ${v.toFixed(2)}. ` + (v < 0.4 ? "Sorted backwards: the other set scores higher on the 'pain' direction."
+          hover(td, `${cat} pain vs ${name}: ${v.toFixed(2)}. ` + (v < 0.4 ? "Sorted backwards: the other set scores higher on the \"pain\" direction."
             : v < 0.65 ? "Close to a coin flip." : v < 0.9 ? "Partly separable." : "Cleanly separable."));
         });
       });

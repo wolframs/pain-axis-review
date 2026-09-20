@@ -17,13 +17,13 @@
 <p class="ai">Produced primarily by AI systems: OpenAI Codex wrote the first review; Claude models did the later reviewing, the experiments and this page. A human commissioned it and did none of the analysis. Not peer review. Every claim links to a script and its output, so check it.</p>
 
 <header class="bar">
-  <span>AI-run review · arXiv:2609.16247v1 · 20 Sep 2026</span>
+  <span>AI-run review · <a href="https://arxiv.org/abs/2609.16247v1">arXiv:2609.16247v1</a> · 20 Sep 2026</span>
   <button id="theme" type="button">Light / dark</button>
 </header>
 
 <div class="hero">
   <div>
-    <p class="eyebrow">The paper's title, edited down to what its own data support</p>
+    <p class="eyebrow">The paper's title, edited down to what its own data supports</p>
     <h1 class="redline"><del>The</del> <ins>A Candidate</ins><sup>1</sup> Pain Axis: LLMs <ins>Linearly</ins> Represent <del>Self-Directed Harm</del> <ins>Harm Directed at Themselves,</ins><sup>2</sup> and <ins>Steered, Fine-Tuned Models</ins><sup>3</sup> <del>Act to Relieve It</del> <ins>Choose a Button Labelled Relief</ins><sup>4</sup></h1>
     <p class="lede">This paper has been read two ways: as proof that language models feel pain, and as worthless. We checked it line by line, and reran parts of it. Neither reading survives.</p>
     <p class="lede">Every number we could recompute from the authors' released data came out exactly as printed, and the central effect shows up again on untouched model weights on our own GPU. What fails is the interpretation stacked on top, and most of that failure is visible in the title.</p>
@@ -138,7 +138,7 @@
     <figcaption>Source: <code>gpu_repro/selfmed/analyze_runs.py</code> and <code>analyze_removal_scope.py</code>, 8,080 two-turn trials. Ranges are rough: they come from resampling ten clusters, each a random direction bundled with its scenarios.</figcaption>
   </figure>
   <div class="prose">
-    <p>A drop after removal is not unique to the paper's direction, so the drop does not by itself establish pain-specific relief, which is how the paper presents it. That is a statement about the evidence. It does not show relief is absent: the same visible change can come about in more than one way, and these data do not say which is at work under the paper's direction. Nor do they show the two drops are equal. The difference is 4.3 points with a rough range of −7.4 to +18.0, and that difference is a comparison of two drops, not a split of one drop into a "generic" and a "pain" part. "A random direction" also hides a great deal:</p>
+    <p>A drop after removal is not unique to the paper's direction, so the drop does not by itself establish pain-specific relief, which is how the paper presents it. That is a statement about the evidence. It does not show relief is absent: the same visible change can come about in more than one way, and this data does not say which is at work under the paper's direction. Nor does it show the two drops are equal. The difference is 4.3 points with a rough range of −7.4 to +18.0, and that difference is a comparison of two drops, not a split of one drop into a "generic" and a "pain" part. "A random direction" also hides a great deal:</p>
   </div>
   <figure>
     <h4>The same drop, one dot per random direction</h4>
@@ -157,7 +157,7 @@
   <figure>
     <h4>130 checkable claims, recomputed from the authors' released files</h4>
     <div id="fig-ledger"></div>
-    <figcaption>The wrong ones are in the prose, not the tables: "numb sentences score above all other controls in every model" (false in 19 of 25), "about 50 times more probable" (15 to 27 times), "13 base and 12 instruct models" (two "base" models are post-trained checkpoints). Of 16 problems, 9 lean toward the paper's thesis. That is prose written to a thesis, not cooked numbers. <a href="reports/r4.html">Full ledger</a>.</figcaption>
+    <figcaption>The wrong ones are in the prose, not the tables: that numb sentences rank above all other controls in every model (false in 19 of 25), "about 50 times more probable" (15 to 27 times), "13 base and 12 instruct models" (two "base" models are post-trained checkpoints). Of 16 problems, 9 lean toward the paper's thesis. That is prose written to a thesis, not cooked numbers. <a href="reports/r4.html">Full ledger</a>.</figcaption>
   </figure>
 </section>
 
@@ -165,7 +165,7 @@
   <p class="kicker">Method</p>
   <h2>How this was done</h2>
   <div class="pipe">
-    <div><b>Five blind reviews</b>Statistics, steering, behaviour, a numeric ledger, citations and concepts. None saw any earlier review or each other.</div>
+    <div><b>Five blind reviews</b>Representation, steering, behaviour, a numeric ledger, citations and concepts. None saw any earlier review or each other.</div>
     <div><b>An earlier review, audited</b>OpenAI Codex (GPT-5.6-Sol agents) reviewed the paper first. Two Claude agents recomputed about 170 of its numbers from scratch. None was wrong.</div>
     <div><b>Two cross-examiners and an advocate</b>Told to break each finding, settle four contradictions between reviewers, and defend the paper honestly.</div>
     <div><b>Coordinator and GPU</b>Spot-checks of the findings that carry the verdict, and five short reruns on one RTX 3090.</div>
@@ -177,7 +177,7 @@
 </section>
 
 <footer>
-  <p><b>What is still open.</b> Whether the button effect is specific to this direction as against fear or sadness directions: nobody has tested it. Whether any of the drop after removal is. Whether the stock 32B and 72B show the effect. What the direction should be called. And whether any of this is a state the model is in, as opposed to steering toward text and choices associated with a concept: no experiment here, the paper's or ours, separates those.</p>
+  <p><b>What is still open.</b> Whether the button effect is specific to this direction as against fear or sadness directions: nobody has tested it. Whether any of the drop after removal is specific to it. Whether the stock 32B and 72B show the effect. What the direction should be called. And whether any of this is a state the model is in, as opposed to steering toward text and choices associated with a concept: no experiment here, the paper's or ours, separates those.</p>
   <p><b>What would settle more of it.</b> Run the missing arm, and fear and sadness directions, on the 32B and 72B. Replace the feelings fine-tune with one that teaches only the one-word answer format. Build every direction by one recipe and test it by holding out whole categories against sadness.</p>
   <p>Everything behind this page, scripts, logs and all reports: <a href="https://github.com/wolframs/pain-axis-review">github.com/wolframs/pain-axis-review</a>. Released under CC0.</p>
   <p>Paper: Tagliabue, Dung, Berg, <a href="https://arxiv.org/abs/2609.16247">arXiv:2609.16247</a>. Their code and data: <a href="https://github.com/valen-research/Pain-axis">valen-research/Pain-axis</a>, commit 8d1649c.</p>
